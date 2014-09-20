@@ -1,0 +1,64 @@
+<template name="notificationMessages">
+  {{#if notifications}}
+  <div class="notification-box">
+    <div style="width:350px">
+      <div class="panel panel-primary" style="border-bottom-left-radius:0px;border-bottom-right-radius:0px">
+        <div class="panel-heading">
+        <button type="button" class="close">&times;</button>
+          通知助手
+        </div>
+        <div class="panel-body" style="overflow:hidden">
+          <ul class="notification">
+            {{#each notifications}}
+            {{> notificationMessage}}
+            {{/each}}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  {{/if}}
+</template>
+
+<template name="notificationMessage">
+  <li class="left clearfix message">
+    <span class="notification-img pull-left">
+      <div class="piece {{style}}"></div>
+    </span>
+    <div class="notification-body clearfix">
+      <div class="header">
+        <strong class="primary-font">{{title}}</strong>
+      </div>
+      <p>
+        {{{message}}}
+      </p>
+    </div>
+  </li>
+</template>
+
+<template name="replyMessages">
+  <div id="reply-box" style="display:none">
+    <div class="reply-box">
+      <div class="reply-no-message">
+        没有任何新消息噢!
+      </div>
+      <img class="reply-bell" src="/img/bell.png">
+    </div>
+  </div>
+</template>
+
+<template name="replyMessage">
+  <li class="left clearfix message">
+    <span class="notification-img pull-left">
+      <div class="piece notice"></div>
+    </span>
+    <div class="notification-body clearfix">
+      <div class="header">
+        <strong class="primary-font">{{title}}</strong>
+      </div>
+      <p>
+        {{{message}}}
+      </p>
+    </div>
+  </li>
+</template>

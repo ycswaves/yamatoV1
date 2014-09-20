@@ -1,0 +1,13 @@
+.property-panel{
+  margin:10px 0px;
+  border-radius: 2px;
+  background-color: #fefefe;
+  padding: 20px;
+}
+.property .label-img{
+  width: 15px;
+  height: 15px;
+  margin-right: 5px
+}
+dt {margin-right: 5px}
+dd {font-weight: 100}

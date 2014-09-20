@@ -1,0 +1,336 @@
+<template name="addProperty">
+  <div class="page-gradient">
+  <!-- Breadcrumb -->
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li class="active">{{#if myProperty}}编辑{{else}}发布{{/if}}</li>
+      </ol>
+    </div>
+    <!-- end Breadcrumb -->
+    <div class="container">
+      <header>
+        <h1>
+        {{#if myProperty}}
+          <i class="fa fa-pencil-square"></i> 编辑
+        {{else}}
+          <i class="fa fa-bullhorn"></i> 发布
+        {{/if}}
+        </h1>
+      </header>
+      <form role="form" id="propertyForm" class="form-submit" action="thank-you.html">
+        <input type="hidden" name="propertyid" value="{{myProperty._id}}">
+        <div class="row">
+          <div class="block">
+            <div class="col-md-9 col-sm-9">
+              <section id="submit-form">
+                <section id="basic-information">
+                  <header><h2><i class="fa fa-list-alt"></i> 基本信息</h2></header>
+                  <div class="row">
+                    <div class="col-md-8">
+                      <div class="form-group" id="address-form-group">
+                        <label for="submit-title">地址 *</label>
+                        <input type="text" class="form-control" id="submit-title" name="address" value="{{myProperty.address}}">
+                      </div><!-- /.form-group -->
+                    </div>
+                    <div class="col-md-4">
+                      <div class="form-group" id="price-form-group">
+                        <label for="submit-price">价格 *</label>
+                        <div class="input-group">
+                          <span class="input-group-addon">$</span>
+                          <input type="text" class="form-control" id="submit-price" name="price" value="{{myProperty.price}}">
+                        </div>
+                      </div><!-- /.form-group -->
+                    </div>
+                  </div>
+                  <div class="form-group" id="descr-form-group">
+                    <label for="submit-description">描述</label>
+                    <textarea class="form-control" id="submit-description" rows="3" name="description">{{myProperty.description}}</textarea>
+                  </div><!-- /.form-group -->
+                </section><!-- /#basic-information -->
+
+                <section>
+                  <div class="row">
+                    <div class="block clearfix">
+                      <div class="col-md-12 col-sm-12">
+                        <section id="summary">
+                          <header><h2><i class="fa fa-newspaper-o"></i> 概览</h2></header>
+                          <div class="form-group" id="district-form-group">
+                            <label for="district">区域</label>
+                            <select id="district" name="district">
+                              {{#each arrayify district}}
+                              <option value="{{key}}">{{key}} - {{value}}</option>
+                              {{/each}}
+                            </select>
+                          </div>
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                              <div class="form-group" id="ptype-form-group">
+                                <label for="property-type">房屋类型</label>
+                                <select name="property-type" id="property-type">
+                                  {{#each arrayify ptypes}}
+                                  <option value="{{key}}" {{ifSelected key ../myProperty.propertyType}}>{{value}}</option>
+                                  {{/each}}
+                                </select>
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+
+                            <div class="col-md-4 col-sm-4">
+                              <label for="submit-status">有无中介费</label>
+                              <div class="form-group form-inline" id="hasAgent-form-group" style="padding-top:10px">
+                                <div class="radio" style="margin-right:30px">
+                                  <label>
+                                    <input type="radio" id="has-agent-true" value="1"
+                                    {{ifChecked '1' myProperty.hasAgentFee}} name="has-agent-fee">有
+                                  </label>
+                                </div>
+                                <div class="radio" data-agent-state="">
+                                  <label>
+                                    <input type="radio" id="has-agent-false" value="0"
+                                    {{ifChecked '0' myProperty.hasAgentFee}} name="has-agent-fee" checked>无
+                                  </label>
+                                </div>
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+                          </div><!-- /.row -->
+
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                              <div class="form-group" id="renttype-form-group">
+                                <label>出租方式</label>
+                                <select name="rent-type" id="rent-type">
+                                  <option value="0" {{ifSelected '0' myProperty.rentType}}>单间</option>
+                                  <option value="1" {{ifSelected '1' myProperty.rentType}}>整套</option>
+                                </select>
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+
+                            <div class="col-md-4 col-sm-4">
+                              <div class="form-group" id="room-form-group">
+                                <label for="room-type">出租房间</label>
+                                <select name="room-type" id="room-type">
+                                  {{#each arrayify rtypes}}
+                                  <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
+                                  {{/each}}
+                                </select>
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+
+                            <div class="col-md-4 col-sm-4">
+                              <div class="form-group" id="movein-form-group">
+                                <label for="move-in-date">入住时间</label>
+                                <div class="input-group">
+                                  <input type="text" class="form-control datepicker" id="move-in-date" name="move-in-date" value="{{transDatetime myProperty.moveInDate}}">
+                                </div>
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+
+                          </div><!-- /.row -->
+
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                              <div class="form-group" id="bedroom-form-group">
+                                <label for="bedroom">房间数</label>
+                                <input type="text" class="form-control" name="bedroom" value="{{myProperty.bedroom}}">
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+
+                            <div class="col-md-4 col-sm-4">
+                              <div class="form-group" id="bathroom-form-group">
+                                <label for="bathroom">卫生间</label>
+                                <input type="text" class="form-control" name="bathroom" value="{{myProperty.bathroom}}">
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+
+                            <div class="col-md-4 col-sm-4">
+                              <div class="form-group" id="area-form-group">
+                                <label for="area">面积</label>
+                                <div class="input-group">
+                                  <input type="text" class="form-control" name="property-area" value="{{myProperty.area}}">
+                                  <span class="input-group-addon">m<sup>2</sup></span>
+                                </div>
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+
+                          </div><!-- /.row -->
+
+                          <div class="row">
+                            <div class="col-md-4 col-sm-4">
+                              <div class="form-group" id="mrtLinesDiv">
+                                <label for="mrtlines">最近地铁线</label>
+                                <select name="mrtlines" id="mrtlines">
+                                  {{#each arrayify mrtlines}}
+                                  <option value="{{key}}" {{ifLineMatch key ../myProperty.mrt}}>{{value.niceName}}</option>
+                                  {{/each}}
+                                </select>
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+
+                            <div class="col-md-6 col-sm-6">
+                              <div class="form-group">
+                                <label for="submit-property-type">站名</label>
+                                <select name="stations" id="stations">
+                                  {{#each arrayify stations}}
+                                  <option value="{{key}}" {{ifSelected key ../myProperty.mrt}}>{{key}} - {{value}}</option>
+                                  {{/each}}
+                                </select>
+                              </div><!-- /.form-group -->
+                            </div><!-- /.col-md-4 -->
+                          </div><!-- /.row -->
+                        </section><!-- /#summary -->
+                      </div><!-- /.col-md-12 -->
+
+                    </div><!-- /.block -->
+                  </div><!-- /.row -->
+                </section>
+
+                <section class="block" id="gallery">
+                  <header><h2><i class="fa fa-picture-o"></i> 图片上传</h2></header>
+                  <div class="center">
+                    <div class="form-group">
+                      <form action="/file-upload" class="dropzone" id="upload">
+                        <div class="fallback">
+                          <input name="file" type="file" multiple />
+                        </div>
+                      </form>
+                      <figure class="note"><strong>提示:</strong> 可以一次选择多个文件!</figure>
+                    </div>
+                  </div>
+                </section>
+
+                <section id="property-features" class="block">
+                  <section>
+                    <header><h2><i class="fa fa-star-o"></i> 房屋配套</h2></header>
+                    <ul class="submit-features">
+                      {{#each arrayify facilities}}
+                        <li>
+                          <div class="checkbox">
+                            <label>
+                              <input type="checkbox" value="{{key}}" {{ifSelected key ../myProperty.facilities}} class="property-facility">{{value}}
+                            </label>
+                          </div>
+                        </li>
+                      {{/each}}
+                    </ul>
+                  </section>
+                </section>
+              </section>
+            </div><!-- /.col-md-9 -->
+            <div class="col-md-3 col-sm-3">
+              <aside class="submit-step">
+                <figure class="step-number">1</figure>
+                <div class="description">
+                  <h4>输入您的房产信息</h4>
+                  <p>请尽可能准确地描述您的房产, 以便其他用户查找
+                  </p>
+                </div>
+              </aside><!-- /.submit-step -->
+            </div><!-- /.col-md-3 -->
+          </div>
+        </div><!-- /.row -->
+
+
+        <div class="row">
+          <div class="block">
+            <section id="property-contact" class="block">
+              <section>
+                <header><h2><i class="fa fa-phone-square"></i> 联系方式</h2></header>
+                <div class="col-md-9 col-sm-9">
+                  <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                      <div class="form-group" id="contact-person-form-group">
+                        <label for="">联系人 *</label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" name="contact-person" >
+                        </div>
+                      </div><!-- /.form-group -->
+                    </div><!-- /.col-md-4 -->
+
+                    <div class="col-md-4 col-sm-4">
+                      <div class="form-group" id="contact-number-form-group">
+                        <label for="">联系电话 *</label>
+                        <div class="input-group">
+                          <span class="input-group-addon">+65</span>
+                          <input type="text" class="form-control" name="contact-number" >
+                        </div>
+                      </div><!-- /.form-group -->
+                    </div><!-- /.col-md-4 -->
+                  </div>
+
+                  <div class="row">
+                    <div class="col-md-4 col-sm-4">
+                      <div class="form-group" id="contact-qq-form-group">
+                        <label for="">QQ</label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" name="contact-qq">
+                        </div>
+                      </div><!-- /.form-group -->
+                    </div><!-- /.col-md-4 -->
+
+                    <div class="col-md-4 col-sm-4">
+                      <div class="form-group" id="contact-wechat-form-group">
+                        <label for="">微信 wechat</label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" name="contact-wechat">
+                        </div>
+                      </div><!-- /.form-group -->
+                    </div><!-- /.col-md-4 -->
+
+                    <div class="col-md-4 col-sm-4">
+                      <div class="form-group" id="contact-email-form-group">
+                        <label for="">Email</label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" name="contact-email">
+                        </div>
+                      </div><!-- /.form-group -->
+                    </div><!-- /.col-md-4 -->
+
+                  </div> <!-- row -->
+                </div>
+
+
+                <div class="col-md-3 col-sm-3">
+                  <aside class="submit-step">
+                    <figure class="step-number">2</figure>
+                    <div class="description">
+                      <h4>联系方式</h4>
+                      <p>请填写准确的联系方式以便对方即时联系您
+                      </p>
+                    </div>
+                  </aside><!-- /.submit-step -->
+                </div><!-- /.col-md-3 -->
+              </section>
+            </section>
+          </div>
+        </div>
+
+        <hr>
+        <div class="row">
+          <div class="block">
+            <div class="col-md-9 col-sm-9">
+              <div class="center">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-default large" style="width:30%">发布</button>
+                </div><!-- /.form-group -->
+                <figure class="note block">By clicking the “Proceed to Payment” or “Submit” button you agree with our <a href="terms-conditions.html">Terms and conditions</a></figure>
+              </div>
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <aside class="submit-step">
+                <figure class="step-number">3</figure>
+                <div class="description">
+                  <h4>核对信息</h4>
+                  <p>请再次核对你所输入的信息，确认无误后请点击“发布”
+                  </p>
+                </div>
+              </aside><!-- /.submit-step -->
+            </div><!-- /.col-md-3 -->
+          </div>
+        </div>
+
+
+
+      </form><!-- /#form-submit -->
+    </div><!-- /.container -->
+  </div>
+</template>

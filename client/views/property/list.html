@@ -1,0 +1,182 @@
+<template name="propertyListing">
+  <div class="page-gradient">
+    <!-- Breadcrumb -->
+    <div class="container">
+      <ol class="breadcrumb">
+        <li><a href="#">首页</a></li>
+        <li class="active">信息列表</li>
+      </ol>
+    </div>
+    <!-- end Breadcrumb -->
+
+    <div class="container">
+      <div class="row">
+        <!-- Results -->
+        <div class="col-md-9 col-sm-9">
+          <section id="results">
+            <header><h1>最新发布</h1></header>
+            <section id="search-filter">
+              <figure><h3><i class="fa fa-search"></i>搜索结果:</h3>
+                <span class="search-count">28</span>
+                <div class="sorting">
+                  <div class="form-group">
+                    <select name="sorting">
+                        <option value="">Sort By</option>
+                        <option value="1">Lowest price first</option>
+                        <option value="2">Highest price first</option>
+                        <option value="3">Date added</option>
+                    </select>
+                  </div><!-- /.form-group -->
+                </div>
+              </figure>
+            </section>
+            <section id="properties" class="display-lines">
+              {{#each properties}}
+
+              <div class="property" style="padding-left:0px">
+                <header><a href="{{pathFor 'propertyDetail' id=_id}}"><h3>{{address}}</h3></a></header>
+                <div class="row info">
+                  <div class="col-md-3">
+                    <a href="{{pathFor 'propertyDetail' id=_id}}">
+                      <img alt="" src="{{getImageURL photos}}">
+                    </a>
+                    <div class="tag price" style="position:absolute;top:0px">$ {{price}}</div>
+                  </div>
+                  <div class="col-md-5">
+                    <dl style="margin:20px 10px">
+                      <dt><img src="/img/tram4.svg" alt="mrt" style="width:12px; position:relative; top:-4px"> 近地铁: </dt>
+                        <dd>{{transMRT mrt}} ({{mrt}})</dd>
+                      <dt><figure class="fa fa-calendar"></figure> 入住时间: </dt>
+                        <dd>{{transDatetime moveInDate}} 起</dd>
+                      <dt><figure class="fa fa-home"></figure> 房间: </dt>
+                        <dd>{{transRoom rentType roomType}}</dd>
+                    </dl>
+                  </div >
+
+                  <div class="col-md-4">
+                    <dl style="margin:20px 10px">
+                      <dt><figure class="fa fa-building"></figure> 房屋类型: </dt>
+                        <dd>{{transPtype propertyType}}</dd>
+                      <dt></dt>
+                        <dd>
+                          <img src="/img/bed.svg" alt="bedroom" style="width:13px; position:relative; top:-4px"> {{bedroom}}
+                          <span style="margin-right:10px"></span>
+                          <img src="/img/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
+                        </dd>
+                      <dt><figure class="fa fa-user"></figure> 有无中介费: </dt>
+                        <dd>{{transAgt hasAgentFee}}</dd>
+                    </dl>
+                  </div>
+                </div>
+
+                <a href="{{pathFor 'propertyDetail' id=_id}}" class="link-arrow">详情</a>
+              </div><!-- /.property -->
+              {{/each}}
+            </section><!-- /#properties-->
+
+            <!-- Pagination -->
+              <div class="center">
+                <ul class="pagination">
+                  <li class="active"><a href="#">1</a></li>
+                  <li><a href="#">2</a></li>
+                  <li><a href="#">3</a></li>
+                  <li><a href="#">4</a></li>
+                  <li><a href="#">5</a></li>
+                </ul><!-- /.pagination-->
+              </div><!-- /.center-->
+          </section><!-- /#results -->
+        </div><!-- /.col-md-9 -->
+        <!-- end Results -->
+
+        <!-- sidebar -->
+        <div class="col-md-3 col-sm-3">
+            <section id="sidebar">
+                <aside id="edit-search">
+                    <header><h3>Search Properties</h3></header>
+                    <form role="form" id="form-sidebar" class="form-search" action="properties-listing.html">
+                        <div class="form-group">
+                            <select name="type">
+                                <option value="">Status</option>
+                                <option value="1">Rent</option>
+                                <option value="2">Sale</option>
+                            </select>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <select name="country">
+                                <option value="">Country</option>
+                                <option value="1">France</option>
+                                <option value="2">Great Britain</option>
+                                <option value="3">Spain</option>
+                                <option value="4">Russia</option>
+                                <option value="5">United States</option>
+                            </select>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <select name="city">
+                                <option value="">City</option>
+                                <option value="1">New York</option>
+                                <option value="2">Los Angeles</option>
+                                <option value="3">Chicago</option>
+                                <option value="4">Houston</option>
+                                <option value="5">Philadelphia</option>
+                            </select>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <select name="district">
+                                <option value="">District</option>
+                                <option value="1">Manhattan</option>
+                                <option value="2">The Bronx</option>
+                                <option value="3">Brooklyn</option>
+                                <option value="4">Queens</option>
+                                <option value="5">Staten Island</option>
+                            </select>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <select name="property-type">
+                                <option value="">Property Type</option>
+                                <option value="1">Apartment</option>
+                                <option value="2">Condominium</option>
+                                <option value="3">Cottage</option>
+                                <option value="4">Flat</option>
+                                <option value="5">House</option>
+                            </select>
+                        </div><!-- /.form-group -->
+                        <div class="form-group">
+                            <div class="price-range">
+                                <input id="price-input" type="text" name="price" value="1000;299000">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-default">Search Now</button>
+                        </div><!-- /.form-group -->
+                    </form><!-- /#form-map -->
+                </aside><!-- /#edit-search -->
+
+            </section><!-- /#sidebar -->
+        </div><!-- /.col-md-3 -->
+        <!-- end Sidebar -->
+      </div><!-- /.row -->
+    </div><!-- /.container -->
+
+
+
+    <button style="position:fixed; bottom:5px; right:5px; z-index:10; width:38px; height:38px" class="btn btn-default" data-toggle="modal" data-target="#map-wrapper"><i class="fa fa-location-arrow"></i></button>
+
+    <div id="map-wrapper" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+          <div id="map"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script type="text/javascript">
+    $(function() {
+      $('#map-wrapper').on('shown.bs.modal', function () {
+          _latitude = 48.87; // These two lines represent the center of your map
+          _longitude = 2.29; // These two lines represent the center of your map
+          createHomepageGoogleMap(_latitude,_longitude);
+      });
+    });
+  </script>
+</template>

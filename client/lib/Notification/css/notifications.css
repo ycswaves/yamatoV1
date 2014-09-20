@@ -1,0 +1,105 @@
+.notification-box{
+    position:fixed;
+    bottom:-20px;
+    right:15px;
+}
+
+.notification
+{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.notification li:not(:first-child) {
+    border-top: 1px dotted #B3A9A9;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.notification li.left .notification-body
+{
+    margin-left: 60px;
+    padding-top: 5px;
+}
+
+.notification li.right .notification-body
+{
+    margin-right: 60px;
+}
+
+
+.notification li .notification-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
+.piece{
+    width: 50px;
+    height: 50px;
+    float: left;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.reply-box{
+    font-size: 13px; 
+    text-align: center; 
+    padding: 60px; 
+    width: 368px;
+}
+
+.reply-no-message{
+    -webkit-border-radius: 3px; 
+    border-radius: 3px; 
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2); 
+    box-shadow: 0 1px 2px rgba(0,0,0,.2); 
+    background-color: white; 
+    color: #aaa; 
+    display: inline-block; 
+    font-size: 13px; 
+    padding: 15px 20px; 
+    position: relative; 
+    text-align: center;
+}
+
+.reply-bell{
+    display: block; 
+    height: 88px; 
+    margin: 0 auto; 
+    width: 88px;
+}
+
+/* Background */
+.reply {
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    background-color: #1396e2;
+}
+
+.reply:after {
+    content: "回复"
+}
+
+.notice {
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    background-color: #92cf5c;
+}
+
+.notice:after {
+    content: "提醒"
+}
+
+.panel-primary{
+    border:none !important;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.35) !important;
+}
+
+.panel-body
+{
+    height: auto;
+}

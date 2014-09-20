@@ -1,0 +1,158 @@
+<template name="profilePage">
+	<div class="page-gradient">
+		<div class="container">
+			<ol class="breadcrumb">
+				<li><a href="#">首页</a></li>
+				<li><a href="#">账户</a></li>
+				<li class="active">个人简介</li>
+			</ol>
+		</div>
+		<!-- end Breadcrumb -->
+
+		<div class="container">
+			<div class="row">
+				<!-- sidebar -->
+				<div class="col-md-3 col-sm-2">
+					<section id="sidebar">
+						<header><h3>账户</h3></header>
+						<aside>
+							<ul class="sidebar-navigation">
+								<li class="active radius"><a href="{{pathFor 'profile'}}"><i class="fa fa-user"></i><span>个人简介</span></a></li>
+								<li><a href="{{pathFor 'myproperty'}}"><i class="fa fa-home"></i><span>我的房屋</span></a></li>
+								<li><a href="bookmarked.html"><i class="fa fa-heart"></i><span>反向推送</span></a></li>
+								<li><a href="{{pathFor 'inbox'}}"><i class="fa fa-inbox"></i><span>收件箱</span></a></li>
+							</ul>
+						</aside>
+					</section><!-- /#sidebar -->
+				</div><!-- /.col-md-3 -->
+				<!-- end Sidebar -->
+				<!-- My Properties -->
+				<div class="col-md-9 col-sm-10">
+					<section id="profile">
+						<header><h1>个人简介</h1></header>
+						<div class="account-profile">
+							<h3>当前权限到期时间:<strong> 永久 </strong></h3>
+							<div class="row">
+								<!-- Submit-->
+								<div class="col-md-12 col-sm-12">
+									<section id="submit" class="submit">
+										<section id="select-package">
+											<div class="table-responsive submit-pricing">
+												<table class="table">
+													<thead>
+														<tr>
+															<th>用户权限:</th>
+															<th class="title">免费</th>
+															<th class="title">增值服务</th>
+															<th></th>
+															<th></th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr class="prices">
+															<td></td>
+															<td>$0</td>
+															<td>单价</td>
+															<td>数量</td>
+															<td></td>
+														</tr>
+														<tr>
+															<td>同时显示的出租信息</td>
+															<td>2</td>
+															<td>$1</td>
+															<td>1</td>
+															<td><button type="button" class="btn btn-default small">添加</button></td>
+														</tr>
+														<tr>
+															<td>同时显示的二手信息</td>
+															<td>5</td>
+															<td>$1</td>
+															<td>1</td>
+															<td><button type="button" class="btn btn-default small">添加</button></td>
+														</tr>
+														<tr>
+															<td>刷新置顶功能</td>
+															<td class="not-available"><i class="fa fa-times"></i></td>
+															<td>$1</td>
+															<td>1</td>
+															<td><button type="button" class="btn btn-default small">添加</button></td>
+														</tr>
+														<tr>
+															<td>反向推送条件 (当前为一条)</td>
+															<td class="available"><i class="fa fa-check"></i></td>
+															<td>$1</td>
+															<td>1</td>
+															<td><button type="button" class="btn btn-default small">添加</button></td>
+														</tr>
+													</tbody>
+												</table>
+											</div><!-- /.submit-pricing -->
+										</section><!-- /#select-package -->
+									</section><!-- /#submit -->
+								</div><!-- /.col-md-6 -->
+							</div><!-- /.row -->
+							<div class="row">
+								<div class="col-md-3 col-sm-3">
+									<img alt="" class="image radius" src="/img/agent-01.jpg">
+								</div>
+								<div class="col-md-9 col-sm-9">
+									<form role="form" id="accountProfile" method="post" action="">
+										<div class="checkbox switch" id="agency-switch">
+											<label>
+												我是房屋经纪
+												<input id="agentCheck" type="checkbox" {{ifAgent}}>
+											</label>
+										</div>
+										<section id="contact">
+											<h3>联络方式</h3>
+											<dl class="contact-fields">
+												{{#each loggedInUser.emails}}
+												<dt><label for="form-account-email">邮箱:</label></dt>
+												<dd>
+													<label>{{address}}
+														{{#if verified}}
+														<i class="fa fa-check-circle text-success"></i>
+														{{else}}
+														<span class="text-danger">[未验证]</span>
+														{{/if}}
+													</label>
+												</dd>
+												{{/each}}
+												<dt><label for="form-account-name">名字:</label></dt>
+												<dd><div class="form-group">
+													<input type="text" class="form-control" id="form-account-name" name="name" value="{{loggedInUser.profile.name}}">
+												</div><!-- /.form-group --></dd>
+												<dt><label for="form-account-phone">电话:</label></dt>
+												<dd><div class="form-group">
+													<input type="text" class="form-control" id="form-account-phone" name="phone" value="{{loggedInUser.profile.phone}}">
+												</div><!-- /.form-group --></dd>
+												<dt><label for="form-account-qq">QQ:</label></dt>
+												<dd><div class="form-group">
+													<input type="text" class="form-control" id="form-account-qq" name="qq" value="{{loggedInUser.profile.qq}}">
+												</div><!-- /.form-group --></dd>
+												<dt><label for="form-account-wechat">微信:</label></dt>
+												<dd><div class="form-group">
+													<input type="text" class="form-control" id="form-account-wechat" name="wechat" value="{{loggedInUser.profile.wechat}}">
+												</div><!-- /.form-group --></dd>
+											</dl>
+										</section>
+										<section id="about-me">
+											<h3>关于我</h3>
+											<div class="form-group">
+												<textarea class="form-control" id="form-contact-agent-message" rows="5" name="about">{{loggedInUser.profile.about}}</textarea>
+											</div><!-- /.form-group -->
+											<div class="form-group clearfix">
+												<button type="submit" class="btn pull-right btn-default" id="account-submit">保存变更</button>
+											</div><!-- /.form-group -->
+										</section>
+									</form><!-- /#form-contact -->
+								</div><!-- /.col-md-9 -->
+							</div><!-- /.row -->
+						</div><!-- /.account-profile -->
+					</section><!-- /#profile -->
+				</div><!-- /.col-md-9 -->
+				<!-- end My Properties -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</div>
+</template>

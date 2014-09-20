@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites>
+<testsuite name="Add Property" errors="0" tests="2" failures="0" time="0.022" timestamp="2014-08-27T22:38:23">
+  <testcase classname="Add Property" name="should be successful with valid dummy data" time="0.021"></testcase>
+  <testcase classname="Add Property" name="should return false with invalid dummy data" time="0.001"></testcase>
+</testsuite>
+</testsuites>

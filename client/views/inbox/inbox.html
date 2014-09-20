@@ -1,0 +1,157 @@
+<template name="inboxPage">
+	<div class="page-gradient">
+		<div class="container">
+			<ol class="breadcrumb">
+				<li><a href="#">首页</a></li>
+				<li><a href="#">账户</a></li>
+				<li class="active">收件箱</li>
+			</ol>
+		</div>
+		<!-- end Breadcrumb -->
+	</div>
+	<div class="container">
+		<div class="row">
+			<!-- sidebar -->
+			<div class="col-md-3 col-sm-2">
+				<section id="sidebar">
+					<header><h3>账户</h3></header>
+					<aside>
+						<ul class="sidebar-navigation">
+							<li><a href="{{pathFor 'profile'}}"><i class="fa fa-user"></i><span>个人简介</span></a></li>
+							<li><a href="my-properties.html"><i class="fa fa-home"></i><span>我的房屋</span></a></li>
+							<li><a href="bookmarked.html"><i class="fa fa-heart"></i><span>反向推送</span></a></li>
+							<li class="active radius"><a href="{{pathFor 'inbox'}}"><i class="fa fa-inbox"></i><span>收件箱</span></a></li>
+						</ul>
+					</aside>
+				</section><!-- /#sidebar -->
+			</div><!-- /.col-md-3 -->
+			<!-- end Sidebar -->
+			<!-- My Properties -->
+			<div class="col-md-9 col-sm-10">
+				<section id="profile">
+					<header><h1>收件箱</h1></header>
+					<section class="timeline">
+						<article class="timeline-item">
+							<div class="row">
+								<div class="col-md-1">
+									<div class="circle">
+										<figure class="dot"></figure>
+										<div class="date">01/03/2014</div>
+									</div>
+								</div><!-- /.col-md-1 -->
+								<div class="col-md-11">
+									<div class="wrapper">
+										<header><h3>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</h3></header>
+										<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras et dui vestibulum,
+											bibendum purus sit amet, vulputate mauris. Ut adipiscing gravida tincidunt.
+											Duis euismod placerat rhoncus.
+											Phasellus mollis imperdiet placerat. Sed ac turpis nisl. Mauris at ante mauris.
+											Aliquam posuere fermentum lorem, a aliquam mauris rutrum a.
+											Curabitur sit amet pretium lectus, nec consequat orci.
+										</p>
+										<div class="social">
+											<a href="#" class="fa fa-twitter btn btn-grey-dark"></a>
+											<a href="#" class="fa fa-facebook btn btn-grey-dark"></a>
+											<a href="#" class="fa fa-linkedin btn btn-grey-dark"></a>
+										</div>
+									</div>
+								</div><!-- /.col-md-11 -->
+							</div><!-- /.row -->
+						</article><!-- /.timeline-item -->
+						<article class="timeline-item">
+							<div class="row">
+								<div class="col-md-1">
+									<div class="circle">
+										<figure class="dot"></figure>
+										<div class="date">01/03/2014</div>
+									</div>
+								</div><!-- /.col-md-1 -->
+								<div class="col-md-11">
+									<div class="wrapper">
+										<header><h3>Integer tortor turpis, mollis eget vulputat</h3></header>
+										<p>Praesent non risus vel magna consectetur auctor. Pellentesque ut euismod
+											lorem, at ultricies urna. Ut placerat nec est sed porttitor. Cras tempor,
+											ligula eu pulvinar adipiscing.
+										</p>
+										<div class="social">
+											<a href="#" class="fa fa-twitter btn btn-grey-dark"></a>
+											<a href="#" class="fa fa-facebook btn btn-grey-dark"></a>
+											<a href="#" class="fa fa-linkedin btn btn-grey-dark"></a>
+										</div>
+									</div>
+								</div><!-- /.col-md-11 -->
+							</div><!-- /.row -->
+						</article><!-- /.timeline-item -->
+						<article class="timeline-item">
+							<div class="row">
+								<div class="col-md-1">
+									<div class="circle">
+										<figure class="dot"></figure>
+										<div class="date">01/03/2014</div>
+									</div>
+								</div><!-- /.col-md-1 -->
+								<div class="col-md-11">
+									<div class="wrapper">
+										<header><h3>Aliquam id nunc luctus, malesuada</h3></header>
+										<p>Sed dignissim quis nisi at vehicula. Curabitur diam nisi, faucibus quis neque
+											id, lacinia facilisis velit. Donec at neque vitae ligula ornare placerat.
+											Sed at odio a risus aliquam cursus ac sed mi. Sed eget justo sed orci commodo
+											scelerisque. Ut ante metus, vehicula in quam quis, scelerisque facilisis lectus.
+											Ut malesuada id elit at viverra. Fusce iaculis tincidunt diam vitae feugiat.
+											Sed eu arcu vitae orci ornare rhoncus sed sed lectus. Curabitur dolor mauris,
+											egestas eget aliquam eleifend, aliquet vel libero. Cras a est enim. Fusce
+											laoreet massa id erat faucibus feugiat. Vestibulum iaculis lorem arcu, ut
+											aliquam enim ullamcorper id. Morbi semper dapibus nisi, imperdiet ullamcorper
+											elit posuere vitae. Suspendisse in felis pretium, pulvinar augue non, sodales dui.
+										</p>
+										<div class="social">
+											<a href="#" class="fa fa-twitter btn btn-grey-dark"></a>
+											<a href="#" class="fa fa-facebook btn btn-grey-dark"></a>
+											<a href="#" class="fa fa-linkedin btn btn-grey-dark"></a>
+										</div>
+									</div>
+								</div><!-- /.col-md-11 -->
+							</div><!-- /.row -->
+						</article><!-- /.timeline-item -->
+						<article class="timeline-item">
+							<div class="row">
+								<div class="col-md-1">
+									<div class="circle">
+										<figure class="dot"></figure>
+										<div class="date">01/03/2014</div>
+									</div>
+								</div><!-- /.col-md-1 -->
+								<div class="col-md-11">
+									<div class="wrapper">
+										<header><h3>Mauris blandit, nunc sed placerat tincidunt, nunc </h3></header>
+										<p> Ut semper blandit tellus et malesuada. Nulla eget pharetra diam. Cras
+											aliquet velit lacinia libero lacinia, id dictum lacus fermentum. Lorem
+											ipsum dolor sit amet, consectetur adipiscing elit. Class aptent taciti
+											sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+											Praesent aliquam massa at vestibulum varius.
+										</p>
+										<div class="social">
+											<a href="#" class="fa fa-twitter btn btn-grey-dark"></a>
+											<a href="#" class="fa fa-facebook btn btn-grey-dark"></a>
+											<a href="#" class="fa fa-linkedin btn btn-grey-dark"></a>
+										</div>
+									</div>
+								</div><!-- /.col-md-11 -->
+							</div><!-- /.row -->
+						</article><!-- /.timeline-item -->
+						<div class="center">
+              <ul class="pagination">
+                <li class="active"><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+              </ul><!-- /.pagination-->
+            </div><!-- /.center-->
+					</section>
+				</section><!-- /#profile -->
+			</div><!-- /.col-md-9 -->
+			<!-- end My Properties -->
+		</div><!-- /.row -->
+	</div><!-- /.container -->
+</template>

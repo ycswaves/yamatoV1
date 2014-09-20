@@ -1,0 +1,244 @@
+<template name="landingPage"> 
+	<div class="welcome">
+		<div class="container slogan">
+			<h1>寻找属于你的那个家。</h1>
+			<h2>一站式家居体验，从这里开始 !</h2>
+		</div>
+		<div class="container search-box">
+			<ul class="nav nav-pills">
+				<li class="active"><a href="#search-form-rent" data-toggle="tab">租房</a></li>
+				<li><a href="#search-form-secondhand" data-toggle="tab">二手家具</a></li>
+				<li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">搬家</a></li>
+				<li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">家政</a></li>
+			</ul>
+			<hr>
+			<div class="tab-content">
+				<div class="tab-pane fade in active" id="search-form-rent">
+					<a class="advanced-search-toggle" data-toggle="collapse" data-parent="#accordion" href="#advanced-search-rent">高级搜索条件 <i class="fa fa-plus"></i></a>
+					<form role="form" id="form-map-sale" class="form-map form-search clearfix">
+						<div id="advanced-search-rent" class="panel-collapse collapse">
+							<div class="advanced-search">
+								<header><h3>家居设施</h3></header>
+								<ul class="submit-features">
+									<li><div class="checkbox"><label><input type="checkbox">Cable TV</label></div></li>
+									<li><div class="checkbox"><label><input type="checkbox">Parquet</label></div></li>
+									<li><div class="checkbox"><label><input type="checkbox">Roof terrace</label></div></li>
+									<li><div class="checkbox"><label><input type="checkbox">Terrace</label></div></li>
+									<li><div class="checkbox"><label><input type="checkbox">Balcony</label></div></li>
+									<li><div class="checkbox"><label><input type="checkbox">Iron</label></div></li>
+									<li><div class="checkbox"><label><input type="checkbox">Hi-Fi</label></div></li>
+									<li><div class="checkbox"><label><input type="checkbox">Beach</label></div></li>
+									<li><div class="checkbox"><label><input type="checkbox">Garage</label></div></li>
+								</ul>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="form-sale-district">
+										<option value="">有无中介费</option>
+										<option value="1">无中介费</option>
+										<option value="2">有中介费</option>
+									</select>
+								</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="form-rent-property-type">
+										<option value="">任意房屋类型</option>
+										<option value="1">组屋</option>
+										<option value="2">公寓</option>
+										<option value="3">排屋</option>
+									</select>
+								</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="form-rent-district">
+										<option value="">任意区域</option>
+										{{#each arrayify district}}
+										<option value="{{key}}">{{key}} - {{value}}</option>
+										{{/each}}
+									</select>
+								</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="form-rent-price">
+										<option value="">任意价格</option>
+										<option value="1">$100 +</option>
+										<option value="2">$500 +</option>
+										<option value="3">$1,000 +</option>
+										<option value="3">$2,000 +</option>
+										<option value="3">$3,000 +</option>
+										<option value="3">$4,000 +</option>
+									</select>
+								</div>
+							</div>
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="form-sale-district">
+										<option value="">任意房间类型</option>
+										<option value="1">Studio</option>
+										<option value="1">单间普通房</option>
+										<option value="1">单间主人房</option>
+										<option value="2">2间整套</option>
+										<option value="3">3间整套</option>
+										<option value="4">4间整套</option>
+										<option value="5">多于4间整套</option>
+									</select>
+								</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<button type="submit" class="btn btn-default">搜索</button>
+								</div><!-- /.form-group -->
+							</div>
+						</div>
+					</form><!-- /#form-map -->
+				</div>
+				<div class="tab-pane fade" id="search-form-secondhand">
+					<form role="form" id="form-map-sale" class="form-map form-search clearfix">
+						<div class="row">
+							<div class="col-md-2 col-sm-2">
+								<div class="form-group">
+									<select name="property-type">
+										<option value="">家具类型</option>
+										<option value="1">组屋</option>
+										<option value="2">公寓</option>
+										<option value="3">排屋</option>
+									</select>
+								</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-8 col-sm-8">
+								<div class="form-group">
+									<input type="text" class="form-control" id="form-secondhand" name="form-secondhand">
+								</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-2 col-sm-2">
+								<div class="form-group">
+									<button type="submit" class="btn btn-default">搜索</button>
+								</div><!-- /.form-group -->
+							</div>
+						</div>
+					</form><!-- /#form-map -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<section id="banner">
+		<div class="block text-white background-color-default center text-banner">
+			<div class="container">
+				<!-- <h1 class="no-bottom-margin no-border">家易</h1> -->
+				<div>
+					<img src="/img/h1.png" height="120px;">
+				</div>
+				<h3>家居从未如此简单</h3>
+			</div>
+		</div>
+	</section><!-- /#banner -->
+	<section id="our-services" class="block">
+		<div class="container">
+			<header class="section-title"><h2>极简平台</h2></header>
+			<div class="row">
+				<div class="col-md-4 col-sm-4">
+					<div class="feature-box equal-height" style="height:160px">
+						<figure class="icon"><i class="fa fa-building-o"></i></figure>
+						<aside class="description">
+							<header><h3>丰富的房源</h3></header>
+							<p>网罗海外华人资源，联合众多房屋经纪公司共同打造实时海量房源</p>
+						</aside>
+					</div><!-- /.feature-box -->
+				</div><!-- /.col-md-4 -->
+				<div class="col-md-4 col-sm-4">
+					<div class="feature-box equal-height" style="height:160px">
+						<figure class="icon"><i class="fa fa-search"></i></figure>
+						<aside class="description">
+							<header><h3>极致的搜索</h3></header>
+							<p>分门别类，多样化的搜索条件让结果更为贴近实际要求，对麻烦说不</p>
+						</aside>
+					</div><!-- /.feature-box -->
+				</div><!-- /.col-md-4 -->
+				<div class="col-md-4 col-sm-4">
+					<div class="feature-box equal-height" style="height:160px">
+						<figure class="icon"><i class="fa fa-bullhorn"></i></figure>
+						<aside class="description">
+							<header><h3>推送功能</h3></header>
+							<p>独特的推送系统会自动将满足您设置好的条件的房源直推给您，让你最快获得第一手信息</p>
+						</aside>
+					</div><!-- /.feature-box -->
+				</div><!-- /.col-md-4 -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</section><!-- /#our-services -->
+	<section id="advertising" class="block background-color-primary text-white">
+		<div class="container text-center">
+			<h1>我要免费张贴房源信息 !</h1>
+			<button type="submit" class="btn btn-ghost">发布信息</button>
+		</div>
+	</section><!-- /#adveritsing-->
+	<section id="testimonials" class="block">
+		<div class="container">
+			<header class="section-title"><h2>用户体验</h2></header>
+			<div class="row">
+				<div class="col-md-4 col-sm-4">
+					<blockquote class="testimonial">
+						<figure>
+							<div class="image">
+								<img alt="" src="/img/client-01.jpg" width="160">
+							</div>
+						</figure>
+					</blockquote>
+					<blockquote>
+						<aside class="cite">
+							<p>Fusce risus metus, placerat in consectetur eu。</p>
+							<footer>Natalie Jenkins</footer>
+						</aside>
+					</blockquote>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<blockquote class="testimonial">
+						<figure>
+							<div class="image">
+								<img alt="" src="/img/client-01.jpg" width="160">
+							</div>
+						</figure>
+					</blockquote>
+					<blockquote>
+						<aside class="cite">
+							<p>Fusce risus metus, placerat in consectetur eu。</p>
+							<footer>Natalie Jenkins</footer>
+						</aside>
+					</blockquote>
+				</div>
+				<div class="col-md-4 col-sm-4">
+					<blockquote class="testimonial">
+						<figure>
+							<div class="image">
+								<img alt="" src="/img/client-01.jpg" width="160">
+							</div>
+						</figure>
+					</blockquote>
+					<blockquote>
+						<aside class="cite">
+							<p>Fusce risus metus, placerat in consectetur eu。</p>
+							<footer>Natalie Jenkins</footer>
+						</aside>
+					</blockquote>
+				</div>
+			</div><!-- /.testimonials-carousel -->
+		</div><!-- /.container -->
+	</section><!-- /#testimonials -->
+	<section id="partners" class="block">
+		<div class="container">
+			<header class="section-title"><h2>合作伙伴</h2></header>
+			<div class="logos">
+				<div class="logo"><a href=""><img src="/img/logo-partner-01.png" alt=""></a></div>
+				<div class="logo"><a href=""><img src="/img/logo-partner-02.png" alt=""></a></div>
+				<div class="logo"><a href=""><img src="/img/logo-partner-03.png" alt=""></a></div>
+				<div class="logo"><a href=""><img src="/img/logo-partner-04.png" alt=""></a></div>
+				<div class="logo"><a href=""><img src="/img/logo-partner-05.png" alt=""></a></div>
+			</div>
+		</div><!-- /.container -->
+	</section><!-- /#partners -->
+</template>
