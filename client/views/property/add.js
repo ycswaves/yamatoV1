@@ -176,7 +176,6 @@ Template.addProperty.helpers({
   },
 
   mrtlines: function(){
-    //ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
     return Config.getMRT();
   },
 
@@ -208,8 +207,6 @@ AddPropertyController = RouteController.extend({
     ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
     return {
       myProperty: null
-      //mrtlines: Config.getMRT() //mrtlines and stations are not in template helper becoz of sharing template
-     // stations: ReactiveDS.get('mrtline') // with 'edit', the selected mrtlines and station can be different from default
     }
   },
 
@@ -246,7 +243,6 @@ EditPropertyController = RouteController.extend({
       ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLineCode));
       return {
         myProperty: myProp
-        //mrtlines: Config.getMRT()
       }
     }
     else{

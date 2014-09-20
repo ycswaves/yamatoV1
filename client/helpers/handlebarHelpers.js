@@ -60,6 +60,14 @@ Handlebars.registerHelper('ifChecked', function(optVal, formVal){
     return;
 });
 
+//used in form editing to pre-checked options
+Handlebars.registerHelper('ifRadioChecked', function(optVal, formVal){
+  if(optVal == formVal || formVal == undefined) //'formVal == undefined' for default check
+    return 'checked';
+  else
+    return;
+});
+
 // used in form editing to check selected MRT Line
 Handlebars.registerHelper('ifLineMatch',function(optVal, formVal){
   if(!formVal) return;

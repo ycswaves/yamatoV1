@@ -59,7 +59,7 @@
                             <label for="district">区域</label>
                             <select id="district" name="district">
                               {{#each arrayify district}}
-                              <option value="{{key}}">{{key}} - {{value}}</option>
+                              <option value="{{key}}" {{ifSelected key ../myProperty.district}}>{{key}} - {{value}}</option>
                               {{/each}}
                             </select>
                           </div>
@@ -81,13 +81,13 @@
                                 <div class="radio" style="margin-right:30px">
                                   <label>
                                     <input type="radio" id="has-agent-true" value="1"
-                                    {{ifChecked '1' myProperty.hasAgentFee}} name="has-agent-fee">有
+                                    {{ifRadioChecked 1 myProperty.hasAgentFee}} name="has-agent-fee">有
                                   </label>
                                 </div>
                                 <div class="radio" data-agent-state="">
                                   <label>
                                     <input type="radio" id="has-agent-false" value="0"
-                                    {{ifChecked '0' myProperty.hasAgentFee}} name="has-agent-fee" checked>无
+                                    {{ifRadioChecked 0 myProperty.hasAgentFee}} name="has-agent-fee">无
                                   </label>
                                 </div>
                               </div><!-- /.form-group -->
