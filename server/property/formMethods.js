@@ -2,7 +2,7 @@ Meteor.methods({
   addProperty: function(formObj){
   	var user = Meteor.user();
   	if(!user){
-  	  throw new Meteor.Error(401, "You need to login to post new stories");
+  	  throw new Meteor.Error(401, "You need to login to post");
   	}
   	var propertyId = Properties.insert(formObj, function(err, res) {
       if(err){
@@ -12,5 +12,21 @@ Meteor.methods({
     });
 
     return propertyId;
+  },
+
+  uploadImage: function(imageFile){
+    var user = Meteor.user();
+    if(!user){
+      throw new Meteor.Error(401, "You need to login to post");
+    }
+    else{
+      var file = Images.insert(file, function(err, res){
+        if(err){
+          console.log(err);
+          return false
+        }
+      });
+      return file;
+    }
   }
 });

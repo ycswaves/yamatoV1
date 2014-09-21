@@ -235,13 +235,14 @@
             <section id="property-contact" class="block">
               <section>
                 <header><h2><i class="fa fa-phone-square"></i> 联系方式</h2></header>
+                {{#with myProperty.contact}}
                 <div class="col-md-9 col-sm-9">
                   <div class="row">
                     <div class="col-md-4 col-sm-4">
                       <div class="form-group" id="contact-person-form-group">
                         <label for="">联系人 *</label>
                         <div class="input-group">
-                          <input type="text" class="form-control" name="contact-person" >
+                          <input type="text" class="form-control" value="{{name}}" name="contact-person" >
                         </div>
                       </div><!-- /.form-group -->
                     </div><!-- /.col-md-4 -->
@@ -251,7 +252,7 @@
                         <label for="">联系电话 *</label>
                         <div class="input-group">
                           <span class="input-group-addon">+65</span>
-                          <input type="text" class="form-control" name="contact-number" >
+                          <input type="text" class="form-control" value="{{phone}}" name="contact-number" >
                         </div>
                       </div><!-- /.form-group -->
                     </div><!-- /.col-md-4 -->
@@ -262,7 +263,7 @@
                       <div class="form-group" id="contact-qq-form-group">
                         <label for="">QQ</label>
                         <div class="input-group">
-                          <input type="text" class="form-control" name="contact-qq">
+                          <input type="text" class="form-control" value="{{qq}}" name="contact-qq">
                         </div>
                       </div><!-- /.form-group -->
                     </div><!-- /.col-md-4 -->
@@ -271,7 +272,7 @@
                       <div class="form-group" id="contact-wechat-form-group">
                         <label for="">微信 wechat</label>
                         <div class="input-group">
-                          <input type="text" class="form-control" name="contact-wechat">
+                          <input type="text" class="form-control" value="{{wechat}}" name="contact-wechat">
                         </div>
                       </div><!-- /.form-group -->
                     </div><!-- /.col-md-4 -->
@@ -280,14 +281,14 @@
                       <div class="form-group" id="contact-email-form-group">
                         <label for="">Email</label>
                         <div class="input-group">
-                          <input type="text" class="form-control" name="contact-email">
+                          <input type="text" class="form-control" value="{{email}}" name="contact-email">
                         </div>
                       </div><!-- /.form-group -->
                     </div><!-- /.col-md-4 -->
 
                   </div> <!-- row -->
                 </div>
-
+                {{/with}}
 
                 <div class="col-md-3 col-sm-3">
                   <aside class="submit-step">

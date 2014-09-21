@@ -87,9 +87,10 @@ Template.addProperty.events({
           email: t.find('input[name=contact-email]').value || null
         };
       var imageIDs = [];
+
       imgTemp.forEach(function(file){
         // Images.insert will return file object of inserted image
-        var file = Images.insert(file);
+        var file = Images.insert(file); //TODO: replace with remote call
         imageIDs.push(file._id);
       });
 
