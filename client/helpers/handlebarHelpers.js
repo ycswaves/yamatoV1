@@ -140,10 +140,12 @@ Handlebars.registerHelper('getImageURL',function(photos){
   }
 
 
-  if(typeof imgObj != 'object')
+  if(!imgObj.copies)
     return '/img/properties/property-03.jpg'; //TODO: return placeholder
-  else
+  else{
+    console.log(imgObj);
     return 'https://s3-ap-southeast-1.amazonaws.com/yamato-image/'+imgObj.copies.images.key;
+  }
 });
 
 

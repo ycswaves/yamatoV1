@@ -4,7 +4,6 @@
 # but you can also edit it by hand.
 
 meteor-platform
-insecure
 accounts-password
 accounts-google
 accounts-facebook
@@ -19,4 +18,5 @@ cfs:gridfs
 cfs:s3
 awatson1978:dropzone
 service-configuration
+insecure
 

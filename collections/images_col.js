@@ -1,7 +1,7 @@
 var imageStore = new FS.Store.S3("images", {
   region: "ap-southeast-1",
   bucket: "yamato-image", //required
-  ACL: "public", //optional, default is 'private', but you can allow public or secure access routed through your app URL
+  ACL: "public-read", //optional, default is 'private', but you can allow public or secure access routed through your app URL
   // // The rest are generic store options supported by all storage adapters
   // transformWrite: myTransformWriteFunction, //optional
   // transformRead: myTransformReadFunction, //optional
@@ -15,11 +15,11 @@ Images = new FS.Collection("images", {
 
 Images.allow({
   insert: function(userId) {
-    return true;
+    return !!userId;
+  },
+  update: function(userId) {
+    return !!userId;
   }
-  // update: function(userId) {
-  //   return !!userId;
-  // },
   // remove: function(userId) {
   //   return !!userId;
   // },

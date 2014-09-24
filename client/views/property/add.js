@@ -86,8 +86,8 @@ Template.addProperty.events({
           wechat: t.find('input[name=contact-wechat]').value || null,
           email: t.find('input[name=contact-email]').value || null
         };
-      var imageIDs = [];
 
+      var imageIDs = [];
       imgTemp.forEach(function(file){
         // Images.insert will return file object of inserted image
         var file = Images.insert(file); //TODO: replace with remote call

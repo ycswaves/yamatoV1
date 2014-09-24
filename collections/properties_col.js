@@ -158,3 +158,19 @@ Schemas.Property = new SimpleSchema({
 });
 
 Properties.attachSchema(Schemas.Property);
+
+Properties.allow({
+  insert: function(userId) {
+    return true;
+  }
+  // update: function(userId) {
+  //   return !!userId;
+  // },
+  // remove: function(userId) {
+  //   return !!userId;
+  // },
+  // download: function(userId) {
+  //   return true;
+  // },
+  // fetch: []
+});
