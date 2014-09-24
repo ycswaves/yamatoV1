@@ -56,3 +56,21 @@ Template.replyMessages.rendered = function () {
     template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content background-color-grey-light"></div></div>'
   });
 };
+
+Template.replyMessages.helpers({
+  messages: function(){
+    var count = Messages.find(
+      {
+        owner: Meteor.userId(),
+        isRead: false,
+        isValid: true
+      }
+    ).count();
+    if (count > 0) {
+      
+    }
+    else {
+      return false;
+    };
+  }
+});

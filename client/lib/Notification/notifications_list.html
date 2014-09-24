@@ -38,6 +38,11 @@
 
 <template name="replyMessages">
   <div id="reply-box" style="display:none">
+    {{#if messages}}
+      {{#each messages}}
+        {{> replyMessage}}
+      {{/each}}
+    {{/if}}
     <div class="reply-box">
       <div class="reply-no-message">
         没有任何新消息噢!
@@ -54,10 +59,10 @@
     </span>
     <div class="notification-body clearfix">
       <div class="header">
-        <strong class="primary-font">{{title}}</strong>
+        <strong class="primary-font">{{referId}}</strong>
       </div>
       <p>
-        {{{message}}}
+        aaa
       </p>
     </div>
   </li>
