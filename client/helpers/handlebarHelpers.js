@@ -29,6 +29,11 @@ Handlebars.registerHelper('arrayify',function(obj){
   return result;
 });
 
+Handlebars.registerHelper('glueArray',function(arr){
+  if(!arr) return '';
+  return arr.join(',');
+});
+
 // used in display contact, in case of no value, '无' is displayed
 Handlebars.registerHelper('nullHelper', function(obj){
   if(obj == undefined)
@@ -140,10 +145,9 @@ Handlebars.registerHelper('getImageURL',function(photos){
   }
 
 
-  if(!imgObj.copies)
-    return '/img/properties/property-03.jpg'; //TODO: return placeholder
+  if(!imgObj || !imgObj.copies)
+    return '/img/properties/property-03.jpg'; 
   else{
-    console.log(imgObj);
     return 'https://s3-ap-southeast-1.amazonaws.com/yamato-image/'+imgObj.copies.images.key;
   }
 });

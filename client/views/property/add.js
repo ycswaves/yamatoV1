@@ -90,9 +90,15 @@ Template.addProperty.events({
       var imageIDs = [];
       imgTemp.forEach(function(file){
         // Images.insert will return file object of inserted image
-        var file = Images.insert(file); //TODO: replace with remote call
+        var file = Images.insert(file); 
         imageIDs.push(file._id);
       });
+
+    /*********************************************
+        Hidden data in edit mode
+    *********************************************/
+    var propertyid = t.find('input[name="propertyid"]').value || ''
+      , existingPhotos = t.find('input[name="existingPhotos"]').value || ''; 
 
     /*********************************************
         Map form data to schema
@@ -113,7 +119,7 @@ Template.addProperty.events({
       bathroom: (bathroom != null)? parseInt(bathroom, 10) : null,
       mrt: nearestMRT,
       contact: contactInfo,
-      photos: imageIDs,
+      photos: imageIDs.concat(existingPhotos.split(',')),
       facilities: facilities
     };
 
@@ -156,10 +162,20 @@ Template.addProperty.events({
         }
       });
     }
+    else if(propertyid.length > 0){ // edit mode
+      Meteor.call('editProperty', propertyid, formObj, function(err){
+        if(err){
+          console.log('edit property: '+err);
+          return false; //todo: show norification?
+        }
+        //console.log('go to property/'+id);
+        Router.go('propertyDetail', {_id: propertyid});
+      });
+    }
     else{
       Meteor.call('addProperty', formObj, function(err, id){
         if(err){
-          console.log(err+'aa');
+          console.log('add property: '+err);
           return false; //todo: show norification?
         }
         //console.log('go to property/'+id);

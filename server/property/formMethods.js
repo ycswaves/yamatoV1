@@ -14,6 +14,14 @@ Meteor.methods({
     return propertyId;
   },
 
+  editProperty: function(propID, formObj){
+    var user = Meteor.user();
+    if(!user){
+      throw new Meteor.Error(401, "You need to login to edit");
+    }
+    Properties.update({_id: propID}, formObj);
+  }
+
   // uploadImage: function(propID, imageFiles){
   //   var user = Meteor.user()
   //     , imageIDs = [];
