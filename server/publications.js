@@ -15,3 +15,7 @@ Meteor.publish("properties", function() {
 Meteor.publish("propertyDetail", function(id) {
   return Properties.find({_id: id});
 });
+
+Meteor.publish("messages", function() {
+  return Messages.find({});
+});

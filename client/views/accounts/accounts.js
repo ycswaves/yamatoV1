@@ -168,11 +168,9 @@ Template.header.helpers({
   messageCount: function(){
     var count = Messages.find(
       {
-        messages: {
-          owner: Meteor.userId(),
-          isRead: false,
-          isValid: true
-        }
+        owner: Meteor.userId(),
+        isRead: false,
+        isValid: true
       }
     ).count();
     return count || false;
