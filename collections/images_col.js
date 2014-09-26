@@ -1,4 +1,4 @@
-var imageStore = new FS.Store.S3("images", {
+var imageStore = new FS.Store.S3("images", { //todo: update 'image' to 'property-image'
   region: "ap-southeast-1",
   bucket: "yamato-image", //required
   ACL: "public-read", //optional, default is 'private', but you can allow public or secure access routed through your app URL
@@ -8,7 +8,7 @@ var imageStore = new FS.Store.S3("images", {
   maxTries: 1 //optional, default 5
 });
 
-Images = new FS.Collection("images", {
+Images = new FS.Collection("images", { //todo: update 'image' to 'property-image'
   stores: [imageStore]
 });
 

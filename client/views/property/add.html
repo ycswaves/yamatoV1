@@ -185,16 +185,15 @@
                   </div><!-- /.row -->
                 </section>
 
-                {{#if myProperty.photos.length}}
-                <section class="block">
+                {{log myProperty.photos}}
+                <!-- <section class="block">
                   <header><h2><i class="fa fa-picture-o"></i> 已上传图片</h2></header>
                   <div class="center">
                     {{#each myProperty.photos}}
                       <img src="{{getImageURL this}}" >
                     {{/each}}
                   </div>
-                </section>
-                {{/if}}
+                </section> -->
 
                 <section class="block" id="gallery">
                   <header><h2><i class="fa fa-picture-o"></i> 图片上传</h2></header>

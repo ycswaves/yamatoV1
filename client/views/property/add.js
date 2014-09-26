@@ -98,7 +98,14 @@ Template.addProperty.events({
         Hidden data in edit mode
     *********************************************/
     var propertyid = t.find('input[name="propertyid"]').value || ''
-      , existingPhotos = t.find('input[name="existingPhotos"]').value || ''; 
+      , existingPhotosStr = t.find('input[name="existingPhotos"]').value || '';
+
+    if(existingPhotosStr != ''){
+      existingPhotosArr = existingPhotos.split(',');
+    }
+    else{
+      existingPhotosArr = [];
+    }   
 
     /*********************************************
         Map form data to schema
@@ -119,7 +126,7 @@ Template.addProperty.events({
       bathroom: (bathroom != null)? parseInt(bathroom, 10) : null,
       mrt: nearestMRT,
       contact: contactInfo,
-      photos: imageIDs.concat(existingPhotos.split(',')),
+      photos: imageIDs.concat(existingPhotosArr),
       facilities: facilities
     };
 
@@ -168,8 +175,7 @@ Template.addProperty.events({
           console.log('edit property: '+err);
           return false; //todo: show norification?
         }
-        //console.log('go to property/'+id);
-        Router.go('propertyDetail', {_id: propertyid});
+        Router.go('propertyDetail', {id: propertyid});
       });
     }
     else{

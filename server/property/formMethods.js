@@ -19,7 +19,7 @@ Meteor.methods({
     if(!user){
       throw new Meteor.Error(401, "You need to login to edit");
     }
-    Properties.update({_id: propID}, formObj);
+    Properties.update({_id: propID}, {$set: formObj});
   }
 
   // uploadImage: function(propID, imageFiles){
