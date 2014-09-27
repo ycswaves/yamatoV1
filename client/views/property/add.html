@@ -191,9 +191,10 @@
                   <div class="row">
                     {{#each this}}
                     <div class="col-xs-6 col-md-3">
-                      <a href="#" class="thumbnail">
+                      <div class="thumbnail" style="text-align:center" data-id="{{this}}">
                         <img src="{{getImageURL this}}" >
-                      </a>
+                        <a href="#" class="existingImage"><i class="delete fa fa-trash-o"></i></a>
+                      </div>
                     </div>
                     {{/each}}
                   </div>

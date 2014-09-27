@@ -11,3 +11,9 @@
 }
 dt {margin-right: 5px}
 dd {font-weight: 100}
+
+.gray-out{
+  opacity: 0.4;
+  filter: alpha(opacity=40); /* msie */
+  background-color: #000;
+}

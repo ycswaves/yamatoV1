@@ -188,6 +188,15 @@ Template.addProperty.events({
         Router.go('myproperty');
       });
     }
+  },
+
+  'click .existingImage': function(e, t){
+    e.preventDefault();
+    var icon = $(e.target)
+      , iconAnchor = icon.parent()
+      , imgDiv = iconAnchor.parent()
+      , imgID = imgDiv.data('id');
+    console.log(imgID);
   }
 });
 
