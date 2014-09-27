@@ -42,7 +42,9 @@
                   </tr>
                   </thead>
                   <tbody>
-                    {{log properties}}
+                    {{#unless properties.count}}
+                    <tr><td colspan="5" style="text-align:center">还没有任何发布</td></tr>
+                    {{/unless}}
 
                     {{#each properties}}
                     <tr>

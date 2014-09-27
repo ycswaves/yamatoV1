@@ -3,8 +3,8 @@ Meteor.publish('userData', function () {
     return Meteor.users.find();
 });
 
-Meteor.publish("images", function() {
-  return Images.find();
+Meteor.publish("property-images", function() {
+  return PropertyImages.find();
 });
 
 Meteor.publish("properties", function() {

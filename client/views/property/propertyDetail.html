@@ -51,6 +51,24 @@
             </section>
             <div class="row">
               <div class="col-md-4 col-sm-12">
+                <section id="description">
+                  <header><h2>房屋描述</h2></header>
+                  {{#if property.description}}
+                    <p>{{property.description}}</p>
+                  {{else}}
+                    <p style="color: grey">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
+                  {{/if}}
+                </section><!-- /#description -->
+                <section id="property-features">
+                  <header><h2>房屋特色</h2></header>
+                  <ul class="list-unstyled property-features-list">
+                    {{#each property.facilities}}
+                      <li>{{transPfaci this}}</li>
+                    {{/each}}
+                  </ul>
+                </section><!-- /#property-features -->
+              </div><!-- /.col-md-4 -->
+              <div class="col-md-8 col-sm-12">
                 <section id="quick-summary" class="clearfix">
                   <header><h2>概览</h2></header>
                   <dl>
@@ -78,25 +96,6 @@
                       {{/with}}
                   </dl>
                 </section><!-- /#quick-summary -->
-              </div><!-- /.col-md-4 -->
-              <div class="col-md-8 col-sm-12">
-                <section id="description">
-                  <header><h2>房屋描述</h2></header>
-                  {{#if property.description}}
-                    <p>{{property.description}}</p>
-                  {{else}}
-                    <p style="color: grey">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
-                  {{/if}}
-                </section><!-- /#description -->
-                <section id="property-features">
-                  <header><h2>房屋特色</h2></header>
-                  <ul class="list-unstyled property-features-list">
-                    {{#each property.facilities}}
-                      <li>{{transPfaci this}}</li>
-                    {{/each}}
-                  </ul>
-                </section><!-- /#property-features -->
-
               </div><!-- /.col-md-8 -->
               <div class="col-md-12 col-sm-12">
                 <section id="contact-agent">

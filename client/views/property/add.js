@@ -90,7 +90,7 @@ Template.addProperty.events({
       var imageIDs = [];
       imgTemp.forEach(function(file){
         // Images.insert will return file object of inserted image
-        var file = Images.insert(file); 
+        var file = PropertyImages.insert(file);
         imageIDs.push(file._id);
       });
 
@@ -101,11 +101,11 @@ Template.addProperty.events({
       , existingPhotosStr = t.find('input[name="existingPhotos"]').value || '';
 
     if(existingPhotosStr != ''){
-      existingPhotosArr = existingPhotos.split(',');
+      existingPhotosArr = existingPhotosStr.split(',');
     }
     else{
       existingPhotosArr = [];
-    }   
+    }
 
     /*********************************************
         Map form data to schema

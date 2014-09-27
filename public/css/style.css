@@ -1406,8 +1406,8 @@ ul.list-links li a:hover {
 }
 
 .search-box input[type="text"], .search-box input[type="email"],
-.search-box input[type="search"], .search-box input[type="password"], 
-.search-box input[type="number"], .search-box textarea, 
+.search-box input[type="search"], .search-box input[type="password"],
+.search-box input[type="number"], .search-box textarea,
 .search-box select, .search-box .selectpicker, .search-box .price-range {
 	background-color: #073855;
 	border: none;
@@ -1421,19 +1421,19 @@ ul.list-links li a:hover {
 	border-radius: 2px;
 }
 
-.search-box input[type="text"]:hover, .search-box input[type="email"]:hover, 
-.search-box input[type="search"]:hover, .search-box input[type="password"]:hover, 
-.search-box input[type="number"]:hover, .search-box textarea:hover, 
-.search-box select:hover, .search-box .selectpicker:hover, 
+.search-box input[type="text"]:hover, .search-box input[type="email"]:hover,
+.search-box input[type="search"]:hover, .search-box input[type="password"]:hover,
+.search-box input[type="number"]:hover, .search-box textarea:hover,
+.search-box select:hover, .search-box .selectpicker:hover,
 .search-box .price-range:hover {
 	color: #fff;
 	background-color: #062f47;
 }
 
-.search-box input[type="text"]:focus, .search-box input[type="email"]:focus, 
-.search-box input[type="search"]:focus, .search-box input[type="password"]:focus, 
-.search-box input[type="number"]:focus, .search-box textarea:focus, 
-.search-box select:focus, .search-box .selectpicker:focus, 
+.search-box input[type="text"]:focus, .search-box input[type="email"]:focus,
+.search-box input[type="search"]:focus, .search-box input[type="password"]:focus,
+.search-box input[type="number"]:focus, .search-box textarea:focus,
+.search-box select:focus, .search-box .selectpicker:focus,
 .search-box .price-range:focus {
 	color: #fff;
 	background-color: #062f47;
@@ -3827,7 +3827,7 @@ ul.list-links li a:hover {
   }
 
   .thumbnail {
-  	height: 100px;
+  	/*height: 100px;*/
   }
 
   .tool-tip {
@@ -4245,7 +4245,7 @@ ul.list-links li a:hover {
   	width: 100%;
   	z-index: -1;
   }
-  
+
   /********************************* Animation ***************************************/
   .animation-fade-in {
   	-webkit-animation-name: animation-fade-in;

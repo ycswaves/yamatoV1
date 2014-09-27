@@ -138,16 +138,16 @@ Handlebars.registerHelper('transRoom',function(rentType, room){
 Handlebars.registerHelper('getImageURL',function(photos){
   var imgObj;
   if(typeof photos == 'string'){ // if argument is a photo id
-    imgObj = Images.findOne({_id: photos});
+    imgObj = PropertyImages.findOne({_id: photos});
   }
   else if(typeof photos == 'object' && photos.length > 0){ // if argument is array of photo IDs, return the 1st one
-    imgObj = Images.findOne({_id: photos[0]}); // used in my properties listing, diplay the 1st pic, TODO: support select cover?
+    imgObj = PropertyImages.findOne({_id: photos[0]}); // used in my properties listing, diplay the 1st pic, TODO: support select cover?
   }
 
   if(!imgObj || !imgObj.copies)
-    return '/img/properties/property-03.jpg'; 
+    return '/img/properties/property-03.jpg';
   else{
-    return 'https://s3-ap-southeast-1.amazonaws.com/yamato-image/'+imgObj.copies.images.key;
+    return 'https://s3-ap-southeast-1.amazonaws.com/yamato-image/'+imgObj.copies['property-images'].key;
   }
 });
 

@@ -188,9 +188,13 @@
                 {{#with myProperty.photos}}
                 <section class="block">
                   <header><h2><i class="fa fa-picture-o"></i> 已上传图片</h2></header>
-                  <div class="center">
-                    {{#each myProperty.photos}}
-                      <img src="{{getImageURL this}}" >
+                  <div class="row">
+                    {{#each this}}
+                    <div class="col-xs-6 col-md-3">
+                      <a href="#" class="thumbnail">
+                        <img src="{{getImageURL this}}" >
+                      </a>
+                    </div>
                     {{/each}}
                   </div>
                 </section>
