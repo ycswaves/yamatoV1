@@ -95,17 +95,14 @@ Template.addProperty.events({
       });
 
     /*********************************************
-        Hidden data in edit mode
+        data available in edit mode
     *********************************************/
     var propertyid = t.find('input[name="propertyid"]').value || ''
-      , existingPhotosStr = t.find('input[name="existingPhotos"]').value || '';
+      , existingPhotosArr = [];
 
-    if(existingPhotosStr != ''){
-      existingPhotosArr = existingPhotosStr.split(',');
-    }
-    else{
-      existingPhotosArr = [];
-    }
+    $('.existingImage:not(.deleted)').each(function(){
+      existingPhotosArr.push($(this).data('id'));
+    });
 
     /*********************************************
         Map form data to schema
@@ -195,8 +192,12 @@ Template.addProperty.events({
     var icon = $(e.target)
       , iconAnchor = icon.parent()
       , imgDiv = iconAnchor.parent()
-      , imgID = imgDiv.data('id');
-    console.log(imgID);
+      , imgID = iconAnchor.data('id');
+
+    imgDiv.toggleClass('gray-out');
+    icon.toggleClass('fa-undo fa-trash-o');
+    //mark as deleted, so when submit form, only select deleted ones
+    iconAnchor.toggleClass('deleted');
   }
 });
 

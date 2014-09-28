@@ -1,26 +1,3 @@
-Handlebars.registerHelper('ifCond', function (v1, operator, v2, options) {
-  switch (operator) {
-    case '==':
-        return (v1 == v2) ? options.fn(this) : options.inverse(this);
-    case '===':
-        return (v1 === v2) ? options.fn(this) : options.inverse(this);
-    case '<':
-        return (v1 < v2) ? options.fn(this) : options.inverse(this);
-    case '<=':
-        return (v1 <= v2) ? options.fn(this) : options.inverse(this);
-    case '>':
-        return (v1 > v2) ? options.fn(this) : options.inverse(this);
-    case '>=':
-        return (v1 >= v2) ? options.fn(this) : options.inverse(this);
-    case '&&':
-        return (v1 && v2) ? options.fn(this) : options.inverse(this);
-    case '||':
-        return (v1 || v2) ? options.fn(this) : options.inverse(this);
-    default:
-        return options.inverse(this);
-  }
-});
-
 Handlebars.registerHelper('arrayify',function(obj){
   result = [];
   for (var key in obj) {
@@ -79,6 +56,15 @@ Handlebars.registerHelper('ifLineMatch',function(optVal, formVal){
   var line = formVal.substr(0, 2);
   if(optVal == line)
     return 'selected';
+  else
+    return;
+});
+
+// used in form editing to hide/display room type
+Handlebars.registerHelper('toggleRoomType',function(formVal){
+  if(!formVal) return;
+  if(formVal == 1)
+    return 'none';
   else
     return;
 });

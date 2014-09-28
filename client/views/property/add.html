@@ -106,12 +106,12 @@
                               </div><!-- /.form-group -->
                             </div><!-- /.col-md-4 -->
 
-                            <div class="col-md-4 col-sm-4">
+                            <div class="col-md-4 col-sm-4" style="display:{{toggleRoomType myProperty.rentType}}">
                               <div class="form-group" id="room-form-group">
                                 <label for="room-type">出租房间</label>
                                 <select name="room-type" id="room-type">
                                   {{#each arrayify rtypes}}
-                                  <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
+                                    <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
                                   {{/each}}
                                 </select>
                               </div><!-- /.form-group -->
@@ -191,9 +191,9 @@
                   <div class="row">
                     {{#each this}}
                     <div class="col-xs-6 col-md-3">
-                      <div class="thumbnail" style="text-align:center" data-id="{{this}}">
+                      <div class="thumbnail" style="text-align:center">
                         <img src="{{getImageURL this}}" >
-                        <a href="#" class="existingImage"><i class="delete fa fa-trash-o"></i></a>
+                        <a href="#" class="existingImage" data-id="{{this}}"><i class="delete fa fa-trash-o"></i></a>
                       </div>
                     </div>
                     {{/each}}
