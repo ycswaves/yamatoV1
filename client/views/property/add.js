@@ -94,6 +94,8 @@ Template.addProperty.events({
         imageIDs.push(file._id);
       });
 
+      imgTemp = []; //clear imgTemp
+
     /*********************************************
         data available in edit mode
     *********************************************/
