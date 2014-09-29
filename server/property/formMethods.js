@@ -20,6 +20,10 @@ Meteor.methods({
       throw new Meteor.Error(401, "You need to login to edit");
     }
     Properties.update({_id: propID}, {$set: formObj});
+  },
+
+  deletePropertyImgs: function(imgArr){
+    PropertyImages.remove({_id: {$in: imgArr}});
   }
 
   // uploadImage: function(propID, imageFiles){

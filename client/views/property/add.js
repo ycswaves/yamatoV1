@@ -98,10 +98,14 @@ Template.addProperty.events({
         data available in edit mode
     *********************************************/
     var propertyid = t.find('input[name="propertyid"]').value || ''
-      , existingPhotosArr = [];
+      , existingPhotosArr = []
+      , deletedPhotoArr = [];
 
-    $('.existingImage:not(.deleted)').each(function(){
-      existingPhotosArr.push($(this).data('id'));
+    $('.existingImage').each(function(){
+      if($(this).hasClass('deleted'))
+        deletedPhotoArr.push($(this).data('id'));
+      else
+        existingPhotosArr.push($(this).data('id'));
     });
 
     /*********************************************
@@ -171,6 +175,9 @@ Template.addProperty.events({
         if(err){
           console.log('edit property: '+err);
           return false; //todo: show norification?
+        }
+        if(deletedPhotoArr.length > 0){
+          Meteor.call('deletePropertyImgs', deletedPhotoArr);
         }
         Router.go('propertyDetail', {id: propertyid});
       });
