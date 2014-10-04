@@ -36,6 +36,26 @@ if(Properties.find().count() < 1){
       contact: contactInfo,
       photos: [],
       facilities: ['noLandlord', 'aircon']
+    },
+
+    {
+      address: '#07-18, Bedok South Ave 3',
+      author: userId,
+      price: 1200,
+      description: 'no description',
+      district: 'D16',
+      propertyType: 'Condo',
+      hasAgentFee: 0,
+      roomType: 'master',
+      rentType: 0,
+      moveInDate: new Date(),
+      bedroom: 3,
+      area: 112,
+      bathroom: 3,
+      mrt: 'EW4',
+      contact: contactInfo,
+      photos: [],
+      facilities: ['noLandlord', 'aircon']
     }
   ];
   formObjArr.forEach(function(e){
