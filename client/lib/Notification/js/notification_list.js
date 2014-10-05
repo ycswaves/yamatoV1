@@ -42,35 +42,3 @@ Template.notificationMessages.events({
     notificationMessages.remove({});
   }
 });
-
-//Messages
-Template.replyMessages.rendered = function () {
-  $('#replyHelper').popover({
-    html : true, 
-    content: function() {
-      return $('#reply-box').html();
-    },
-    title: "回复助手",
-    placement: "bottom",
-    trigger: "click",
-    template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content background-color-grey-light"></div></div>'
-  });
-};
-
-Template.replyMessages.helpers({
-  messages: function(){
-    var count = Messages.find(
-      {
-        owner: Meteor.userId(),
-        isRead: false,
-        isValid: true
-      }
-    ).count();
-    if (count > 0) {
-      
-    }
-    else {
-      return false;
-    };
-  }
-});

@@ -21,7 +21,7 @@
 </template>
 
 <template name="notificationMessage">
-  <li class="left clearfix message">
+  <li class="left clearfix">
     <span class="notification-img pull-left">
       <div class="piece {{style}}"></div>
     </span>
@@ -31,38 +31,6 @@
       </div>
       <p>
         {{{message}}}
-      </p>
-    </div>
-  </li>
-</template>
-
-<template name="replyMessages">
-  <div id="reply-box" style="display:none">
-    {{#if messages}}
-      {{#each messages}}
-        {{> replyMessage}}
-      {{/each}}
-    {{/if}}
-    <div class="reply-box">
-      <div class="reply-no-message">
-        没有任何新消息噢!
-      </div>
-      <img class="reply-bell" src="/img/bell.png">
-    </div>
-  </div>
-</template>
-
-<template name="replyMessage">
-  <li class="left clearfix message">
-    <span class="notification-img pull-left">
-      <div class="piece notice"></div>
-    </span>
-    <div class="notification-body clearfix">
-      <div class="header">
-        <strong class="primary-font">{{referId}}</strong>
-      </div>
-      <p>
-        aaa
       </p>
     </div>
   </li>

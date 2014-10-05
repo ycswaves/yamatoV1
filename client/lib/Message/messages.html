@@ -1,0 +1,31 @@
+<template name="messages">
+  <div id="message-box" style="display:none">
+    {{#if messages}}
+      {{#each messages}}
+        {{> message}}
+      {{/each}}
+    {{/if}}
+    <div class="message-box">
+      <div class="no-message">
+        没有任何新消息噢!
+      </div>
+      <img class="message-bell" src="/img/bell.png">
+    </div>
+  </div>
+</template>
+
+<template name="message">
+  <li class="left clearfix message">
+    <span class="notification-img pull-left">
+      <div class="piece notice"></div>
+    </span>
+    <div class="notification-body clearfix">
+      <div class="header">
+        <strong class="primary-font">{{referId}}</strong>
+      </div>
+      <p>
+        aaa
+      </p>
+    </div>
+  </li>
+</template>

@@ -13,7 +13,7 @@
 						<a href="#" class="pointer" id="signout">登出</a>
 					</div>
 					<div class="pull-right m-l-md">
-						<i class="fa fa-bell-o pointer" id="replyHelper">
+						<i class="fa fa-bell-o pointer" id="messageHelper">
 						{{#if messageCount}}
 							&nbsp;<span class="badge background-color-danger">{{messageCount}}</span>
 						{{/if}}
@@ -25,6 +25,9 @@
 					{{else}}
 					<div class="pull-right m-l-md">
 						<a href="#" class="pointer" data-toggle="modal" data-target="#loginModal">登陆</a>
+					</div>
+					<div class="pull-right m-l-md">
+						<a href="/account/signup" class="pointer">注册</a>
 					</div>
 					{{/if}}
 				</nav><!-- /.navbar collapse-->

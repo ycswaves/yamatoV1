@@ -13,7 +13,7 @@ var filters = {
 	}
 };
 
-Router.onBeforeAction(filters.isLoggedIn, {except: ['landing']});
+Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signup']});
 
 Router.map(function () {
 	this.route('landing', {
@@ -23,6 +23,14 @@ Router.map(function () {
      this.render();
     }
 	});
+
+  this.route('signup', {
+    path: '/account/signup',
+    template: 'signupForm',
+    action: function () {
+     this.render();
+    }
+  });
 
   this.route('profile', {
     path: '/profile',
