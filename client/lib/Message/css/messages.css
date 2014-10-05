@@ -37,3 +37,22 @@
 .message:after {
     content: "回复"
 }
+
+/*
+Conversation module
+*/
+.ActiveConversations {
+    bottom: 50px;
+    left: 10px;
+    position: fixed;
+    z-index: 700;
+}
+
+.ActiveConversations .Conversation {
+    margin-top: 10px;
+}
+
+.Conversation {
+    display: inline-block;
+}
+

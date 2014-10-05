@@ -145,6 +145,10 @@ Template.signupForm.events({
 
 });
 
+Template.signupForm.rendered = function() {
+  render();
+};
+
 Template.signupForm.helpers({
   agency: function(){
   	return Config.getAgency();

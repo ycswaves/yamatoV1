@@ -1,45 +1,47 @@
 <template name="signupForm">
-	<div id="signupModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-		<div class="modal-dialog modal-lg">
-			<div class="modal-content">
-				<div class="modal-body">
-					<div class="row">
-						<div class="col-md-12">
-							<h1>新建账户</h1>
-							<p>已经有账号了? 点击 <a href="#" data-toggle="modal" data-target="#loginModal" class="text-info" onclick="$('#signupModal').modal('hide')">这里</a> 登陆</p>
-							{{> flashMessages}}
-							<form role="form" id="signupForm" method="post">
-								<div class="form-group">
-									<label>用户名:</label>
-									<input type="text" class="form-control" name="username" required>
-								</div><!-- /.form-group -->
-								<div class="form-group">
-									<label>邮箱:</label>
-									<input type="email" class="form-control" name="email" required>
-								</div><!-- /.form-group -->
-								<div class="form-group">
-									<label>密码:</label>
-									<input type="password" class="form-control" name="password" required>
-								</div><!-- /.form-group -->
-								<div class="form-group">
-									<label>重复输入密码:</label>
-									<input type="password" class="form-control" name="passwordAgain" required>
-								</div><!-- /.form-group -->
-								<div class="checkbox pull-left">
-									<label>
-										<input type="checkbox" name="isAcceptNewsletter">接受最新信息推送
-									</label>
+	<div class="page-gradient">
+		<div class="container">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-body">
+						<div class="row">
+							<div class="col-md-12">
+							<h1 style="margin-bottom:10px;">新建账户</h1>
+								<p>已经有账号了? 点击 <a href="#" data-toggle="modal" data-target="#loginModal" class="text-info" onclick="$('#signupModal').modal('hide')">这里</a> 登陆</p>
+								{{> flashMessages}}
+								<form role="form" id="signupForm" method="post">
+									<div class="form-group">
+										<label>用户名:</label>
+										<input type="text" class="form-control" name="username" required>
+									</div><!-- /.form-group -->
+									<div class="form-group">
+										<label>邮箱:</label>
+										<input type="email" class="form-control" name="email" required>
+									</div><!-- /.form-group -->
+									<div class="form-group">
+										<label>密码:</label>
+										<input type="password" class="form-control" name="password" required>
+									</div><!-- /.form-group -->
+									<div class="form-group">
+										<label>重复输入密码:</label>
+										<input type="password" class="form-control" name="passwordAgain" required>
+									</div><!-- /.form-group -->
+									<div class="checkbox pull-left">
+										<label>
+											<input type="checkbox" name="isAcceptNewsletter">接受最新信息推送
+										</label>
+									</div>
+									<div class="form-group clearfix">
+										<button type="submit" class="btn pull-right btn-default" id="account-submit">新建账户</button>
+									</div><!-- /.form-group -->
+								</form>
+								<hr>
+								<div class="center">
+									<figure class="note">当您点击“新建账户”时表示已阅我们的 <a href="terms-conditions.html">条款与申明</a></figure>
 								</div>
-								<div class="form-group clearfix">
-									<button type="submit" class="btn pull-right btn-default" id="account-submit">新建账户</button>
-								</div><!-- /.form-group -->
-							</form>
-							<hr>
-							<div class="center">
-								<figure class="note">当您点击“新建账户”时表示已阅我们的 <a href="terms-conditions.html">条款与申明</a></figure>
-							</div>
-						</div><!-- /.row -->
-					</div><!-- /.container -->
+							</div><!-- /.row -->
+						</div><!-- /.container -->
+					</div>
 				</div>
 			</div>
 		</div>
