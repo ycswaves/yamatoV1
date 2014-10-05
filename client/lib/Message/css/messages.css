@@ -1,0 +1,39 @@
+.message-box{
+    font-size: 13px; 
+    text-align: center; 
+    padding: 60px; 
+    width: 368px;
+}
+
+.no-message{
+    -webkit-border-radius: 3px; 
+    border-radius: 3px; 
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.2); 
+    box-shadow: 0 1px 2px rgba(0,0,0,.2); 
+    background-color: white; 
+    color: #aaa; 
+    display: inline-block; 
+    font-size: 13px; 
+    padding: 15px 20px; 
+    position: relative; 
+    text-align: center;
+}
+
+.message-bell{
+    display: block; 
+    height: 88px; 
+    margin: 0 auto; 
+    width: 88px;
+}
+
+/* Background */
+.message {
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    background-color: #1396e2;
+}
+
+.message:after {
+    content: "回复"
+}
