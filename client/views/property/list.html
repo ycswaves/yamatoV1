@@ -40,10 +40,12 @@
                     <a href="{{pathFor 'propertyDetail' id=_id}}">
                       <img alt="" src="{{getImageURL photos}}">
                     </a>
-                    <div class="tag price" style="position:absolute;top:0px">$ {{price}}</div>
+                    <div class="tag price" style="position:absolute; top:-5px; left:0px;">$ {{price}}</div>
                   </div>
                   <div class="col-md-5">
                     <dl style="margin:20px 10px">
+                      <dt><figure class="fa fa-map-marker"></figure> 区域: </dt>
+                        <dd>{{transDistr district}}</dd>
                       <dt><img src="/img/tram4.svg" alt="mrt" style="width:12px; position:relative; top:-4px"> 近地铁: </dt>
                         <dd>{{transMRT mrt}} ({{mrt}})</dd>
                       <dt><figure class="fa fa-calendar"></figure> 入住时间: </dt>

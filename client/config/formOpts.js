@@ -49,7 +49,7 @@ var propertyFacilities = {
 var propertyTypes = {
   "HDB": "组屋",
   "Condo": "公寓",
-  "landed": "别墅"
+  "Landed": "别墅"
 };
 
 var roomTypes = {
