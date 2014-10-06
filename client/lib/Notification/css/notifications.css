@@ -54,6 +54,18 @@
     content: "提醒"
 }
 
+/* Background */
+.reply {
+    color: white;
+    text-align: center;
+    line-height: 50px;
+    background-color: #1396e2;
+}
+
+.reply:after {
+    content: "回复"
+}
+
 .panel-primary{
     border:none !important;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.35) !important;

@@ -1,8 +1,52 @@
+.message{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.message li:not(:first-child) {
+    border-top: 1px dotted #B3A9A9;
+    margin-top: 10px;
+    padding-top: 10px;
+}
+
+.message li.left .message-body
+{
+    margin-left: 60px;
+    padding-top: 5px;
+}
+
+.message li.right .message-body
+{
+    margin-right: 60px;
+}
+
+
+.message li .message-body p
+{
+    margin: 0;
+    color: #777777;
+}
+
 .message-box{
+    width: 368px;
+}
+
+.no-message-box{
     font-size: 13px; 
     text-align: center; 
     padding: 60px; 
-    width: 368px;
+}
+
+.merge{
+    width: 50px;
+    height: 50px;
+    float: left;
+    border-radius: 3px 0px 0px 3px;
+    overflow: hidden;
 }
 
 .no-message{
@@ -24,18 +68,6 @@
     height: 88px; 
     margin: 0 auto; 
     width: 88px;
-}
-
-/* Background */
-.message {
-    color: white;
-    text-align: center;
-    line-height: 50px;
-    background-color: #1396e2;
-}
-
-.message:after {
-    content: "回复"
 }
 
 /*

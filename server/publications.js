@@ -19,3 +19,7 @@ Meteor.publish("propertyDetail", function(id) {
 Meteor.publish("messages", function() {
   return Messages.find({});
 });
+
+Meteor.publish("topics", function() {
+  return Topics.find({});
+});
