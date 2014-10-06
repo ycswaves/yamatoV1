@@ -60,7 +60,7 @@ Router.map(function () {
   });
 
   this.route('properties', {
-    path: '/properties',
+    path: '/properties/list/:page',
     controller: 'ListController'
   });
 
