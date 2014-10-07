@@ -1,8 +1,8 @@
 //Messages
 Template.messages.rendered = function () {
-  console.log(1);
-  $('#messageHelper').popover({
+  $('body').popover({
     html : true, 
+    selector : '#messageHelper',
     content: function() {
       return $('#message-box').html();
     },
@@ -11,20 +11,25 @@ Template.messages.rendered = function () {
     trigger: "click",
     template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content background-color-grey-light"></div></div>'
   });
-  console.log(2);
 };
 
 Template.messages.helpers({
   messages: function(){
-    var count = Messages.find(
+    var unreads = Messages.find(
       {
         owner: Meteor.userId(),
         isRead: false,
         isValid: true
       }
-    ).count();
-    if (count > 0) {
-      
+    );
+    if (unreads.count() > 0) {
+      var returnTopics = [];
+      var groupedTopics = _.groupBy(_.pluck(unreads.fetch(), 'topicId'));
+      _.each(_.values(groupedTopics), function(topics) {
+        var topic = Topics.find({_id:topics[0]}).fetch();
+        returnTopics.push(topic);
+      });
+      return returnTopics;
     }
     else {
       return false;

@@ -1,31 +1,34 @@
 <template name="messages">
   <div id="message-box" style="display:none">
+    <div class="message-box">
     {{#if messages}}
+    <ul class="message">
       {{#each messages}}
         {{> message}}
       {{/each}}
-    {{/if}}
-    <div class="message-box">
+    </ul>
+    {{else}}
+    <div class="no-message-box">
       <div class="no-message">
         没有任何新消息噢!
       </div>
       <img class="message-bell" src="/img/bell.png">
     </div>
+    {{/if}}
+    </div>
   </div>
 </template>
 
 <template name="message">
-  <li class="left clearfix message">
-    <span class="notification-img pull-left">
-      <div class="piece notice"></div>
+  <li class="left clearfix">
+    <span class="message-img pull-left">
+      <div class="merge notice"></div>
     </span>
-    <div class="notification-body clearfix">
+    <div class="message-body clearfix">
       <div class="header">
-        <strong class="primary-font">{{referId}}</strong>
+        <strong class="primary-font">ghshen:</strong>
       </div>
-      <p>
-        aaa
-      </p>
+      <p>请问房间还有吗？</p>
     </div>
   </li>
 </template>

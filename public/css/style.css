@@ -10,7 +10,7 @@ h1 {
 	font-size: 28px;
 	font-weight: lighter;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	margin-bottom: 30px;
+	/*margin-bottom: 30px;*/
 	margin-top: 10px;
 	padding-bottom: 15px;
 }
@@ -19,7 +19,7 @@ h2 {
 	font-size: 24px;
 	font-weight: lighter;
 	border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-	margin-bottom: 30px;
+	/*margin-bottom: 30px;*/
 	margin-top: 10px;
 	padding-bottom: 15px;
 }
