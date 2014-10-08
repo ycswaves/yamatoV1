@@ -15,6 +15,7 @@ Template.messages.rendered = function () {
   //click on the message
   $('body').on('click', '.message-line', function (e) {
     var topicId = $(this).data('topicId');
+    //add into conversation once click
     Conversations.init(topicId);
   });
 };

@@ -1,0 +1,24 @@
+<template name="conversationTopics">
+	{{#if conversationTopics}}
+	<div class="ActiveConversations">
+		{{#each conversationTopics}}
+		{{> conversationTopic}}
+		{{/each}}
+	</div>
+	{{/if}}
+</template>
+
+<template name="conversationTopic">
+	<div class="Conversation">
+		<div class="ConversationHead normal">
+			<button class="cancelButton borderless conversationHeadClose" type="button">
+				<span class="fa fa-ban"></span>
+			</button>
+			<div class="headWrapper">
+				<div class="imagesWrapper">
+						<img class="circle" src="//lh5.googleusercontent.com/-ne6QI6HVrLA/AAAAAAAAAAI/AAAAAAAAEis/ClHC-U6OfiQ/s80-c-k-no/photo.jpg">
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
