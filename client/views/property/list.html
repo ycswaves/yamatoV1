@@ -17,7 +17,7 @@
             <header><h1>最新发布</h1></header>
             <section id="search-filter">
               <figure><h3><i class="fa fa-search"></i>搜索结果:</h3>
-                <span class="search-count">28</span>
+                <span class="search-count">{{totalDocs}}</span>
                 <div class="sorting">
                   <div class="form-group">
                     <select name="sorting">
@@ -71,7 +71,7 @@
                   </div>
                 </div>
 
-                <a href="{{pathFor 'propertyDetail' id=_id}}" class="link-arrow">详情</a>
+                <a href="{{pathFor 'propertyDetail' id=_id}}" class="link-arrow">详情 &amp; 联系方式</a>
               </div><!-- /.property -->
               {{/each}}
             </section><!-- /#properties-->
@@ -79,11 +79,10 @@
             <!-- Pagination -->
               <div class="center">
                 <ul class="pagination">
-                  <li class="active"><a href="#">1</a></li>
-                  <li><a href="#">2</a></li>
-                  <li><a href="#">3</a></li>
-                  <li><a href="#">4</a></li>
-                  <li><a href="#">5</a></li>
+                  <!-- <li class="active"><a href="#">1</a></li> -->
+                  {{#each paginations}}
+                  <li><a href="#">{{this}}</a></li>
+                  {{/each}}
                 </ul><!-- /.pagination-->
               </div><!-- /.center-->
           </section><!-- /#results -->
