@@ -50,6 +50,8 @@ hr.divider {
 	width: 40px;
 }
 
+textarea, input { outline: none; }
+
 /* Margin */
 .m-l-md{
 	margin-left:25px;

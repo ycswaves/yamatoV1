@@ -18,16 +18,22 @@ Template.conversationTopics.helpers({
   }
 });
 
-Template.conversationTopics.rendered = function () {
-  // $('body').popover({
-  //   html : true, 
-  //   selector : '.Conversation',
-  //   content: function() {
-  //     return $('#message-box').html();
-  //   },
-  //   title: "回复助手",
-  //   placement: "right",
-  //   trigger: "click",
-  //   template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content background-color-grey-light"></div></div>'
-  // });
+Template.conversationTopic.rendered = function () {
+  console.log(1);
+  $('.Conversation').popover({
+    html : true, 
+    // selector : '.Conversation',
+    content: function() {
+      return $('#conversation-box').html();
+    },
+    title: "私信",
+    animation: false,
+    placement: "right",
+    trigger: "click",
+    template: '<div class="popover conversation-popover" role="tooltip"><div class="arrow sidearrow"></div><h3 class="popover-title"></h3><div class="popover-content conversation-content background-color-grey-light"></div></div>'
+  });
+
+  $('.Conversation').on('shown.bs.popover', function () {
+    $('.conversation-popover').css('top',parseInt($('.conversation-popover').css('top')) - 156 + 'px')
+  })
 }

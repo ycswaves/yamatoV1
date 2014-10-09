@@ -139,3 +139,68 @@ Conversation module
 .ActiveConversations .ConversationHead .headWrapper .imagesWrapper img{
     width:60px;
 }
+
+.conversation-content {
+    width: 320px;
+    height: 400px;
+    overflow:scroll;
+}
+
+.sidearrow {
+    top: 86% !important;
+}
+
+.messagesContainer {
+    width: 100%;
+    height: 345px;
+}
+
+.inputWrapper {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.ui-Field {
+    cursor: text;
+    font-size: 13px;
+    position: relative;
+}
+
+.ui-Field .content {
+    background: #f0f0f0;
+    border: 1px solid #d1d1d1;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.07);
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #333;
+    display: block;
+    margin: 0;
+}
+
+.ui-TextField .content {
+    border-radius: 3px;
+    min-height: 1em;
+    padding: 8px;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.ui-Field .content {
+    background: #fff;
+    border: none;
+    border-radius: 0 0 6px 6px;
+    border-top: 1px solid #d4d4d4;
+    box-shadow: none;
+    color: #333;
+    font-size: 13px;
+    line-height: 16px;
+    height: 37px;
+    padding: 10px;
+    resize: none;
+}
+
+.ui-TextField .content.autogrow {
+    overflow: hidden;
+}

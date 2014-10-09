@@ -8,7 +8,7 @@ Template.messages.rendered = function () {
     },
     title: "回复助手",
     placement: "bottom",
-    trigger: "click",
+    trigger: "click focus",
     template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content background-color-grey-light"></div></div>'
   });
 
