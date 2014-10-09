@@ -8,7 +8,6 @@ Meteor.publish("property-images", function() {
 });
 
 Meteor.publish("properties", function() {
-  // TODO: limit to 5 first
   return Properties.find({}, {sort: {createdAt: -1}});
 });
 
