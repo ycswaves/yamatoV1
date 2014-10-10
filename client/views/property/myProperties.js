@@ -6,7 +6,7 @@ Template.myProperties.helpers({
   properties: function(){
     var res = Properties.find(
       {author: Meteor.userId()},
-      {_id: 1, address:1, price:1, photos:1, createdAt: 1}
+      {_id: 1, address:1, price:1, photos:1, createdAt: 1, sort: {createdAt: -1} }
     );
     return res || false;
   }

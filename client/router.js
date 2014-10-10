@@ -46,7 +46,7 @@ Router.map(function () {
   this.route('myproperty', {
     path: '/myproperty',
     waitOn: function () {
-      return Meteor.subscribe('userData');
+      return (Meteor.subscribe('userData') && Meteor.subscribe("myProperty", Meteor.userId()));
     },
     template: 'myProperties',
     action: function () {
@@ -60,7 +60,7 @@ Router.map(function () {
   });
 
   this.route('properties', {
-    path: '/properties',
+    path: '/properties/list/:page',
     controller: 'ListController'
   });
 

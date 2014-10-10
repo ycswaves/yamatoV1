@@ -8,12 +8,15 @@ Meteor.publish("property-images", function() {
 });
 
 Meteor.publish("properties", function() {
-  // TODO: limit to 5 first
-  return Properties.find({}, {sort: {createdAt: -1}, limit: 5});
+  return Properties.find({}, {sort: {createdAt: -1}});
 });
 
 Meteor.publish("propertyDetail", function(id) {
   return Properties.find({_id: id});
+});
+
+Meteor.publish("myProperty", function(id) {
+  return Properties.find({author: id});
 });
 
 Meteor.publish("messages", function() {

@@ -1,0 +1,13 @@
+<template name="pagination">
+  {{#with paginate config}}
+  <div class="center">
+    <ul class="pagination">
+      {{#each paginations}}
+      <li class="pageLink {{pageHelper ../currentPage this}}">
+        <a href="{{pathFor ../routeName page=this}}">{{this}}</a>
+      </li>
+      {{/each}}
+    </ul><!-- /.pagination-->
+  </div><!-- /.center-->
+  {{/with}}
+</template>
