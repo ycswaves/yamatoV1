@@ -77,16 +77,8 @@
             </section><!-- /#properties-->
 
             <!-- Pagination -->
-              <div class="center">
-                <ul class="pagination">
-                  <!-- <li class="active"><a href="#">1</a></li> -->
-                  {{#each paginations}}
-                  <li class="{{pageHelper ../currentPage this}}">
-                    <a href="{{pathFor 'properties' page=this}}">{{this}}</a>
-                  </li>
-                  {{/each}}
-                </ul><!-- /.pagination-->
-              </div><!-- /.center-->
+            {{>UI.dynamic template="pagination" data=paginationConfig}}
+
           </section><!-- /#results -->
         </div><!-- /.col-md-9 -->
         <!-- end Results -->

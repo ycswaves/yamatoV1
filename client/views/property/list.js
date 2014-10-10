@@ -1,6 +1,12 @@
 Template.propertyListing.rendered = function() {
-    render();
+  render();
 }
+
+Template.propertyListing.events({
+  'click li.pageLink': function(){
+    window.scrollTo(0, 0);
+  }
+});  
 
 ListController = RouteController.extend({
   template: 'propertyListing',
@@ -19,10 +25,7 @@ ListController = RouteController.extend({
     var params = this.params
       , pageLimit = 8
       , pageNum = 1
-      , windowSize = 5 // must be odd number
-      , midIndex = parseInt(windowSize / 2)
-      , filter = {}
-      , result = {};
+      , filter = {};
     // if(params.id){ //TODO: testing get query from URL
     //   filter._id = params.id;
     // }
@@ -30,30 +33,31 @@ ListController = RouteController.extend({
       pageNum = params.page;
     }
 
-    var dbQuery = Properties.find({}, {sort: {createdAt: -1} }) //filter apply here too
-      , totalDocs = dbQuery.count()
-      , totalPages = Math.ceil(totalDocs / pageLimit);
+    var totalDocs = Properties.find({}, {sort: {createdAt: -1} }).count() //filter apply here too
+      , totalPages = Math.ceil(totalDocs / pageLimit)
+      , paginatedDocs = Properties.find(
+          {}, 
+          {sort: {createdAt: -1}, skip: (pageNum-1)*pageLimit, limit: pageLimit}
+        );
 
-    if(pageNum > totalPages){
+
+    if(pageNum > totalPages){ //TODO: sometimes flash 'not found' even though have data
       this.render('notFound');
       return;
-    }  
-  
-    var paginatedDocs = Properties.find({}, {sort: {createdAt: -1}, skip: (pageNum-1)*pageLimit, limit: pageLimit})
-      , startPage = (pageNum <= midIndex)? 1 : (pageNum - midIndex);
-
-    var pageNumberArr = [];  
-    for(var i=0; i<windowSize; i++){
-      var pNum = i+startPage;
-      if(pNum > totalPages) break;
-      pageNumberArr.push(pNum);  
     }  
 
     return {
       properties: paginatedDocs,
       totalDocs: totalDocs,
-      paginations: pageNumberArr,
-      currentPage: pageNum
+      paginationConfig: {
+        'config': {
+          pageNum: pageNum,
+          pageLimit: pageLimit,
+          windowSize: 5, // asa # of pages displayed in the pagination must be odd number
+          totalDocs: totalDocs,
+          routeName: 'properties'
+        }
+      }
     }
   }
 });

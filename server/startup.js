@@ -1,6 +1,5 @@
 
 var createDummyPosts = function(userId){
-  if(Properties.find().count() < 1){
     var contactInfo = {
       name: 'yi chenshu',
       phone: '96229032',
@@ -313,16 +312,36 @@ var createDummyPosts = function(userId){
     ];
     formObjArr.forEach(function(e){
       Properties.insert(e);
-    })
-  }
+    });
 }
 
 if(Meteor.users.find().count() < 1){
   userId = Accounts.createUser({
     username: 'ycs',
-    email: 'example@gmail.com',
+    email: 'ycs@gmail.com',
     password: '123456'
   });
   createDummyPosts(userId);
+
+  userId2 = Accounts.createUser({
+    username: 'batman',
+    email: 'batman@gmail.com',
+    password: '123456'
+  });
+  createDummyPosts(userId2);
+
+  userId3 = Accounts.createUser({
+    username: 'superman',
+    email: 'superman@gmail.com',
+    password: '123456'
+  });
+  createDummyPosts(userId3);
+
+  userId4 = Accounts.createUser({
+    username: 'ironman',
+    email: 'ironman@gmail.com',
+    password: '123456'
+  });
+  createDummyPosts(userId4);
 }
 
