@@ -19,6 +19,14 @@ Handlebars.registerHelper('nullHelper', function(obj){
     return obj;
 });
 
+// used in display active page in pagination
+Handlebars.registerHelper('pageHelper', function(currentPage, pageNum){
+  if(currentPage == pageNum)
+    return 'active';
+  else
+    return '';
+});
+
 //used in form editing to pre-select options
 Handlebars.registerHelper('ifSelected', function(optVal, formVal){
   if(!formVal) return;

@@ -81,7 +81,9 @@
                 <ul class="pagination">
                   <!-- <li class="active"><a href="#">1</a></li> -->
                   {{#each paginations}}
-                  <li><a href="#">{{this}}</a></li>
+                  <li class="{{pageHelper ../currentPage this}}">
+                    <a href="{{pathFor 'properties' page=this}}">{{this}}</a>
+                  </li>
                   {{/each}}
                 </ul><!-- /.pagination-->
               </div><!-- /.center-->
