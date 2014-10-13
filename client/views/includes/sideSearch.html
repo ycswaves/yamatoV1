@@ -13,6 +13,24 @@
         </div><!-- /.form-group -->
 
         <div class="form-group">
+          <select name="mrtlines" id="mrtlines">
+            <option>最近地铁线</option>
+            {{#each arrayify mrtlines}}
+            <option value="{{key}}">{{value.niceName}}</option>
+            {{/each}}
+          </select>
+        </div><!-- /.form-group -->
+
+        <div class="form-group">
+          <select name="stations" id="stations">
+            <option>站名</option>
+            {{#each arrayify stations}}
+            <option value="{{key}}">{{key}} - {{value}}</option>
+            {{/each}}
+          </select>
+        </div><!-- /.form-group -->
+
+        <div class="form-group">
           <select name="property-type">
             <option>房屋类型</option>
             {{#each arrayify ptypes}}
