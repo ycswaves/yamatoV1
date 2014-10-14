@@ -8,11 +8,13 @@ Template.pagination.helpers({
     for(var i=0; i<config.windowSize; i++){
       var pNum = i+startPage;
       if(pNum > totalPages) break;
-      pageNumberArr.push(pNum);  
+      pageNumberArr.push(pNum);
     }
 
     // if it's last page, pagination need to add previous pages to make the window size consistant
-    if(pageNumberArr.length < config.windowSize && pageNumberArr[pageNumberArr.length-1] == totalPages){
+    if(pageNumberArr.length < config.windowSize
+      && pageNumberArr[pageNumberArr.length-1] == totalPages
+      && pageNumberArr[0] != 1){
       var fillGap = config.windowSize-pageNumberArr.length;
       for(var i=0; i<fillGap; i++){
         pageNumberArr.unshift(pageNumberArr[0] - 1);
@@ -22,6 +24,6 @@ Template.pagination.helpers({
       paginations: pageNumberArr,
       currentPage: config.pageNum,
       routeName: config.routeName
-    };  
+    };
   }
 });
