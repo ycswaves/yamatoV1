@@ -41,10 +41,10 @@ ListController = RouteController.extend({
         );
 
 
-    if(pageNum > totalPages){ //TODO: sometimes flash 'not found' even though have data
-      this.render('notFound');
-      return;
-    }  
+    // if(pageNum > totalPages){ //TODO: sometimes flash 'not found' even though have data
+    //   this.render('notFound');
+    //   return;
+    // }  
 
     return {
       properties: paginatedDocs,
