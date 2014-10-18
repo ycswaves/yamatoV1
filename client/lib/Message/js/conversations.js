@@ -5,6 +5,34 @@ Conversations = {
     if(conversations.find({topicId:topicId}).count() == 0){
       conversations.insert({topicId:topicId});
     }
+  },
+  start: function(referId, type) {
+    //means there is no same topic
+    if(Topics.find({creator:Meteor.userId(),referId:referId}).count() == 0) {
+      var formObj = {
+        creator: Meteor.userId(),
+        referId: referId
+      };
+      Meteor.call('addTopic', formObj, function(err, topicId){
+        if(err){
+          console.log('Add Topic: '+err);
+          return false;
+        }
+        Conversations.init(topicId);
+      });
+    }
+    else {
+      var topic = Topics.findOne({creator:Meteor.userId(),referId:referId});
+      Conversations.init(topic._id);
+    }
+  },
+  send: function(topicId, content) {
+    Meteor.call('addConversation',topicId,content,function(err){
+      if(err){
+        console.log('Send PM: '+err);
+        return false;
+      }
+    });
   }
 }
 
@@ -19,10 +47,8 @@ Template.conversationTopics.helpers({
 });
 
 Template.conversationTopic.rendered = function () {
-  console.log(1);
   $('.Conversation').popover({
     html : true, 
-    // selector : '.Conversation',
     content: function() {
       return $('#conversation-box').html();
     },

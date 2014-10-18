@@ -143,7 +143,6 @@ Conversation module
 .conversation-content {
     width: 320px;
     height: 400px;
-    overflow:scroll;
 }
 
 .sidearrow {
