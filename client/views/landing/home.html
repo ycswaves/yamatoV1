@@ -1,4 +1,4 @@
-<template name="landingPage"> 
+<template name="landingPage">
 	<div class="welcome">
 		<div class="container slogan">
 			<h1>寻找属于你的那个家。</h1>
@@ -15,7 +15,7 @@
 			<div class="tab-content">
 				<div class="tab-pane fade in active" id="search-form-rent">
 					<a class="advanced-search-toggle" data-toggle="collapse" data-parent="#accordion" href="#advanced-search-rent">高级搜索条件 <i class="fa fa-plus"></i></a>
-					<form role="form" id="form-map-sale" class="form-map form-search clearfix">
+					<form role="form" id="search-form-landing" class="form-map form-search clearfix">
 						<div id="advanced-search-rent" class="panel-collapse collapse">
 							<div class="advanced-search">
 								<header><h3>家居设施</h3></header>
@@ -35,26 +35,17 @@
 						<div class="row">
 							<div class="col-md-2 col-sm-4">
 								<div class="form-group">
-									<select name="form-sale-district">
-										<option value="">有无中介费</option>
-										<option value="1">无中介费</option>
-										<option value="2">有中介费</option>
-									</select>
+									<select name="property-type">
+                    <option value="">任意房屋类型</option>
+                    {{#each arrayify ptypes}}
+                    <option value="{{key}}">{{value}}</option>
+                    {{/each}}
+                  </select>
 								</div><!-- /.form-group -->
 							</div>
 							<div class="col-md-2 col-sm-4">
 								<div class="form-group">
-									<select name="form-rent-property-type">
-										<option value="">任意房屋类型</option>
-										<option value="1">组屋</option>
-										<option value="2">公寓</option>
-										<option value="3">排屋</option>
-									</select>
-								</div><!-- /.form-group -->
-							</div>
-							<div class="col-md-2 col-sm-4">
-								<div class="form-group">
-									<select name="form-rent-district">
+									<select name="district">
 										<option value="">任意区域</option>
 										{{#each arrayify district}}
 										<option value="{{key}}">{{key}} - {{value}}</option>
@@ -64,31 +55,38 @@
 							</div>
 							<div class="col-md-2 col-sm-4">
 								<div class="form-group">
-									<select name="form-rent-price">
+									<select name="price">
 										<option value="">任意价格</option>
-										<option value="1">$100 +</option>
-										<option value="2">$500 +</option>
-										<option value="3">$1,000 +</option>
-										<option value="3">$2,000 +</option>
-										<option value="3">$3,000 +</option>
-										<option value="3">$4,000 +</option>
+										<option value="100">$100 +</option>
+										<option value="500">$500 +</option>
+										<option value="1000">$1,000 +</option>
+										<option value="2000">$2,000 +</option>
+										<option value="3000">$3,000 +</option>
+										<option value="4000">$4,000 +</option>
 									</select>
 								</div>
 							</div>
 							<div class="col-md-2 col-sm-4">
 								<div class="form-group">
-									<select name="form-sale-district">
-										<option value="">任意房间类型</option>
-										<option value="1">Studio</option>
-										<option value="1">单间普通房</option>
-										<option value="1">单间主人房</option>
-										<option value="2">2间整套</option>
-										<option value="3">3间整套</option>
-										<option value="4">4间整套</option>
-										<option value="5">多于4间整套</option>
-									</select>
+									<select name="mrtlines" id="mrtlines">
+                    <option value="">任意地铁线</option>
+                    {{#each arrayify mrtlines}}
+                    <option value="{{key}}">{{value.niceName}}</option>
+                    {{/each}}
+                  </select>
 								</div><!-- /.form-group -->
 							</div>
+
+              <div class="col-md-2 col-sm-4">
+                <div class="form-group">
+                  <select name="stations" id="stations">
+                    <option value="">站名</option>
+                    {{#each arrayify stations}}
+                    <option value="{{key}}">{{key}} - {{value}}</option>
+                    {{/each}}
+                  </select>
+                </div><!-- /.form-group -->
+              </div>
 							<div class="col-md-2 col-sm-4">
 								<div class="form-group">
 									<button type="submit" class="btn btn-default">搜索</button>
@@ -97,6 +95,9 @@
 						</div>
 					</form><!-- /#form-map -->
 				</div>
+
+
+
 				<div class="tab-pane fade" id="search-form-secondhand">
 					<form role="form" id="form-map-sale" class="form-map form-search clearfix">
 						<div class="row">
