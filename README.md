@@ -30,6 +30,8 @@ Common files:
   - handlerbar syntax extension, e.g `{{#arrayify}}`, for iterate a Object's properties. (Lastest Handlerbar.js support `@key`, but not in Meteor.js yet)
 
 Reminder:
+- Search Form directly use the attribute name as query key, so any changes on the **name** of Collection Schema requires changes on search query too (including both side-bar and landing page)
+
 - `collections/images_col.js` is not using SimpleSchema because of CollectionFS
 
 - Form error message placement is tightly coupled with `<div class="form-control">` using `id` attribute, and is mapped at the client-side JS file by `var formErrDivID` object. This is because SimpleSchema validation failure will return attribute name of the field with error, so that's the only clue to refer back to where the error occurs. So **Any changes to the div id in `<template name="addProperty">` requires updates on `var formErrDivID` too**
@@ -74,9 +76,9 @@ Reminder:
 
 ## To Dos
 - Image uploading file size limit
-- AWS S3 public folder
+- AWS S3 public folder (Done)
 - Image preprocessing
   - dimension resize
   - watermark
   - limit number of images user can upload
-- Explore app testing solution
+- Explore app testing solution (Partial)

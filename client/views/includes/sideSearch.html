@@ -5,7 +5,7 @@
       <form role="form" id="search-form-sidebar" class="form-search">
         <div class="form-group">
           <select name="district">
-            <option value="">地区</option>
+            <option value="">任意区域</option>
             {{#each arrayify district}}
             <option value="{{key}}">{{key}} - {{value}}</option>
             {{/each}}
@@ -14,7 +14,7 @@
 
         <div class="form-group">
           <select name="mrtlines" id="mrtlines">
-            <option value="">最近地铁线</option>
+            <option value="">任意地铁线</option>
             {{#each arrayify mrtlines}}
             <option value="{{key}}">{{value.niceName}}</option>
             {{/each}}
@@ -32,7 +32,7 @@
 
         <div class="form-group">
           <select name="property-type">
-            <option value="">房屋类型</option>
+            <option value="">任意房屋类型</option>
             {{#each arrayify ptypes}}
             <option value="{{key}}">{{value}}</option>
             {{/each}}

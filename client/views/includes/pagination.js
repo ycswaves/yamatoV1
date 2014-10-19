@@ -3,8 +3,8 @@ Template.pagination.helpers({
     var midIndex = parseInt(config.windowSize / 2)
       , totalPages = Math.ceil(config.totalDocs / config.pageLimit)
       , startPage = (config.pageNum <= midIndex)? 1 : (config.pageNum - midIndex)
+      , queryStr = config.query
       , pageNumberArr = [];
-
     for(var i=0; i<config.windowSize; i++){
       var pNum = i+startPage;
       if(pNum > totalPages) break;
@@ -23,7 +23,8 @@ Template.pagination.helpers({
     return {
       paginations: pageNumberArr,
       currentPage: config.pageNum,
-      routeName: config.routeName
+      routeName: config.routeName,
+      queryStr: queryStr
     };
   }
 });
