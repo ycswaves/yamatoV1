@@ -42,7 +42,7 @@ ListController = RouteController.extend({
       }
       queryArr.push(key+'='+params[key]);
     }
-    console.log(filter);
+    //console.log(filter);
 
     var totalDocs = Properties.find(filter, {sort: {createdAt: -1}}).count() //filter apply here too
       , totalPages = Math.ceil(totalDocs / pageLimit)
