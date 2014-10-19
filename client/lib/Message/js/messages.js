@@ -25,6 +25,7 @@ Template.messages.helpers({
     var unreads = Messages.find(
       {
         owner: Meteor.userId(),
+        receiver: Meteor.userId(),
         isRead: false,
         isValid: true
       }
@@ -35,11 +36,13 @@ Template.messages.helpers({
       _.each(_.values(groupedTopics), function(topics) {
         var topic = Topics.findOne({_id:topics[0]});
         var lastMessage = Messages.findOne({topicId:topic._id,owner:Meteor.userId(),receiver:Meteor.userId()},{sort: {_id : -1}});
-        var sender = Meteor.users.findOne({_id:lastMessage.sender});
-        var username = sender.username;
-        topic.sender = username;
-        topic.message = lastMessage.content;
-        returnTopics.push(topic);
+        if(lastMessage){
+          var sender = Meteor.users.findOne({_id:lastMessage.sender});
+          var username = sender.username;
+          topic.sender = username;
+          topic.message = lastMessage.content;
+          returnTopics.push(topic);
+        }
       });
       return returnTopics;
     }

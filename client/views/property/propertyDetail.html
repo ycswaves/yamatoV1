@@ -113,9 +113,11 @@
                     </div>
                   </div><!-- /.col-md-4 -->
                 </div>
+                {{#if isNotOwner}}
                 <div>
                   <button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
                 </div><!-- /.form-group -->
+                {{/if}}
               </section><!-- /.agent-form -->
             </aside><!-- /#edit-search -->
             <aside id="our-guides">
