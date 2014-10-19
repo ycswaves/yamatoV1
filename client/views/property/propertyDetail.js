@@ -7,3 +7,11 @@ Template.propertyDetail.rendered = function() {
   });
   render();
 }
+
+Template.propertyDetail.events({
+	'click #enquiry-btn': function(e, t){
+		e.preventDefault();
+		var referId = $('#enquiry-btn').data('referId');
+		Conversations.start(referId,'Property');
+	}
+})
