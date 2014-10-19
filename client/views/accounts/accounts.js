@@ -173,7 +173,7 @@ Template.header.helpers({
     var count = Messages.find(
       {
         owner: Meteor.userId(),
-        recevier: Meteor.userId(),
+        receiver: Meteor.userId(),
         isRead: false,
         isValid: true
       }

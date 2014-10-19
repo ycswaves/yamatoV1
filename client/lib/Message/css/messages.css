@@ -124,14 +124,16 @@ Conversation module
     top: 0;
     visibility: hidden;
     z-index: 101;
+    width: 22px;
+    height: 22px;
+    background: url('/img/webapp.png') -546px -410px no-repeat;
 }
-.Button.borderless {
+.borderless {
     background-color: transparent;
     border: 0;
     margin: 0;
     padding: 0;
 }
-
 .ActiveConversations .ConversationHead .headWrapper {
     box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
 }

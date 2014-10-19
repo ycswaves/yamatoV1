@@ -50,7 +50,7 @@ hr.divider {
 	width: 40px;
 }
 
-textarea, input { outline: none; }
+textarea, input, button { outline: none; }
 
 /* Margin */
 .m-l-md{

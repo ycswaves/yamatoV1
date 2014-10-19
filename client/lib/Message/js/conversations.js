@@ -47,7 +47,7 @@ Template.conversationTopics.helpers({
 });
 
 Template.conversationTopic.rendered = function () {
-  $('.Conversation').popover({
+  $('.headWrapper').popover({
     html : true, 
     content: function() {
       return $('#conversation-box').html();
@@ -61,5 +61,13 @@ Template.conversationTopic.rendered = function () {
 
   $('.Conversation').on('shown.bs.popover', function () {
     $('.conversation-popover').css('top',parseInt($('.conversation-popover').css('top')) - 156 + 'px')
-  })
+  });
+
+  $('body').on('mouseenter','.Conversation',function(){
+    $('.Conversation').find('.cancelButton').css('visibility','visible');
+  });
+
+  $('body').on('mouseleave','.Conversation',function(){
+    $('.Conversation').find('.cancelButton').css('visibility','hidden');
+  });
 }
