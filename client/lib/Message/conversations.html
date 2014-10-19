@@ -1,0 +1,48 @@
+<template name="conversationTopics">
+	{{#if conversationTopics}}
+	<div class="ActiveConversations">
+		{{#each conversationTopics}}
+			{{> conversationTopic}}
+		{{/each}}
+	</div>
+	{{/if}}
+</template>
+
+<template name="conversationTopic">
+	<div class="Conversation">
+		<div class="ConversationHead normal">
+			<button class="cancelButton borderless conversationHeadClose" type="button"></button>
+			<div class="headWrapper">
+				<div class="imagesWrapper">
+					<img class="circle" src="//lh5.googleusercontent.com/-ne6QI6HVrLA/AAAAAAAAAAI/AAAAAAAAEis/ClHC-U6OfiQ/s80-c-k-no/photo.jpg">
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<template name="conversationDialog">
+	<div id="conversation-box" style="display:none">
+		<div class="messagesContainer">
+		{{#each conversationMessages}}
+			{{> messageRow}}
+		{{/each}}
+		</div>
+		<div class="inputWrapper">
+			<div class="ui-TextField ui-Field">
+				<textarea autofocus="autofocus" class="content autogrow" placeholder="此处按回车发送私信"></textarea>
+			</div> 
+		</div>
+	</div>
+</template>
+
+<template name="messageRow">
+	<div class="ConversationMessages">
+		<li class="messageWrapper">
+			<div class="ConversationMessage isOwnMessage">
+				<em class="messageCaret"></em>
+				<p>1</p>
+			</div>
+		</li>
+	</div>
+</template>

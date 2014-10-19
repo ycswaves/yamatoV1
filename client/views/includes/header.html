@@ -13,11 +13,11 @@
 						<a href="#" class="pointer" id="signout">登出</a>
 					</div>
 					<div class="pull-right m-l-md">
-						<i class="fa fa-bell-o pointer" id="messageHelper">
 						{{#if messageCount}}
-							&nbsp;<span class="badge background-color-danger">{{messageCount}}</span>
+							<i class="fa fa-bell pointer text-danger" id="messageHelper"></i>
+						{{else}}
+							<i class="fa fa-bell-o pointer" id="messageHelper"></i>
 						{{/if}}
-						</i>
 					</div>
 					<div class="pull-right m-l-md">
 						<a href="{{pathFor 'profile'}}" class="pointer">{{loggedInUser.username}}</a>

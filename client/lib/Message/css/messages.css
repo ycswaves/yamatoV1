@@ -35,6 +35,10 @@
     width: 368px;
 }
 
+.message-header{
+    margin-top:16px;
+}
+
 .no-message-box{
     font-size: 13px; 
     text-align: center; 
@@ -42,8 +46,8 @@
 }
 
 .merge{
-    width: 50px;
-    height: 50px;
+    width: 80px;
+    height: 80px;
     float: left;
     border-radius: 3px 0px 0px 3px;
     overflow: hidden;
@@ -78,6 +82,7 @@ Conversation module
     left: 10px;
     position: fixed;
     z-index: 700;
+    width: 59px;
 }
 
 .ActiveConversations .Conversation {
@@ -88,3 +93,115 @@ Conversation module
     display: inline-block;
 }
 
+.ConversationHead.normal {
+    -webkit-transform: translateZ(0);
+    height: 60px;
+    width: 60px;
+}
+
+.ConversationHead {
+    transition: filter 0.3s ease,opacity 0.3s ease;
+    -ms-transition: -ms-filter 0.3s ease,opacity 0.3s ease;
+    -moz-transition: -moz-filter 0.3s ease,opacity 0.3s ease;
+    -webkit-transition: -webkit-filter 0.3s ease,opacity 0.3s ease;
+    cursor: pointer;
+}
+
+.ConversationHead.normal .headWrapper {
+    overflow: hidden;
+    position: relative;
+    background: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    height: 60px;
+    position: relative;
+    width: 60px;
+}
+
+.ConversationHead .conversationHeadClose {
+    left: -1px;
+    position: absolute;
+    top: 0;
+    visibility: hidden;
+    z-index: 101;
+    width: 22px;
+    height: 22px;
+    background: url('/img/webapp.png') -546px -410px no-repeat;
+}
+.borderless {
+    background-color: transparent;
+    border: 0;
+    margin: 0;
+    padding: 0;
+}
+.ActiveConversations .ConversationHead .headWrapper {
+    box-shadow: 0 1px 5px rgba(0, 0, 0, 0.5);
+}
+
+.ActiveConversations .ConversationHead .headWrapper .imagesWrapper img{
+    width:60px;
+}
+
+.conversation-content {
+    width: 320px;
+    height: 400px;
+}
+
+.sidearrow {
+    top: 86% !important;
+}
+
+.messagesContainer {
+    width: 100%;
+    height: 345px;
+}
+
+.inputWrapper {
+    bottom: 0;
+    left: 0;
+    position: absolute;
+    right: 0;
+}
+
+.ui-Field {
+    cursor: text;
+    font-size: 13px;
+    position: relative;
+}
+
+.ui-Field .content {
+    background: #f0f0f0;
+    border: 1px solid #d1d1d1;
+    box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.07);
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    color: #333;
+    display: block;
+    margin: 0;
+}
+
+.ui-TextField .content {
+    border-radius: 3px;
+    min-height: 1em;
+    padding: 8px;
+    width: 100%;
+    word-wrap: break-word;
+}
+
+.ui-Field .content {
+    background: #fff;
+    border: none;
+    border-radius: 0 0 6px 6px;
+    border-top: 1px solid #d4d4d4;
+    box-shadow: none;
+    color: #333;
+    font-size: 13px;
+    line-height: 16px;
+    height: 37px;
+    padding: 10px;
+    resize: none;
+}
+
+.ui-TextField .content.autogrow {
+    overflow: hidden;
+}

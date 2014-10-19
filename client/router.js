@@ -90,8 +90,16 @@ Router.map(function () {
     },
     data: function () {
       var params = this.params;
+      var property = Properties.findOne({_id: params.id});
+      if(property.author != Meteor.userId()) {
+        var isNotOwner = true;
+      }
+      else {
+        var isNotOwner = false;
+      }
       return {
-        property: Properties.findOne({_id: params.id})
+        property: property,
+        isNotOwner: isNotOwner
       }
     }
   });

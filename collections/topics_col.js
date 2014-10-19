@@ -7,6 +7,10 @@ Schemas.Topic = new SimpleSchema({
     type: String,
     label: "原帖ID"
   },
+  creator: {
+    type: String,
+    label: "创建者ID"
+  },
   referType: {
     type: String,
     defaultValue: 'Property',
