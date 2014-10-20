@@ -32,6 +32,7 @@ Template.landingPage.events({
     var price = t.find('select[name="price"]').value || null
       , district = t.find('select[name="district"]').value || null
       , pType = t.find('select[name="property-type"]').value || null
+      , mrtLines = t.find('select[name="mrtlines"]').value || null
       , nearestMRT = t.find('select[name="stations"]').value || null;
 
     /*********************************************
@@ -41,6 +42,7 @@ Template.landingPage.events({
       price: price,
       district: district,
       propertyType: pType,
+      mrtLines: mrtLines,
       mrt: nearestMRT
     };
 

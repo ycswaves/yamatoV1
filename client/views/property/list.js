@@ -32,17 +32,28 @@ ListController = RouteController.extend({
 
     var filter = {}
       , queryArr = []; // to pass in footer later
+
     for(var key in params){
+      console.log(key, params[key]);
       if(key == 'page' || !params[key]) continue;
 
-      if(key == 'price'){
-        filter[key] = {$gte: parseInt(params[key], 10)};
-      } else {
-        filter[key] = params[key];
+      switch(key){
+        case 'price':
+          filter[key] = {$gte: parseInt(params[key], 10)};
+          break;
+
+        case 'mrtLines':
+          if(!params['mrt']){
+            filter['mrt'] = new RegExp(params[key]);
+          }
+          break;
+
+        default:
+          filter[key] = params[key];
+          break;
       }
-      queryArr.push(key+'='+params[key]);
+      queryArr.push(key+'='+params[key]); //later revert the query back to string
     }
-    //console.log(filter);
 
     var totalDocs = Properties.find(filter, {sort: {createdAt: -1}}).count() //filter apply here too
       , totalPages = Math.ceil(totalDocs / pageLimit)
