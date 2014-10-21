@@ -11,7 +11,72 @@
 6.  用户体验设计
 
 ===========================================================
-Common files:
+## Add new module in Meteor Project
+- Client Side
+  1. Create view html file and include html in `<template name="templ_name"></template>`.
+  2. Create view js file and define `template.templ_name.events()`, `template.templ_name.helpers()` or Iron-router controllers.
+  3. Add route in `router.js` and check if filter need to apply.
+  4. Add subscription in `subscriptions.js` if new collection is added
+
+- Server Side
+  1. Create `Meteor.method()` for the client side JS to make `Meteor.call()`. Normally the defined methods involve database operation
+  2. Add publication in `publications.js` if new collection is added
+
+- Collection
+  1. Create `SimpleSchema` for newly added collection
+
+## Pagination
+- How to
+  - In router controller (it's recommended to create a router controller and output data from controller instead of using Template helpers), calculate `totalDocs`. This step requires 2 queries, one for total and the other the paginated Docs. 
+
+  ```JavaScript
+  data: function () {
+      var params = this.params
+        , pageLimit = 6
+        , pageNum = 1;
+
+      if(params.page && CommonHelper.isInteger(params.page)){
+        pageNum = params.page;
+      }
+
+      var totalDocs = Properties.find({author: Meteor.userId()}).count()
+        , totalPages = Math.ceil(totalDocs / pageLimit)
+        , paginatedDocs = Properties.find(
+            {author: Meteor.userId()},
+            { _id: 1, address:1, price:1, photos:1, createdAt: 1, sort: {createdAt: -1},
+              skip: (pageNum-1)*pageLimit, limit: pageLimit }
+          );
+
+      return {
+        properties: paginatedDocs,
+        totalDocs: totalDocs,
+        paginationConfig: {
+          'config': {
+            pageNum: pageNum,      // current page number
+            pageLimit: pageLimit,  // # of items to be displayed each page
+            windowSize: 5, // asa # of pages displayed in the pagination must be odd number
+            totalDocs: totalDocs,  // total count
+            routeName: 'myproperty' // root path of the page
+          }
+        }
+      }
+    }
+  ```  
+  - The `paginationConfig` in above code listing is the core data for pagination footer. It's then passed into your _VIEW_.html as
+  ```
+  {{>Template.dynamic template="pagination" data=paginationConfig}}
+  ```
+
+## To Dos
+- Image uploading file size limit
+- AWS S3 public folder (Done)
+- Image preprocessing
+  - dimension resize
+  - watermark
+  - limit number of images user can upload
+- Explore app testing solution (Partial)
+
+## Common files
 - `collections/validateionMessage.js`
   - stores all error messages (non-chinese error message is currently not used in UI).
   - new error messages should be added to this file **ONLY**.
@@ -60,25 +125,3 @@ Reminder:
 
   - Actions like `insert`, `update`, `edit` will need Meteor.call() because these actions involving DB modification, thus can only be done on server-side
 
-## Add new module in Meteor Project
-- Client Side
-  1. Create view html file and include html in `<template name="templ_name"></template>`.
-  2. Create view js file and define `template.templ_name.events()`, `template.templ_name.helpers()` or Iron-router controllers.
-  3. Add route in `router.js` and check if filter need to apply.
-  4. Add subscription in `subscriptions.js` if new collection is added
-
-- Server Side
-  1. Create `Meteor.method()` for the client side JS to make `Meteor.call()`. Normally the defined methods involve database operation
-  2. Add publication in `publications.js` if new collection is added
-
-- Collection
-  1. Create `SimpleSchema` for newly added collection
-
-## To Dos
-- Image uploading file size limit
-- AWS S3 public folder (Done)
-- Image preprocessing
-  - dimension resize
-  - watermark
-  - limit number of images user can upload
-- Explore app testing solution (Partial)

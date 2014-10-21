@@ -44,19 +44,8 @@ Router.map(function () {
   });
 
   this.route('myproperty', {
-    path: '/myproperty',
-    waitOn: function () {
-      return (Meteor.subscribe('userData') && Meteor.subscribe("myProperty", Meteor.userId()));
-    },
-    template: 'myProperties',
-    action: function () {
-      if (this.ready()){
-        this.render();
-      }
-      else{
-        this.render('loading');
-      }
-    }
+    path: '/myproperty/list/:page',
+    controller: 'MyPropertiesController'
   });
 
   this.route('properties', {
