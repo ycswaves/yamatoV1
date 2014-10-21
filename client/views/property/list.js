@@ -55,7 +55,7 @@ ListController = RouteController.extend({
       queryArr.push(key+'='+params[key]); //later revert the query back to string
     }
 
-    var totalDocs = Properties.find(filter, {sort: {createdAt: -1}}).count() //filter apply here too
+    var totalDocs = Properties.find(filter).count() //filter apply here too
       , totalPages = Math.ceil(totalDocs / pageLimit)
       , paginatedDocs = Properties.find(
           filter,
