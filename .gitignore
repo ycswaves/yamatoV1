@@ -44,3 +44,4 @@ packages/
 ######################
 *.lock
 awsS3Config.js
+sftp-config.json
