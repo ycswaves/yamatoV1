@@ -127,8 +127,8 @@ Template.conversationTopic.rendered = function () {
   })
 
   $('body').off('click','.topicAvatar').on('click','.topicAvatar',function(){
-    $('.Conversation').find('.popover').not($(this).parent().find('.popover')).removeClass('in').addClass('hide');
-    $(this).parent().find('.popover').toggleClass('in').toggleClass('hide');
+    $('.Conversation').find('.popover').not($(this).parent().find('.popover')).fadeOut(200);
+    $(this).parent().find('.popover').fadeToggle(200);
   });
 
 	$('body').on('mouseenter','.topicAvatar,.cancelButton',function(){
