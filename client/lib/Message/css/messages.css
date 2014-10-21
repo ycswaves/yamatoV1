@@ -29,6 +29,8 @@
 {
     margin: 0;
     color: #777777;
+    max-height: 20px;
+    overflow: hidden;
 }
 
 .message-box{
@@ -151,10 +153,33 @@ Conversation module
     top: 86% !important;
 }
 
+.referContainer {
+    width: 100%;
+    height: 80px;
+    background: #fff;
+    overflow: hidden;
+}
+
+.referImage{
+    float: left;
+}
+
+.referImage img{
+    height: 80px;
+}
+
+.referDescription{
+    float: left;
+    max-width:180px;
+    max-height:70px;
+    padding: 10px;
+    overflow: hidden;
+}
+
 .messagesContainer {
     width: 100%;
-    height: 345px;
-    overflow-y: scroll;
+    height: 265px;
+    overflow-y: auto;
 }
 
 .inputWrapper {
@@ -224,6 +249,10 @@ Conversation module
 .ConversationMessages li {
     list-style: none;
     padding: 0;
+    overflow: hidden;
+    color: #777;
+    display: block;
+    font-size: 12px;
 }
 
 .ConversationMessage>p {
@@ -255,4 +284,33 @@ Conversation module
     color: #fff;
     float: right;
     right: 10px;
+}
+
+.ConversationMessage.isOwn .messageCaret {
+    position: absolute;
+    bottom: 4px;
+    z-index: 1;
+    width: 8px;
+    height: 12px;
+    background: url('/img/webapp.png') -575px -220px no-repeat;
+    right: -8px;
+}
+
+.ConversationMessage.notOwn {
+    left: 10px;
+    margin-right: 15px;
+    background: #fff
+}
+
+.ConversationMessage.notOwn .messageCaret {
+    width: 8px;
+    height: 12px;
+    background: url('/img/webapp-2.png') -435px -414px no-repeat;
+    position: absolute;
+    bottom: 4px;
+    z-index: 1;
+}
+
+.ConversationMessage.notOwn .messageCaret {
+    left: -8px;
 }

@@ -6,6 +6,11 @@ Conversations = {
 			conversations.insert({topicId:topicId});
 		}
 	},
+  remove: function(topicId) {
+    if(conversations.find({topicId:topicId}).count() == 1){
+      conversations.remove({topicId:topicId});
+    }
+  },
 	start: function(referId, type) {
 		//means there is no same topic
 		if(Topics.find({creator:Meteor.userId(),referId:referId}).count() == 0) {
@@ -59,14 +64,55 @@ Template.conversationTopic.helpers({
 	messages : function (topicId) {
 		var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
 		return messages;
-	}
+	},
+  chatWith : function (topicId) {
+    var topic = Topics.findOne({_id:topicId});
+    if(topic.creator == Meteor.userId()) {
+      var referId = topic.referId;
+      var referType = topic.referType;
+      switch (referType) {
+        case 'Property':
+        var property = Properties.findOne({_id:referId});
+        var author = property.author;
+        break;
+      }
+      var chatWith = Meteor.users.findOne({_id:author});
+    }
+    else {
+      var chatWith = Meteor.users.findOne({_id:topic.creator});
+    }
+    return chatWith.username;
+  },
+  refer: function (topicId) {
+    var topic = Topics.findOne({_id:topicId});
+    var referId = topic.referId;
+    var referType = topic.referType;
+    switch (referType) {
+      case 'Property':
+      var property = Properties.findOne({_id:referId});
+      var object = {_link:'/property/'+property._id, _title:property.address, _image:property.photos[0]};
+      break;
+    }
+    return object;
+  }
+});
+
+Template.messageRow.helpers({
+  isOwn : function (ownerId,senderId) {
+    if(ownerId==senderId) {
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
 });
 
 Template.conversationTopic.rendered = function () {
-	$('body').on('keypress','.PMInput',function(e) {
+	$('body').off('keypress','.PMInput').on('keypress','.PMInput',function(e) {
 		var topicId = $(this).data('topicId');
 		var content = $(this).val();
-		if(10==e.which && content!="") {	
+		if(13==e.which && content!="") {	
 			Conversations.sendAsync(topicId,content, function(err, res){
 				if(res){
 					$('.PMInput').val('');
@@ -74,29 +120,22 @@ Template.conversationTopic.rendered = function () {
 			})
 		}
 	})
-	/*
-	$('.headWrapper').popover({
-		html : true, 
-		content: function() {
-			return $('#conversation-box').html();
-		},
-		title: "私信",
-		animation: false,
-		placement: "right",
-		trigger: "click",
-		template: '<div class="popover conversation-popover" role="tooltip"><div class="arrow sidearrow"></div><h3 class="popover-title"></h3><div class="popover-content conversation-content background-color-grey-light"></div></div>'
+
+  $('body').on('click','.cancelButton',function(){
+    var topicId = $(this).data('topicId');
+    Conversations.remove(topicId);
+  })
+
+  $('body').off('click','.topicAvatar').on('click','.topicAvatar',function(){
+    $('.Conversation').find('.popover').not($(this).parent().find('.popover')).removeClass('in').addClass('hide');
+    $(this).parent().find('.popover').toggleClass('in').toggleClass('hide');
+  });
+
+	$('body').on('mouseenter','.topicAvatar,.cancelButton',function(){
+		$(this).parent().find('.cancelButton').css('visibility','visible');
 	});
 
-	$('.Conversation').on('shown.bs.popover', function () {
-		$('.conversation-popover').css('top',parseInt($('.conversation-popover').css('top')) - 156 + 'px')
-	});
-	*/
-
-	$('body').on('mouseenter','.Conversation',function(){
-		$('.Conversation').find('.cancelButton').css('visibility','visible');
-	});
-
-	$('body').on('mouseleave','.Conversation',function(){
-		$('.Conversation').find('.cancelButton').css('visibility','hidden');
+	$('body').on('mouseleave','.topicAvatar,.cancelButton',function(){
+		$(this).parent().find('.cancelButton').css('visibility','hidden');
 	});
 }

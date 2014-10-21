@@ -29,7 +29,7 @@ Meteor.methods({
 		} 
 		else if(author == Meteor.userId()) {
 			var sender = author;
-			var receiver = Meteor.userId();
+			var receiver = topic.creator;
 		} 
 		else {
 			throw new Meteor.Error(401, "Forbidden");
