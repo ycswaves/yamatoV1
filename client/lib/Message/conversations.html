@@ -1,8 +1,9 @@
 <template name="conversationTopics">
 	{{#if conversationTopics}}
+	{{log conversationTopics}}
 	<div class="ActiveConversations">
 		{{#each conversationTopics}}
-			{{> conversationTopic}}
+		{{> conversationTopic}}
 		{{/each}}
 	</div>
 	{{/if}}
@@ -12,9 +13,25 @@
 	<div class="Conversation">
 		<div class="ConversationHead normal">
 			<button class="cancelButton borderless conversationHeadClose" type="button"></button>
-			<div class="headWrapper">
+			<div class="topicAvatar headWrapper">
 				<div class="imagesWrapper">
 					<img class="circle" src="//lh5.googleusercontent.com/-ne6QI6HVrLA/AAAAAAAAAAI/AAAAAAAAEis/ClHC-U6OfiQ/s80-c-k-no/photo.jpg">
+				</div>
+			</div>
+			<div class="popover conversation-popover right in" role="tooltip" style="display: block; left: 60px; top: -345px;">
+				<div class="arrow sidearrow"></div>
+				<h3 class="popover-title">私信</h3>
+				<div class="popover-content conversation-content background-color-grey-light">
+					<div class="messagesContainer">
+					{{#each messages this.topicId}}
+						{{> messageRow}}
+					{{/each}}
+					</div>
+					<div class="inputWrapper">
+						<div class="ui-TextField ui-Field">
+							<textarea autofocus="autofocus" class="content PMInput" placeholder="此处按Ctrl+回车发送私信" data-topic-id="{{topicId}}"></textarea>
+						</div> 
+					</div>
 				</div>
 			</div>
 		</div>
@@ -24,9 +41,9 @@
 <template name="conversationDialog">
 	<div id="conversation-box" style="display:none">
 		<div class="messagesContainer">
-		{{#each conversationMessages}}
+			{{#each conversationMessages}}
 			{{> messageRow}}
-		{{/each}}
+			{{/each}}
 		</div>
 		<div class="inputWrapper">
 			<div class="ui-TextField ui-Field">
@@ -39,9 +56,9 @@
 <template name="messageRow">
 	<div class="ConversationMessages">
 		<li class="messageWrapper">
-			<div class="ConversationMessage isOwnMessage">
+			<div class="ConversationMessage isOwn">
 				<em class="messageCaret"></em>
-				<p>1</p>
+				<p>{{content}}</p>
 			</div>
 		</li>
 	</div>
