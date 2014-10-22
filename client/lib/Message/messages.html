@@ -1,20 +1,26 @@
 <template name="messages">
-  <div id="message-box" style="display:none">
-    <div class="message-box">
-    {{#if messages}}
-    <ul class="message">
-      {{#each messages}}
-        {{> message}}
-      {{/each}}
-    </ul>
-    {{else}}
-    <div class="no-message-box">
-      <div class="no-message">
-        没有任何新消息噢!
+  <div id="messagePanel" class="popover bottom" role="tooltip" style="display: none; top: 35px; left: 875px;">
+    <div class="arrow"></div>
+    <h3 class="popover-title">回复助手</h3>
+    <div class="popover-content background-color-grey-light">
+      <div id="message-box">
+        <div class="message-box">
+          {{#if messages}}
+          <ul class="message">
+            {{#each messages}}
+            {{> message}}
+            {{/each}}
+          </ul>
+          {{else}}
+          <div class="no-message-box">
+            <div class="no-message">
+              没有任何新消息噢!
+            </div>
+            <img class="message-bell" src="/img/bell.png">
+          </div>
+          {{/if}}
+        </div>
       </div>
-      <img class="message-bell" src="/img/bell.png">
-    </div>
-    {{/if}}
     </div>
   </div>
 </template>
@@ -22,11 +28,11 @@
 <template name="message">
   <li class="left clearfix message-line" data-topic-id="{{_id}}">
     <div style="float:left;width:100px;height:80px">
-    <span class="message-img pull-left">
-      <div class="merge">
-        <img src="//lh5.googleusercontent.com/-ne6QI6HVrLA/AAAAAAAAAAI/AAAAAAAAEis/ClHC-U6OfiQ/s80-c-k-no/photo.jpg">
-      </div>
-    </span>
+      <span class="message-img pull-left">
+        <div class="merge">
+          <img src="/img/agent-01.jpg" width="80px" height="80px">
+        </div>
+      </span>
     </div>
     <div class="message-body clearfix">
       <div class="message-header">

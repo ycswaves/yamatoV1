@@ -1,16 +1,8 @@
 //Messages
 Template.messages.rendered = function () {
-  $('body').popover({
-    html : true, 
-    selector : '#messageHelper',
-    content: function() {
-      return $('#message-box').html();
-    },
-    title: "回复助手",
-    placement: "bottom",
-    trigger: "click focus",
-    template: '<div class="popover" role="tooltip"><div class="arrow"></div><h3 class="popover-title"></h3><div class="popover-content background-color-grey-light"></div></div>'
-  });
+  $('body').on('click','#messageHelper',function(){
+    $(this).parent().find('.popover').fadeToggle(200);
+  })
 
   //click on the message
   $('body').on('click', '.message-line', function (e) {
