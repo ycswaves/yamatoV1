@@ -121,7 +121,7 @@ Template.conversationTopic.rendered = function () {
 		}
 	})
 
-  $('body').on('click','.cancelButton',function(){
+  $('body').off('click','.cancelButton').on('click','.cancelButton',function(){
     var topicId = $(this).data('topicId');
     Conversations.remove(topicId);
   })
@@ -131,11 +131,11 @@ Template.conversationTopic.rendered = function () {
     $(this).parent().find('.popover').fadeToggle(200);
   });
 
-	$('body').on('mouseenter','.topicAvatar,.cancelButton',function(){
+	$('body').off('mouseenter','.topicAvatar,.cancelButton').on('mouseenter','.topicAvatar,.cancelButton',function(){
 		$(this).parent().find('.cancelButton').css('visibility','visible');
 	});
 
-	$('body').on('mouseleave','.topicAvatar,.cancelButton',function(){
+	$('body').off('mouseleave','.topicAvatar,.cancelButton').on('mouseleave','.topicAvatar,.cancelButton',function(){
 		$(this).parent().find('.cancelButton').css('visibility','hidden');
 	});
 }

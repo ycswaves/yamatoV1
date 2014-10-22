@@ -3,25 +3,27 @@
 		<div class="container">
 			<header class="navbar">
 				<div class="navbar-header">
-					<div class="navbar-brand nav" id="brand">
+					<div class="navbar-brand nav" id="brand" style="padding:10px 0;">
 						<a href="/"><img src="/img/logo.png" height="36px" alt="brand"></a>
 					</div>
+					{{#if currentUser}}
+					<div class="pull-left m-l-md background-color-default text-white" style="padding:15px;">
+						<a href="{{pathFor 'profile'}}" class="pointer text-white"><i class="fa fa-user pointer fa-2x" id="messageHelper"></i></a>
+					</div>
+					<div class="pull-left" style="padding:15px;">
+					{{#if messageCount}}
+						<i class="fa fa-bell pointer text-danger fa-2x" id="messageHelper"></i>
+					{{else}}
+						<i class="fa fa-bell-o pointer fa-2x" id="messageHelper"></i>
+					{{/if}}
+					{{> messages}}
+					</div>
+					{{/if}}
 				</div>
 				<nav class="collapse navbar-collapse bs-navbar-collapse navbar-right" role="navigation">
 					{{#if currentUser}}
 					<div class="pull-right m-l-md">
 						<a href="#" class="pointer" id="signout">登出</a>
-					</div>
-					<div class="pull-right m-l-md">
-						{{#if messageCount}}
-							<i class="fa fa-bell pointer text-danger" id="messageHelper"></i>
-							{{> messages}}
-						{{else}}
-							<i class="fa fa-bell-o pointer" id="messageHelper"></i>
-						{{/if}}
-					</div>
-					<div class="pull-right m-l-md">
-						<a href="{{pathFor 'profile'}}" class="pointer">{{loggedInUser.username}}</a>
 					</div>
 					{{else}}
 					<div class="pull-right m-l-md">
