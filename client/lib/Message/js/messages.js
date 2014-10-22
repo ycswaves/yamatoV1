@@ -1,6 +1,6 @@
 //Messages
 Template.messages.rendered = function () {
-  $('body').on('click','#messageHelper',function(){
+  $('body').off('click','#messageHelper').on('click','#messageHelper',function(){
     $(this).parent().find('.popover').fadeToggle(200);
   })
 
