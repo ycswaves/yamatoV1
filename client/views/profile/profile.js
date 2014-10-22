@@ -20,8 +20,8 @@ Template.profilePage.rendered = function() {
 }
 
 Template.profilePage.helpers({
-  loggedInUser: function(){
-    return Meteor.user();
+  profile: function(){
+    return UserProfiles.findOne({userid: Meteor.userId()});
   }
 })
 
