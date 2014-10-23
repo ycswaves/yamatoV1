@@ -7,13 +7,13 @@ layoutTemplate: 'layout'
 var filters = {
 	isLoggedIn: function(pause) {
 		if (!(Meteor.user() || Meteor.loggingIn())) {
-			Router.go('landing');
+			Router.go('signup');
 			pause();
 		}
 	}
 };
 
-Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signup']});
+Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signup','properties']});
 
 Router.map(function () {
 	this.route('landing', {

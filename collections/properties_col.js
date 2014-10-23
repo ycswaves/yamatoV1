@@ -27,7 +27,7 @@ Schemas.ContactInfo = new SimpleSchema({ //should be consistant with Schema.User
     label: "Email",
     regEx: SimpleSchema.RegEx.Email,
     optional: true
-  },
+  }
 });
 
 Schemas.Property = new SimpleSchema({

@@ -26,3 +26,7 @@ Meteor.publish("messages", function() {
 Meteor.publish("topics", function() {
   return Topics.find({});
 });
+
+Meteor.publish("userProfile", function(id) {
+  return UserProfiles.find({userid: id});
+});
