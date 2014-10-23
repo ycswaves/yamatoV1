@@ -42,11 +42,10 @@
               <div class="property" style="padding-left:0px">
                 <header><a href="{{pathFor 'propertyDetail' id=_id}}"><h3>{{address}}</h3></a></header>
                 <div class="row info">
-                  <div class="col-md-3">
+                  <div class="col-md-4">
                     <a href="{{pathFor 'propertyDetail' id=_id}}">
                       <img alt="" src="{{getImageURL photos}}">
                     </a>
-                    <div class="tag price" style="position:absolute; top:-5px; left:0px;">$ {{price}}</div>
                   </div>
                   <div class="col-md-5">
                     <dl style="margin:20px 10px">
@@ -61,7 +60,7 @@
                     </dl>
                   </div >
 
-                  <div class="col-md-4">
+                  <div class="col-md-3">
                     <dl style="margin:20px 10px">
                       <dt><figure class="fa fa-building"></figure> 房屋类型: </dt>
                         <dd>{{transPtype propertyType}}</dd>
@@ -73,6 +72,10 @@
                         </dd>
                       <dt><figure class="fa fa-user"></figure> 有无中介费: </dt>
                         <dd>{{transAgt hasAgentFee}}</dd>
+                      <dt></dt>
+                        <dd>
+                          <div class="tag price">$ {{price}}</div>
+                        </dd>
                     </dl>
                   </div>
                 </div>

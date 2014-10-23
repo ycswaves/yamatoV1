@@ -126,8 +126,8 @@ Template.signupForm.events({
         && isValidName(username))
     {
       Accounts.createUser({
-        username:username,
-        email:email,
+        username: username,
+        email: email,
         password: password
       }, function(err){
         if (err && err.error === 403) {
