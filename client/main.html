@@ -45,8 +45,13 @@
 
 <template name="layout">
 	{{> header}}
-	<div class="content" id="bodyContent">
-		{{> yield}}
+	<div id="bodyContent">
+		<div class="content">
+			{{> yield}}
+		</div>
 	</div>
 	{{> footer}}
+	{{> notificationMessages}}
+	{{> conversationTopics}}
+	{{> loginForm}}
 </template>
