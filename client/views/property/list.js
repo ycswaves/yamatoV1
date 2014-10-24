@@ -34,7 +34,6 @@ ListController = RouteController.extend({
       , queryArr = []; // to pass in footer later
 
     for(var key in params){
-      console.log(key, params[key]);
       if(key == 'page' || !params[key]) continue;
 
       switch(key){

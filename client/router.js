@@ -35,11 +35,16 @@ Router.map(function () {
 	this.route('profile', {
 		path: '/profile',
 		waitOn: function () {
-			return Meteor.subscribe('userData');
+			return Meteor.subscribe("userProfile", Meteor.userId());
 		},
 		template: 'profilePage',
 		action: function () {
 			this.render();
+		},
+		data: function () {
+			return {
+		    profile: UserProfiles.findOne({userid: Meteor.userId()})
+		  }
 		}
 	});
 

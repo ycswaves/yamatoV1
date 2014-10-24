@@ -19,12 +19,6 @@ Template.profilePage.rendered = function() {
     });
 }
 
-Template.profilePage.helpers({
-  profile: function(){
-    return UserProfiles.findOne({userid: Meteor.userId()});
-  }
-})
-
 //Update action
 Template.profilePage.events({
   'submit #accountProfile' : function(e, t) {
