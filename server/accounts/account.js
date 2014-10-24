@@ -12,9 +12,19 @@ Accounts.onCreateUser(function (options, user) {
     wechat: null,
     email: {address: options.email, verified: false}
   };
-  if (options.profile){
 
+
+  // console.log(user.services);
+  // return;
+
+
+
+  if (user.services.facebook){
+    var oauthProfile = user.services.facebook;
+    userProfile.name = oauthProfile.name
+    userProfile.email = {address: oauthProfile.email, verified: true}
   }
+
   UserProfiles.insert(userProfile, function(err, res) {
     if(err){
       console.log(err); // need to log to see if any attack or form validation not cover enough
