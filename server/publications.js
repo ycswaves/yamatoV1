@@ -19,8 +19,12 @@ Meteor.publish("myProperty", function(id) {
   return Properties.find({author: id});
 });
 
-Meteor.publish("messages", function() {
-  return Messages.find({});
+Meteor.publish("messages", function(id) {
+  return Messages.find({owner:id});
+});
+
+Meteor.publish("topicMessages", function(topicId,userId) {
+  return Messages.find({topicId:topicId,owner:userId});
 });
 
 Meteor.publish("topics", function() {

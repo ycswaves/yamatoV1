@@ -1514,7 +1514,7 @@ ul.list-links li a:hover {
 #form-secondhand:-moz-placeholder,
 #form-secondhand:-ms-input-placeholder
 {
-  color:    #000;
+	color:    #000;
 }
 
 .text-banner {
@@ -4173,6 +4173,26 @@ ul.list-links li a:hover {
   }
 
   /********************************* Footer ******************************************/
+  html, body {
+  	height: 100% !important;
+  }
+  #bodyContent {
+  	padding-top: 56px;
+  	min-height: 100%;
+  	/* equal to footer height */
+  	margin-bottom: -60px; 
+  }
+  #bodyContent:after {
+  	content: "";
+  	display: block;
+  }
+  .footer, #bodyContent:after {
+  	height: 60px; 
+  }
+  .footer {
+  	background: orange;
+  }
+
   #page-footer .inner {
   	display: table;
   	width: 100%;

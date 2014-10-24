@@ -160,6 +160,7 @@ Template.header.events({
   'click #signout' : function(e, t){
     e.preventDefault();
     Meteor.logout(function(){
+      conversations.remove({});
       Router.go('landing');
     });
   }
