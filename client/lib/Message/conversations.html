@@ -19,7 +19,12 @@
 			</div>
 			<div class="popover conversation-popover right" role="tooltip" style="display: none; left: 60px; top: -345px;">
 				<div class="arrow sidearrow"></div>
-				<h3 class="popover-title">{{chatWith topicId}}</h3>
+				<h3 class="popover-title">{{chatWith topicId}}
+				<button type="button" class="close closeConversation">
+					<span aria-hidden="true">×</span>
+					<span class="sr-only">Close</span>
+				</button>
+				</h3>
 				<div class="popover-content conversation-content background-color-grey-light" style="padding:0px;">
 					{{#with refer topicId}}
 					<div class="referContainer">
