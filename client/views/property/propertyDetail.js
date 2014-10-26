@@ -10,18 +10,27 @@ Template.propertyDetail.rendered = function() {
 }
 
 function initializeMap() {
-	var address = $('#addressLabel').html();
+	var address = $('#addressLabel').html()+' Singapore';
+	var mrt = $('#mrtLabel').html()+' MRT Singapore';
+	convertAddress(address,function(latlng){
+		var addressLatlng = latlng;
+		if(addressLatlng != null) {
+			L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2ZW4wMDkiLCJhIjoiel9vX2hxSSJ9.Ag0_rnoJmLvScwqMR-gjyg';
+			var map = L.mapbox.map('mapbox', 'daven009.k1imgjff').setView(addressLatlng, 16);
+			L.marker(latlng).addTo(map);
+		}
+	})
+}
+
+function convertAddress(address,callback) {
 	geocoder = new google.maps.Geocoder();
 	geocoder.geocode( { 'address': address}, function(results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			var lat = results[0].geometry.location.k;
 			var lng = results[0].geometry.location.B;
-			L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2ZW4wMDkiLCJhIjoiel9vX2hxSSJ9.Ag0_rnoJmLvScwqMR-gjyg';
-			var map = L.mapbox.map('mapbox', 'daven009.k1imgjff').setView([lat, lng], 16);
-			L.marker([lat, lng]).addTo(map);
-			
+			callback([lat,lng]);
 		} else {
-			alert('Geocode was not successful for the following reason: ' + status);
+			callback(null);
 		}
 	});
 }
