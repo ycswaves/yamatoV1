@@ -70,8 +70,7 @@ Template.loginForm.events({
       , password = t.find('input[name=password]').value;
 
     if (isNotEmpty(username, 'loginError')
-        && isNotEmpty(password, 'loginError'))
-    {
+        && isNotEmpty(password, 'loginError')){
       Meteor.loginWithPassword(username, password, function(err){
         if (err && err.error === 403) {
           // Session.set('displayMessage', '用户名或密码不正确');
@@ -80,6 +79,7 @@ Template.loginForm.events({
         } else {
           t.$('#loginModal').modal('hide');
           NotificationMessages.sendSuccess('登陆成功','欢迎回来');
+          Router.go(Session.get('currentPath') || 'landing');
         }
       });
     }
@@ -92,7 +92,7 @@ Template.loginForm.events({
       if (err && err.error === 403) {
         Session.set('displayMessage', 'Login Error: email or password is not correct.');
       } else {
-
+        Router.go(Session.get('currentPath') || 'landing');
       }
     });
   },
@@ -103,7 +103,7 @@ Template.loginForm.events({
       if (err && err.error === 403) {
         Session.set('displayMessage', 'Login Error: username or password is not correct.');
       } else {
-
+        Router.go(Session.get('currentPath') || 'landing');
       }
     });
   }
@@ -135,6 +135,7 @@ Template.signupForm.events({
         } else {
           t.$('#signupModal').modal('hide');
           NotificationMessages.sendSuccess('注册成功','欢迎您的加入');
+          Router.go(Session.get('currentPath') || 'landing');
         }
       });
     }else{
