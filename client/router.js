@@ -4,8 +4,6 @@ Router.configure({
 layoutTemplate: 'layout'
 });
 
-var publicAccessible = ['landing','signup','properties','propertyDetail'];
-
 var filters = {
 	isLoggedIn: function(pause) {
 		if (!(Meteor.user() || Meteor.loggingIn())) {
@@ -19,8 +17,8 @@ var storeUrl = function(){
 	Session.set('currentPath', Router.current().path);
 }
 
-Router.onBeforeAction(filters.isLoggedIn, {except: publicAccessible});
-Router.onBeforeAction(storeUrl, {only: publicAccessible});
+Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signup','properties','propertyDetail']});
+Router.onBeforeAction(storeUrl, {only: ['properties','propertyDetail']});
 
 
 Router.map(function () {
