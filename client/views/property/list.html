@@ -1,119 +1,121 @@
 <template name="propertyListing">
-  <div class="page-gradient">
-    <!-- Breadcrumb -->
-    <div class="container">
-      <ol class="breadcrumb">
-        <li><a href="#">首页</a></li>
-        <li class="active">信息列表</li>
-      </ol>
-    </div>
-    <!-- end Breadcrumb -->
+	<div class="page-gradient">
+		<!-- Breadcrumb -->
+		<div class="container">
+			<ol class="breadcrumb">
+				<li><a href="#">首页</a></li>
+				<li class="active">信息列表</li>
+			</ol>
+		</div>
+		<!-- end Breadcrumb -->
 
-    <div class="container">
-      <div class="row">
-        <!-- sidebar -->
-        <div class="col-md-3 col-sm-3">
-            {{> sideSearch}}
-        </div><!-- /.col-md-3 -->
-        <!-- end Sidebar -->
+		<div class="container">
+			<div class="row">
+				<!-- sidebar -->
+				<div class="col-md-3 col-sm-3">
+					{{> sideSearch}}
+				</div><!-- /.col-md-3 -->
+				<!-- end Sidebar -->
 
-        <!-- Results -->
-        <div class="col-md-9 col-sm-9">
-          <section id="results">
-            <header><h1>最新发布</h1></header>
-            <section id="search-filter">
-              <figure><h3><i class="fa fa-search"></i>搜索结果:</h3>
-                <span class="search-count">{{totalDocs}}</span>
-                <div class="sorting">
-                  <div class="form-group">
-                    <select name="sorting">
-                        <option value="">Sort By</option>
-                        <option value="1">Lowest price first</option>
-                        <option value="2">Highest price first</option>
-                        <option value="3">Date added</option>
-                    </select>
-                  </div><!-- /.form-group -->
-                </div>
-              </figure>
-            </section>
-            <section id="properties" class="display-lines">
-              {{#each properties}}
+				<!-- Results -->
+				<div class="col-md-9 col-sm-9">
+					<section id="results">
+						<header><h1>最新发布</h1></header>
+						<section id="search-filter">
+							<figure><h3><i class="fa fa-search"></i>搜索结果:</h3>
+								<span class="search-count">{{totalDocs}}</span>
+								<div class="sorting">
+									<div class="form-group">
+										<select name="sorting">
+											<option value="">Sort By</option>
+											<option value="1">Lowest price first</option>
+											<option value="2">Highest price first</option>
+											<option value="3">Date added</option>
+										</select>
+									</div><!-- /.form-group -->
+								</div>
+							</figure>
+						</section>
+						<section id="properties" class="display-lines">
+							{{#each properties}}
 
-              <div class="property" style="padding-left:0px">
-                <header><a href="{{pathFor 'propertyDetail' id=_id}}"><h3>{{address}}</h3></a></header>
-                <div class="row info">
-                  <div class="col-md-4">
-                    <a href="{{pathFor 'propertyDetail' id=_id}}">
-                      <img alt="" src="{{getImageURL photos}}">
-                    </a>
-                  </div>
-                  <div class="col-md-5">
-                    <dl style="margin:20px 10px">
-                      <dt><figure class="fa fa-map-marker"></figure> 区域: </dt>
-                        <dd>{{transDistr district}}</dd>
-                      <dt><img src="/img/tram4.svg" alt="mrt" style="width:12px; position:relative; top:-4px"> 近地铁: </dt>
-                        <dd>{{transMRT mrt}} ({{mrt}})</dd>
-                      <dt><figure class="fa fa-calendar"></figure> 入住时间: </dt>
-                        <dd>{{transDatetime moveInDate}} 起</dd>
-                      <dt><figure class="fa fa-home"></figure> 房间: </dt>
-                        <dd>{{transRoom rentType roomType}}</dd>
-                    </dl>
-                  </div >
+							<div class="property" style="padding-left:0px">
+								<header><a href="{{pathFor 'propertyDetail' id=_id}}"><h3>{{address}}</h3></a></header>
+								<div class="row info">
+									<div class="col-md-4">
+										<a href="{{pathFor 'propertyDetail' id=_id}}">
+										<img class="radius" src="{{getImageURL photos}}">
+										</a>
+									</div>
+									<div class="col-md-5">
+										<dl style="margin:20px 10px">
+											<dt><figure class="fa fa-map-marker icon-align"></figure> 区域: </dt>
+											<dd>{{transDistr district}}</dd>
+											<dt><figure class="fa fa-bus icon-align"></figure> 近地铁: </dt>
+											<dd>{{transMRT mrt}} ({{mrt}})</dd>
+											<dt><figure class="fa fa-calendar icon-align"></figure> 入住时间: </dt>
+											<dd>{{transDatetime moveInDate}} 起</dd>
+											<dt><figure class="fa fa-home icon-align"></figure> 房间: </dt>
+											<dd>{{transRoom rentType roomType}}</dd>
+										</dl>
+										<div style="margin:20px 10px">
+											<a href="{{pathFor 'propertyDetail' id=_id}}" class="link-arrow">详情 &amp; 联系方式</a>
+										</div>
+									</div >
 
-                  <div class="col-md-3">
-                    <dl style="margin:20px 10px">
-                      <dt><figure class="fa fa-building"></figure> 房屋类型: </dt>
-                        <dd>{{transPtype propertyType}}</dd>
-                      <dt></dt>
-                        <dd>
-                          <img src="/img/bed.svg" alt="bedroom" style="width:13px; position:relative; top:-4px"> {{bedroom}}
-                          <span style="margin-right:10px"></span>
-                          <img src="/img/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
-                        </dd>
-                      <dt><figure class="fa fa-user"></figure> 有无中介费: </dt>
-                        <dd>{{transAgt hasAgentFee}}</dd>
-                      <dt></dt>
-                        <dd>
-                          <div class="tag price">$ {{price}}</div>
-                        </dd>
-                    </dl>
-                  </div>
-                </div>
+									<div class="col-md-3">
+										<dl style="margin:20px 10px">
+											<dt><figure class="fa fa-user icon-align"></figure> 有无中介费: </dt>
+											<dd>{{transAgt hasAgentFee}}</dd>
+											<dt><figure class="fa fa-building icon-align"></figure> 房屋类型: </dt>
+											<dd>{{transPtype propertyType}}</dd>
+											<dt></dt>
+											<dd>
+												<img src="/img/bed.svg" alt="bedroom" style="width:13px; position:relative; top:-4px"> {{bedroom}}
+												<span style="margin-right:10px"></span>
+												<img src="/img/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
+											</dd>
 
-                <a href="{{pathFor 'propertyDetail' id=_id}}" class="link-arrow">详情 &amp; 联系方式</a>
-              </div><!-- /.property -->
-              {{/each}}
-            </section><!-- /#properties-->
+											<dt></dt>
+											<dd>
+												<div class="tag price">$ {{price}}</div>
+											</dd>
+										</dl>
+									</div>
+								</div>
+							</div><!-- /.property -->
+							{{/each}}
+						</section><!-- /#properties-->
 
-            <!-- Pagination -->
-            {{>Template.dynamic template="pagination" data=paginationConfig}}
+						<!-- Pagination -->
+						{{>Template.dynamic template="pagination" data=paginationConfig}}
 
-          </section><!-- /#results -->
-        </div><!-- /.col-md-9 -->
-        <!-- end Results -->
+					</section><!-- /#results -->
+				</div><!-- /.col-md-9 -->
+				<!-- end Results -->
 
-      </div><!-- /.row -->
-    </div><!-- /.container -->
-
+			</div><!-- /.row -->
+		</div><!-- /.container -->
 
 
-    <button style="position:fixed; bottom:5px; right:5px; z-index:10; width:38px; height:38px" class="btn btn-default" data-toggle="modal" data-target="#map-wrapper"><i class="fa fa-location-arrow"></i></button>
 
-    <div id="map-wrapper" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
-      <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-          <div id="map"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-  <script type="text/javascript">
-    $(function() {
-      $('#map-wrapper').on('shown.bs.modal', function () {
-          _latitude = 48.87; // These two lines represent the center of your map
-          _longitude = 2.29; // These two lines represent the center of your map
-          createHomepageGoogleMap(_latitude,_longitude);
-      });
-    });
-  </script>
+		<button style="position:fixed; bottom:5px; right:5px; z-index:10; width:38px; height:38px" class="btn btn-default" data-toggle="modal" data-target="#map-wrapper"><i class="fa fa-location-arrow"></i></button>
+
+		<div id="map-wrapper" class="modal fade bs-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+			<div class="modal-dialog modal-lg">
+				<div class="modal-content">
+					<div id="map"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			$('#map-wrapper').on('shown.bs.modal', function () {
+				_latitude = 48.87; // These two lines represent the center of your map
+				_longitude = 2.29; // These two lines represent the center of your map
+				createHomepageGoogleMap(_latitude,_longitude);
+			});
+		});
+	</script>
 </template>

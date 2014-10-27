@@ -17,7 +17,7 @@ var storeUrl = function(){
 	Session.set('currentPath', Router.current().path);
 }
 
-Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signup','properties','propertyDetail']});
+Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
 Router.onBeforeAction(storeUrl, {only: ['properties','propertyDetail']});
 
 
@@ -25,6 +25,14 @@ Router.map(function () {
 	this.route('landing', {
 		path: '/',
 		template: 'landingPage',
+		action: function () {
+			this.render();
+		}
+	});
+
+	this.route('signin', {
+		path: '/account/signin',
+		template: 'loginForm',
 		action: function () {
 			this.render();
 		}
@@ -92,14 +100,17 @@ Router.map(function () {
 			var params = this.params;
 			var property = Properties.findOne({_id: params.id});
 			var isNotOwner = false;
+			var bannerImage = false;
 			if(typeof property!="undefined"){
 				if(property.author != Meteor.userId()) {
 					var isNotOwner = true;
 				}
+				bannerImage = property.photos[0];
 			}
 			return {
 				property: property,
-				isNotOwner: isNotOwner
+				isNotOwner: isNotOwner,
+				bannerImage: bannerImage
 			}
 		}
 	});
