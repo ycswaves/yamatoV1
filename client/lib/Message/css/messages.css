@@ -315,3 +315,7 @@ Conversation module
 .ConversationMessage.notOwn .messageCaret {
     left: -8px;
 }
+
+.leaflet-bottom, .leaflet-top {
+    z-index: 0 !important;
+}

@@ -52,6 +52,7 @@ Template.conversationTopics.helpers({
 Template.conversationTopic.helpers({
 	messages : function (topicId) {
 		var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
+		Session.set('messages', messages);
 		return messages;
 	},
 	chatWith : function (topicId) {
@@ -97,14 +98,22 @@ Template.messageRow.helpers({
 	}
 });
 
+
+Template.messageRow.rendered = function() {
+	Tracker.afterFlush(function () {
+		$('.messagesContainer').scrollTop('9999');
+	});
+}
+
 Template.conversationTopic.rendered = function () {
 	$('body').off('keypress','.PMInput').on('keypress','.PMInput',function(e) {
+		var input = $(this);
 		var topicId = $(this).data('topicId');
 		var content = $(this).val();
 		if(13==e.which && content!="") {	
 			Conversations.sendAsync(topicId,content, function(err, res){
 				if(res){
-					$('.PMInput').val('');
+					input.val('');
 				}
 			})
 		}
@@ -115,9 +124,14 @@ Template.conversationTopic.rendered = function () {
 		Conversations.remove(topicId);
 	})
 
+	$('body').off('click','.closeConversation').on('click','.closeConversation',function(){
+		$(this).parents('.Conversation').find('.popover').fadeOut(200);
+	});
+
 	$('body').off('click','.topicAvatar').on('click','.topicAvatar',function(){
 		$('.Conversation').find('.popover').not($(this).parent().find('.popover')).fadeOut(200);
 		$(this).parent().find('.popover').fadeToggle(200);
+		$(this).parent().find('.messagesContainer').scrollTop('9999');
 	});
 
 	$('body').off('mouseenter','.topicAvatar,.cancelButton').on('mouseenter','.topicAvatar,.cancelButton',function(){

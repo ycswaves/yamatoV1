@@ -13,7 +13,13 @@ var filters = {
 	}
 };
 
-Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signup','properties']});
+var storeUrl = function(){
+	Session.set('currentPath', Router.current().path);
+}
+
+Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signup','properties','propertyDetail']});
+Router.onBeforeAction(storeUrl, {only: ['properties','propertyDetail']});
+
 
 Router.map(function () {
 	this.route('landing', {
@@ -35,11 +41,16 @@ Router.map(function () {
 	this.route('profile', {
 		path: '/profile',
 		waitOn: function () {
-			return Meteor.subscribe('userData');
+			return Meteor.subscribe("userProfile", Meteor.userId());
 		},
 		template: 'profilePage',
 		action: function () {
 			this.render();
+		},
+		data: function () {
+			return {
+		    profile: UserProfiles.findOne({userid: Meteor.userId()})
+		  }
 		}
 	});
 

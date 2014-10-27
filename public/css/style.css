@@ -1351,7 +1351,7 @@ ul.list-links li a:hover {
 }
 
 .content{
-	margin-top:56px;
+	/*margin-top:56px;*/
 }
 
 /* Search Box */
@@ -4180,14 +4180,14 @@ ul.list-links li a:hover {
   	padding-top: 56px;
   	min-height: 100%;
   	/* equal to footer height */
-  	margin-bottom: -60px; 
+  	margin-bottom: -60px;
   }
   #bodyContent:after {
   	content: "";
   	display: block;
   }
   .footer, #bodyContent:after {
-  	height: 60px; 
+  	height: 60px;
   }
   .footer {
   	background: orange;
@@ -4270,6 +4270,10 @@ ul.list-links li a:hover {
   	top: 0;
   	width: 100%;
   	z-index: -1;
+  }
+
+  .navbar-default .navbar-nav > li > a {
+    color: #428bca
   }
 
   /********************************* Animation ***************************************/

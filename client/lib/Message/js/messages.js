@@ -32,7 +32,7 @@ Template.messages.helpers({
 			_.each(_.values(groupedTopics), function(topics) {
 				var topic = Topics.findOne({_id:topics[0]});
 				if(topic){
-					var lastMessage = Messages.findOne({topicId:topic._id,owner:Meteor.userId(),receiver:Meteor.userId()},{sort: {_id : -1}});
+					var lastMessage = Messages.findOne({topicId:topic._id,owner:Meteor.userId(),receiver:Meteor.userId()},{sort: {createdAt : -1}});
 					if(lastMessage){
 						var sender = Meteor.users.findOne({_id:lastMessage.sender});
 						var username = sender.username;
