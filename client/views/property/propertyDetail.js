@@ -12,9 +12,9 @@ Template.propertyDetail.rendered = function() {
 function initializeMap() {
 	var address = $('#addressLabel').html()+' Singapore';
 	var mrt = $('#mrtLabel').html()+' MRT Singapore';
-	convertAddress(address,function(latlng){
+	convertAddress(address,function(err,latlng){
 		var addressLatlng = latlng;
-		if(addressLatlng != null) {
+		if(err == null) {
 			L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2ZW4wMDkiLCJhIjoiel9vX2hxSSJ9.Ag0_rnoJmLvScwqMR-gjyg';
 			var map = L.mapbox.map('mapbox', 'daven009.k1imgjff').setView(addressLatlng, 16);
 			L.marker(latlng).addTo(map);
@@ -28,9 +28,9 @@ function convertAddress(address,callback) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			var lat = results[0].geometry.location.k;
 			var lng = results[0].geometry.location.B;
-			callback([lat,lng]);
+			callback(null,[lat,lng]);
 		} else {
-			callback(null);
+			callback('无法分析当前地址',null);
 		}
 	});
 }
