@@ -564,61 +564,61 @@ fieldset[disabled] .btn-gplus.active {
 
 /* Text color */
 .text-default{
-	color: #1396e2;
+	color: #1396e2 !important;
 }
 
 .text-success{
-	color: #92cf5c;
+	color: #92cf5c !important;
 }
 
 .text-danger{
-	color: #fb6b5b;
+	color: #fb6b5b !important;
 }
 
 .text-white{
-	color: #FFF;
+	color: #FFF !important;
 }
 
 .text-white:hover{
-	color: #FFF;
+	color: #FFF !important;
 }
 
 
 /* Background */
 .background-color-default {
-	background-color: #1396e2;
+	background-color: #1396e2 !important;
 }
 
 .background-color-primary {
-	background-color: #594f8d;
+	background-color: #594f8d !important;
 }
 
 .background-color-warning {
-	background-color: #fcc44d;
+	background-color: #fcc44d !important;
 }
 
 .background-color-danger {
-	background-color: #fb6b5b;
+	background-color: #fb6b5b !important;
 }
 
 .background-color-success {
-	background-color: #92cf5c;
+	background-color: #92cf5c !important;
 }
 
 .background-color-default-darker {
-	background-color: #073855;
+	background-color: #073855 !important;
 }
 
 .background-color-grey-light {
-	background-color: #f3f3f3;
+	background-color: #F5F5F5 !important;
 }
 
 .background-color-grey-medium {
-	background-color: #5a5a5a;
+	background-color: #5a5a5a !important;
 }
 
 .background-color-grey-dark {
-	background-color: #2a2a2a;
+	background-color: #2a2a2a !important;
 }
 
 .background-color-facebook {
@@ -2594,6 +2594,10 @@ ul.list-links li a:hover {
   	vertical-align: middle;
   	padding-left: 20px;
   }
+  
+	.with-padding {
+		padding: 20px;
+	}
 
   .price-box {
   	-moz-transition: 0.4s;

@@ -100,14 +100,17 @@ Router.map(function () {
 			var params = this.params;
 			var property = Properties.findOne({_id: params.id});
 			var isNotOwner = false;
+			var bannerImage = false;
 			if(typeof property!="undefined"){
 				if(property.author != Meteor.userId()) {
 					var isNotOwner = true;
 				}
+				bannerImage = property.photos[0];
 			}
 			return {
 				property: property,
-				isNotOwner: isNotOwner
+				isNotOwner: isNotOwner,
+				bannerImage: bannerImage
 			}
 		}
 	});

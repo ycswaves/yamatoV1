@@ -1,21 +1,23 @@
 <template name="propertyDetail">
+	<style>
+		.propertyImage {
+			background: url('/img/dummy-bg.jpg');
+			height: 400px;
+			width: 100%;
+			margin-top: -56px;
+			background-position: center center;
+			background-size: cover;
+		}
+	</style>
 	<div>
-		<div class="row">
-			<section id="property-detail">
-				{{#if property.photos}}
-				<section id="property-gallery">
-					<div class="owl-carousel thumbnail">
-						{{#each property.photos}}
-						<div class="item"><img src="{{getImageURL this}}"></div>
-						{{/each}}
-					</div>
-				</section>
-				{{/if}}
-			</section><!-- /#property-detail -->
-		</div>
+		{{#if property.photos}}
+			<div class="propertyImage" style="background: url('{{getImageURL bannerImage}}');"></div>
+		{{else}}
+			<div class="propertyImage"></div>
+		{{/if}}
 		<!-- end Breadcrumb -->
-		<div class="row" style="border-bottom: 1px solid #dce0e0;">
-			<div class="container">
+		<div style="border-bottom: 1px solid #dce0e0;">
+			<div class="container" style="padding-left:25px;padding-right:25px;">
 				{{!--
 				<div class="row">
 					<div class="col-md-9 col-sm-9">
@@ -29,84 +31,91 @@
 					</div>
 				</div>
 				--}}
-				<div class="col-sm-7">
-					<aside id="contact-info">
-						<header><h2>发帖人信息</h2></header>
-						<section class="contact-form center">
-							<div class="row">
-								<div class="col-lg-12">
-									<img class="img-circle" src="/img/member-03.jpg" width="90px">
-								</div><!-- /.col-md-4 -->
+				<div class="col-sm-7 with-padding">
+					<section id="contact-info">
+						<div class="row">
+							<div class="col-lg-3 center">
+								<img class="img-circle" src="/img/member-03.jpg" width="90px">
 							</div>
-							<div class="row">
-								<div class="col-lg-12">
-									<div class="agent-contact-info">
-										{{#with property.contact}}
-										<h3>{{name}}</h3>
-										<dl>
-											<dt><i class="fa fa-phone"></i></dt>
-											<dd>
-												{{#if currentUser}}
+							<div class="col-lg-9 center">
+								<h1 id="addressLabel">{{property.address}}</h1>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-lg-3 center">
+								{{#with property.contact}}
+									<h3 class="text-muted">{{name}}</h3>
+								{{/with}}
+							</div>
+							<div class="col-lg-9">
+								{{#with property.contact}}
+								<div class="row text-muted" style="margin-top:20px;margin-bottom:20x">
+										<div class="col-lg-4">
+											<i class="fa fa-phone icon-align"></i>
+											{{#if currentUser}}
 												{{nullHelper phone}}
-												{{else}}
+											{{else}}
 												登陆可见
-												{{/if}}
-											</dd>
-											<dt><i class="fa fa-envelope-o"></i></dt>
-											<dd>
-												{{#if currentUser}}
-												{{nullHelper email}}
-												{{else}}
-												登陆可见
-												{{/if}}
-											</dd>
-											<dt><i class="fa fa-qq"></i></dt>
-											<dd>
-												{{#if currentUser}}
+											{{/if}}
+										</div>
+										<div class="col-lg-4">
+											<i class="fa fa-qq icon-align"></i>
+											{{#if currentUser}}
 												{{nullHelper qq}}
-												{{else}}
+											{{else}}
 												登陆可见
-												{{/if}}
-											</dd>
-											<dt><i class="fa fa-wechat"></i></dt>
-											<dd>
-												{{#if currentUser}}
+											{{/if}}
+										</div>
+										<div class="col-lg-4">
+											<i class="fa fa-wechat icon-align"></i>
+											{{#if currentUser}}
 												{{nullHelper wechat}}
-												{{else}}
+											{{else}}
 												登陆可见
-												{{/if}}
-											</dd>
-										</dl>
-										{{/with}}
-									</div>
-								</div><!-- /.col-md-4 -->
+											{{/if}}
+										</div>
+								</div>
+								{{/with}}
 							</div>
-							{{#if isNotOwner}}
-							<div>
-								{{#if currentUser}}
-								<button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
-								{{else}}
-								<a href="/account/signin" style="width:100%" class="btn btn-default">登陆并询问</a>
-								{{/if}}
-							</div><!-- /.form-group -->
-							{{/if}}
-						</section><!-- /.agent-form -->
-					</aside><!-- /#edit-search -->
+						</div>
+					</section><!-- /#edit-search -->
+				</div>
+				<div class="col-sm-4">
+					<div class="panel panel-default contact-panel" style="margin-top:-40px;border:none">
+						<div class="panel-heading background-color-default text-white">
+							<strong>$ {{property.price}} </strong><sup>SGD</sup>
+							<span class="pull-right">每月</span>
+						</div>
+						{{!--
+						<div class="panel-body">
+							Panel content
+						</div>
+						--}}
+					</div>
 				</div>
 			</div>
 		</div>
-		<div class="row background-color-grey-light">
-			<div class="container">
+		<div class="background-color-grey-light" style="border-bottom: 1px solid #dce0e0;">
+			<div class="container with-padding">
 				<!-- Property Detail Content -->
 				<div class="col-sm-7">
 					<section id="description">
 						<header><h2>房屋描述</h2></header>
 						{{#if property.description}}
-						<p>{{property.description}}</p>
+						<p class="well">{{property.description}}</p>
 						{{else}}
-						<p style="color: grey">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
+						<p class="well text-mute">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
 						{{/if}}
 					</section><!-- /#description -->
+					{{#if property.photos}}
+					<section id="property-gallery">
+						<div class="owl-carousel thumbnail">
+							{{#each property.photos}}
+							<div class="item"><img src="{{getImageURL this}}"></div>
+							{{/each}}
+						</div>
+					</section>
+					{{/if}}
 					<section id="quick-summary" class="clearfix">
 						<header><h2>概览</h2></header>
 						<dl>
@@ -115,8 +124,6 @@
 							<dd>{{address}}</dd>
 							<dt>区域:</dt>
 							<dd>{{transDistr district}}</dd>
-							<dt>价格:</dt>
-							<dd><span class="tag price">$ {{price}}</span></dd>
 							<dt>房屋类型:</dt>
 							<dd>{{transPtype propertyType}}</dd>
 							<dt>房间:</dt>
@@ -144,19 +151,10 @@
 							{{/each}}
 						</ul>
 					</section><!-- /#property-features -->
-					<section class="clearfix" style="margin-bottom:25px;">
-						<div class="row">
-							<div class="col-lg-12">
-								<header><h2>地图</h2></header>
-								<div class="radius">
-									<div id="mapbox" style="width:100%;height:400px"></div>
-								</div>
-							</div>
-						</div>
-					</section>
 				</div><!-- /.col-md-9 -->
 				<!-- end Property Detail Content -->
 			</div><!-- /.row -->
 		</div><!-- /.container -->
+		<div id="mapbox" style="width:100%;height:400px"></div>
 	</div>
 </template>
