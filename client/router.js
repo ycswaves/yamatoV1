@@ -13,7 +13,13 @@ var filters = {
 	}
 };
 
-Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signup','properties']});
+var storeUrl = function(){
+	Session.set('currentPath', Router.current().path);
+}
+
+Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signup','properties','propertyDetail']});
+Router.onBeforeAction(storeUrl, {only: ['properties','propertyDetail']});
+
 
 Router.map(function () {
 	this.route('landing', {
