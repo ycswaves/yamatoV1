@@ -1,8 +1,4 @@
 Accounts.onCreateUser(function (options, user) {
-  // We still want the default hook's 'profile' behavior.
-  // if (options.profile)
-  //   user.profile = options.profile;
-  // return user;
   var userProfile = {
     userid: user._id,
     name: null,
@@ -13,21 +9,28 @@ Accounts.onCreateUser(function (options, user) {
     email: {address: options.email, verified: false}
   };
 
-
-  // console.log(user.services);
-  // return;
-
   if (user.services.google){
     var oauthProfile = user.services.google;
-    console.log(oauthProfile);
-    return false;
-    // userProfile.name = oauthProfile.name
-    // userProfile.email = {address: oauthProfile.email, verified: true}
+    userProfile.name = oauthProfile.name
+
+    //in google, the avatar is the entire url staring with 'https://'
+    userProfile.avatar = oauthProfile.picture;
+
+    userProfile.email = {address: oauthProfile.email, verified: true}
   }
 
   if (user.services.facebook){
     var oauthProfile = user.services.facebook;
     userProfile.name = oauthProfile.name
+    /*
+      in facebook case, avatar is the userid of fb, TODO: need a helper to render the img
+      50x50 pixels
+      <img src="https://graph.facebook.com/<?= $user_id ?>/picture">
+
+      200 pixels width
+      <img src="https://graph.facebook.com/<?= $user_id ?>/picture?type=large">
+    */
+    userProfile.avatar = oauthProfile.id;
     userProfile.email = {address: oauthProfile.email, verified: true}
   }
 
@@ -38,7 +41,7 @@ Accounts.onCreateUser(function (options, user) {
     }
   });
 
-  //return user;
+  return user;
 });
 
 Meteor.methods({
