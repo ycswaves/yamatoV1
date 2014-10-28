@@ -35,17 +35,26 @@ Template.profilePage.events({
       , wechat = t.find('input[name=wechat]').value
       , about = t.find('textarea[name=about]').value;
 
-    Meteor.users.update({_id:Meteor.userId()}, {$set:{
-    	"profile.name":name,
-    	"profile.phone":phone,
-    	"profile.qq":qq,
-    	"profile.wechat":wechat,
-    	"profile.about":about
-    }},function(err){
-    	if (!err) {
-      	NotificationMessages.sendSuccess('账户','用户资料更新成功');
+    var formObj = {
+      "profile.name":name, //TODO
+      "profile.phone":phone,
+      "profile.qq":qq,
+      "profile.wechat":wechat,
+      "profile.about":about
+    }  
+
+    //todo: validation
+    
+    Meteor.call('editProperty', Meteor.userId(), formObj, function(err){
+      if(err){
+        NotificationMessages.sendSuccess('账户','用户资料更新失败');
+        return false; 
       }
-    });
+      else{
+        NotificationMessages.sendSuccess('账户','用户资料更新成功');
+        Router.go('propertyDetail', {id: propertyid});
+      }
+    });  
     return false;
   }
 })

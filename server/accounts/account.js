@@ -17,7 +17,13 @@ Accounts.onCreateUser(function (options, user) {
   // console.log(user.services);
   // return;
 
-
+  if (user.services.google){
+    var oauthProfile = user.services.google;
+    console.log(oauthProfile);
+    return false;
+    // userProfile.name = oauthProfile.name
+    // userProfile.email = {address: oauthProfile.email, verified: true}
+  }
 
   if (user.services.facebook){
     var oauthProfile = user.services.facebook;
@@ -32,5 +38,15 @@ Accounts.onCreateUser(function (options, user) {
     }
   });
 
-  return user;
+  //return user;
+});
+
+Meteor.methods({
+  editProfile: function(userId, formObj){
+    var user = Meteor.user();
+    if(!user){
+      throw new Meteor.Error(401, "You need to login to edit");
+    }
+    UserProfiles.update({userid: userId}, {$set: formObj});
+  }
 });
