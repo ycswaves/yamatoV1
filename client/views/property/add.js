@@ -78,11 +78,11 @@ Template.addProperty.events({
           }
           return pre;
         }, [])
-      , qq = t.find('input[name=contact-qq]').value  || null
+
       , contactInfo = {
           name: t.find('input[name=contact-person]').value || null,
           phone: t.find('input[name=contact-number]').value || null,
-          qq: (qq != null)? parseInt(qq, 10) : null,
+          qq: t.find('input[name=contact-qq]').value || null,
           wechat: t.find('input[name=contact-wechat]').value || null,
           email: t.find('input[name=contact-email]').value || null
         };
@@ -162,15 +162,7 @@ Template.addProperty.events({
     var context = Properties.simpleSchema().namedContext('propertyForm');
     context.validate(formObj);
     if(!context.isValid()){
-      var isFocused = false;
-      context.invalidKeys().forEach(function(e){
-        var errMsg = context.keyErrorMessage(e.name)
-          , targetDiv = formErrDivID[e.name];
-        t.$(targetDiv).append('<span style="color: red" class="help-block"><i class="fa fa-exclamation-triangle"></i> '+errMsg+'</span>');
-        if(!isFocused){
-          t.$(targetDiv).find('input').focus();
-        }
-      });
+      CommonHelper.showErrorMessageInForm(context, formErrDivID, t);
     }
     else if(propertyid.length > 0){ // edit mode
       Meteor.call('editProperty', propertyid, formObj, function(err){

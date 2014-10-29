@@ -13,8 +13,9 @@ Schemas.ContactInfo = new SimpleSchema({ //should be consistant with Schema.User
     regEx: /\d{8}/,
   },
   qq: {
-    type: Number,
+    type: String,
     label: "QQ号",
+    regEx: /\d+/,
     optional: true
   },
   wechat: {
