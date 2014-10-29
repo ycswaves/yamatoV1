@@ -99,6 +99,10 @@ Router.map(function () {
 		data: function () {
 			var params = this.params;
 			var property = Properties.findOne({_id: params.id});
+			if(!property){
+				this.render('notFound');
+				return;
+			}
 			var isNotOwner = false;
 			var bannerImage = false;
 			if(typeof property!="undefined"){
