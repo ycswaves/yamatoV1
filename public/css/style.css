@@ -737,6 +737,10 @@ ul.list-links li a:hover {
 	padding-left: 5px;
 }
 
+.m-b {
+	margin-bottom: 10px;
+}
+
 .center {
 	text-align: center;
 }

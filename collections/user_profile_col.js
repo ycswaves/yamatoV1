@@ -30,7 +30,7 @@ Schema.UserProfile = new SimpleSchema({
   },
   phone: {
     type: String,
-    label: "contact number",
+    label: "电话号码",
     regEx: /\d{8}/,
     optional: true
   },
@@ -52,7 +52,20 @@ Schema.UserProfile = new SimpleSchema({
     type: String,
     label: "self description",
     optional: true
+  },
+  privilege: {
+    type: Number,
+    autoValue: function() {
+        if (this.isInsert) {
+          return 1;
+        }
+      },
+    label: "user privilege"
   }
+  // isAgent: {
+  //   type: Boolean,
+  //   label: "if user is an agent"
+  // }
 });
 
 UserProfiles.attachSchema(Schema.UserProfile);

@@ -31,7 +31,7 @@
                 {{> messages}}
               </ul>
             </li>
-            <li><a href="{{pathFor 'profile'}}" class="navlink"><i class="fa fa-user"></i>&nbsp;{{loggedInUser.username}}</a></li>
+            <li><a href="{{pathFor 'profile'}}" class="navlink"><i class="fa fa-user"></i>&nbsp;{{getUsername loggedInUser}}</a></li>
             <li><a href="/properties/add" class="navlink"><i class="fa fa-edit"></i>&nbsp;发布信息</a></li>
             <li><a href="#" class="navlink" id="signout"><i class="fa fa-power-off"></i>&nbsp;登出</a></li>
           {{else}}

@@ -20,13 +20,16 @@ var storeUrl = function(){
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
 Router.onBeforeAction(storeUrl, {only: ['properties','propertyDetail']});
 
-
+var TITLE = '家易';
 Router.map(function () {
 	this.route('landing', {
 		path: '/',
 		template: 'landingPage',
 		action: function () {
 			this.render();
+		},
+		onAfterAction: function () {
+			document.title = TITLE;
 		}
 	});
 
@@ -35,6 +38,9 @@ Router.map(function () {
 		template: 'loginForm',
 		action: function () {
 			this.render();
+		},
+		onAfterAction: function () {
+			document.title = TITLE + ' | ' + '登陆';
 		}
 	});
 
@@ -43,6 +49,9 @@ Router.map(function () {
 		template: 'signupForm',
 		action: function () {
 			this.render();
+		},
+		onAfterAction: function () {
+			document.title = TITLE + ' | ' + '注册';
 		}
 	});
 
@@ -59,27 +68,42 @@ Router.map(function () {
 			return {
 		    profile: UserProfiles.findOne({userid: Meteor.userId()})
 		  }
+		},
+		onAfterAction: function () {
+			document.title = TITLE + ' | ' + '帐户';
 		}
 	});
 
 	this.route('myproperty', {
 		path: '/myproperty/list/:page',
-		controller: 'MyPropertiesController'
+		controller: 'MyPropertiesController',
+		onAfterAction: function () {
+			document.title = TITLE + ' | ' + '我的房屋';
+		}
 	});
 
 	this.route('properties', {
 		path: '/properties/list/:page',
-		controller: 'ListController'
+		controller: 'ListController',
+		onAfterAction: function () {
+			document.title = TITLE + ' | ' + '房屋列表';
+		}
 	});
 
 	this.route('addProperty', {
 		path: '/properties/add',
-		controller: 'AddPropertyController'
+		controller: 'AddPropertyController',
+		onAfterAction: function () {
+			document.title = TITLE + ' | ' + '发布';
+		}
 	});
 
 	this.route('editProperty', {
 		path: '/properties/edit/:id',
-		controller: 'EditPropertyController'
+		controller: 'EditPropertyController',
+		onAfterAction: function () {
+			document.title = TITLE + ' | ' + '编辑';
+		}
 	});
 
 	this.route('propertyDetail', {
@@ -96,9 +120,16 @@ Router.map(function () {
 				this.render('loading');
 			}
 		},
+		onAfterAction: function () {
+			document.title = TITLE + ' | ' + '房屋详情';
+		},
 		data: function () {
 			var params = this.params;
 			var property = Properties.findOne({_id: params.id});
+			if(!property){
+				this.render('notFound');
+				return;
+			}
 			var isNotOwner = false;
 			var bannerImage = false;
 			if(typeof property!="undefined"){
@@ -120,6 +151,9 @@ Router.map(function () {
 		template: 'inboxPage',
 		action: function () {
 			this.render();
+		},
+		onAfterAction: function () {
+			document.title = TITLE + ' | ' + '收件箱';
 		}
 	});
 

@@ -41,3 +41,12 @@ dd {font-weight: 100}
   filter: Alpha(Opacity=50);/*IE7 fix*/
   opacity: 0.5;
 }
+
+.propertyImage {
+  background: url('/img/dummy-bg.jpg') no-repeat;
+  height: 400px;
+  width: 100%;
+  margin-top: -56px;
+  background-position: center center;
+  background-size: cover;
+}

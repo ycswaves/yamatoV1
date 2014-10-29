@@ -7,6 +7,8 @@ Template.propertyDetail.rendered = function() {
 	});
 	initializeMap();
 	render();
+	//pin it
+	$(".panel").pin({containerSelector: ".infoArea",padding: {top: 100}});
 }
 
 function initializeMap() {
@@ -17,6 +19,7 @@ function initializeMap() {
 		if(err == null) {
 			L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2ZW4wMDkiLCJhIjoiel9vX2hxSSJ9.Ag0_rnoJmLvScwqMR-gjyg';
 			var map = L.mapbox.map('mapbox', 'daven009.k1imgjff').setView(addressLatlng, 16);
+			map.scrollWheelZoom.disable();
 			L.marker(latlng).addTo(map);
 		}
 	})
