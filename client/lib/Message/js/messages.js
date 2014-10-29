@@ -33,7 +33,6 @@ Template.messages.helpers({
 				var topic = Topics.findOne({_id:topics[0]});
 				if(topic){
 					var lastMessage = Messages.findOne({topicId:topic._id,owner:Meteor.userId(),receiver:Meteor.userId()},{sort: {createdAt : -1}});
-					console.log(lastMessage);
 					if(lastMessage){
 						var sender = Meteor.users.findOne({_id:lastMessage.sender});
 						var username = sender.username;
