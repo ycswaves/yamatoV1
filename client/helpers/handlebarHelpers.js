@@ -1,4 +1,4 @@
-Handlebars.registerHelper('arrayify',function(obj){
+Handlebars.registerHelper('arrayify', function(obj){
   result = [];
   for (var key in obj) {
     result.push({'key':key,'value':obj[key]});
@@ -6,7 +6,22 @@ Handlebars.registerHelper('arrayify',function(obj){
   return result;
 });
 
-Handlebars.registerHelper('glueArray',function(arr){
+Handlebars.registerHelper('getUsername', function(loggedInUser){
+  if(loggedInUser.username) return loggedInUser.username;
+  if(loggedInUser.services){
+    var service = loggedInUser.services;
+    if(service.google){
+      return service.google.name;
+    }
+    else if (service.facebook){
+      return service.facebook.name;
+    } else {
+      return 'user';
+    }
+  }
+});
+
+Handlebars.registerHelper('glueArray', function(arr){
   if(!arr) return '';
   return arr.join(',');
 });
