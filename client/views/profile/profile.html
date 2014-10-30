@@ -96,12 +96,6 @@
 								</div>
 								<div class="col-md-9 col-sm-9">
 									<form role="form" id="accountProfile" method="post" action="">
-										<div class="checkbox switch" id="agency-switch">
-											<label>
-												我是房屋经纪
-												<input id="agentCheck" type="checkbox" {{ifAgent}}>
-											</label>
-										</div>
 										<section id="contact">
 											<h3>联络方式</h3>
 											<dl class="contact-fields">
@@ -116,19 +110,19 @@
 													</label>
 												</dd>
 												<dt><label for="form-account-name">名字:</label></dt>
-												<dd><div class="form-group">
+												<dd><div class="form-group" >
 													<input type="text" class="form-control" id="form-account-name" name="name" value="{{profile.name}}">
 												</div><!-- /.form-group --></dd>
 												<dt><label for="form-account-phone">电话:</label></dt>
-												<dd><div class="form-group">
+												<dd><div class="form-group" id="phone-form-group">
 													<input type="text" class="form-control" id="form-account-phone" name="phone" value="{{profile.phone}}">
 												</div><!-- /.form-group --></dd>
 												<dt><label for="form-account-qq">QQ:</label></dt>
-												<dd><div class="form-group">
+												<dd><div class="form-group" id="qq-form-group">
 													<input type="text" class="form-control" id="form-account-qq" name="qq" value="{{profile.qq}}">
 												</div><!-- /.form-group --></dd>
 												<dt><label for="form-account-wechat">微信:</label></dt>
-												<dd><div class="form-group">
+												<dd><div class="form-group" id="wechat-form-group">
 													<input type="text" class="form-control" id="form-account-wechat" name="wechat" value="{{profile.wechat}}">
 												</div><!-- /.form-group --></dd>
 											</dl>
