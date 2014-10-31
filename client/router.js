@@ -1,20 +1,22 @@
 Router.configure({
-// notFoundTemplate: 'notFound',
-// loadingTemplate: 'loading',
+notFoundTemplate: 'notFound',
+loadingTemplate: 'loading',
 layoutTemplate: 'layout'
 });
 
 var filters = {
-	isLoggedIn: function(pause) {
+	isLoggedIn: function() {
 		if (!(Meteor.user() || Meteor.loggingIn())) {
 			Router.go('signup');
-			pause();
+		} else {
+			this.next();
 		}
 	}
 };
 
 var storeUrl = function(){
 	Session.set('currentPath', Router.current().path);
+	this.next();
 }
 
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
