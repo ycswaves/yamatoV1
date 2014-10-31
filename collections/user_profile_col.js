@@ -35,8 +35,9 @@ Schema.UserProfile = new SimpleSchema({
     optional: true
   },
   qq: {
-    type: Number,
+    type: String,
     label: "QQ号",
+    regEx: /\d+/,
     optional: true
   },
   wechat: {
