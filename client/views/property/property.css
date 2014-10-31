@@ -43,7 +43,7 @@ dd {font-weight: 100}
 }
 
 .propertyImage {
-  background: url('/img/dummy-bg.jpg');
+  background: url('/img/dummy-bg.jpg') no-repeat;
   height: 400px;
   width: 100%;
   margin-top: -56px;
