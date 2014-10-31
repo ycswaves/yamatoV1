@@ -30,28 +30,28 @@ ListController = RouteController.extend({
       pageNum = params.page;
     }
 
+
     var filter = {}
+      , query = params.query
       , queryArr = []; // to pass in footer later
 
-    for(var key in params){
-      if(key == 'page' || !params[key]) continue;
-
+    for(var key in query){
       switch(key){
         case 'price':
-          filter[key] = {$gte: parseInt(params[key], 10)};
+          filter[key] = {$gte: parseInt(query[key], 10)};
           break;
 
         case 'mrtLines':
-          if(!params['mrt']){
-            filter['mrt'] = new RegExp(params[key]);
+          if(!query['mrt']){
+            filter['mrt'] = new RegExp(query[key]);
           }
           break;
 
         default:
-          filter[key] = params[key];
+          filter[key] = query[key];
           break;
       }
-      queryArr.push(key+'='+params[key]); //later revert the query back to string
+      queryArr.push(key+'='+query[key]); //later revert the query back to string
     }
 
     var totalDocs = Properties.find(filter).count() //filter apply here too
