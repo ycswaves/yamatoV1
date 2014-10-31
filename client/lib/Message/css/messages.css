@@ -36,6 +36,9 @@
 
 .message-box{
     width: 368px;
+    height: 256px;
+    overflow-x:hidden;
+    overflow-y:scroll;
 }
 
 .message-header{

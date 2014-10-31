@@ -1,5 +1,5 @@
 <template name="header">
-  <nav class="navbar navbar-default navbar-fixed-top" role="navigation" style="opacity:0.9">
+  <nav id="navigation" class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container-fluid">
     <!-- Brand and toggle get grouped for better mobile display -->
       <div class="navbar-header">
@@ -27,7 +27,7 @@
                 通知
                 <span class="caret"></span>
               </a>
-              <ul class="dropdown-menu" role="menu" style="padding-top: 0px; padding-bottom: 2px;">
+              <ul class="dropdown-menu" role="menu" style="padding-top: 0px; padding-bottom: 0px;">
                 {{> messages}}
               </ul>
             </li>
