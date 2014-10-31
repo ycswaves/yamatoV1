@@ -39,6 +39,9 @@ Template.profilePage.events({
       "about" : CommonHelper.isEmptyString(about)? null : about
     };
 
+    /* formObjForValidate is for validation only, must insert some 
+       dummy data to non-updatable fields to pass the validation 
+    */
     var formObjForValidate = JSON.parse(JSON.stringify(formObj));
     formObjForValidate.userid = 'dummy';
     formObjForValidate.email = {address: 'dummy', verified: false};
@@ -59,7 +62,6 @@ Template.profilePage.events({
       //about can be empty
     };
 
-    //TODO: validation
     var context = UserProfiles.simpleSchema().namedContext('profileForm');
     context.validate(formObjForValidate);
     if(!context.isValid()){
