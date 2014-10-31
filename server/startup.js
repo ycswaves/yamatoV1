@@ -3,7 +3,7 @@ var createDummyPosts = function(userId){
     var contactInfo = {
       name: 'yi chenshu',
       phone: '96229032',
-      qq: null,
+      qq: '456785213',
       wechat: null,
       email: null
     };

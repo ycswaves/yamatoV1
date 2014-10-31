@@ -39,8 +39,6 @@ Template.profilePage.events({
       "about" : CommonHelper.isEmptyString(about)? null : about
     };
 
-    console.log(formObj);
-
     var formObjForValidate = JSON.parse(JSON.stringify(formObj));
     formObjForValidate.userid = 'dummy';
     formObjForValidate.email = {address: 'dummy', verified: false};
@@ -64,9 +62,7 @@ Template.profilePage.events({
     //TODO: validation
     var context = UserProfiles.simpleSchema().namedContext('profileForm');
     context.validate(formObjForValidate);
-    console.log(formObjForValidate);
     if(!context.isValid()){
-      console.log(context);
       CommonHelper.showErrorMessageInForm(context, formErrDivID, t);
     }
     else{
@@ -81,9 +77,6 @@ Template.profilePage.events({
         }
       });
     }
-
-    
-      
     return false;
   }
 })
