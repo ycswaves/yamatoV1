@@ -1323,9 +1323,8 @@ ul.list-links li a:hover {
 .welcome {
 	background: url('/img/background-7.jpg') no-repeat center top;
 	background-size: cover;
-	/*height: 100vh;*/
+	min-height: 100vh;
 	position: relative;
-	min-height: 830px;
 	width: 100%;
 	margin-top:-56px;
 	color: #fff;
