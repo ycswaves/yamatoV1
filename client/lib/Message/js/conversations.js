@@ -16,7 +16,8 @@ Conversations = {
 		if(Topics.find({creator:Meteor.userId(),referId:referId}).count() == 0) {
 			var formObj = {
 				creator: Meteor.userId(),
-				referId: referId
+				referId: referId,
+				referType: type
 			};
 			Meteor.call('addTopic', formObj, function(err, topicId){
 				if(err){
@@ -52,21 +53,12 @@ Template.conversationTopics.helpers({
 Template.conversationTopic.helpers({
 	messages : function (topicId) {
 		var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
-		Session.set('messages', messages);
 		return messages;
 	},
 	chatWith : function (topicId) {
 		var topic = Topics.findOne({_id:topicId});
 		if(topic.creator == Meteor.userId()) {
-			var referId = topic.referId;
-			var referType = topic.referType;
-			switch (referType) {
-				case 'Property':
-				var property = Properties.findOne({_id:referId});
-				var author = property.author;
-				break;
-			}
-			var chatWith = Meteor.users.findOne({_id:author});
+			var chatWith = Meteor.users.findOne({_id:topic.chatWith});
 		}
 		else {
 			var chatWith = Meteor.users.findOne({_id:topic.creator});

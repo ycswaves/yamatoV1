@@ -11,6 +11,10 @@ Schemas.Topic = new SimpleSchema({
     type: String,
     label: "创建者ID"
   },
+  chatWith: {
+    type: String,
+    label: "对象ID"
+  },
   referType: {
     type: String,
     defaultValue: 'Property',
