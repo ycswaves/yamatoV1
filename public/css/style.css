@@ -4473,6 +4473,8 @@ ul.list-links li a:hover {
 	border-radius: 0 !important;
 	border-left:none !important;
 	border-right:none !important;
+	border-top:none !important;
+	margin-bottom: 1px;
 }
 .clear {
 	display: block;
@@ -4484,4 +4486,12 @@ ul.list-links li a:hover {
 }
 .b-l {
 	border-left: 1px solid #e0e4e8;
+}
+.topic-list{
+	padding-top:1px;
+	padding-left:0px;
+	padding-right:0px;
+	height:550px;
+	overflow: scroll;
+	border:1px solid #e0e4e8;
 }

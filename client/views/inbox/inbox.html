@@ -30,39 +30,22 @@
 			<div class="col-md-9 col-sm-10">
 				<section id="profile">
 					<header><h1>收件箱</h1></header>
+					{{#if messages}}
 					<section class="hbox stretch">
-						<aside class="col-lg-5" style="padding-left:0px;padding-right:0px;height: 500px;border:1px solid #e0e4e8">
+						<aside class="col-lg-5 topic-list">
 						<ul class="bg-white list-group no-radius m-b-none m-t-n-xxs list-group-lg">
-							<li class="list-group-item">
+							{{#each messages}}
+							<li class="list-group-item" data-topic-id="{{_id}}">
 								<a href="#" class="thumb-sm pull-left m-r-sm">
 									<img src="img/avatar_default.jpg" class="img-circle">
 								</a>
 								<a href="#" class="clear">
-									<small class="pull-right text-muted">3 minuts ago</small>
-									<strong class="block-none-padding">Drew Wllon</strong>
-									<small class="text-muted">Wellcome and play this web application template ... </small>
+									<small class="pull-right text-muted">{{lastTime}}</small>
+									<strong class="block-none-padding">{{sender}}</strong>
+									<small class="text-muted">{{message}}</small>
 								</a>
 							</li>
-							<li class="list-group-item">
-								<a href="#" class="thumb-sm pull-left m-r-sm">
-									<img src="img/avatar_default.jpg" class="img-circle">
-								</a>
-								<a href="#" class="clear">
-									<small class="pull-right text-muted">1 hour ago</small>
-									<strong class="block-none-padding">Jonathan George</strong>
-									<small class="text-muted">Morbi nec nunc condimentum...</small>
-								</a>
-							</li>
-							<li class="list-group-item">
-								<a href="#" class="thumb-sm pull-left m-r-sm">
-									<img src="img/avatar_default.jpg" class="img-circle">
-								</a>
-								<a href="#" class="clear">
-									<small class="pull-right text-muted">2 hours ago</small>
-									<strong class="block-none-padding">Josh Long</strong>
-									<small class="text-muted">Vestibulum ullamcorper sodales nisi nec...</small>
-								</a>
-							</li>
+							{{/each}}
 						</ul>
 						</aside>
 						<aside class="col-lg-7 b-l">
@@ -70,6 +53,7 @@
 
 						</aside>
 					</section>
+					{{/if}}
 				</section><!-- /#profile -->
 			</div><!-- /.col-md-9 -->
 			<!-- end My Properties -->
