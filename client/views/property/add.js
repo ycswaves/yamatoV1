@@ -90,8 +90,16 @@ Template.addProperty.events({
       var imageIDs = [];
       imgTemp.forEach(function(file){
         // Images.insert will return file object of inserted image
-        var file = PropertyImages.insert(file);
-        imageIDs.push(file._id);
+        var file = PropertyImages.insert(file, function(err, res){
+          if(err){
+            NotificationMessages.sendSuccess('发布','图片上传失败，请重试');
+          } else {
+            //console.log(res);
+            NotificationMessages.sendSuccess('发布','图片上传success');
+            imageIDs.push(file._id);
+          }
+        });
+
       });
 
       imgTemp = []; //clear imgTemp
@@ -167,8 +175,8 @@ Template.addProperty.events({
     else if(propertyid.length > 0){ // edit mode
       Meteor.call('editProperty', propertyid, formObj, function(err){
         if(err){
-          console.log('edit property: '+err);
-          return false; //todo: show norification?
+          NotificationMessages.sendSuccess('发布','房屋资料更新失败');
+          return false;
         }
         if(deletedPhotoArr.length > 0){
           Meteor.call('deletePropertyImgs', deletedPhotoArr);
@@ -179,11 +187,10 @@ Template.addProperty.events({
     else{
       Meteor.call('addProperty', formObj, function(err, id){
         if(err){
-          console.log('add property: '+err);
-          return false; //todo: show norification?
+          NotificationMessages.sendSuccess('发布','房屋发布失败');
+          return false;
         }
-        //console.log('go to property/'+id);
-        console.log(formObj);
+        //console.log(formObj);
         Router.go('myproperty');
       });
     }

@@ -9,19 +9,6 @@
 		<div class="infoArea">
 			<div style="border-bottom: 1px solid #dce0e0;">
 				<div class="container" style="padding-left:25px;padding-right:25px;">
-					{{!--
-					<div class="row">
-						<div class="col-md-9 col-sm-9">
-							<header class="property-title">
-								<h1 id="addressLabel">{{property.address}}</h1>
-								<span class="actions">
-									<!--<a href="#" class="fa fa-print"></a>-->
-									<a href="#" class="bookmark" data-bookmark-state="empty"><span class="title-add">Add to bookmark</span><span class="title-added">Added</span></a>
-								</span>
-							</header>
-						</div>
-					</div>
-					--}}
 					<div class="col-sm-7 with-padding">
 						<section id="contact-info">
 							<div class="row">
@@ -90,7 +77,11 @@
 									{{transAgt property.hasAgentFee}}中介费
 								</div>
 								{{#if currentUser}}
-								<button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
+                  {{#if isNotOwner}}
+    								<button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
+                  {{else}}
+                    <a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
+                  {{/if}}
 								{{else}}
 								<a href="/account/signin" style="width:100%" class="btn btn-default">登陆并询问</a>
 								{{/if}}

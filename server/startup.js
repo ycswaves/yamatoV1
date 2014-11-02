@@ -6,7 +6,7 @@ var createDummyPosts = function(userId){
       qq: '456785213',
       wechat: null,
       email: null
-    };
+    }; //TODO: use different contact to differentiate
 
     var formObjArr = [
       {
