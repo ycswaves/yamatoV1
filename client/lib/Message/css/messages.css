@@ -279,7 +279,7 @@ Conversation module
     color: #333;
     display: inline-block;
     margin: 0 10px 10px;
-    max-width: 236px;
+    max-width: 80%;
     position: relative;
 }
 

@@ -8,7 +8,6 @@ accounts-password
 accounts-google
 accounts-facebook
 iron:router
-mrt:moment
 sayawan:pickadate
 mrt:flash-messages
 aldeed:collection2
@@ -20,4 +19,5 @@ awatson1978:dropzone
 service-configuration
 insecure
 richsilv:owl-carousel
+mrt:moment
 
