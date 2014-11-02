@@ -70,7 +70,12 @@ Template.sideSearch.helpers({
   },
 
   stations: function(){
-    return ReactiveDS.get('mrtline');
+    var mrtline = Router.current().params.query.mrtLines;
+    if(mrtline){
+      return Config.getStationsByLine(mrtline);
+    } else {
+      return ReactiveDS.get('mrtline');
+    }
   },
 
   facilities: function(){
@@ -83,5 +88,9 @@ Template.sideSearch.helpers({
 
   rtypes: function(){
     return Config.getRoomTypes();
+  },
+
+  currentQuery: function(){
+    return Router.current().params.query
   }
 });

@@ -7,7 +7,7 @@
           <select name="district">
             <option value="">任意区域</option>
             {{#each arrayify district}}
-            <option value="{{key}}">{{key}} - {{value}}</option>
+            <option value="{{key}}" {{ifSelected key currentQuery.district}}>{{key}} - {{value}}</option>
             {{/each}}
           </select>
         </div><!-- /.form-group -->
@@ -16,7 +16,7 @@
           <select name="mrtlines" id="mrtlines">
             <option value="">任意地铁线</option>
             {{#each arrayify mrtlines}}
-            <option value="{{key}}">{{value.niceName}}</option>
+            <option value="{{key}}" {{ifSelected key currentQuery.mrtLines}}>{{value.niceName}}</option>
             {{/each}}
           </select>
         </div><!-- /.form-group -->
@@ -25,7 +25,7 @@
           <select name="stations" id="stations">
             <option value="">站名</option>
             {{#each arrayify stations}}
-            <option value="{{key}}">{{key}} - {{value}}</option>
+            <option value="{{key}}" {{ifSelected key currentQuery.mrt}}>{{key}} - {{value}}</option>
             {{/each}}
           </select>
         </div><!-- /.form-group -->
@@ -34,7 +34,7 @@
           <select name="property-type">
             <option value="">任意房屋类型</option>
             {{#each arrayify ptypes}}
-            <option value="{{key}}">{{value}}</option>
+            <option value="{{key}}" {{ifSelected key currentQuery.propertyType}}>{{value}}</option>
             {{/each}}
           </select>
         </div><!-- /.form-group -->
@@ -42,8 +42,8 @@
         <div class="form-group">
           <select id="rent-type" name="rent-type">
             <option value="">出租方式</option>
-            <option value="0" >单间</option>
-            <option value="1" >整套</option>
+            <option value="0">单间</option>
+            <option value="1">整套</option>
           </select>
         </div><!-- /.form-group -->
 
@@ -58,8 +58,8 @@
 
         <div class="form-group">
           <select name="has-agent-fee">
-            <option value="0" >无中介费</option>
-            <option value="1" >有中介费</option>
+            <option value="0">无中介费</option>
+            <option value="1">有中介费</option>
           </select>
         </div><!-- /.form-group -->
 
