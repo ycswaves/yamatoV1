@@ -4493,6 +4493,6 @@ ul.list-links li a:hover {
 	padding-right:0px;
 	height:550px;
 	overflow-x: hidden;
-	overflow-y: scroll;
+	overflow-y: auto;
 	border:1px solid #e0e4e8;
 }
