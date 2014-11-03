@@ -136,7 +136,7 @@ Router.map(function () {
 			var bannerImage = false;
 			if(typeof property!="undefined"){
 				if(property.author != Meteor.userId()) {
-					var isNotOwner = true;
+					isNotOwner = true;
 				}
 				bannerImage = property.photos[0];
 			}

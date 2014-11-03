@@ -36,6 +36,9 @@
 
 .message-box{
     width: 368px;
+    height: 256px;
+    overflow-x:hidden;
+    overflow-y:scroll;
 }
 
 .message-header{
@@ -276,7 +279,7 @@ Conversation module
     color: #333;
     display: inline-block;
     margin: 0 10px 10px;
-    max-width: 236px;
+    max-width: 80%;
     position: relative;
 }
 

@@ -4,6 +4,15 @@ Meteor.methods({
 		if(!user){
 			throw new Meteor.Error(401, "You need to login to send messages");
 		}
+		//查找原帖主人
+		switch(formObj.referType){
+			case 'Property':
+			var property = Properties.findOne({_id:formObj.referId});
+			var author = property.author;
+			break;
+		}
+		//添加主人
+		formObj.chatWith = author;
 		var topicId = Topics.insert(formObj, function(err, res) {
 			if(err){
 				console.log(err);
@@ -14,15 +23,8 @@ Meteor.methods({
 	},
 	addConversation: function(topicId, content) {
 		var topic = Topics.findOne({_id:topicId});
-		var referId = topic.referId;
-		var referType = topic.referType;
-		//不同type不同的处理方法
-		switch (referType) {
-			case 'Property':
-			var property = Properties.findOne({_id:referId});
-			var author = property.author;
-			break;
-		}
+		var author = topic.chatWith;
+		
 		if(topic.creator == Meteor.userId()) {
 			var sender = Meteor.userId();
 			var receiver = author;
