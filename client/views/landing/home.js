@@ -48,7 +48,7 @@ Template.landingPage.events({
 
     var queryArr = [];
     for (var key in filter){
-      if(filter[key]){
+      if(filter[key] != null){
         queryArr.push(key+'='+filter[key]);
       }
     }
@@ -74,5 +74,9 @@ Template.landingPage.helpers({
 
   ptypes: function(){
     return Config.getPropertyTypes();
+  },
+
+  priceRange: function(){
+    return Config.getPriceRange();
   }
 });

@@ -38,7 +38,7 @@ ListController = RouteController.extend({
     for(var key in query){
       switch(key){
         case 'price':
-          filter[key] = {$gte: parseInt(query[key], 10)};
+          filter[key] = {$lte: parseInt(query[key], 10)};
           break;
 
         case 'mrtLines':
@@ -47,13 +47,20 @@ ListController = RouteController.extend({
           }
           break;
 
+        case 'rentType':
+        case 'hasAgentFee':
+          filter[key] = parseInt(query[key], 10);
+          break;
+
+        case 'roomType':
+          filter['rentType'] = {$not: 1};
+
         default:
           filter[key] = query[key];
           break;
       }
       queryArr.push(key+'='+query[key]); //later revert the query back to string
     }
-
     var totalDocs = Properties.find(filter).count() //filter apply here too
       , totalPages = Math.ceil(totalDocs / pageLimit)
       , paginatedDocs = Properties.find(
