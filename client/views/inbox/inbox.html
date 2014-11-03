@@ -12,7 +12,7 @@
 	<div class="container">
 		<div class="row">
 			<!-- sidebar -->
-			<div class="col-md-3 col-sm-2">
+			<div class="col-xs-3">
 				<section id="sidebar">
 					<header><h3>账户</h3></header>
 					<aside>
@@ -27,12 +27,12 @@
 			</div><!-- /.col-md-3 -->
 			<!-- end Sidebar -->
 			<!-- My Properties -->
-			<div class="col-md-9 col-sm-10">
+			<div class="col-xs-9">
 				<section id="profile">
 					<header><h1>收件箱</h1></header>
 					{{#if messages}}
 					<section class="hbox stretch">
-						<aside class="col-lg-5 topic-list">
+						<aside class="col-xs-5 topic-list">
 						<ul class="bg-white list-group no-radius m-b-none m-t-n-xxs list-group-lg">
 							{{#each messages}}
 							<li class="list-group-item" data-topic-id="{{_id}}">
@@ -42,13 +42,16 @@
 								<a href="#" class="clear">
 									<small class="pull-right text-muted">{{lastTime}}</small>
 									<strong class="block-none-padding">{{sender}}</strong>
-									<small class="text-muted">{{message}}</small>
+									<small class="text-muted">
+									{{#if mine}}<i class="fa fa-reply"></i>&nbsp;{{/if}}
+									{{message}}
+									</small>
 								</a>
 							</li>
 							{{/each}}
 						</ul>
 						</aside>
-						<aside class="col-lg-7 b-l">
+						<aside class="col-xs-7 b-l">
 							
 
 						</aside>
