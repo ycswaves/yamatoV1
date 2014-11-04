@@ -40,6 +40,15 @@ Conversations = {
 			}
 			callback(null, res);
 		});
+	},
+	setReadAsync: function(topicId,callback) {
+		Meteor.call('readConversation',topicId,function(err, res){
+			if(err){
+				console.log('Set isRead: '+err);
+				callback(err. false);
+			}
+			callback(null, res);
+		});	
 	}
 }
 
@@ -52,8 +61,14 @@ Template.conversationTopics.helpers({
 
 Template.conversationTopic.helpers({
 	messages : function (topicId) {
-		var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
-		return messages;
+		var topic = Topics.findOne({_id:topicId});
+		if (topic.creator == Meteor.userId() || topic.chatWith == Meteor.userId()) {
+			var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
+			return messages;
+		}
+		else {
+			return false;
+		}
 	},
 	chatWith : function (topicId) {
 		var topic = Topics.findOne({_id:topicId});
@@ -103,6 +118,7 @@ Template.conversationTopic.rendered = function () {
 		var topicId = $(this).data('topicId');
 		var content = $(this).val();
 		if(13==e.which && content!="") {	
+			e.preventDefault();
 			Conversations.sendAsync(topicId,content, function(err, res){
 				if(res){
 					input.val('');
