@@ -4495,4 +4495,18 @@ ul.list-links li a:hover {
 	overflow-x: hidden;
 	overflow-y: auto;
 	border:1px solid #e0e4e8;
+	background-color: white;
+}
+.topic-list li.active {
+	color: white !important;
+}
+.conversation-list {
+	background-color: #F3F5F9;
+	border-left:none;
+	border-top:1px solid #e0e4e8;
+	border-right:1px solid #e0e4e8;
+	border-bottom:1px solid #e0e4e8;
+	padding-left: 0px;
+	padding-right: 0px;
+	height:550px;
 }
