@@ -20,6 +20,13 @@ Template.inboxPage.rendered = function() {
 	render();
 }
 
+Template.messageRow.rendered = function() {
+	Conversations.setReadAsync(Session.get('inbox.topicId'), function(err, res){});
+	Tracker.afterFlush(function () {
+		$('.messagesContainer').scrollTop('9999');
+	});
+}
+
 Template.inboxPage.helpers({
 	topicId: function() {
 		var topicId = Session.get('inbox.topicId');
@@ -53,6 +60,7 @@ Template.inboxPage.helpers({
 		var topic = Topics.findOne({_id:topicId});
 		if (topic.creator == Meteor.userId() || topic.chatWith == Meteor.userId()) {
 			var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
+			console.log(messages);
 			return messages;
 		}
 		else {
