@@ -1,9 +1,65 @@
 Template.inboxPage.rendered = function() {
+	$('body').off('click','.topic-item').on('click','.topic-item',function(){
+		Session.set('inbox.topicId',$(this).data('topicId'));
+	});
+
+	$('body').off('keypress','.PMInput').on('keypress','.PMInput',function(e) {
+		var input = $(this);
+		var topicId = Session.get('inbox.topicId');
+		var content = $(this).val();
+		if(13==e.which && content!="") {
+			e.preventDefault();
+			Conversations.sendAsync(topicId,content, function(err, res){
+				if(res){
+					input.val('');
+				}
+			})
+		}
+	});
+
 	render();
 }
 
 Template.inboxPage.helpers({
-	messages: function(){
+	topicId: function() {
+		var topicId = Session.get('inbox.topicId');
+		if(topicId) {
+			$(".topic-item").removeClass('active');
+			$(".topic-item[data-topic-id='"+topicId+"']").addClass('active');
+			return topicId;
+		}
+		else {
+			return false;
+		}
+	},
+	refer: function (topicId) {
+		if (typeof topicId != "undefined") {
+			var topic = Topics.findOne({_id:topicId});
+			var referId = topic.referId;
+			var referType = topic.referType;
+			switch (referType) {
+				case 'Property':
+				var property = Properties.findOne({_id:referId});
+				var object = {_link:'/property/'+property._id, _title:property.address, _image:property.photos[0]};
+				break;
+			}
+			return object;
+		}
+		else {
+			return false;
+		}
+	},
+	messages : function (topicId) {
+		var topic = Topics.findOne({_id:topicId});
+		if (topic.creator == Meteor.userId() || topic.chatWith == Meteor.userId()) {
+			var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
+			return messages;
+		}
+		else {
+			return false;
+		}
+	},
+	topics: function(){
 		var topics = Topics.find({
 			$or: [
 				{creator: Meteor.userId()},
@@ -38,3 +94,4 @@ Template.inboxPage.helpers({
 		}
 	}
 });
+

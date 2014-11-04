@@ -21,19 +21,19 @@ moment.locale('cn', {
         sameElse: 'L'
     },
     relativeTime : {
-        future : "%s 以后",
-        past : "%s前",
-        s : "秒",
-        m : "分钟",
-        mm : "%d 分钟",
-        h : "小时",
-        hh : "%d 小时",
-        d : "天",
-        dd : "%d 天",
-        M : "月",
-        MM : "%d 月",
-        y : "年",
-        yy : "%d 年"
+        future : "%s后",
+        past : "%s",
+        s : "刚刚",
+        m : "%d分钟前",
+        mm : "%d分钟前",
+        h : "%d小时前",
+        hh : "%d小时前",
+        d : "%d天前",
+        dd : "%d天前",
+        M : "%d月前",
+        MM : "%d月前",
+        y : "%d年前",
+        yy : "%d年前"
     },
     ordinal : function (number) {
         return number;

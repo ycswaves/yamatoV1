@@ -52,8 +52,14 @@ Template.conversationTopics.helpers({
 
 Template.conversationTopic.helpers({
 	messages : function (topicId) {
-		var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
-		return messages;
+		var topic = Topics.findOne({_id:topicId});
+		if (topic.creator == Meteor.userId() || topic.chatWith == Meteor.userId()) {
+			var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
+			return messages;
+		}
+		else {
+			return false;
+		}
 	},
 	chatWith : function (topicId) {
 		var topic = Topics.findOne({_id:topicId});
@@ -103,6 +109,7 @@ Template.conversationTopic.rendered = function () {
 		var topicId = $(this).data('topicId');
 		var content = $(this).val();
 		if(13==e.which && content!="") {	
+			e.preventDefault();
 			Conversations.sendAsync(topicId,content, function(err, res){
 				if(res){
 					input.val('');

@@ -30,30 +30,52 @@
 			<div class="col-xs-9">
 				<section id="profile">
 					<header><h1>收件箱</h1></header>
-					{{#if messages}}
+					{{#if topics}}
 					<section class="hbox stretch">
 						<aside class="col-xs-5 topic-list">
 						<ul class="bg-white list-group no-radius m-b-none m-t-n-xxs list-group-lg">
-							{{#each messages}}
-							<li class="list-group-item" data-topic-id="{{_id}}">
-								<a href="#" class="thumb-sm pull-left m-r-sm">
+							{{#each topics}}
+							<li class="list-group-item pointer topic-item" data-topic-id="{{_id}}">
+								<div class="thumb-sm pull-left m-r-sm">
 									<img src="img/avatar_default.jpg" class="img-circle">
-								</a>
-								<a href="#" class="clear">
-									<small class="pull-right text-muted">{{lastTime}}</small>
+								</div>
+								<div class="clear">
+									<small class="pull-right" style="padding-top: 3px;">{{lastTime}}</small>
 									<strong class="block-none-padding">{{sender}}</strong>
-									<small class="text-muted">
+									<small>
 									{{#if mine}}<i class="fa fa-reply"></i>&nbsp;{{/if}}
 									{{message}}
 									</small>
-								</a>
+								</div>
 							</li>
 							{{/each}}
 						</ul>
 						</aside>
-						<aside class="col-xs-7 b-l">
-							
-
+						<aside class="col-xs-7 b-l conversation-list">
+							{{#if topicId}}
+							<div class="popover-content conversation-content" style="padding:0px;">
+								{{#with refer topicId}}
+								<div class="referContainer">
+									<div class="referImage">
+										<a href="{{_link}}"><img src="{{getImageURL _image}}"></a>
+									</div>
+									<div class="referDescription">
+										<a href="{{_link}}">{{_title}}</a>
+									</div>
+								</div>
+								{{/with}}
+								<div class="messagesContainer" style="height:430px;">
+								{{#each messages topicId}}
+									{{> messageRow}}
+								{{/each}}
+								</div>
+								<div class="inputWrapper">
+									<div class="ui-TextField ui-Field">
+										<textarea autofocus="autofocus" class="content PMInput" placeholder="此处按回车发送私信" data-topic-id="{{topicId}}" style="border-radius: 0px;"></textarea>
+									</div> 
+								</div>
+							</div>
+							{{/if}}
 						</aside>
 					</section>
 					{{/if}}
