@@ -44,16 +44,6 @@ Schemas.Message = new SimpleSchema({
       },
     denyUpdate: true,
     optional: true
-  },
-  updatedAt: {
-    type: Date,
-    autoValue: function() {
-        if (this.isUpdate) {
-          return new Date();
-        }
-      },
-    denyInsert: true,
-    optional: true
   }
 });
 

@@ -72,7 +72,7 @@ Template.inboxPage.helpers({
 				{creator: Meteor.userId()},
 				{chatWith: Meteor.userId()}
 			]
-		});
+		},{sort: {updatedAt: -1}});
 		if (topics.count() > 0) {
 			var returnTopics = [];
 			$.each(topics.fetch(), function(index, topic) {
