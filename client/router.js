@@ -15,7 +15,7 @@ var filters = {
 };
 
 var storeUrl = function(){
-	Session.set('currentPath', Router.current().path);
+	Session.set('currentPath', Router.current().url);
 	this.next();
 }
 

@@ -7,7 +7,6 @@ Template.notificationMessage.rendered = function () {
 	if (message.options && message.options.autoHide) {
 		$message = $(this.find('.notification-item'));
 		Meteor.setTimeout(function() {
-			console.log($message);
 			$message.fadeOut(400, function() {
 				notificationMessages.remove({_id: message._id});
 			});

@@ -79,6 +79,7 @@ Template.loginForm.events({
         } else {
           t.$('#loginModal').modal('hide');
           NotificationMessages.sendSuccess('登陆成功','欢迎回来');
+          console.log(Session.get('currentPath'));
           Router.go(Session.get('currentPath') || 'landing');
         }
       });

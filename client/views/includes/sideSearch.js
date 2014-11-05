@@ -28,7 +28,7 @@ Template.sideSearch.events({
     /*********************************************
         Retrieve form data
     *********************************************/
-    var price = t.find('input[name="price"]').value || null
+    var price = t.find('select[name="price"]').value || null
       , district = t.find('select[name="district"]').value || null
       , pType = t.find('select[name="property-type"]').value || null
       , rType = t.find('select[name="room-type"]').value || null
@@ -37,6 +37,7 @@ Template.sideSearch.events({
       //, moveInDate = t.find('input[name="move-in-date"]').value || null
       //, bedroom = t.find('select[name="bedroom"]').value || null
       //, bathroom = t.find('select[name="bathroom"]').value || null
+      , mrtLines = t.find('select[name="mrtlines"]').value || null
       , nearestMRT = t.find('select[name="stations"]').value || null;
 
     /*********************************************
@@ -52,11 +53,18 @@ Template.sideSearch.events({
       //moveInDate: (moveInDate != null)? new Date(moveInDate) : new Date(),
       //bedroom: (bedroom != null)? parseInt(bedroom, 10) : null,
       //bathroom: (bathroom != null)? parseInt(bathroom, 10) : null,
+      mrtLines: mrtLines,
       mrt: nearestMRT
     };
 
-    console.log(filter);
-    // Router.go('properties', {page: 1}, {query:});
+    var queryArr = [];
+    for (var key in filter){
+      if(filter[key] != null){
+        queryArr.push(key+'='+filter[key]);
+      }
+    }
+console.log(filter);
+    Router.go('properties', {page: 1}, {query: queryArr.join('&')});
   }
 });
 
@@ -90,7 +98,12 @@ Template.sideSearch.helpers({
     return Config.getRoomTypes();
   },
 
+  priceRange: function(){
+    return Config.getPriceRange();
+  },
+
   currentQuery: function(){
     return Router.current().params.query
   }
+
 });

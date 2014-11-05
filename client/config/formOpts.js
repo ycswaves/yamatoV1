@@ -57,6 +57,22 @@ var roomTypes = {
   "common": "普通房",
   "other": "其他"
 };
+/*
+<option value="100">$100 +</option>
+            <option value="500">$500 +</option>
+            <option value="1000">$1,000 +</option>
+            <option value="2000">$2,000 +</option>
+            <option value="3000">$3,000 +</option>
+            <option value="4000">$4,000 +</option>
+            */
+var priceRange = {
+  "500": "< $500",
+  "1000": "< $1,000",
+  "2000": "< $2,000",
+  "3000": "< $3,000",
+  "4000": "< $4,000",
+  "10000": "< $10,000"
+}
 
 var mrtList = {
   "NS": {
@@ -236,4 +252,8 @@ Config.getRoomTypes = function(){
 Config.getAgency = function(line){
   return agencyList;
 };
+
+Config.getPriceRange = function(){
+  return priceRange;
+}
 
