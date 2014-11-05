@@ -57,6 +57,12 @@ Meteor.methods({
 					receiver: receiver,
 					content: content
 				}, function(err, res) {
+					Topics.update({
+						_id: topic._id 
+					},
+					{
+						$set: { updatedAt: new Date() }
+					});
 					if(err) {
 						console.log(err);
 						return false;
@@ -78,6 +84,9 @@ Meteor.methods({
 			$set: {
 				isRead: true
 			}
+		},
+		{
+			multi:true
 		})
 	}
 });

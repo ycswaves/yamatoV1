@@ -34,6 +34,15 @@ Schemas.Topic = new SimpleSchema({
       },
     denyUpdate: true,
     optional: true
+  },
+  updatedAt: {
+    type: Date,
+    autoValue: function() {
+        if (this.isInsert) {
+          return new Date;
+        }
+    },
+    optional: true
   }
 });
 
