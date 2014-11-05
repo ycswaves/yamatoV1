@@ -78,6 +78,9 @@ Meteor.methods({
 			$set: {
 				isRead: true
 			}
+		},
+		{
+			multi:true
 		})
 	}
 });

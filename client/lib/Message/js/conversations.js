@@ -41,14 +41,8 @@ Conversations = {
 			callback(null, res);
 		});
 	},
-	setReadAsync: function(topicId,callback) {
-		Meteor.call('readConversation',topicId,function(err, res){
-			if(err){
-				console.log('Set isRead: '+err);
-				callback(err. false);
-			}
-			callback(null, res);
-		});	
+	setReadAsync: function(topicId) {
+		Meteor.call('readConversation',topicId);
 	}
 }
 

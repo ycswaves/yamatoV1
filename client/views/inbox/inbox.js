@@ -1,5 +1,7 @@
 Template.inboxPage.rendered = function() {
 	$('body').off('click','.topic-item').on('click','.topic-item',function(){
+		//set isRead
+		Conversations.setReadAsync(Session.get('inbox.topicId'));
 		Session.set('inbox.topicId',$(this).data('topicId'));
 	});
 
@@ -16,12 +18,10 @@ Template.inboxPage.rendered = function() {
 			})
 		}
 	});
-
 	render();
 }
 
 Template.messageRow.rendered = function() {
-	Conversations.setReadAsync(Session.get('inbox.topicId'), function(err, res){});
 	Tracker.afterFlush(function () {
 		$('.messagesContainer').scrollTop('9999');
 	});
@@ -60,7 +60,6 @@ Template.inboxPage.helpers({
 		var topic = Topics.findOne({_id:topicId});
 		if (topic.creator == Meteor.userId() || topic.chatWith == Meteor.userId()) {
 			var messages = Messages.find({topicId:topicId,owner:Meteor.userId()}).fetch();
-			console.log(messages);
 			return messages;
 		}
 		else {
