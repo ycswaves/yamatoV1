@@ -4497,9 +4497,13 @@ ul.list-links li a:hover {
 	border:1px solid #e0e4e8;
 	background-color: white;
 }
+.topic-list li:hover {
+	background-color: #F3F5F9;
+}
 .topic-list li.active {
 	color: white !important;
 }
+
 .conversation-list {
 	background-color: #F3F5F9;
 	border-left:none;

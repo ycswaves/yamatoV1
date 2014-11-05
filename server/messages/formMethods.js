@@ -65,5 +65,22 @@ Meteor.methods({
 			}
 		});
 		return true;
+	},
+	readConversation: function(topicId){
+		var user = Meteor.user();
+		if(!user){
+			throw new Meteor.Error(401, "You need to login to send messages");
+		}
+		Messages.update({ 
+			topicId: topicId, owner:Meteor.userId() 
+		},
+		{
+			$set: {
+				isRead: true
+			}
+		},
+		{
+			multi:true
+		})
 	}
 });

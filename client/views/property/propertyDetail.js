@@ -5,8 +5,8 @@ Template.propertyDetail.rendered = function() {
 		paginationSpeed : 400,
 		singleItem : true
 	});
-  document.title = '房屋详情 | ' + $('#addressLabel').text();
-  window.scrollTo(0, 0); //scroll back to top after editing
+	document.title = '房屋详情 | ' + $('#addressLabel').text();
+	window.scrollTo(0, 0); //scroll back to top after editing
 	initializeMap();
 	render();
 	//pin it

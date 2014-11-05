@@ -1,5 +1,7 @@
 Template.inboxPage.rendered = function() {
 	$('body').off('click','.topic-item').on('click','.topic-item',function(){
+		//set isRead
+		Conversations.setReadAsync(Session.get('inbox.topicId'));
 		Session.set('inbox.topicId',$(this).data('topicId'));
 	});
 
@@ -16,8 +18,13 @@ Template.inboxPage.rendered = function() {
 			})
 		}
 	});
-
 	render();
+}
+
+Template.messageRow.rendered = function() {
+	Tracker.afterFlush(function () {
+		$('.messagesContainer').scrollTop('9999');
+	});
 }
 
 Template.inboxPage.helpers({

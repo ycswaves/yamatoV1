@@ -40,6 +40,9 @@ Conversations = {
 			}
 			callback(null, res);
 		});
+	},
+	setReadAsync: function(topicId) {
+		Meteor.call('readConversation',topicId);
 	}
 }
 
