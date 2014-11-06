@@ -5,10 +5,12 @@ var Schemas = {};
 Schemas.geoLocation = new SimpleSchema({
   latitude: {
     type: Number,
+    decimal: true,
     label: "latitude"
   },
   longitude: {
     type: Number,
+    decimal: true,
     label: "longitude"
   }
 });
