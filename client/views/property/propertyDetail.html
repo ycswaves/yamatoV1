@@ -1,9 +1,9 @@
 <template name="propertyDetail">
 	<div>
 		{{#if property.photos}}
-			<div class="propertyImage" style="background: url('{{getImageURL bannerImage}}') no-repeat; background-size: cover;"></div>
+		<div class="propertyImage" style="background: url('{{getImageURL bannerImage}}') no-repeat; background-size: cover;"></div>
 		{{else}}
-			<div class="propertyImage"></div>
+		<div class="propertyImage"></div>
 		{{/if}}
 		<!-- end Breadcrumb -->
 		<div class="infoArea">
@@ -13,7 +13,7 @@
 						<section id="contact-info">
 							<div class="row">
 								<div class="col-xs-3 center">
-									<img class="img-circle" src="/img/member-03.jpg" width="90px">
+									<img class="img-circle" src="/img/avatar_default.jpg" width="90px">
 								</div>
 								<div class="col-xs-9 center">
 									<h1 id="addressLabel">{{property.address}}</h1>
@@ -22,44 +22,44 @@
 							<div class="row">
 								<div class="col-xs-3 center">
 									{{#with property.contact}}
-										<h3 class="text-muted">{{name}}</h3>
+									<h3 class="text-muted">{{name}}</h3>
 									{{/with}}
 								</div>
 								<div class="col-xs-9">
 									{{#with property.contact}}
 									<div class="row text-muted" style="margin-top:20px;margin-bottom:20x">
-											<div class="col-xs-4 center">
-												<i class="fa fa-phone icon-align"></i>
-												{{#if currentUser}}
-													{{nullHelper phone}}
-												{{else}}
-													<i class="fa fa-circle"></i>
-													<i class="fa fa-circle"></i>
-													<i class="fa fa-circle"></i>
-													<i class="fa fa-circle"></i>
-													&nbsp;
-													<i class="fa fa-circle"></i>
-													<i class="fa fa-circle"></i>
-													<i class="fa fa-circle"></i>
-													<i class="fa fa-circle"></i>
-												{{/if}}
-											</div>
-											<div class="col-xs-4 center">
-												<i class="fa fa-qq icon-align"></i>
-												{{#if currentUser}}
-													{{nullHelper qq}}
-												{{else}}
-													登陆可见
-												{{/if}}
-											</div>
-											<div class="col-xs-4 center">
-												<i class="fa fa-wechat icon-align"></i>
-												{{#if currentUser}}
-													{{nullHelper wechat}}
-												{{else}}
-													登陆可见
-												{{/if}}
-											</div>
+										<div class="col-xs-4 center">
+											<i class="fa fa-phone icon-align"></i>
+											{{#if currentUser}}
+											{{nullHelper phone}}
+											{{else}}
+											<i class="fa fa-circle"></i>
+											<i class="fa fa-circle"></i>
+											<i class="fa fa-circle"></i>
+											<i class="fa fa-circle"></i>
+											&nbsp;
+											<i class="fa fa-circle"></i>
+											<i class="fa fa-circle"></i>
+											<i class="fa fa-circle"></i>
+											<i class="fa fa-circle"></i>
+											{{/if}}
+										</div>
+										<div class="col-xs-4 center">
+											<i class="fa fa-qq icon-align"></i>
+											{{#if currentUser}}
+											{{nullHelper qq}}
+											{{else}}
+											登陆可见
+											{{/if}}
+										</div>
+										<div class="col-xs-4 center">
+											<i class="fa fa-wechat icon-align"></i>
+											{{#if currentUser}}
+											{{nullHelper wechat}}
+											{{else}}
+											登陆可见
+											{{/if}}
+										</div>
 									</div>
 									{{/with}}
 								</div>
@@ -67,7 +67,7 @@
 						</section><!-- /#edit-search -->
 					</div>
 					<div class="col-sm-4">
-						<div class="panel panel-default contact-panel hidden-xs" style="margin-top:-41px;border:none;margin-bottom:0px;box-shadow: none;">
+						<div class="panel panel-default contact-panel hidden-xs" style="margin-top:-41px;border:none;margin-bottom:0px;box-shadow: none;width:300px">
 							<div class="panel-heading background-color-default text-white" style="border-color: #1396e2;">
 								<strong>$ {{property.price}} </strong><sup>SGD</sup>
 								<span class="pull-right">每月</span>
@@ -77,11 +77,11 @@
 									{{transAgt property.hasAgentFee}}中介费
 								</div>
 								{{#if currentUser}}
-                  {{#if isNotOwner}}
-    								<button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
-                  {{else}}
-                    <a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
-                  {{/if}}
+								{{#if isNotOwner}}
+								<button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
+								{{else}}
+								<a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
+								{{/if}}
 								{{else}}
 								<a href="/account/signin" style="width:100%" class="btn btn-default">登陆并询问</a>
 								{{/if}}
@@ -106,6 +106,13 @@
 							<p>
 								<strong style="font-size: 26px;">$ {{property.price}} </strong><sup>SGD</sup>
 								<span class="pull-right">每月</span>
+							</p>
+							<p>
+								{{#if isNotOwner}}
+								<button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
+								{{else}}
+								<a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
+								{{/if}}
 							</p>
 						</section>
 						<section id="description">

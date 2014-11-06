@@ -13,10 +13,10 @@ NotificationMessages = {
     console.log('Deprecated, use sendWarning instead of sendAlert');
   },
   sendWarning: function(title, message, options) {
-    sendNotification(title, message, 'alert-warning', options);
+    sendNotification(title, message, 'warning', options);
   },
   sendError: function(title, message, options) {
-    sendNotification(title, message, 'alert-error alert-danger', options);
+    sendNotification(title, message, 'error', options);
   },
   sendSuccess: function(title, message, options) {
     sendNotification(title, message, 'notice', options);
