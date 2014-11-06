@@ -10,7 +10,7 @@ Template.propertyDetail.rendered = function() {
 	initializeMap();
 	render();
 	//pin it
-	$(".panel").pin({containerSelector: ".infoArea",padding: {top: 100}});
+	$(".infoPanel").pin({containerSelector: ".infoArea",padding: {top: 100}});
 }
 
 function initializeMap() {
