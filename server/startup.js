@@ -1,7 +1,7 @@
 
-var createDummyPosts = function(userId){
+var createDummyPosts = function(userId, username){
     var contactInfo = {
-      name: 'yi chenshu',
+      name: username,
       phone: '96229032',
       qq: '456785213',
       wechat: null,
@@ -26,7 +26,8 @@ var createDummyPosts = function(userId){
         mrt: 'EW4',
         contact: contactInfo,
         photos: [],
-        facilities: ['noLandlord', 'aircon']
+        facilities: ['noLandlord', 'aircon'],
+        map: {latitude: 1.3325658, longitude: 103.9421344}
       },
 
       {
@@ -46,7 +47,8 @@ var createDummyPosts = function(userId){
         mrt: 'EW4',
         contact: contactInfo,
         photos: [],
-        facilities: ['noLandlord', 'aircon']
+        facilities: ['noLandlord', 'aircon'],
+        map: {latitude: 1.313971, longitude: 103.9241629}
       },
 
       {
@@ -66,7 +68,8 @@ var createDummyPosts = function(userId){
         mrt: 'NE13',
         contact: contactInfo,
         photos: [],
-        facilities: ['washer', 'dryer', 'allowCooking', 'swimmingPool', 'tennisCourt', 'balcony']
+        facilities: ['washer', 'dryer', 'allowCooking', 'swimmingPool', 'tennisCourt', 'balcony'],
+        map: {latitude: 1.359667, longitude: 103.883693}
       },
 
       {
@@ -86,7 +89,8 @@ var createDummyPosts = function(userId){
         mrt: 'NS23',
         contact: contactInfo,
         photos: [],
-        facilities: ['washer', 'swimmingPool', 'tennisCourt', 'balcony']
+        facilities: ['washer', 'swimmingPool', 'tennisCourt', 'balcony'],
+        map: {latitude: 1.296126, longitude: 103.838337}
       },
 
       {
@@ -106,7 +110,8 @@ var createDummyPosts = function(userId){
         mrt: 'EW5',
         contact: contactInfo,
         photos: [],
-        facilities: ['washer', 'balcony']
+        facilities: ['washer', 'balcony'],
+        map: {latitude: 1.3338199, longitude: 103.9150453}
       },
 
       {
@@ -126,7 +131,8 @@ var createDummyPosts = function(userId){
         mrt: 'EW4',
         contact: contactInfo,
         photos: [],
-        facilities: ['noLandlord', 'aircon']
+        facilities: ['noLandlord', 'aircon'],
+        map: {latitude: 1.3325658, longitude: 103.9421344}
       },
 
       {
@@ -146,7 +152,8 @@ var createDummyPosts = function(userId){
         mrt: 'EW4',
         contact: contactInfo,
         photos: [],
-        facilities: ['noLandlord', 'aircon']
+        facilities: ['noLandlord', 'aircon'],
+        map: {latitude: 1.313971, longitude: 103.9241629}
       },
 
       {
@@ -166,7 +173,8 @@ var createDummyPosts = function(userId){
         mrt: 'NE13',
         contact: contactInfo,
         photos: [],
-        facilities: ['washer', 'dryer', 'allowCooking', 'swimmingPool', 'tennisCourt', 'balcony']
+        facilities: ['washer', 'dryer', 'allowCooking', 'swimmingPool', 'tennisCourt', 'balcony'],
+        map: {latitude: 1.359667, longitude: 103.883693}
       },
 
       {
@@ -186,7 +194,8 @@ var createDummyPosts = function(userId){
         mrt: 'NS23',
         contact: contactInfo,
         photos: [],
-        facilities: ['washer', 'swimmingPool', 'tennisCourt', 'balcony']
+        facilities: ['washer', 'swimmingPool', 'tennisCourt', 'balcony'],
+        map: {latitude: 1.296126, longitude: 103.838337}
       },
 
       {
@@ -206,7 +215,8 @@ var createDummyPosts = function(userId){
         mrt: 'EW5',
         contact: contactInfo,
         photos: [],
-        facilities: ['washer', 'balcony']
+        facilities: ['washer', 'balcony'],
+        map: {latitude: 1.3338199, longitude: 103.9150453}
       },
 
       {
@@ -226,7 +236,8 @@ var createDummyPosts = function(userId){
         mrt: 'EW4',
         contact: contactInfo,
         photos: [],
-        facilities: ['noLandlord', 'aircon']
+        facilities: ['noLandlord', 'aircon'],
+        map: {latitude: 1.3338199, longitude: 103.9150453}
       },
 
       {
@@ -246,7 +257,8 @@ var createDummyPosts = function(userId){
         mrt: 'EW4',
         contact: contactInfo,
         photos: [],
-        facilities: ['noLandlord', 'aircon']
+        facilities: ['noLandlord', 'aircon'],
+        map: {latitude: 1.3311249, longitude: 103.9355457}
       },
 
       {
@@ -266,7 +278,8 @@ var createDummyPosts = function(userId){
         mrt: 'NE13',
         contact: contactInfo,
         photos: [],
-        facilities: ['washer', 'dryer', 'allowCooking', 'swimmingPool', 'tennisCourt', 'balcony']
+        facilities: ['washer', 'dryer', 'allowCooking', 'swimmingPool', 'tennisCourt', 'balcony'],
+        map: {latitude: 1.359667, longitude: 103.883693}
       },
 
       {
@@ -286,7 +299,8 @@ var createDummyPosts = function(userId){
         mrt: 'NS23',
         contact: contactInfo,
         photos: [],
-        facilities: ['washer', 'swimmingPool', 'tennisCourt', 'balcony']
+        facilities: ['washer', 'swimmingPool', 'tennisCourt', 'balcony'],
+        map: {latitude: 1.296126, longitude: 103.838337}
       },
 
       {
@@ -306,7 +320,8 @@ var createDummyPosts = function(userId){
         mrt: 'EW5',
         contact: contactInfo,
         photos: [],
-        facilities: ['washer', 'balcony']
+        facilities: ['washer', 'balcony'],
+        map: {latitude: 1.3338199, longitude: 103.9150453}
       }
 
     ];
@@ -321,27 +336,27 @@ if(Meteor.users.find().count() < 1){
     email: 'ycs@gmail.com',
     password: '123456'
   });
-  createDummyPosts(userId);
+  createDummyPosts(userId, 'Yi Chenshu');
 
   userId2 = Accounts.createUser({
     username: 'batman',
     email: 'batman@gmail.com',
     password: '123456'
   });
-  createDummyPosts(userId2);
+  createDummyPosts(userId2, 'Bruce Wayne');
 
   userId3 = Accounts.createUser({
     username: 'superman',
     email: 'superman@gmail.com',
     password: '123456'
   });
-  createDummyPosts(userId3);
+  createDummyPosts(userId3, 'Clark Kent');
 
   userId4 = Accounts.createUser({
     username: 'ironman',
     email: 'ironman@gmail.com',
     password: '123456'
   });
-  createDummyPosts(userId4);
+  createDummyPosts(userId4, 'Tony Stark');
 }
 

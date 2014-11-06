@@ -160,3 +160,15 @@ Handlebars.registerHelper('getImageURL',function(photos){
   }
 });
 
+Handlebars.registerHelper('displayMap', function(mapDiv, locationObj){
+  if(locationObj.latitdue != undefined && locationObj.longitude != undefined) {
+    var addressLatlng = [locationObj.latitdue, locationObj.longitude];
+    L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2ZW4wMDkiLCJhIjoiel9vX2hxSSJ9.Ag0_rnoJmLvScwqMR-gjyg';
+    var map = L.mapbox.map(mapDiv, 'daven009.k1imgjff').setView(addressLatlng, 16);
+    map.scrollWheelZoom.disable();
+    L.marker(latlng).addTo(map);
+  } else {
+    //$('#'+mapDiv).text('无地理位置信息');
+  }
+});
+

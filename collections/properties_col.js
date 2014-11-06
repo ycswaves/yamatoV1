@@ -2,6 +2,17 @@ Properties = new Meteor.Collection("properties");
 
 var Schemas = {};
 
+Schemas.geoLocation = new SimpleSchema({
+  latitude: {
+    type: Number,
+    label: "latitude"
+  },
+  longitude: {
+    type: Number,
+    label: "longitude"
+  }
+});
+
 Schemas.ContactInfo = new SimpleSchema({ //should be consistant with Schema.UserProfile
   name: {
     type: String,
@@ -111,6 +122,11 @@ Schemas.Property = new SimpleSchema({
   facilities: {
     type: [String],
     label: "Property facilities"
+  },
+  map: {
+    type: Schemas.geoLocation,
+    label: "geo-location",
+    optional: true
   },
   createdAt: {
     type: Date,
