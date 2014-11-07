@@ -30,5 +30,8 @@ Template.propertyDetail.events({
 		e.preventDefault();
 		var referId = $('#enquiry-btn').data('referId');
 		Conversations.start(referId,'Property');
+	},
+	'click #return-btn': function(e,t){
+		Router.go(Session.get('prevPath') || 'landing');
 	}
 })

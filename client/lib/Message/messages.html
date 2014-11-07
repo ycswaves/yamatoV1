@@ -1,44 +1,44 @@
 <template name="messages">
-  <div id="messagePanel">
-    <div class="arrow"></div>
-    <h3 class="popover-title" style="border-radius:0px">回复助手</h3>
-    <div class="popover-content background-color-grey-light">
-      <div id="message-box">
-        <div class="message-box">
-          {{#if messages}}
-          <ul class="message">
-            {{#each messages}}
-            {{> message}}
-            {{/each}}
-          </ul>
-          {{else}}
-          <div class="no-message-box">
-            <div class="no-message">
-              没有任何新消息噢!
-            </div>
-            <img class="message-bell" src="/img/bell.png">
-          </div>
-          {{/if}}
-        </div>
-      </div>
-    </div>
-  </div>
+	<div id="messagePanel">
+		<div class="arrow"></div>
+		<h3 class="popover-title" style="border-radius:0px">回复助手</h3>
+		<div class="popover-content background-color-grey-light">
+			<div id="message-box">
+				<div class="message-box">
+					{{#if messages}}
+					<ul class="message">
+						{{#each messages}}
+						{{> message}}
+						{{/each}}
+					</ul>
+					{{else}}
+					<div class="no-message-box">
+						<div class="no-message">
+							没新消息噢! <a href="/inbox">点击</a>查看全部
+						</div>
+						<img class="message-bell" src="/img/bell.png">
+					</div>
+					{{/if}}
+				</div>
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="message">
-  <li class="left clearfix message-line" data-topic-id="{{_id}}">
-    <div style="float:left;width:100px;height:80px">
-      <span class="message-img pull-left">
-        <div class="merge">
-          <img src="/img/avatar_default.jpg" width="80px" height="80px">
-        </div>
-      </span>
-    </div>
-    <div class="message-body clearfix">
-      <div class="message-header">
-        <strong class="primary-font">{{sender}}:</strong>
-      </div>
-      <p>{{message}}</p>
-    </div>
-  </li>
+	<li class="left clearfix message-line" data-topic-id="{{_id}}">
+		<div style="float:left;width:100px;height:80px">
+			<span class="message-img pull-left">
+				<div class="merge">
+					<img src="/img/avatar_default.jpg" width="80px" height="80px">
+				</div>
+			</span>
+		</div>
+		<div class="message-body clearfix">
+			<div class="message-header">
+				<strong class="primary-font">{{sender}}:</strong>
+			</div>
+			<p>{{message}}</p>
+		</div>
+	</li>
 </template>
