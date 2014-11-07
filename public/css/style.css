@@ -644,6 +644,21 @@ fieldset[disabled] .btn-gplus.active {
 	background-color: #fff;
 }
 
+.color-wechat {
+	color:#A0C258
+}
+.color-weibo {
+	color:#E6162D
+}
+.color-facebook {
+	color:#294279
+}
+.color-twitter {
+	color:#00aced
+}
+.color-renren {
+	color:#227DC5
+}
 /* Block quote */
 blockquote {
 	border: none;
