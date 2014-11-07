@@ -20,4 +20,5 @@ service-configuration
 insecure
 richsilv:owl-carousel
 mrt:moment
+steeve:jquery-qrcode
 
