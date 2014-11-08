@@ -19,8 +19,14 @@ var storeUrl = function(){
 	this.next();
 }
 
+var prevUrl = function(){
+	Session.set('prevPath', Router.current().url);
+	this.next();
+}
+
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
 Router.onBeforeAction(storeUrl, {only: ['properties','propertyDetail']});
+Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail']});
 
 var TITLE = '家易';
 Router.map(function () {

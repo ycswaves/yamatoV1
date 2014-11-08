@@ -1,0 +1,28 @@
+<template name="shareButtons">
+	<div class="row m-b" style="padding-left:0px; text-align: center">
+		<span class="col-sm-3"><i class="fa fa-weixin fa-2x pointer color-wechat" data-toggle="modal" data-target="#wechatModal"></i></span>
+		<span class="col-sm-3"><i class="fa fa-weibo fa-2x pointer color-weibo" id="weiboBtn"></i></span>
+		<span class="col-sm-3"><i class="fa fa fa-renren fa-2x pointer color-renren" id="renrenBtn"></i></span>
+		<span class="col-sm-3"><i class="fa fa-facebook-square fa-2x pointer color-facebook" id="facebookBtn"></i></span>
+	</div>
+	{{> wechatPopup}}
+</template>
+
+<template name="wechatPopup">
+	<div id="wechatModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+		<div class="modal-dialog modal-sm">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+					<h4 class="modal-title" id="myModalLabel">分享至微信</h4>
+				</div>
+				<div class="modal-body" id="wechatModalContent">
+					
+				</div>
+				<div class="modal-footer">
+				使用微信"扫一扫"功能，扫描并分享！
+				</div>
+			</div>
+		</div>
+	</div>
+</template>

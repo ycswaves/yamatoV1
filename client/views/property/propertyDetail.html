@@ -27,8 +27,8 @@
 								</div>
 								<div class="col-xs-9">
 									{{#with property.contact}}
-									<div class="row text-muted" style="margin-top:20px;margin-bottom:20x">
-                    {{#if currentUser}}
+									<div class="row text-muted" style="margin-top:20px;">
+										{{#if currentUser}}
   										<div class="col-xs-4 center">
   											<i class="fa fa-phone icon-align"></i>
   											{{nullHelper phone}}
@@ -41,18 +41,16 @@
   											<i class="fa fa-wechat icon-align"></i>
   											{{nullHelper wechat}}
   										</div>
-                    {{else}}
-                      <div class="col-xs-12">
-                        <a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default">
-                          登录获取联系方式: &nbsp;
-                          <i class="fa fa-phone"></i>
-                          <i class="fa fa-qq" ></i>
-                          <i class="fa fa-wechat"></i>
-                        </a>
-
-
-                      </div>
-                    {{/if}}
+  										{{else}}
+  										<div class="col-xs-12">
+  											<a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default">
+  												登录获取联系方式: &nbsp;
+  												<i class="fa fa-phone"></i>
+  												<i class="fa fa-qq" ></i>
+  												<i class="fa fa-wechat"></i>
+  											</a>
+  										</div>
+  										{{/if}}
 									</div>
 									{{/with}}
 								</div>
@@ -60,7 +58,7 @@
 						</section><!-- /#edit-search -->
 					</div>
 					<div class="col-sm-4">
-						<div class="panel panel-default contact-panel hidden-xs" style="margin-top:-41px;border:none;margin-bottom:0px;box-shadow: none;width:300px">
+						<div class="panel panel-default contact-panel hidden-xs infoPanel" style="margin-top:-41px;border:none;margin-bottom:0px;box-shadow: none;width:300px">
 							<div class="panel-heading background-color-default text-white" style="border-color: #1396e2;">
 								<strong>$ {{property.price}} </strong><sup>SGD</sup>
 								<span class="pull-right">每月</span>
@@ -71,13 +69,15 @@
 								</div>
 								{{#if currentUser}}
 								{{#if isNotOwner}}
-								<button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
+								<button style="width:100%" type="button" class="btn btn-default m-b" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
 								{{else}}
-								<a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
+								<a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default m-b"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
 								{{/if}}
 								{{else}}
-								<a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default">登陆并询问</a>
+								<a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default m-b">登陆并询问</a>
 								{{/if}}
+								{{> shareButtons}}
+								<button style="width:100%" type="button" class="btn btn-white small" id="return-btn">返回至上一页</button>
 							</div>
 						</div>
 					</div>
@@ -165,8 +165,8 @@
 		</div>
 	</div>
 	<div id="mapbox" style="width:100%;height:600px"></div>
-  {{#with property.map}}
-  <input type="hidden" name="latitude" value="{{latitude}}" />
-  <input type="hidden" name="longitude" value="{{longitude}}" />
-  {{/with}}
+	{{#with property.map}}
+	<input type="hidden" name="latitude" value="{{latitude}}" />
+	<input type="hidden" name="longitude" value="{{longitude}}" />
+	{{/with}}
 </template>

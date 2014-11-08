@@ -10,7 +10,7 @@ Template.propertyDetail.rendered = function() {
 	initializeMap();
 	render();
 	//pin it
-	$(".panel").pin({containerSelector: ".infoArea",padding: {top: 100}});
+	$(".infoPanel").pin({containerSelector: ".infoArea",padding: {top: 100}});
 }
 
 function initializeMap() {
@@ -30,5 +30,8 @@ Template.propertyDetail.events({
 		e.preventDefault();
 		var referId = $('#enquiry-btn').data('referId');
 		Conversations.start(referId,'Property');
+	},
+	'click #return-btn': function(e,t){
+		Router.go(Session.get('prevPath') || 'landing');
 	}
 })
