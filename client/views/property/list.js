@@ -31,7 +31,7 @@ ListController = RouteController.extend({
     }
 
 
-    var filter = {}
+    var filter = {status: 'open'}
       , query = params.query
       , queryArr = []; // to pass in footer later
 

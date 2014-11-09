@@ -29,47 +29,82 @@
         <!-- My Properties -->
         <div class="col-md-9 col-sm-10">
           <section id="my-properties">
-            <header><h1>我的房屋</h1></header>
+            <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-bottom:10px">
+              <li role="presentation" class="active"><a href="{{pathFor 'myproperty' page=1}}">正在发布 ({{totalActive}})</a></li>
+              <li role="presentation"><a href="{{pathFor 'myproperty' page=1 hash='inactive-record'}}">已关闭 ({{totalInactive}})</a></li>
+            </ul>
             <div class="my-properties">
               <div class="table-responsive">
                 <table class="table">
                   <thead>
                   <tr>
-                    <th>房屋</th>
+                    <th>我的房屋</th>
                     <th style="width:35%"></th>
                     <th>发布时间</th>
                     <th>浏览</th>
                     <th>操作</th>
                   </tr>
                   </thead>
-                  <tbody>
-                    {{#unless properties.count}}
-                    <tr><td colspan="5" style="text-align:center">还没有任何发布</td></tr>
-                    {{/unless}}
 
-                    {{#each properties}}
-                    <tr>
-                      <td class="image">
-                        <div class="thumbnail">
-                          <a href="{{pathFor 'propertyDetail' id=_id}}"><img alt="" src="{{getImageURL photos}}"></a>
-                        </div>
-                      </td>
-                      <td>
-                        <div class="inner">
-                          <a href="property-detail.html"><h2></h2></a>
-                          <figure>{{address}}</figure>
-                          <div class="tag price">$ {{price}}</div>
-                        </div>
-                      </td>
-                      <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
-                      <td>{{views}}</td>
-                      <td class="actions">
-                        <a href="{{pathFor 'editProperty' id=_id}}" class="edit"><i class="fa fa-pencil"></i>修改</a>
-                        <a href="#"><i class="delete fa fa-trash-o"></i></a>
-                      </td>
-                    </tr>
-                    {{/each}}
-                  </tbody>
+                  {{#if showActive}}
+                    <tbody>
+                      {{#unless properties.count}}
+                      <tr><td colspan="5" style="text-align:center">还没有任何发布</td></tr>
+                      {{/unless}}
+
+                      {{#each properties}}
+                      <tr>
+                        <td class="image">
+                          <div class="thumbnail">
+                            <a href="{{pathFor 'propertyDetail' id=_id}}"><img alt="" src="{{getImageURL photos}}"></a>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="inner">
+                            <a href="property-detail.html"><h2></h2></a>
+                            <figure>{{address}}</figure>
+                            <div class="tag price">$ {{price}}</div>
+                          </div>
+                        </td>
+                        <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
+                        <td>{{views}}</td>
+                        <td class="actions">
+                          <a href="{{pathFor 'editProperty' id=_id}}" class="edit"><i class="fa fa-pencil"></i>修改</a>
+                          <a href="#" class="edit close-post" data-id="{{_id}}"><i class="fa fa-ban"></i>关闭</a>
+                        </td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  {{else}}
+                    <tbody>
+                      {{#unless properties.count}}
+                      <tr><td colspan="5" style="text-align:center">没有已经关闭的帖子</td></tr>
+                      {{/unless}}
+
+                      {{#each properties}}
+                      <tr>
+                        <td class="image">
+                          <div class="thumbnail">
+                            <a href="{{pathFor 'propertyDetail' id=_id}}"><img alt="" src="{{getImageURL photos}}"></a>
+                          </div>
+                        </td>
+                        <td>
+                          <div class="inner">
+                            <a href="property-detail.html"><h2></h2></a>
+                            <figure>{{address}}</figure>
+                            <div class="tag price">$ {{price}}</div>
+                          </div>
+                        </td>
+                        <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
+                        <td>{{views}}</td>
+                        <td class="actions">
+                          <a href="{{pathFor 'editProperty' id=_id}}" class="edit"><i class="fa fa-pencil"></i>修改</a>
+                          <a href="#" class="edit"><i class="fa fa-ban"></i>关闭</a>
+                        </td>
+                      </tr>
+                      {{/each}}
+                    </tbody>
+                  {{/if}}
                 </table>
               </div><!-- /.table-responsive -->
               <!-- Pagination -->
