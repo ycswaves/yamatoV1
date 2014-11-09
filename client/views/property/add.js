@@ -90,13 +90,12 @@ Template.addProperty.events({
       var imageIDs = [];
       imgTemp.forEach(function(file){
         // Images.insert will return file object of inserted image
-        var file = PropertyImages.insert(file, function(err, res){
+        PropertyImages.insert(file, function(err, imageUploaded){
           if(err){
             NotificationMessages.sendSuccess('发布','图片上传失败，请重试');
           } else {
-            //console.log(res);
             NotificationMessages.sendSuccess('发布','图片上传success');
-            imageIDs.push(file._id);
+            imageIDs.push(imageUploaded._id);
           }
         });
 
