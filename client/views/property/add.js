@@ -50,6 +50,21 @@ Template.addProperty.events({
     t.$('#stations').selectpicker('refresh');
   },
 
+  'blur input[name="address"]': function(e, t){
+    var address = t.find('input[name="address"]').value || null
+    CommonHelper.convertAddressAsync(address, function(err, addr){
+      if(err){
+        t.$('#address-form-group').append(
+        '<span style="color: yellow" class="help-block"><i class="fa fa-exclamation-triangle"></i> '
+        + '无法在地图上找到此地址，请再次确认' +
+        '</span>');
+      }
+      // else{
+      //   console.log(addr);
+      // }
+    });
+  },
+
   'submit #propertyForm': function(e, t){
     e.preventDefault();
     t.$('span.help-block').remove(); //clear all error msg
@@ -89,16 +104,9 @@ Template.addProperty.events({
 
       var imageIDs = [];
       imgTemp.forEach(function(file){
-        // Images.insert will return file object of inserted image
-        PropertyImages.insert(file, function(err, imageUploaded){
-          if(err){
-            NotificationMessages.sendSuccess('发布','图片上传失败，请重试');
-          } else {
-            NotificationMessages.sendSuccess('发布','图片上传success');
-            imageIDs.push(imageUploaded._id);
-          }
-        });
-
+        // PropertyImages.insert will return file object of inserted image
+        var imageUploaded = PropertyImages.insert(file);
+        imageIDs.push(imageUploaded._id);
       });
 
       imgTemp = []; //clear imgTemp
@@ -120,6 +128,7 @@ Template.addProperty.events({
     /*********************************************
         Map form data to schema
     *********************************************/
+
     var formObj = {
       address: address,
       author: Meteor.userId(),
@@ -171,26 +180,35 @@ Template.addProperty.events({
     if(!context.isValid()){
       CommonHelper.showErrorMessageInForm(context, formErrDivID, t);
     }
-    else if(propertyid.length > 0){ // edit mode
-      Meteor.call('editProperty', propertyid, formObj, function(err){
-        if(err){
-          NotificationMessages.sendSuccess('发布','房屋资料更新失败');
-          return false;
+    else {
+      // if all fields are valid, convert address to latitude-longitude
+      CommonHelper.convertAddressAsync(address, function(err, addr){
+        if(addr){
+          formObj.map = addr;
         }
-        if(deletedPhotoArr.length > 0){
-          Meteor.call('deletePropertyImgs', deletedPhotoArr);
+
+        if(propertyid.length > 0){ // edit mode
+          Meteor.call('editProperty', propertyid, formObj, function(err){
+            if(err){
+              NotificationMessages.sendSuccess('发布','房屋资料更新失败');
+              return false;
+            }
+            if(deletedPhotoArr.length > 0){
+              Meteor.call('deletePropertyImgs', deletedPhotoArr);
+            }
+            Router.go('propertyDetail', {id: propertyid});
+          });
         }
-        Router.go('propertyDetail', {id: propertyid});
-      });
-    }
-    else{
-      Meteor.call('addProperty', formObj, function(err, id){
-        if(err){
-          NotificationMessages.sendSuccess('发布','房屋发布失败');
-          return false;
+        else{ // add new mode
+          Meteor.call('addProperty', formObj, function(err, id){
+            if(err){
+              NotificationMessages.sendSuccess('发布','房屋发布失败');
+              return false;
+            }
+            Router.go('myproperty');
+          });
         }
-        //console.log(formObj);
-        Router.go('myproperty');
+
       });
     }
   },

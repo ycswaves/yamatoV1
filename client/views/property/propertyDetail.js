@@ -16,13 +16,16 @@ Template.propertyDetail.rendered = function() {
 function initializeMap() {
 	var latitude = $('input[name="latitude"]').val() || null
     , longitude = $('input[name="longitude"]').val() || null
-	if(latitude != '' && longitude != '') {
+
+	if(latitude && longitude) {
 		L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2ZW4wMDkiLCJhIjoiel9vX2hxSSJ9.Ag0_rnoJmLvScwqMR-gjyg';
     addressLatlng = [parseFloat(latitude), parseFloat(longitude)];
 		var map = L.mapbox.map('mapbox', 'daven009.k1imgjff').setView(addressLatlng, 16);
 		map.scrollWheelZoom.disable();
 		L.marker(addressLatlng).addTo(map);
-	}
+	} else {
+    $('#mapbox').hide();
+  }
 }
 
 Template.propertyDetail.events({
