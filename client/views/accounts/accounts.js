@@ -167,6 +167,7 @@ Template.header.events({
     e.preventDefault();
     Meteor.logout(function(){
       conversations.remove({});
+      delete Session.keys['currentPath'];
       Router.go('landing');
     });
   }

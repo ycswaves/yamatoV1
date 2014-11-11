@@ -73,8 +73,20 @@ Router.map(function () {
 			this.render();
 		},
 		data: function () {
+			var profile = UserProfiles.findOne({userid: Meteor.userId()});
+			if (typeof profile != "undefined") {
+				console.log(profile);
+				if (profile.avatar == null) {
+					var url = Gravatar.imageUrl(profile.email.address, {
+						size: 165,
+						d:'identicon'
+					});
+					console.log(url);
+					profile.avatar = url;
+				}
+			}
 			return {
-		    profile: UserProfiles.findOne({userid: Meteor.userId()})
+		    profile: profile
 		  }
 		},
 		onAfterAction: function () {
