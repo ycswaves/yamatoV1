@@ -34,7 +34,6 @@ function isNotEmpty(val) {
 }
 
 function isValidType(val) {
-  console.log(val);
   // if null or empty, return false
   if (val!=1 && val!=2 ){
     Session.set('displayMessage', 'Error & Undefined Type.');
