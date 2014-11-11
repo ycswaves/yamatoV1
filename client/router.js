@@ -122,6 +122,7 @@ Router.map(function () {
 		template: 'propertyDetail',
 		action: function () {
 			if (this.ready()){
+        Meteor.call('incPropertyView', this.params.id); //TODO: use sampling if high I/O
 				this.render();
 			}
 			else{

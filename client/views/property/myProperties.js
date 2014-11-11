@@ -14,7 +14,7 @@ Template.myProperties.events({
   'click a.close-post': function(e, t){
     var propertyId = t.$(e.target).data('id');
     //console.log(propertyId);
-    Meteor.call('editProperty', propertyId, {status: 'closed'});
+    Meteor.call('closeProperty', propertyId);
   }
 });
 

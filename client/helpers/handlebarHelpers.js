@@ -160,6 +160,11 @@ Handlebars.registerHelper('getImageURL',function(photos){
   }
 });
 
+// helper for get image url
+Handlebars.registerHelper('formatViews',function(views){
+  //TODO:
+});
+
 Handlebars.registerHelper('displayMap', function(mapDiv, locationObj){
   if(locationObj.latitude != undefined && locationObj.longitude != undefined) {
     var addressLatlng = [locationObj.latitude, locationObj.longitude];
