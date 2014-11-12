@@ -1,5 +1,5 @@
 <template name="profilePage">
-	<div class="page-gradient">
+	<div>
 		<div class="container">
 			<ol class="breadcrumb">
 				<li><a href="{{pathFor 'properties' page=1}}">首页</a></li>
@@ -92,7 +92,7 @@
 							</div><!-- /.row -->
 							<div class="row">
 								<div class="col-md-3 col-sm-3">
-									<img alt="" class="image radius" src="/img/avatar_default.jpg">
+									<img alt="" class="image radius" src="{{profile.avatar}}">
 								</div>
 								<div class="col-md-9 col-sm-9">
 									<form role="form" id="accountProfile">
@@ -105,7 +105,7 @@
 														{{#if profile.email.verified}}
 														<i class="fa fa-check-circle text-success"></i>
 														{{else}}
-														<span class="text-danger">[未验证]</span>
+														<span class="text-danger pointer" id="verifyEmail">[点击发送验证邮件]</span>
 														{{/if}}
 													</label>
 												</dd>

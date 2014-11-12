@@ -1,3 +1,17 @@
 <template name="notFound">
-	<div style="margin: 20% 30%"><h2>404: 您访问的页面不存在</h2></div>
+	<div class="page-gradient">
+		<div class="container">
+			<section id="404">
+				<div class="error-page">
+					<div class="title">
+						<img alt="" src="/img/error-page-background.png" class="top">
+						<header>404</header>
+						<img alt="" src="/img/error-page-background.png" class="bottom">
+					</div>
+					<h2 class="no-border">页面未找到</h2>
+					<a href="{{pathFor 'landing'}}" class="link-arrow back">返回首页</a>
+				</div>
+			</section>
+		</div><!-- /.container -->
+	</div>
 </template>

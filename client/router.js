@@ -73,8 +73,9 @@ Router.map(function () {
 			this.render();
 		},
 		data: function () {
+			var profile = UserProfiles.findOne({userid: Meteor.userId()});
 			return {
-		    profile: UserProfiles.findOne({userid: Meteor.userId()})
+		    profile: profile
 		  }
 		},
 		onAfterAction: function () {
@@ -146,11 +147,14 @@ Router.map(function () {
 					isNotOwner = true;
 				}
 				bannerImage = property.photos[0];
+				Meteor.subscribe("userProfile", property.author);
+				var userInfo = UserProfiles.findOne({userid: property.author});
 			}
 			return {
 				property: property,
 				isNotOwner: isNotOwner,
-				bannerImage: bannerImage
+				bannerImage: bannerImage,
+				userInfo: userInfo
 			}
 		}
 	});

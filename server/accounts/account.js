@@ -34,6 +34,14 @@ Accounts.onCreateUser(function (options, user) {
     userProfile.email = {address: oauthProfile.email, verified: true}
   }
 
+  if (userProfile.avatar == null) {
+    var url = Gravatar.imageUrl(userProfile.email.address, {
+      size: 165,
+      d:'identicon'
+    });
+    userProfile.avatar = url;
+  }
+
   UserProfiles.insert(userProfile, function(err, res) {
     if(err){
       console.log(err); // need to log to see if any attack or form validation not cover enough
