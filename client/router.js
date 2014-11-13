@@ -1,7 +1,7 @@
 Router.configure({
-notFoundTemplate: 'notFound',
-loadingTemplate: 'loading',
-layoutTemplate: 'layout'
+	notFoundTemplate: 'notFound',
+	loadingTemplate: 'loading',
+	layoutTemplate: 'layout'
 });
 
 var filters = {
@@ -75,8 +75,8 @@ Router.map(function () {
 		data: function () {
 			var profile = UserProfiles.findOne({userid: Meteor.userId()});
 			return {
-		    profile: profile
-		  }
+				profile: profile
+			}
 		},
 		onAfterAction: function () {
 			document.title = TITLE + ' | ' + '帐户';
@@ -124,51 +124,51 @@ Router.map(function () {
 		action: function () {
 			if (this.ready()){
         Meteor.call('incPropertyView', this.params.id); //TODO: use sampling if high I/O
-				this.render();
-			}
-			else{
-				this.render('loading');
-			}
-		},
-		onAfterAction: function () {
-			document.title = TITLE + ' | ' + '房屋详情';
-		},
-		data: function () {
-			var params = this.params;
-			var property = Properties.findOne({_id: params.id});
-			if(!property){
-				this.render('notFound');
-				return;
-			}
-			var isNotOwner = false;
-			var bannerImage = false;
-			if(typeof property!="undefined"){
-				if(property.author != Meteor.userId()) {
-					isNotOwner = true;
-				}
-				bannerImage = property.photos[0];
-				Meteor.subscribe("userProfile", property.author);
-				var userInfo = UserProfiles.findOne({userid: property.author});
-			}
-			return {
-				property: property,
-				isNotOwner: isNotOwner,
-				bannerImage: bannerImage,
-				userInfo: userInfo
-			}
-		}
-	});
+        this.render();
+      }
+      else{
+      	this.render('loading');
+      }
+    },
+    onAfterAction: function () {
+    	document.title = TITLE + ' | ' + '房屋详情';
+    },
+    data: function () {
+    	var params = this.params;
+    	var property = Properties.findOne({_id: params.id});
+    	if(!property){
+    		this.render('notFound');
+    		return;
+    	}
+    	var isNotOwner = false;
+    	var bannerImage = false;
+    	if(typeof property!="undefined"){
+    		if(property.author != Meteor.userId()) {
+    			isNotOwner = true;
+    		}
+    		bannerImage = property.photos[0];
+    		Meteor.subscribe("userProfile", property.author);
+    		var userInfo = UserProfiles.findOne({userid: property.author});
+    	}
+    	return {
+    		property: property,
+    		isNotOwner: isNotOwner,
+    		bannerImage: bannerImage,
+    		userInfo: userInfo
+    	}
+    }
+  });
 
-	this.route('inbox', {
-		path: '/inbox',
-		template: 'inboxPage',
-		action: function () {
-			this.render();
-		},
-		onAfterAction: function () {
-			document.title = TITLE + ' | ' + '收件箱';
-		}
-	});
+this.route('inbox', {
+	path: '/inbox',
+	template: 'inboxPage',
+	action: function () {
+		this.render();
+	},
+	onAfterAction: function () {
+		document.title = TITLE + ' | ' + '收件箱';
+	}
+});
 
 	// matches all urls but doesn't get called until all previous routes have been tested
 	// so in this case for invalid url

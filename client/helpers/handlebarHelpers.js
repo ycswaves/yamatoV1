@@ -162,7 +162,11 @@ Handlebars.registerHelper('getImageURL',function(photos){
 
 // helper for get image url
 Handlebars.registerHelper('formatViews',function(views){
-  //TODO:
+  if(views > 1000){
+    return (views/1000).toFixed(1)+'K';
+  } else {
+    return views;
+  }
 });
 
 Handlebars.registerHelper('displayMap', function(mapDiv, locationObj){
