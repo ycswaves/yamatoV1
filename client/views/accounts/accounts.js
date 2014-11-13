@@ -166,8 +166,8 @@ Template.header.events({
     e.preventDefault();
     Meteor.logout(function(){
       conversations.remove({});
-      delete Session.keys['currentPath'];
-      Router.go('landing');
+      delete Session.keys['currentPath']; //删除当前Session
+      Router.go(Session.get('prevPath')); //返回当前页面
     });
   }
 })
