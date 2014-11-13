@@ -257,3 +257,11 @@ Config.getPriceRange = function(){
   return priceRange;
 }
 
+Config.getMaxImageUploaded = function(){
+  return 8;
+}
+
+Config.getMaxImageSize = function(){
+  return 2; // Metric: MB
+}
+
