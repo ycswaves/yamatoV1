@@ -1,33 +1,40 @@
 var imgTemp = []; //to hold the to be uploaded images temporarily
 
 Template.addProperty.rendered = function() {
+  $('.datepicker').pickadate({
+    format: 'yyyy/mm/dd'
+  });
+  $('.picker__holder').css('min-width', '274px');
 
-    $('.datepicker').pickadate({
-      format: 'yyyy/mm/dd'
-    });
-    $('.picker__holder').css('min-width', '274px');
+  //Dropzone.autoDiscover = false;
+  //dictResponseError = 'Error uploading file!';
+  $('#upload').dropzone({
+    addRemoveLinks : true,
+    maxFiles: Config.getMaxImageUploaded(),
+    maxFilesize: Config.getMaxImageSize(),
 
-    //Dropzone.autoDiscover = false;
-    //dictResponseError = 'Error uploading file!';
-    $('#upload').dropzone({
-      addRemoveLinks : true,
-      maxFilesize: 7,
-      accept: function(file, done) {
-        //todo: process file
-        imgTemp.push(file);
-      },
-      removedfile: function(file){
-        // remove preview
-        file.previewElement.parentNode.removeChild(file.previewElement);
-        // remove the file from temp queue
-        imgTemp.forEach(function(e, i){
-          if(e.name == file.name){
-            imgTemp.splice(i,1);
-          }
+    init: function () {
+        this.on("complete", function (file) {
+          console.log(file); //TODO: check file size again
+          imgTemp.push(file);
         });
-      }
-    });
-    render();
+    },
+    // accept: function(file, done) {
+    //   //todo: process file
+    //   imgTemp.push(file);
+    // },
+    removedfile: function(file){
+      // remove preview
+      file.previewElement.parentNode.removeChild(file.previewElement);
+      // remove the file from temp queue
+      imgTemp.forEach(function(e, i){
+        if(e.name == file.name){
+          imgTemp.splice(i,1);
+        }
+      });
+    }
+  });
+  render();
 }
 
 Template.addProperty.events({
@@ -119,10 +126,12 @@ Template.addProperty.events({
       , deletedPhotoArr = [];
 
     $('.existingImage').each(function(){
-      if($(this).hasClass('deleted'))
+      if($(this).hasClass('deleted')){
         deletedPhotoArr.push($(this).data('id'));
-      else
+      }
+      else if(existingPhotosArr.length < Config.getMaxImageUploaded()){
         existingPhotosArr.push($(this).data('id'));
+      }
     });
 
     /*********************************************
