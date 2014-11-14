@@ -21,6 +21,11 @@ Handlebars.registerHelper('getUsername', function(loggedInUser){
   }
 });
 
+Handlebars.registerHelper('getUserProfile', function(userId){
+  Meteor.subscribe("userProfile", userId);
+  return UserProfiles.findOne({userid: userId});
+});
+
 Handlebars.registerHelper('glueArray', function(arr){
   if(!arr) return '';
   return arr.join(',');

@@ -159,7 +159,8 @@ Conversation module
 }
 
 .referContainer {
-    width: 100%;
+    margin: 5px;
+    border-radius: 3px;
     height: 80px;
     background: #fff;
     overflow: hidden;
@@ -174,11 +175,9 @@ Conversation module
 }
 
 .referDescription{
-    float: left;
-    max-width:180px;
-    max-height:70px;
     padding: 10px;
     overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .messagesContainer {
