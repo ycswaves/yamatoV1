@@ -45,8 +45,8 @@
                     <div class="row">
                       <div class="col-xs-5"><img src="{{avatar}}" class="image radius" width="96px"/></div>
                       <div class="col-xs-7">
-                        <label>{{getUsername loggedInUser}}</label>
-                        <p><small>{{email.address}}</small></p>
+                        <label class="profile-info-name">{{getUsername loggedInUser}}</label>
+                        <p class="profile-info-mail"><small>{{email.address}}</small></p>
                         <a href="{{pathFor 'profile'}}" class="btn btn-default">我的信息</a>
                       </div>
                     </div>

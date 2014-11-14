@@ -4214,7 +4214,7 @@ html, body {
   height: 100% !important;
 }
 #bodyContent {
-  padding-top: 56px;
+  padding-top: 62px;
   min-height: 100%;
   /* equal to footer height */
   margin-bottom: -60px;
@@ -4537,11 +4537,24 @@ html, body {
 
 /*profile box*/
 .profile-box{
-  width: 280px;
+  min-width: 280px;
   overflow-x:hidden;
   overflow-y:auto;
 }
 
 .profile-info{
   padding:10px;
+}
+
+.profile-info-name {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 20px;
+  margin-bottom: 0px;
+}
+
+.profile-info-mail{
+  text-overflow: ellipsis;
+  overflow: hidden;
+  height: 20px;
 }
