@@ -261,7 +261,16 @@ Template.addProperty.helpers({
 
   rtypes: function(){
     return Config.getRoomTypes();
+  },
+
+  maxFiles: function(){
+    return Config.maxFiles;
+  },
+
+  maxFilesize: function(){
+    return Config.maxFilesize;
   }
+
 });
 
 AddPropertyController = RouteController.extend({
