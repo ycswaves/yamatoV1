@@ -7,7 +7,7 @@ Router.configure({
 var filters = {
 	isLoggedIn: function() {
 		if (!(Meteor.user() || Meteor.loggingIn())) {
-			Router.go('signup');
+			Router.go('signin');
 		} else {
 			this.next();
 		}
@@ -25,7 +25,7 @@ var prevUrl = function(){
 }
 
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
-Router.onBeforeAction(storeUrl, {only: ['properties','propertyDetail']});
+Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
 Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail']});
 
 var TITLE = '家易';

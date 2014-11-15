@@ -10,7 +10,8 @@ function isEmail(val) {
   if (val.indexOf('@') !== -1) {
       return true;
     } else {
-      Session.set('displayMessage', 'Error & Please enter a valid email address.');
+      FlashMessages.clear();
+      FlashMessages.sendError("无效邮箱地址");
       return false;
     }
 }
@@ -19,7 +20,8 @@ function isValidPassword(val) {
   if (val.length >= 6) {
     return true;
   } else {
-    Session.set('displayMessage', 'Error & Your password should be 6 characters or longer.');
+    FlashMessages.clear();
+    FlashMessages.sendError("请输入六位以上的密码");
     return false;
   }
 }
@@ -27,7 +29,8 @@ function isValidPassword(val) {
 function isNotEmpty(val) {
   // if null or empty, return false
   if (!val || val === ''){
-    Session.set('displayMessage', 'Error & Please fill in all required fields.');
+    FlashMessages.clear();
+    FlashMessages.sendError("请填写所有必须填写的栏目");
     return false;
   }
   return true;
@@ -45,7 +48,8 @@ function isValidType(val) {
 function isSame(val1,val2) {
   // if not the same the passwords
   if(val1 !== val2 ){
-    Session.set('displayMessage', 'Error & Your passwords are not the same');
+    FlashMessages.clear();
+    FlashMessages.sendError("重复输入密码不同");
     return false;
   }
   return true;
@@ -54,7 +58,13 @@ function isSame(val1,val2) {
 function isValidName(val){
   userRegex = /^[-\w\.\$@\*\!]{1,30}$/;
   if(!val.match(userRegex)){
-    Session.set('displayMessage', 'Error & invalid username');
+    FlashMessages.clear();
+    FlashMessages.sendError("无效用户名");
+    return false;
+  }
+  if (val.length < 3) {
+    FlashMessages.clear();
+    FlashMessages.sendError("用户名需要三位数以上");
     return false;
   }
   return true;
@@ -78,7 +88,6 @@ Template.loginForm.events({
         } else {
           t.$('#loginModal').modal('hide');
           NotificationMessages.sendSuccess('登陆成功','欢迎回来');
-          console.log(Session.get('currentPath'));
           Router.go(Session.get('currentPath') || 'landing');
         }
       });
@@ -131,7 +140,9 @@ Template.signupForm.events({
         password: password
       }, function(err){
         if (err && err.error === 403) {
-          Session.set('displayMessage', '创建账户不成功 &' + err.reason);
+          // Session.set('displayMessage', '用户名或密码不正确');
+          FlashMessages.clear();
+          FlashMessages.sendError(err.reason);
         } else {
           t.$('#signupModal').modal('hide');
           NotificationMessages.sendSuccess('注册成功','欢迎您的加入');
