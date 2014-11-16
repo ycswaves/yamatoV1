@@ -104,10 +104,14 @@
 							</p>
 							<p>{{> shareButtons}}</p>
 							<p>
+								{{#if currentUser}}
 								{{#if isNotOwner}}
 								<button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
 								{{else}}
 								<a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
+								{{/if}}
+								{{else}}
+								<a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default m-b">登陆并询问</a>
 								{{/if}}
 							</p>
 						</section>
