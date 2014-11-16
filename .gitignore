@@ -42,6 +42,9 @@ packages/
 
 # sensative files    #
 ######################
+*.pem
+mup.json
+settings.json
 *.lock
 awsS3Config.js
 sftp-config.json

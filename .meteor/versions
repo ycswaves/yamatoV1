@@ -21,13 +21,12 @@ cfs:collection@0.0.0
 cfs:data-man@0.0.0
 cfs:file@0.0.0
 cfs:filesystem@0.0.0
-cfs:gridfs@0.0.0
 cfs:http-methods@0.0.24
 cfs:http-publish@0.0.0
 cfs:power-queue@0.0.1
 cfs:reactive-list@0.0.0
 cfs:reactive-property@0.0.0
-cfs:s3@0.0.0
+cfs:s3@0.0.1
 cfs:standard-packages@0.0.2
 cfs:storage-adapter@0.0.0
 cfs:tempstore@0.0.2
@@ -54,9 +53,9 @@ iron:controller@1.0.0
 iron:core@1.0.0
 iron:dynamic-template@1.0.0
 iron:layout@1.0.0
-iron:location@1.0.0
+iron:location@1.0.1
 iron:middleware-stack@1.0.0
-iron:router@1.0.0
+iron:router@1.0.1
 iron:url@1.0.0
 jparker:crypto-core@0.1.0
 jparker:crypto-md5@0.1.1
@@ -74,7 +73,7 @@ minimongo@1.0.5
 mobile-status-bar@1.0.1
 mongo-livedata@1.0.6
 mongo@1.0.8
-mrt:flash-messages@0.2.4
+mrt:flash-messages@1.0.0
 mrt:moment@2.8.1
 npm-bcrypt@0.7.7
 oauth2@1.1.1

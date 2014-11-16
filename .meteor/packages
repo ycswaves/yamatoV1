@@ -13,7 +13,6 @@ mrt:flash-messages
 aldeed:collection2
 cfs:standard-packages
 cfs:filesystem
-cfs:gridfs
 cfs:s3
 awatson1978:dropzone
 service-configuration
@@ -22,4 +21,3 @@ richsilv:owl-carousel
 mrt:moment
 steeve:jquery-qrcode
 jparker:gravatar
-
