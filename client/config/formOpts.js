@@ -43,7 +43,8 @@ var propertyFacilities = {
   "tennisCourt": "网球场",
   "cableTV": "有线电视",
   "balcony": "阳台",
-  "parkingSlot": "停车场"
+  "parkingSlot": "停车场",
+  "gym": "健身房"
 };
 
 var propertyTypes = {
