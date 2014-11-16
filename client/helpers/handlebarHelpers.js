@@ -21,6 +21,24 @@ Handlebars.registerHelper('getUsername', function(loggedInUser){
   }
 });
 
+Handlebars.registerHelper('getAvatarByTopicId', function(topicId){
+  var topic = Topics.findOne({_id:topicId});
+  if(topic.creator == Meteor.userId()) {
+    var userId = topic.chatWith;
+  }
+  else {
+    var userId = topic.creator;
+  }
+  Meteor.subscribe("userProfile", userId);
+  var profile = UserProfiles.findOne({userid: userId});
+  if (typeof profile != 'undefined') {
+    return profile.avatar;
+  }
+  else {
+    return false;
+  }
+});
+
 Handlebars.registerHelper('getUserProfile', function(userId){
   Meteor.subscribe("userProfile", userId);
   return UserProfiles.findOne({userid: userId});

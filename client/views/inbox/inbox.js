@@ -7,9 +7,9 @@ Template.inboxPage.rendered = function() {
 
 	$('body').off('keypress','.PMInput').on('keypress','.PMInput',function(e) {
 		var input = $(this);
-		var topicId = Session.get('inbox.topicId');
+		var topicId = $(this).data('topicId');
 		var content = $(this).val();
-		if(13==e.which && content!="") {
+		if(13==e.which && content!="") {	
 			e.preventDefault();
 			Conversations.sendAsync(topicId,content, function(err, res){
 				if(res){

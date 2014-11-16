@@ -67,11 +67,12 @@ Template.conversationTopic.helpers({
 	chatWith : function (topicId) {
 		var topic = Topics.findOne({_id:topicId});
 		if(topic.creator == Meteor.userId()) {
-			var chatWith = Meteor.users.findOne({_id:topic.chatWith});
+			var userId = topic.chatWith;
 		}
 		else {
-			var chatWith = Meteor.users.findOne({_id:topic.creator});
+			var userId = topic.creator;
 		}
+		var chatWith = Meteor.users.findOne({_id: userId});
 		return chatWith.username;
 	},
 	refer: function (topicId) {
