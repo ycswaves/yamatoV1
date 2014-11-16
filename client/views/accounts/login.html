@@ -1,43 +1,38 @@
 <template name="loginForm">
 	<div class="page-gradient">
-		<div class="container">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-body">
-						<div class="row">
-							<div class="col-md-12 b-r">
-								<div class="m-b-l">
-									<h1 class="m-t-none m-b">登陆</h1>
-									<p>登陆并管理您的账户</p>
-									{{> flashMessages}}
-									<form role="form" id="loginForm" method="post">
-										<div class="form-group">
-											<label>用户名</label>
-											<input type="text" class="form-control" name="username" placeholder="输入您的用户名">
-										</div>
-										<div class="form-group">
-											<label>密码</label>
-											<input type="password" class="form-control" name="password" placeholder="输入您的密码">
-										</div>
-										<div class="checkbox m-t-lg">
-											<button type="submit" class="btn pull-right btn-default">登入</button>
-											<label>
-												<input type="checkbox"> 记住我
-											</label>
-										</div>
-									</form>
-								</div>
-								<hr class="divider">
-								<h1>还不是会员 ?</h1>
-								<p>一分钟拥有账号，点击 <a href="/account/signup" onclick="$('#loginModal').modal('hide')">这里</a> 免费注册</p>
-								<p>或者</p>
-								<a href="#" class="btn btn-facebook btn-block m-b-sm" id="facebookLogin"><i class="fa fa-facebook pull-left"></i>使用Facebook账户登陆</a>
-								<a href="#" class="btn btn-gplus btn-block" id="googleLogin"><i class="fa fa-google-plus pull-left"></i>使用Google账户登陆</a>
+		<div class="container col-sm-10 col-sm-offset-1">
+			<div class="row" style="margin-top:50px; background-color:white">
+				<div class="col-sm-5">
+						<h1 class="m-t-none m-b">登陆</h1>
+						<p>登陆并管理您的账户</p>
+						{{> flashMessages}}
+						<form role="form" id="loginForm" method="post">
+							<div class="form-group">
+								<label>用户名</label>
+								<input type="text" class="form-control" name="username" placeholder="输入您的用户名">
 							</div>
-						</div>
-					</div>
-				</div>
+							<div class="form-group">
+								<label>密码</label>
+								<input type="password" class="form-control" name="password" placeholder="输入您的密码">
+							</div>
+							<div class="checkbox m-t-lg">
+								<button type="submit" class="btn pull-right btn-default">登入</button>
+								<label>
+									<input type="checkbox"> 记住我
+								</label>
+							</div>
+						</form>
+        </div>
+        <div class="col-sm-1"></div>
+        <div class="col-sm-5">
+					<h1 class="m-t-none m-b">还不是会员 ?</h1>
+					<p>一分钟拥有账号，点击 <a href="/account/signup" onclick="$('#loginModal').modal('hide')">这里</a> 免费注册</p>
+					<p>或者</p>
+					<a href="#" class="btn btn-facebook btn-block m-b-sm" id="facebookLogin"><i class="fa fa-facebook pull-left"></i>使用Facebook账户登陆</a>
+					<a href="#" class="btn btn-gplus btn-block" id="googleLogin"><i class="fa fa-google-plus pull-left"></i>使用Google账户登陆</a>
+        </div>
 			</div>
+
 		</div>
 	</div>
 </template>
