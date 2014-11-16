@@ -43,6 +43,7 @@ packages/
 # sensative files    #
 ######################
 *.pem
+kadira.js
 mup.json
 settings.json
 *.lock
