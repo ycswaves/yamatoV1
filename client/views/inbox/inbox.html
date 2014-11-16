@@ -37,7 +37,7 @@
 							{{#each topics}}
 							<li class="list-group-item pointer topic-item" data-topic-id="{{_id}}">
 								<div class="thumb-sm pull-left m-r-sm">
-									<img src="img/avatar_default.jpg" class="img-circle">
+									<img src="{{getAvatarByTopicId _id}}" class="img-circle">
 								</div>
 								<div class="clear">
 									<small class="pull-right" style="padding-top: 3px;">{{lastTime}}</small>

@@ -36,8 +36,7 @@ Template.messages.helpers({
 					var lastMessage = Messages.findOne({topicId:topic._id,owner:Meteor.userId(),receiver:Meteor.userId()},{sort: {createdAt : -1}});
 					if(lastMessage){
 						var sender = Meteor.users.findOne({_id:lastMessage.sender});
-						var username = sender.username;
-						topic.sender = username;
+						topic.sender = sender;
 						topic.message = lastMessage.content;
 						returnTopics.push(topic);
 					}
@@ -50,3 +49,18 @@ Template.messages.helpers({
 		};
 	}
 });
+
+Template.message.helpers({
+	getAvatar : function (topicId) {
+		var topic = Topics.findOne({_id:topicId});
+		if(topic.creator == Meteor.userId()) {
+			var userId = topic.chatWith;
+		}
+		else {
+			var userId = topic.creator;
+		}
+		Meteor.subscribe("userProfile", userId);
+		var profile = UserProfiles.findOne({userid: userId});
+		return profile.avatar;
+	}
+})

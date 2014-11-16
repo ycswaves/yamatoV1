@@ -30,13 +30,13 @@
 		<div style="float:left;width:100px;height:80px">
 			<span class="message-img pull-left">
 				<div class="merge">
-					<img src="/img/avatar_default.jpg" width="80px" height="80px">
+					<img src="{{getAvatarByTopicId _id}}" width="80px" height="80px">
 				</div>
 			</span>
 		</div>
 		<div class="message-body clearfix">
 			<div class="message-header">
-				<strong class="primary-font">{{sender}}:</strong>
+				<strong class="primary-font">{{getUsername sender}}:</strong>
 			</div>
 			<p>{{message}}</p>
 		</div>
