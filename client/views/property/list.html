@@ -41,51 +41,42 @@
 							<div class="property" style="padding-left:0px">
 								<header><a href="{{pathFor 'propertyDetail' id=_id}}">
                   <h3>{{address}}
-                    <span style="font-size: 0.65em; color: gray" class="pull-right">
+                    <span style="font-size: 0.65em; color: gray" class="pull-right hidden-xs">
                       <i class="fa fa-calendar"></i>&nbsp;{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}} &nbsp;&nbsp; <i class="fa fa-eye"></i>&nbsp;{{formatViews views}}
                     </span>
                   </h3></a></header>
-								<div class="row info">
-									<div class="col-md-4">
-										<a href="{{pathFor 'propertyDetail' id=_id}}">
-										<img class="radius" src="{{getImageURL photos}}">
-										</a>
-									</div>
-									<div class="col-md-5">
-										<dl style="margin:20px 10px">
-											<dt><figure class="fa fa-map-marker icon-align"></figure> 区域: </dt>
-											<dd>{{transDistr district}}</dd>
-											<dt><figure class="fa fa-bus icon-align"></figure> 近地铁: </dt>
-											<dd>{{transMRT mrt}} ({{mrt}})</dd>
-											<dt><figure class="fa fa-calendar icon-align"></figure> 入住时间: </dt>
-											<dd>{{transDatetime moveInDate}} 起</dd>
-											<dt><figure class="fa fa-home icon-align"></figure> 房间: </dt>
-											<dd>{{transRoom rentType roomType}}</dd>
-										</dl>
-										<div style="margin:20px 10px">
-											<a href="{{pathFor 'propertyDetail' id=_id}}" class="link-arrow">详情 &amp; 联系方式</a>
-										</div>
-									</div >
-
-									<div class="col-md-3">
-										<dl style="margin:20px 10px">
-											<dt><figure class="fa fa-user icon-align"></figure> 有无中介费: </dt>
-											<dd>{{transAgt hasAgentFee}}</dd>
-											<dt><figure class="fa fa-building icon-align"></figure> 房屋类型: </dt>
-											<dd>{{transPtype propertyType}}</dd>
-											<dt></dt>
-											<dd>
-												<img src="/img/bed.svg" alt="bedroom" style="width:13px; position:relative; top:-4px"> {{bedroom}}
-												<span style="margin-right:10px"></span>
-												<img src="/img/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
-											</dd>
-
-											<dt></dt>
-											<dd>
-												<div class="tag price">$ {{price}}</div>
-											</dd>
-										</dl>
-									</div>
+								<div class="hbox">
+									<aside class="col-xs-4 radius" style="height:100%;background:url('{{getImageURL photos}}') no-repeat;background-position: center center;background-size: cover;"></aside>
+									<aside style="width: 40%;">
+                    <dl style="padding:10px 20px 10px 10px">
+                      <dt><figure class="fa fa-map-marker icon-align"></figure><span class="hidden-xs"> 区域: </span></dt>
+                      <dd>{{transDistr district}}</dd>
+                      <dt><figure class="fa fa-bus icon-align"></figure><span class="hidden-xs"> 近地铁: </span></dt>
+                      <dd>{{transMRT mrt}} ({{mrt}})</dd>
+                      <dt><figure class="fa fa-calendar icon-align"></figure><span class="hidden-xs"> 入住时间: </span></dt>
+                      <dd>{{transDatetime moveInDate}} 起</dd>
+                      <dt><figure class="fa fa-home icon-align"></figure><span class="hidden-xs"> 房间: </span></dt>
+                      <dd>{{transRoom rentType roomType}}</dd>
+                    </dl>
+                  </aside>
+                  <aside>
+                    <dl style="padding-top:10px">
+                      <dt><figure class="fa fa-user icon-align"></figure><span class="hidden-xs"> 有无中介费: </span></dt>
+                      <dd>{{transAgt hasAgentFee}}</dd>
+                      <dt><figure class="fa fa-building icon-align"></figure><span class="hidden-xs"> 房屋类型: </span></dt>
+                      <dd>{{transPtype propertyType}}</dd>
+                      <dt></dt>
+                      <dd>
+                        <img src="/img/bed.svg" alt="bedroom" style="width:13px; position:relative; top:-4px"> {{bedroom}}
+                        <span style="margin-right:10px"></span>
+                        <img src="/img/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
+                      </dd>
+                      <dt></dt>
+                      <dd style="max-height: 30px;">
+                        <div class="tag price">${{price}}</div>
+                      </dd>
+                    </dl>
+                  </aside>
 								</div>
 							</div><!-- /.property -->
 							{{/each}}
