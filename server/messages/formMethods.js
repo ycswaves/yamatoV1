@@ -23,8 +23,6 @@ Meteor.methods({
 	},
 	addConversation: function(topicId, content) {
 		var topic = Topics.findOne({_id:topicId});
-		console.log(topicId);
-		console.log(topic);
 		var author = topic.chatWith;
 		
 		if(topic.creator == Meteor.userId()) {
