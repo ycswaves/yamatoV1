@@ -4223,7 +4223,7 @@ html, body {
   height: 60px;
 }
 .footer {
-  background: orange;
+  /*background: orange;*/
 }
 
 #page-footer .inner {
