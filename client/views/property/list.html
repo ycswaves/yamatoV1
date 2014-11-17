@@ -46,7 +46,9 @@
                     </span>
                   </h3></a></header>
 								<div class="hbox">
-									<aside class="col-xs-4 radius" style="height:100%;background:url('{{getImageURL photos}}') no-repeat;background-position: center center;background-size: cover;"></aside>
+									<aside class="col-xs-4 radius pointer" style="height:100%;background:url('{{getImageURL photos}}') no-repeat;background-position: center center;background-size: cover;">
+                  <a href="{{pathFor 'propertyDetail' id=_id}}"><div style='width:100%;height:142px'>&nbsp;</div></a>
+                  </aside>
 									<aside style="width: 40%;">
                     <dl style="padding:10px 20px 10px 10px">
                       <dt><figure class="fa fa-map-marker icon-align"></figure><span class="hidden-xs"> 区域: </span></dt>
