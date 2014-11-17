@@ -1,13 +1,13 @@
 Template.wechatPopup.rendered = function(){
 	//分享到微信
-	var shareUri = $('#shareButtons').data('shareUri');
+	var shareUri = document.URL;
 	$('#wechatModalContent').qrcode({
 		text: shareUri
 	});
 }
 
 Template.shareButtons.rendered = function(){
-	var shareUri = $('#shareButtons').data('shareUri');
+	var shareUri = document.URL;
 	//分享到微博
 	$('body').off('click','#weiboBtn').on('click','#weiboBtn',function(){
 		CommonHelper.popupWindow('http://service.weibo.com/share/share.php?url='+shareUri, '分享至新浪微博', 200, 200);

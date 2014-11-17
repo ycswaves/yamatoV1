@@ -78,9 +78,7 @@
 								{{else}}
 								<a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default m-b">登陆并询问</a>
 								{{/if}}
-								{{#with property}}
 								{{> shareButtons}}
-								{{/with}}
 								<button style="width:100%" type="button" class="btn btn-white small" id="return-btn">返回至上一页</button>
 							</div>
 						</div>
@@ -105,9 +103,7 @@
 								<span class="pull-right">每月</span>
 							</p>
 							<p>
-								{{#with property}}
 								{{> shareButtons}}
-								{{/with}}
 							</p>
 							<p>
 								{{#if currentUser}}
