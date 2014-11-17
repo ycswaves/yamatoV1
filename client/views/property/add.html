@@ -1,6 +1,11 @@
 <template name="addProperty">
+  <style>
+    .dropzone .dz-default.dz-message {
+      background: url("/packages/awatson1978_dropzone/public/images/spritemap.png") 70px -300px !important;
+    }
+  </style>
   <div class="page-gradient">
-  <!-- Breadcrumb -->
+    <!-- Breadcrumb -->
     <div class="container">
       <ol class="breadcrumb">
         <li><a href="{{pathFor 'properties' page=1}}">首页</a></li>
@@ -11,11 +16,11 @@
     <div class="container">
       <header>
         <h1>
-        {{#if myProperty}}
+          {{#if myProperty}}
           <i class="fa fa-pencil-square"></i> 编辑
-        {{else}}
+          {{else}}
           <i class="fa fa-bullhorn"></i> 发布
-        {{/if}}
+          {{/if}}
         </h1>
       </header>
       <form role="form" id="propertyForm" class="form-submit">
@@ -111,7 +116,7 @@
                                 <label for="room-type">出租房间</label>
                                 <select name="room-type" id="room-type">
                                   {{#each arrayify rtypes}}
-                                    <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
+                                  <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
                                   {{/each}}
                                 </select>
                               </div><!-- /.form-group -->
@@ -220,13 +225,13 @@
                     <header><h2><i class="fa fa-star-o"></i> 房屋配套</h2></header>
                     <ul class="submit-features">
                       {{#each arrayify facilities}}
-                        <li>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value="{{key}}" {{ifSelected key ../myProperty.facilities}} class="property-facility">{{value}}
-                            </label>
-                          </div>
-                        </li>
+                      <li>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" value="{{key}}" {{ifSelected key ../myProperty.facilities}} class="property-facility">{{value}}
+                          </label>
+                        </div>
+                      </li>
                       {{/each}}
                     </ul>
                   </section>
