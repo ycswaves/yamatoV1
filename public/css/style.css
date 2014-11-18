@@ -1991,7 +1991,7 @@ D
   right: 0;
 }
 .display-lines .property .info {
-  display: table;
+  /*display: table;*/
   position: relative;
 }
 .display-lines .property .info header a {
@@ -4435,14 +4435,32 @@ html, body {
 ---------------------------*/
 .hbox {
   display: table;
-  table-layout: fixed;
   border-spacing: 0;
   width: 100%;
-  margin-bottom: 20px;
+}
+.hbox > aside,
+.hbox > section {
+  display: table-cell;
+  vertical-align: top;
+  height: 100%;
+  padding: 0;
+  float: none;
+}
+.hbox > aside.show,
+.hbox > aside.hidden-sm,
+.hbox > section.show,
+.hbox > section.hidden-sm {
+  display: table-cell !important;
 }
 .hbox.stretch {
   height: 100%;
 }
+.hbox > aside > dl > dd {
+  overflow: hidden;
+  max-height: 20px;
+  text-overflow: ellipsis;
+}
+
 .bg-white {
   background: white !important;
 }

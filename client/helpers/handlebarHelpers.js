@@ -195,7 +195,6 @@ Handlebars.registerHelper('formatViews',function(views){
 Handlebars.registerHelper('displayMap', function(mapDiv, locationObj){
   if(locationObj.latitude != undefined && locationObj.longitude != undefined) {
     var addressLatlng = [locationObj.latitude, locationObj.longitude];
-    console.log(addressLatlng);
     L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2ZW4wMDkiLCJhIjoiel9vX2hxSSJ9.Ag0_rnoJmLvScwqMR-gjyg';
     var map = L.mapbox.map(mapDiv, 'daven009.k1imgjff').setView(addressLatlng, 16);
     map.scrollWheelZoom.disable();

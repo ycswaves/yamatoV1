@@ -1,6 +1,12 @@
 <template name="addProperty">
+  <style>
+    .dropzone .dz-default.dz-message {
+      background: url("/packages/awatson1978_dropzone/public/images/spritemap.png") 70px -300px !important;
+      width:400px;
+    }
+  </style>
   <div class="page-gradient">
-  <!-- Breadcrumb -->
+    <!-- Breadcrumb -->
     <div class="container">
       <ol class="breadcrumb">
         <li><a href="{{pathFor 'properties' page=1}}">首页</a></li>
@@ -11,11 +17,11 @@
     <div class="container">
       <header>
         <h1>
-        {{#if myProperty}}
+          {{#if myProperty}}
           <i class="fa fa-pencil-square"></i> 编辑
-        {{else}}
+          {{else}}
           <i class="fa fa-bullhorn"></i> 发布
-        {{/if}}
+          {{/if}}
         </h1>
       </header>
       <form role="form" id="propertyForm" class="form-submit">
@@ -111,7 +117,7 @@
                                 <label for="room-type">出租房间</label>
                                 <select name="room-type" id="room-type">
                                   {{#each arrayify rtypes}}
-                                    <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
+                                  <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
                                   {{/each}}
                                 </select>
                               </div><!-- /.form-group -->
@@ -220,13 +226,13 @@
                     <header><h2><i class="fa fa-star-o"></i> 房屋配套</h2></header>
                     <ul class="submit-features">
                       {{#each arrayify facilities}}
-                        <li>
-                          <div class="checkbox">
-                            <label>
-                              <input type="checkbox" value="{{key}}" {{ifSelected key ../myProperty.facilities}} class="property-facility">{{value}}
-                            </label>
-                          </div>
-                        </li>
+                      <li>
+                        <div class="checkbox">
+                          <label>
+                            <input type="checkbox" value="{{key}}" {{ifSelected key ../myProperty.facilities}} class="property-facility">{{value}}
+                          </label>
+                        </div>
+                      </li>
                       {{/each}}
                     </ul>
                   </section>
@@ -249,74 +255,77 @@
 
         <div class="row">
           <div class="block">
-            <section id="property-contact" class="block">
-              <section>
-                <header><h2><i class="fa fa-phone-square"></i> 联系方式</h2></header>
-                <div class="col-md-9 col-sm-9">
-                  <div class="row">
-                    <div class="col-md-4 col-sm-4">
-                      <div class="form-group" id="contact-person-form-group">
-                        <label for="">联系人 *</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" value="{{myProperty.contact.name}}" name="contact-person" >
-                        </div>
-                      </div><!-- /.form-group -->
-                    </div><!-- /.col-md-4 -->
+            <div class="col-md-9 col-sm-9">
+              <section id="property-contact">
+                <section>
+                  <header><h2><i class="fa fa-phone-square"></i> 联系方式</h2></header>
+                  <div>
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4">
+                        <div class="form-group" id="contact-person-form-group">
+                          <label for="">联系人 *</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" value="{{myProperty.contact.name}}" name="contact-person" >
+                          </div>
+                        </div><!-- /.form-group -->
+                      </div><!-- /.col-md-4 -->
 
-                    <div class="col-md-4 col-sm-4">
-                      <div class="form-group" id="contact-number-form-group">
-                        <label for="">联系电话 *</label>
-                        <div class="input-group">
-                          <span class="input-group-addon">+65</span>
-                          <input type="text" class="form-control" value="{{myProperty.contact.phone}}" name="contact-number" >
-                        </div>
-                      </div><!-- /.form-group -->
-                    </div><!-- /.col-md-4 -->
+                      <div class="col-md-4 col-sm-4">
+                        <div class="form-group" id="contact-number-form-group">
+                          <label for="">联系电话 *</label>
+                          <div class="input-group">
+                            <span class="input-group-addon">+65</span>
+                            <input type="text" class="form-control" value="{{myProperty.contact.phone}}" name="contact-number" >
+                          </div>
+                        </div><!-- /.form-group -->
+                      </div><!-- /.col-md-4 -->
+                    </div>
+
+                    <div class="row">
+                      <div class="col-md-4 col-sm-4">
+                        <div class="form-group" id="contact-qq-form-group">
+                          <label for="">QQ</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" value="{{myProperty.contact.qq}}" name="contact-qq">
+                          </div>
+                        </div><!-- /.form-group -->
+                      </div><!-- /.col-md-4 -->
+
+                      <div class="col-md-4 col-sm-4">
+                        <div class="form-group" id="contact-wechat-form-group">
+                          <label for="">微信 wechat</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" value="{{myProperty.contact.wechat}}" name="contact-wechat">
+                          </div>
+                        </div><!-- /.form-group -->
+                      </div><!-- /.col-md-4 -->
+
+                      <div class="col-md-4 col-sm-4">
+                        <div class="form-group" id="contact-email-form-group">
+                          <label for="">Email</label>
+                          <div class="input-group">
+                            <input type="text" class="form-control" value="{{myProperty.contact.email}}" name="contact-email">
+                          </div>
+                        </div><!-- /.form-group -->
+                      </div><!-- /.col-md-4 -->
+
+                    </div> <!-- row -->
                   </div>
 
-                  <div class="row">
-                    <div class="col-md-4 col-sm-4">
-                      <div class="form-group" id="contact-qq-form-group">
-                        <label for="">QQ</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" value="{{myProperty.contact.qq}}" name="contact-qq">
-                        </div>
-                      </div><!-- /.form-group -->
-                    </div><!-- /.col-md-4 -->
 
-                    <div class="col-md-4 col-sm-4">
-                      <div class="form-group" id="contact-wechat-form-group">
-                        <label for="">微信 wechat</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" value="{{myProperty.contact.wechat}}" name="contact-wechat">
-                        </div>
-                      </div><!-- /.form-group -->
-                    </div><!-- /.col-md-4 -->
-
-                    <div class="col-md-4 col-sm-4">
-                      <div class="form-group" id="contact-email-form-group">
-                        <label for="">Email</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" value="{{myProperty.contact.email}}" name="contact-email">
-                        </div>
-                      </div><!-- /.form-group -->
-                    </div><!-- /.col-md-4 -->
-
-                  </div> <!-- row -->
-                </div>
-
-                <div class="col-md-3 col-sm-3">
-                  <aside class="submit-step">
-                    <figure class="step-number">2</figure>
-                    <div class="description">
-                      <h4>联系方式</h4>
-                      <p>请填写准确的联系方式以便对方即时联系您
-                      </p>
-                    </div>
-                  </aside><!-- /.submit-step -->
-                </div><!-- /.col-md-3 -->
+                </section>
               </section>
-            </section>
+            </div>
+            <div class="col-md-3 col-sm-3">
+              <aside class="submit-step">
+                <figure class="step-number">2</figure>
+                <div class="description">
+                  <h4>联系方式</h4>
+                  <p>请填写准确的联系方式以便对方即时联系您
+                  </p>
+                </div>
+              </aside><!-- /.submit-step -->
+            </div><!-- /.col-md-3 -->
           </div>
         </div>
 

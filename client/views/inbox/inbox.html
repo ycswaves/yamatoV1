@@ -12,26 +12,26 @@
 	<div class="container">
 		<div class="row">
 			<!-- sidebar -->
-			<div class="col-xs-3">
+			<div class="col-xs-2">
 				<section id="sidebar">
 					<header><h3>账户</h3></header>
 					<aside>
 						<ul class="sidebar-navigation">
-							<li><a href="{{pathFor 'profile'}}"><i class="fa fa-user"></i><span>个人简介</span></a></li>
-							<li><a href="{{pathFor 'myproperty' page=1}}"><i class="fa fa-home"></i><span>我的房屋</span></a></li>
-							<li><a href="bookmarked.html"><i class="fa fa-heart"></i><span>反向推送</span></a></li>
-							<li  class="active radius"><a href="{{pathFor 'inbox'}}"><i class="fa fa-inbox"></i><span>收件箱</span></a></li>
+							<li><a href="{{pathFor 'profile'}}"><i class="fa fa-user"></i><span class="hidden-xs">个人简介</span></a></li>
+							<li><a href="{{pathFor 'myproperty' page=1}}"><i class="fa fa-home"></i><span class="hidden-xs">我的房屋</span></a></li>
+							<li><a href="bookmarked.html"><i class="fa fa-heart"></i><span class="hidden-xs">反向推送</span></a></li>
+							<li  class="active radius"><a href="{{pathFor 'inbox'}}"><i class="fa fa-inbox"></i><span class="hidden-xs">收件箱</span></a></li>
 						</ul>
 					</aside>
 				</section><!-- /#sidebar -->
 			</div><!-- /.col-md-3 -->
 			<!-- end Sidebar -->
 			<!-- My Properties -->
-			<div class="col-xs-9">
+			<div class="col-xs-10">
 				<section id="profile">
 					<header><h1>收件箱</h1></header>
 					{{#if topics}}
-					<section class="hbox stretch">
+					<section class="hbox stretch" style="height:470px;margin-bottom:10px">
 						<aside class="col-xs-5 topic-list">
 						<ul class="bg-white list-group no-radius m-b-none m-t-n-xxs list-group-lg">
 							{{#each topics}}
@@ -40,11 +40,11 @@
 									<img src="{{getAvatarByTopicId _id}}" class="img-circle">
 								</div>
 								<div class="clear">
-									<small class="pull-right" style="padding-top: 3px;">{{lastTime}}</small>
-									<strong class="block-none-padding">{{sender}}</strong>
+									<small class="pull-right hidden-xs" style="padding-top: 3px;">{{lastTime}}</small>
+									<strong class="block-none-padding hidden-xs">{{sender}}</strong>
 									<small>
-									{{#if mine}}<i class="fa fa-reply"></i>&nbsp;{{/if}}
-									{{message}}
+									{{#if mine}}<i class="fa fa-reply hidden-xs"></i>&nbsp;{{/if}}
+									<span class="hidden-xs">{{message}}</span>
 									</small>
 								</div>
 							</li>
@@ -64,7 +64,7 @@
 									</div>
 								</div>
 								{{/with}}
-								<div class="messagesContainer" style="height:430px;">
+								<div class="messagesContainer" style="height:340px;">
 								{{#each messages topicId}}
 									{{> messageRow}}
 								{{/each}}
