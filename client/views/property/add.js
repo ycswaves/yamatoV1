@@ -58,17 +58,17 @@ Template.addProperty.events({
   },
 
   'blur input[name="address"]': function(e, t){
+    t.$('#not-found-on-map').remove(); // clear err msg
     var address = t.find('input[name="address"]').value || null
+    if(address == '') return;
+
     CommonHelper.convertAddressAsync(address, function(err, addr){
       if(err){
         t.$('#address-form-group').append(
-        '<span style="color: yellow" class="help-block"><i class="fa fa-exclamation-triangle"></i> '
+        '<span id="not-found-on-map" style="color: red" class="help-block"><i class="fa fa-exclamation-triangle"></i> '
         + '无法在地图上找到此地址，请再次确认' +
         '</span>');
       }
-      // else{
-      //   console.log(addr);
-      // }
     });
   },
 
@@ -214,7 +214,7 @@ Template.addProperty.events({
               NotificationMessages.sendSuccess('发布','房屋发布失败');
               return false;
             }
-            Router.go('myproperty');
+            Router.go('/myproperty/list/1');
           });
         }
 
