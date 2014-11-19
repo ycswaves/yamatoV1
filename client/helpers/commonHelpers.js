@@ -34,5 +34,16 @@ CommonHelper = {
 		var left = (screen.width/2)-(w/2);
 		var top = (screen.height/2)-(h/2);
 		return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top='+top+', left='+left);
-	}
+	},
+
+  'lockForm': function(template){
+    template.$('button, select, input, textarea').attr('disabled','disabled');
+    template.$('button[type="submit"]').append('<i style="margin-left:5px" class="fa fa-spinner fa-spin"></i>')
+  },
+
+  'unlockForm': function(template){
+    template.$('button, select, input, textarea').removeAttr('disabled');
+    template.$('i', 'button[type="submit"]').remove();
+  },
+
 }

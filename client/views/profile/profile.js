@@ -23,6 +23,7 @@ Template.profilePage.rendered = function() {
 Template.profilePage.events({
   'submit #accountProfile' : function(e, t) {
     e.preventDefault();
+    CommonHelper.lockForm(t);
     t.$('span.help-block').remove(); //clear all error msg
 
     var name = t.find('input[name=name]').value
@@ -32,15 +33,15 @@ Template.profilePage.events({
       , about = t.find('textarea[name=about]').value;
 
     var formObj = {
-      "name": CommonHelper.isEmptyString(name)? null : name, 
+      "name": CommonHelper.isEmptyString(name)? null : name,
       "phone": CommonHelper.isEmptyString(phone)? null : phone,
       "qq": CommonHelper.isEmptyString(qq)? null : qq,
       "wechat": CommonHelper.isEmptyString(wechat)? null : wechat,
       "about" : CommonHelper.isEmptyString(about)? null : about
     };
 
-    /* formObjForValidate is for validation only, must insert some 
-       dummy data to non-updatable fields to pass the validation 
+    /* formObjForValidate is for validation only, must insert some
+       dummy data to non-updatable fields to pass the validation
     */
     var formObjForValidate = JSON.parse(JSON.stringify(formObj));
     formObjForValidate.userid = 'dummy';
@@ -65,18 +66,20 @@ Template.profilePage.events({
     var context = UserProfiles.simpleSchema().namedContext('profileForm');
     context.validate(formObjForValidate);
     if(!context.isValid()){
+      CommonHelper.unlockForm(t);
       CommonHelper.showErrorMessageInForm(context, formErrDivID, t);
     }
     else{
       Meteor.call('editProfile', Meteor.userId(), formObj, function(err){
         if(err){
-          NotificationMessages.sendSuccess('账户','用户资料更新失败');
-          return false; 
+          NotificationMessages.sendError('账户','用户资料更新失败');
+          return false;
         }
         else{
           NotificationMessages.sendSuccess('账户','用户资料更新成功');
           //Router.go('propertyDetail', {id: propertyid});
         }
+        CommonHelper.unlockForm(t);
       });
     }
     return false;

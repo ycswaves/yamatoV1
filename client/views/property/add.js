@@ -15,8 +15,10 @@ Template.addProperty.rendered = function() {
 
     init: function () {
         this.on("complete", function (file) {
-          console.log(file); //TODO: check file size again
-          imgTemp.push(file);
+          console.log(file);
+          if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
+            imgTemp.push(file);
+          }
         });
     },
     // accept: function(file, done) {
@@ -74,6 +76,7 @@ Template.addProperty.events({
 
   'submit #propertyForm': function(e, t){
     e.preventDefault();
+    CommonHelper.lockForm(t);
     t.$('span.help-block').remove(); //clear all error msg
 
     /*********************************************
@@ -187,6 +190,7 @@ Template.addProperty.events({
     var context = Properties.simpleSchema().namedContext('propertyForm');
     context.validate(formObj);
     if(!context.isValid()){
+      CommonHelper.unlockForm(t);
       CommonHelper.showErrorMessageInForm(context, formErrDivID, t);
     }
     else {
@@ -283,7 +287,8 @@ AddPropertyController = RouteController.extend({
   data: function () {
     ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
     return {
-      myProperty: null
+      myProperty: null,
+      myProfile: UserProfiles.findOne({userid: Meteor.userId()})
     }
   },
 
@@ -319,7 +324,8 @@ EditPropertyController = RouteController.extend({
       var mrtLineCode = myProp.mrt.substr(0, 2);
       ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLineCode));
       return {
-        myProperty: myProp
+        myProperty: myProp,
+        myProfile: false
       }
     }
     else{

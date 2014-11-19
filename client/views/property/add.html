@@ -265,7 +265,11 @@
                         <div class="form-group" id="contact-person-form-group">
                           <label for="">联系人 *</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" value="{{myProperty.contact.name}}" name="contact-person" >
+                            {{#if myProfile}}
+                              <input type="text" class="form-control" value="{{myProfile.name}}" name="contact-person" >
+                            {{else}}
+                              <input type="text" class="form-control" value="{{myProperty.contact.name}}" name="contact-person" >
+                            {{/if}}
                           </div>
                         </div><!-- /.form-group -->
                       </div><!-- /.col-md-4 -->
@@ -275,7 +279,11 @@
                           <label for="">联系电话 *</label>
                           <div class="input-group">
                             <span class="input-group-addon">+65</span>
-                            <input type="text" class="form-control" value="{{myProperty.contact.phone}}" name="contact-number" >
+                            {{#if myProfile}}
+                              <input type="text" class="form-control" value="{{myProfile.phone}}" name="contact-number" >
+                            {{else}}
+                              <input type="text" class="form-control" value="{{myProperty.contact.phone}}" name="contact-number" >
+                            {{/if}}
                           </div>
                         </div><!-- /.form-group -->
                       </div><!-- /.col-md-4 -->
@@ -286,7 +294,11 @@
                         <div class="form-group" id="contact-qq-form-group">
                           <label for="">QQ</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" value="{{myProperty.contact.qq}}" name="contact-qq">
+                            {{#if myProfile}}
+                              <input type="text" class="form-control" value="{{myProfile.qq}}" name="contact-qq">
+                            {{else}}
+                              <input type="text" class="form-control" value="{{myProperty.contact.qq}}" name="contact-qq">
+                            {{/if}}
                           </div>
                         </div><!-- /.form-group -->
                       </div><!-- /.col-md-4 -->
@@ -295,7 +307,11 @@
                         <div class="form-group" id="contact-wechat-form-group">
                           <label for="">微信 wechat</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" value="{{myProperty.contact.wechat}}" name="contact-wechat">
+                            {{#if myProfile}}
+                              <input type="text" class="form-control" value="{{myProfile.wechat}}" name="contact-wechat">
+                            {{else}}
+                              <input type="text" class="form-control" value="{{myProperty.contact.wechat}}" name="contact-wechat">
+                            {{/if}}
                           </div>
                         </div><!-- /.form-group -->
                       </div><!-- /.col-md-4 -->
@@ -304,7 +320,11 @@
                         <div class="form-group" id="contact-email-form-group">
                           <label for="">Email</label>
                           <div class="input-group">
-                            <input type="text" class="form-control" value="{{myProperty.contact.email}}" name="contact-email">
+                            {{#if myProfile}}
+                              <input type="text" class="form-control" value="{{myProfile.email.address}}" name="contact-email">
+                            {{else}}
+                              <input type="text" class="form-control" value="{{myProperty.contact.email}}" name="contact-email">
+                            {{/if}}
                           </div>
                         </div><!-- /.form-group -->
                       </div><!-- /.col-md-4 -->
