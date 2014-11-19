@@ -1,5 +1,9 @@
 Template.sideSearch.rendered = function() {
   ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
+  
+  $('body').off('click','[data-toggle="offcanvas"]').on('click','[data-toggle="offcanvas"]', function() {
+    $('.row-offcanvas').toggleClass('active')
+  });
 }
 
 Template.sideSearch.events({
