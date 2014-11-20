@@ -73,7 +73,8 @@ ListController = RouteController.extend({
     //   this.render('notFound');
     //   return;
     // }
-
+    //record lastest url
+    Session.set('prevPath', Router.current().url);
     return {
       properties: paginatedDocs,
       totalDocs: totalDocs,
