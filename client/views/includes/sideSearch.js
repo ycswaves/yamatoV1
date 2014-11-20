@@ -67,8 +67,9 @@ Template.sideSearch.events({
         queryArr.push(key+'='+filter[key]);
       }
     }
-console.log(filter);
+    console.log(filter);
     Router.go('properties', {page: 1}, {query: queryArr.join('&')});
+    $('#sideSearchModal').modal('hide');
   }
 });
 
