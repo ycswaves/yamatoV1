@@ -112,14 +112,7 @@ Template.addProperty.events({
           email: t.find('input[name=contact-email]').value || null
         };
 
-      var imageIDs = [];
-      imgTemp.forEach(function(file){
-        // PropertyImages.insert will return file object of inserted image
-        var imageUploaded = PropertyImages.insert(file);
-        imageIDs.push(imageUploaded._id);
-      });
-
-      imgTemp = []; //clear imgTemp
+      
 
     /*********************************************
         data available in edit mode
@@ -132,10 +125,23 @@ Template.addProperty.events({
       if($(this).hasClass('deleted')){
         deletedPhotoArr.push($(this).data('id'));
       }
-      else if(existingPhotosArr.length < Config.getMaxImageUploaded()){
+      else {
         existingPhotosArr.push($(this).data('id'));
       }
     });
+
+
+    var imageIDs = [];
+    imgTemp.forEach(function(file){
+      // PropertyImages.insert will return file object of inserted image
+      if(imageIDs.length + existingPhotosArr.length >= Config.getMaxImageUploaded()){
+        return; //resulted photo should not exceeds max allowd
+      }
+      var imageUploaded = PropertyImages.insert(file);
+      imageIDs.push(imageUploaded._id);
+    });
+
+    imgTemp = []; //clear imgTemp
 
     /*********************************************
         Map form data to schema
@@ -268,11 +274,11 @@ Template.addProperty.helpers({
   },
 
   maxFiles: function(){
-    return Config.maxFiles;
+    return Config.getMaxImageUploaded();
   },
 
   maxFilesize: function(){
-    return Config.maxFilesize;
+    return Config.getMaxImageSize();
   }
 
 });
