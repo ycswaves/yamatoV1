@@ -67,7 +67,7 @@
           <select name="room-type" id="room-type">
             <option value="">出租房间</option>
             {{#each arrayify rtypes}}
-              <option value="{{key}}"  {{ifSelected key currentQuery.roomType}}>{{value}}</option>
+            <option value="{{key}}"  {{ifSelected key currentQuery.roomType}}>{{value}}</option>
             {{/each}}
           </select>
         </div><!-- /.form-group -->
@@ -78,4 +78,16 @@
       </form><!-- /#form-map -->
     </aside><!-- /#edit-search -->
   </section><!-- /#sidebar -->
+</template>
+
+<template name="sideSearchModal">
+  <div id="sideSearchModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-body center" id="wechatModalContent">
+        {{> sideSearch}}
+        </div>
+      </div>
+    </div>
+  </div>
 </template>

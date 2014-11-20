@@ -240,6 +240,12 @@ input[type="text"]:hover, input[type="email"]:hover, input[type="search"]:hover,
   color: white;
 }
 
+.btn-ghost-info, .btn-ghost-info:hover, .btn-ghost-info:focus, .btn-ghost-info:active{
+  background-color: transparent;
+  border-color: #5BC0DE;
+  color: #5BC0DE;
+}
+
 .btn.small, select.small {
   font-size: 12px;
   padding: 5px 12px 5px;

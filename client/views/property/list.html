@@ -11,30 +11,33 @@
 		<div class="container">
 			<div class="row row-offcanvas row-offcanvas-left">
 				<!-- sidebar -->
-				<div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
+				<div class="hidden-xs col-sm-3" id="sidebar" role="navigation">
 					{{> sideSearch}}
 				</div><!-- /.col-md-3 -->
 				<!-- end Sidebar -->
 
 				<!-- Results -->
 				<div class="col-xs-12 col-sm-9">
+          <button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-ghost-info center" style="width:100%">设置搜索条件</button>
 					<section id="results">
-						<header><h1>最新发布</h1></header>
-						<section id="search-filter">
-							<figure><h3><i class="fa fa-search"></i>搜索结果:</h3>
-								<span class="search-count">{{totalDocs}}</span>
-								<div class="sorting">
-									<div class="form-group">
-										<select name="sorting">
-											<option value="">Sort By</option>
-											<option value="1">Lowest price first</option>
-											<option value="2">Highest price first</option>
-											<option value="3">Date added</option>
-										</select>
-									</div><!-- /.form-group -->
-								</div>
-							</figure>
-						</section>
+            <div class="hidden-xs">
+  						<header><h1>最新发布</h1></header>
+  						<section id="search-filter">
+  							<figure><h3><i class="fa fa-search"></i>搜索结果:</h3>
+  								<span class="search-count">{{totalDocs}}</span>
+  								<div class="sorting">
+  									<div class="form-group">
+  										<select name="sorting">
+  											<option value="">Sort By</option>
+  											<option value="1">Lowest price first</option>
+  											<option value="2">Highest price first</option>
+  											<option value="3">Date added</option>
+  										</select>
+  									</div><!-- /.form-group -->
+  								</div>
+  							</figure>
+  						</section>
+            </div>
 						<section id="properties" class="display-lines">
 							{{#each properties}}
 
@@ -94,4 +97,5 @@
 			</div><!-- /.row -->
 		</div><!-- /.container -->
   </div>
+  {{> sideSearchModal}}
 </template>
