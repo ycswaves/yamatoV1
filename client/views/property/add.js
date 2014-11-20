@@ -15,8 +15,10 @@ Template.addProperty.rendered = function() {
 
     init: function () {
         this.on("complete", function (file) {
-          console.log(file); //TODO: check file size again
-          imgTemp.push(file);
+          console.log(file);
+          if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
+            imgTemp.push(file);
+          }
         });
     },
     // accept: function(file, done) {
@@ -58,22 +60,23 @@ Template.addProperty.events({
   },
 
   'blur input[name="address"]': function(e, t){
+    t.$('#not-found-on-map').remove(); // clear err msg
     var address = t.find('input[name="address"]').value || null
+    if(address == '') return;
+
     CommonHelper.convertAddressAsync(address, function(err, addr){
       if(err){
         t.$('#address-form-group').append(
-        '<span style="color: yellow" class="help-block"><i class="fa fa-exclamation-triangle"></i> '
+        '<span id="not-found-on-map" style="color: red" class="help-block"><i class="fa fa-exclamation-triangle"></i> '
         + '无法在地图上找到此地址，请再次确认' +
         '</span>');
       }
-      // else{
-      //   console.log(addr);
-      // }
     });
   },
 
   'submit #propertyForm': function(e, t){
     e.preventDefault();
+    CommonHelper.lockForm(t);
     t.$('span.help-block').remove(); //clear all error msg
 
     /*********************************************
@@ -109,14 +112,7 @@ Template.addProperty.events({
           email: t.find('input[name=contact-email]').value || null
         };
 
-      var imageIDs = [];
-      imgTemp.forEach(function(file){
-        // PropertyImages.insert will return file object of inserted image
-        var imageUploaded = PropertyImages.insert(file);
-        imageIDs.push(imageUploaded._id);
-      });
-
-      imgTemp = []; //clear imgTemp
+      
 
     /*********************************************
         data available in edit mode
@@ -129,10 +125,23 @@ Template.addProperty.events({
       if($(this).hasClass('deleted')){
         deletedPhotoArr.push($(this).data('id'));
       }
-      else if(existingPhotosArr.length < Config.getMaxImageUploaded()){
+      else {
         existingPhotosArr.push($(this).data('id'));
       }
     });
+
+
+    var imageIDs = [];
+    imgTemp.forEach(function(file){
+      // PropertyImages.insert will return file object of inserted image
+      if(imageIDs.length + existingPhotosArr.length >= Config.getMaxImageUploaded()){
+        return; //resulted photo should not exceeds max allowd
+      }
+      var imageUploaded = PropertyImages.insert(file);
+      imageIDs.push(imageUploaded._id);
+    });
+
+    imgTemp = []; //clear imgTemp
 
     /*********************************************
         Map form data to schema
@@ -187,6 +196,7 @@ Template.addProperty.events({
     var context = Properties.simpleSchema().namedContext('propertyForm');
     context.validate(formObj);
     if(!context.isValid()){
+      CommonHelper.unlockForm(t);
       CommonHelper.showErrorMessageInForm(context, formErrDivID, t);
     }
     else {
@@ -214,7 +224,7 @@ Template.addProperty.events({
               NotificationMessages.sendSuccess('发布','房屋发布失败');
               return false;
             }
-            Router.go('myproperty');
+            Router.go('/myproperty/list/1');
           });
         }
 
@@ -264,11 +274,11 @@ Template.addProperty.helpers({
   },
 
   maxFiles: function(){
-    return Config.maxFiles;
+    return Config.getMaxImageUploaded();
   },
 
   maxFilesize: function(){
-    return Config.maxFilesize;
+    return Config.getMaxImageSize();
   }
 
 });
@@ -283,7 +293,8 @@ AddPropertyController = RouteController.extend({
   data: function () {
     ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
     return {
-      myProperty: null
+      myProperty: null,
+      myProfile: UserProfiles.findOne({userid: Meteor.userId()})
     }
   },
 
@@ -319,7 +330,8 @@ EditPropertyController = RouteController.extend({
       var mrtLineCode = myProp.mrt.substr(0, 2);
       ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLineCode));
       return {
-        myProperty: myProp
+        myProperty: myProp,
+        myProfile: false
       }
     }
     else{
