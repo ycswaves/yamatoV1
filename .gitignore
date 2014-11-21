@@ -46,6 +46,7 @@ packages/
 kadira.js
 mup.json
 settings.json
+oauth.js
 *.lock
 awsS3Config.js
 sftp-config.json
