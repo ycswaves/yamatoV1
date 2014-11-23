@@ -12,14 +12,14 @@
 	<div class="container">
 		<div class="row">
 			<!-- sidebar -->
-			<div class="col-xs-2">
+			<div class="col-xs-2 col-sm-3">
 				<section id="sidebar">
 					<header><h3>账户</h3></header>
 					<aside>
 						<ul class="sidebar-navigation">
 							<li><a href="{{pathFor 'profile'}}"><i class="fa fa-user"></i><span class="hidden-xs">个人简介</span></a></li>
 							<li><a href="{{pathFor 'myproperty' page=1}}"><i class="fa fa-home"></i><span class="hidden-xs">我的房屋</span></a></li>
-							<li><a href="bookmarked.html"><i class="fa fa-heart"></i><span class="hidden-xs">反向推送</span></a></li>
+							<!-- <li><a href="bookmarked.html"><i class="fa fa-heart"></i><span class="hidden-xs">反向推送</span></a></li> -->
 							<li  class="active radius"><a href="{{pathFor 'inbox'}}"><i class="fa fa-inbox"></i><span class="hidden-xs">收件箱</span></a></li>
 						</ul>
 					</aside>
@@ -27,7 +27,7 @@
 			</div><!-- /.col-md-3 -->
 			<!-- end Sidebar -->
 			<!-- My Properties -->
-			<div class="col-xs-10">
+			<div class="col-xs-10 col-sm-9">
 				<section id="profile">
 					<header><h1>收件箱</h1></header>
 					{{#if topics}}

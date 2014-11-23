@@ -1,0 +1,56 @@
+<template name="salesSideSearch">
+  <section id="sidebar">
+    <aside id="edit-search">
+      <header><h3>搜索</h3></header>
+      <form role="form" id="search-form-sidebar" class="form-search">
+        <div class="form-group">
+          <div class="form-group">
+            <select name="categories" id="categories">
+              <option value="">任意产品类型</option>
+              {{#each arrayify categories}}
+              <option value="{{key}}" {{ifSelected key currentQuery.cat}}>{{value.niceName}}</option>
+              {{/each}}
+            </select>
+          </div><!-- /.form-group -->
+
+          <div class="form-group">
+            <select name="subs" id="subs">
+              <option value="">任意子类型</option>
+              {{#each arrayify subs}}
+              <option value="{{key}}" {{ifSelected key currentQuery.sub}}>{{key}} - {{value}}</option>
+              {{/each}}
+            </select>
+          </div><!-- /.form-group -->
+
+          <select name="district">
+            <option value="">任意区域</option>
+            {{#each arrayify district}}
+            <option value="{{key}}" {{ifSelected key currentQuery.district}}>{{key}} - {{value}}</option>
+            {{/each}}
+          </select>
+        </div><!-- /.form-group -->
+
+        <div class="form-group">
+          <select name="mrtlines" id="mrtlines">
+            <option value="">任意地铁线</option>
+            {{#each arrayify mrtlines}}
+            <option value="{{key}}" {{ifSelected key currentQuery.mrtLines}}>{{value.niceName}}</option>
+            {{/each}}
+          </select>
+        </div><!-- /.form-group -->
+
+        <div class="form-group">
+          <select name="stations" id="stations">
+            <option value="">站名</option>
+            {{#each arrayify stations}}
+            <option value="{{key}}" {{ifSelected key currentQuery.mrt}}>{{key}} - {{value}}</option>
+            {{/each}}
+          </select>
+        </div><!-- /.form-group -->
+        <div class="form-group">
+          <button type="submit" class="btn btn-default">提交</button>
+        </div><!-- /.form-group -->
+      </form><!-- /#form-map -->
+    </aside><!-- /#edit-search -->
+  </section><!-- /#sidebar -->
+</template>

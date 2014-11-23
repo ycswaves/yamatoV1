@@ -17,7 +17,7 @@
         <ul class="nav navbar-nav navbar-right">
           {{#if currentUser}}
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle navlink navpadding" data-toggle="dropdown">
+            <a href="javascript:void(0)" class="pointer dropdown-toggle navlink navpadding" data-toggle="dropdown">
               {{#if messageCount}}
               <i class="fa fa-bell-o" id="messageHelper"></i>
               <i class="fa fa-circle text-danger" style="font-size: 5px; position: relative; top:-7px; left: -5px"></i>
@@ -31,11 +31,11 @@
               {{> messages}}
             </ul>
           </li>
-          <li><a href="/properties/add" class="navlink navpadding"><i class="fa fa-edit"></i>&nbsp;发布信息</a></li>
+          <li><a href="/properties/add" class="pointer navlink navpadding"><i class="fa fa-edit"></i>&nbsp;发布信息</a></li>
           <!-- <li><a href="#" class="navlink" id="signout"><i class="fa fa-power-off"></i>&nbsp;登出</a></li> -->
           {{#with getUserProfile loggedInUser._id}}
           <li class="dropdown">
-            <a href="#" class="dropdown-toggle navlink" data-toggle="dropdown">
+            <a href="javascript:void(0)" class="dropdown-toggle navlink pointer" data-toggle="dropdown">
               <img src="{{avatar}}" class="image img-circle" width="32px"/>
             </a>
             <ul class="bs dropdown-menu" role="menu" style="padding-top: 0px; padding-bottom: 0px;">
