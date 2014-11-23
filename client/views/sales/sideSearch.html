@@ -1,14 +1,23 @@
-<template name="sideSearchSecondhand">
+<template name="salesSideSearch">
   <section id="sidebar">
     <aside id="edit-search">
       <header><h3>搜索</h3></header>
       <form role="form" id="search-form-sidebar" class="form-search">
         <div class="form-group">
           <div class="form-group">
-            <select name="property-type">
-              <option value="">任意物品类型</option>
-              {{#each arrayify ptypes}}
-              <option value="{{key}}" {{ifSelected key currentQuery.propertyType}}>{{value}}</option>
+            <select name="categories" id="categories">
+              <option value="">任意产品类型</option>
+              {{#each arrayify categories}}
+              <option value="{{key}}" {{ifSelected key currentQuery.cat}}>{{value.niceName}}</option>
+              {{/each}}
+            </select>
+          </div><!-- /.form-group -->
+
+          <div class="form-group">
+            <select name="subs" id="subs">
+              <option value="">任意子类型</option>
+              {{#each arrayify subs}}
+              <option value="{{key}}" {{ifSelected key currentQuery.sub}}>{{key}} - {{value}}</option>
               {{/each}}
             </select>
           </div><!-- /.form-group -->

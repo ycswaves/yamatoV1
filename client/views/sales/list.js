@@ -1,9 +1,9 @@
-Template.secondhandListing.rendered = function() {
+Template.salesListing.rendered = function() {
   render();
 }
 
-SecondhandListController = RouteController.extend({
-  template: 'secondhandListing'
+SalesListController = RouteController.extend({
+  template: 'salesListing'
   // waitOn: function () {
   //   return Meteor.subscribe("properties");
   // },

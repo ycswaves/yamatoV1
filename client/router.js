@@ -159,9 +159,9 @@ Router.map(function () {
     }
   });
   
-  this.route('secondhand', {
-    path: '/secondhand/list',
-    controller: 'SecondhandListController',
+  this.route('sales', {
+    path: '/sales/list',
+    controller: 'SalesListController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '二手产品列表';
     }
