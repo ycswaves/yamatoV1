@@ -13,7 +13,7 @@ render = function(){
     }
 
     var bootstrapSelect = $('.bootstrap-select');
-    var dropDownMenu = $('.dropdown-menu');
+    var dropDownMenu = $('.dropdown-menu').not('.bs');
 
     bootstrapSelect.on('shown.bs.dropdown', function () {
         dropDownMenu.removeClass('animation-fade-out');
@@ -72,7 +72,7 @@ render = function(){
     if ($('.radio').length > 0) {
         $('input').iCheck();
     }
-    
+
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     // On RESIZE
     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -98,10 +98,6 @@ render = function(){
     //  Show All button
 
         showAllButton();
-
-    //  Draw thumbnails in the footer
-
-        drawFooterThumbnails();
 
     //  Show counter after appear
 
@@ -323,40 +319,6 @@ var equalHeight = function(container){
         }
         for (currentDiv = 0 ; currentDiv < rowDivs.length ; currentDiv++) {
             rowDivs[currentDiv].height(currentTallest);
-        }
-    });
-}
-
-//  Creating property thumbnails in the footer
-
-var drawFooterThumbnails = function(){
-
-    var i = 0;
-    var rows = 1; // how many rows to display, default = 1
-    var thumbnailsPerRow = 1; // how many thumbnails per row to display, default = 1
-
-    $.getScript("/js/locations.js", function(){
-        // Create thumbnail function
-        function createThumbnail() {
-            for (i = 0; i < rows * thumbnailsPerRow; i++) {
-                $('.footer-thumbnails').append("<div class='property-thumbnail'><a href='" + locations[i][5] + "'><img src="  + locations[i][6] + "></a></div>");
-                var $thumbnail = $('.footer-thumbnails .property-thumbnail');
-                $thumbnail.css('width', 100/thumbnailsPerRow + '%');
-            }
-        }
-
-        if ($(window).width() < 768) {
-            rows = 1;
-            thumbnailsPerRow = 5;
-            //createThumbnail();
-        } else if ($(window).width() >= 768 && $(window).width() < 1199 ) {
-            rows = 1;
-            thumbnailsPerRow = 10;
-            createThumbnail();
-        } else if ($(window).width() >= 1200) {
-            rows = 1;
-            thumbnailsPerRow = 20;
-            createThumbnail();
         }
     });
 }
