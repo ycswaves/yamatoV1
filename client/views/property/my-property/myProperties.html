@@ -41,7 +41,7 @@
                     <th>我的房屋</th>
                     <th style="width:35%"></th>
                     <th>发布时间</th>
-                    <th>浏览</th>
+                    <th>状态</th>
                     <th>操作</th>
                   </tr>
                   </thead>
@@ -67,10 +67,15 @@
                           </div>
                         </td>
                         <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
-                        <td>{{views}}</td>
+                        <td>
+                          <select name="status">
+                            {{#each arrayify propertyStatus}}
+                            <option value="{{key}}" {{ifSelected key properties.status}}>{{value}}</option>
+                            {{/each}}
+                          </select>
+                        </td>
                         <td class="actions">
-                          <a href="{{pathFor 'editProperty' id=_id}}" class="edit"><i class="fa fa-pencil"></i>修改</a>
-                          <a href="#" class="edit close-post" data-id="{{_id}}"><i class="fa fa-ban"></i>关闭</a>
+                          <a href="{{pathFor 'editProperty' id=_id}}" class="edit"><i class="fa fa-pencil"></i>编辑</a>
                         </td>
                       </tr>
                       {{/each}}
@@ -96,10 +101,15 @@
                           </div>
                         </td>
                         <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
-                        <td>{{views}}</td>
+                        <td>
+                          <select name="status">
+                            {{#each arrayify propertyStatus}}
+                            <option value="{{key}}" {{ifSelected key properties.status}}>{{value}}</option>
+                            {{/each}}
+                          </select>
+                        </td>
                         <td class="actions">
-                          <a href="{{pathFor 'editProperty' id=_id}}" class="edit"><i class="fa fa-pencil"></i>修改</a>
-                          <a href="#" class="edit"><i class="fa fa-ban"></i>关闭</a>
+                          <a href="{{pathFor 'editProperty' id=_id}}" class="edit"><i class="fa fa-pencil"></i>编辑</a>
                         </td>
                       </tr>
                       {{/each}}
