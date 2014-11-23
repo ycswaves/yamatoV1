@@ -1,5 +1,5 @@
 Template.myProperties.rendered = function() {
-    render();
+  render();
 }
 
 Template.myProperties.events({
@@ -18,22 +18,16 @@ Template.myProperties.events({
   }
 });
 
-// Template.myProperties.helpers({
-//   properties: function(){
-//     var res = Properties.find(
-//       {author: Meteor.userId()},
-//       {_id: 1, address:1, price:1, photos:1, createdAt: 1, sort: {createdAt: -1} }
-//     );
-//     return res || false;
-//   }
-
-//   //TODO: handle no property case
-// });
+Template.myProperties.helpers({
+  propertyStatus: function(){
+    return Config.getAllPropertyStatus();
+  }
+});
 
 MyPropertiesController = RouteController.extend({
   template: 'myProperties',
   waitOn: function () {
-	return (Meteor.subscribe('userData') && Meteor.subscribe("myProperty", Meteor.userId()));
+	  return (Meteor.subscribe('userData') && Meteor.subscribe("myProperty", Meteor.userId()));
   },
 
   action: function () {

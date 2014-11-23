@@ -58,14 +58,7 @@ var roomTypes = {
   "common": "普通房",
   "other": "其他"
 };
-/*
-<option value="100">$100 +</option>
-            <option value="500">$500 +</option>
-            <option value="1000">$1,000 +</option>
-            <option value="2000">$2,000 +</option>
-            <option value="3000">$3,000 +</option>
-            <option value="4000">$4,000 +</option>
-            */
+
 var priceRange = {
   "500": "< $500",
   "1000": "< $1,000",
@@ -212,6 +205,21 @@ var mrtList = {
   }
 };
 
+// correspond to properties_col status allowd allowedValues
+var userPropertyStatus = {
+  "open": "已发布",
+  "closed": "关闭",
+  "deal": "已成交"
+}
+
+var adminPropertyStatus = {
+  "open": "已发布",
+  "closed": "关闭",
+  "deal": "已成交",
+  "expired": "过期",
+  "violate": "违规"
+}
+
 
 var agencyList = {
   "DWG"       : "DWG",
@@ -253,6 +261,10 @@ Config.getRoomTypes = function(){
 Config.getAgency = function(line){
   return agencyList;
 };
+
+Config.getAllPropertyStatus = function(){
+  return userPropertyStatus;
+}
 
 Config.getPriceRange = function(){
   return priceRange;

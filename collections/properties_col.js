@@ -162,7 +162,7 @@ Schemas.Property = new SimpleSchema({
           return 'open';
         }
       },
-    allowedValues: ['open', 'closed', 'expired'],
+    allowedValues: ['open', 'closed', 'expired', 'deal', 'violate'],
     optional: true
   },
   views: {
