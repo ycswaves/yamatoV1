@@ -180,32 +180,3 @@ Config.getStationsByLine = function(line){
   if(line == undefined) line = 'NS';
   return mrtList[line.toUpperCase()].stations || mrtList.NS.stations;
 };
-
-Config.getFacilities = function(){
-  return propertyFacilities;
-};
-
-Config.getPropertyTypes = function(){
-  return propertyTypes;
-}
-
-Config.getRoomTypes = function(){
-  return roomTypes;
-}
-
-Config.getAgency = function(line){
-  return agencyList;
-};
-
-Config.getPriceRange = function(){
-  return priceRange;
-}
-
-Config.getMaxImageUploaded = function(){
-  return 12;
-}
-
-Config.getMaxImageSize = function(){
-  return 2; // Metric: MB
-}
-

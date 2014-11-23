@@ -35,7 +35,23 @@ var priceRange = {
   "3000": "< $3,000",
   "4000": "< $4,000",
   "10000": "< $10,000"
-};
+}
+
+// correspond to properties_col status allowd allowedValues
+var userPropertyStatus = {
+  "open": "已发布",
+  "closed": "关闭",
+  "deal": "已成交"
+}
+
+var adminPropertyStatus = {
+  "open": "已发布",
+  "closed": "关闭",
+  "deal": "已成交",
+  "expired": "过期",
+  "violate": "违规"
+}
+
 
 var agencyList = {
   "DWG"       : "DWG",
@@ -46,7 +62,6 @@ var agencyList = {
   "PropNex"   : "PropNex",
   "HSR"       : "HSR"
 };
-
 
 Config.getFacilities = function(){
   return propertyFacilities;
@@ -64,6 +79,10 @@ Config.getAgency = function(line){
   return agencyList;
 };
 
+Config.getAllPropertyStatus = function(){
+  return userPropertyStatus;
+}
+
 Config.getPriceRange = function(){
   return priceRange;
 }
@@ -75,3 +94,4 @@ Config.getMaxImageUploaded = function(){
 Config.getMaxImageSize = function(){
   return 2; // Metric: MB
 }
+
