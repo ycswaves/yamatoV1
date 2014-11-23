@@ -1,16 +1,14 @@
 Template.sideSearch.rendered = function() {
-  ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
-  
-  $('body').off('click','[data-toggle="offcanvas"]').on('click','[data-toggle="offcanvas"]', function() {
-    $('.row-offcanvas').toggleClass('active')
-  });
+  //ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
 }
 
 Template.sideSearch.events({
   'change #mrtlines': function(e, t){
     e.preventDefault();
     var mrtLine = t.find('select[name="mrtlines"]').value;
-    ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLine));
+    if(mrtLine != ''){
+      ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLine));
+    }
     Deps.flush();
     t.$('#stations').selectpicker('refresh');
   },
@@ -28,7 +26,7 @@ Template.sideSearch.events({
 
   'submit #search-form-sidebar': function(e, t){
     e.preventDefault();
-
+    e.stopImmediatePropagation();
     /*********************************************
         Retrieve form data
     *********************************************/
@@ -67,7 +65,7 @@ Template.sideSearch.events({
         queryArr.push(key+'='+filter[key]);
       }
     }
-    console.log(filter);
+    //console.log(filter);
     Router.go('properties', {page: 1}, {query: queryArr.join('&')});
     $('#sideSearchModal').modal('hide');
   }
