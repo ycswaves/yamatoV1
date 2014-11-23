@@ -29,52 +29,6 @@ var districtList = {
   "D28": "Seletar / Yio Chu Kang"
 };
 
-var propertyFacilities = {
-  "furnished": "精装修",
-  "noLandlord": "无房东",
-  "aircon": "空调",
-  "washer": "洗衣机",
-  "dryer": "烘干机",
-  "fridge": "冰箱",
-  "internet": "网络",
-  "microwave": "微波炉",
-  "allowCooking": "可煮",
-  "swimmingPool": "游泳池",
-  "tennisCourt": "网球场",
-  "cableTV": "有线电视",
-  "balcony": "阳台",
-  "parkingSlot": "停车场",
-  "gym": "健身房"
-};
-
-var propertyTypes = {
-  "HDB": "组屋",
-  "Condo": "公寓",
-  "Landed": "别墅"
-};
-
-var roomTypes = {
-  "master": "主人房",
-  "common": "普通房",
-  "other": "其他"
-};
-/*
-<option value="100">$100 +</option>
-            <option value="500">$500 +</option>
-            <option value="1000">$1,000 +</option>
-            <option value="2000">$2,000 +</option>
-            <option value="3000">$3,000 +</option>
-            <option value="4000">$4,000 +</option>
-            */
-var priceRange = {
-  "500": "< $500",
-  "1000": "< $1,000",
-  "2000": "< $2,000",
-  "3000": "< $3,000",
-  "4000": "< $4,000",
-  "10000": "< $10,000"
-}
-
 var mrtList = {
   "NS": {
     "niceName": "NS - 南北线",
@@ -210,17 +164,6 @@ var mrtList = {
       "DT19": "Chinatown"
     }
   }
-};
-
-
-var agencyList = {
-  "DWG"       : "DWG",
-  "ERA"       : "ERA",
-  "OrangeTee" : "OrangeTee",
-  "SLP"       : "SLP",
-  "Huttons"   : "Huttons",
-  "PropNex"   : "PropNex",
-  "HSR"       : "HSR"
 };
 
 Config = {};

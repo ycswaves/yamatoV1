@@ -1,0 +1,30 @@
+<template name="secondhandListing">
+  <div class="page-gradient">
+    <!-- Breadcrumb -->
+    <div class="container">
+      <ol class="breadcrumb">
+        <li class="active"><a href="#">首页</a></li>
+      </ol>
+    </div>
+    <!-- end Breadcrumb -->
+
+    <div class="container">
+      <div class="row">
+        <!-- sidebar -->
+        <div class="hidden-xs col-sm-3" id="sidebar" role="navigation">
+          {{> sideSearchSecondhand}}
+        </div><!-- /.col-md-3 -->
+        <!-- end Sidebar -->
+
+        <!-- Results -->
+        <div class="col-xs-12 col-sm-9">
+          <section id="results">
+            <div class="hidden-xs">
+              <header><h1>最新发布</h1></header>
+            </div>
+          </section>
+        </div>
+      </div>
+    </div>
+    </div>
+</template>
