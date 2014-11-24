@@ -45,6 +45,24 @@ var agencyList = {
   "HSR"       : "HSR"
 };
 
+var propertyFacilities = {
+  "furnished": "精装修",
+  "noLandlord": "无房东",
+  "aircon": "空调",
+  "washer": "洗衣机",
+  "dryer": "烘干机",
+  "fridge": "冰箱",
+  "internet": "网络",
+  "microwave": "微波炉",
+  "allowCooking": "可煮",
+  "swimmingPool": "游泳池",
+  "tennisCourt": "网球场",
+  "cableTV": "有线电视",
+  "balcony": "阳台",
+  "parkingSlot": "停车场",
+  "gym": "健身房"
+};
+
 Config.getFacilities = function(){
   return propertyFacilities;
 };
