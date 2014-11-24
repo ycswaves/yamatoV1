@@ -3,24 +3,18 @@ Template.myProperties.rendered = function() {
 }
 
 Template.myProperties.events({
-  'click ul.nav-tabs > li > a': function(e, t){
-    var clickedLi = t.$(e.target).parent()
-      , otherLi = clickedLi.siblings('li');
+  // 'click ul.nav-tabs > li > a': function(e, t){
+  //   var clickedLi = t.$(e.target).parent()
+  //     , otherLi = clickedLi.siblings('li');
 
-    otherLi.removeClass('active');
-    clickedLi.addClass('active');
-  },
+  //   otherLi.removeClass('active');
+  //   clickedLi.addClass('active');
+  // },
 
   'click a.close-post': function(e, t){
     var propertyId = t.$(e.target).data('id');
     //console.log(propertyId);
     Meteor.call('closeProperty', propertyId);
-  }
-});
-
-Template.myProperties.helpers({
-  propertyStatus: function(){
-    return Config.getAllPropertyStatus();
   }
 });
 

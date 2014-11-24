@@ -67,6 +67,7 @@ Handlebars.registerHelper('pageHelper', function(currentPage, pageNum){
 
 //used in form editing to pre-select options
 Handlebars.registerHelper('ifSelected', function(optVal, formVal){
+  console.log(optVal, formVal);
   if(!formVal) return;
   if(typeof formVal == 'object'){ // in case formVal is an Array (e.g property.facilities)
     if(formVal.indexOf(optVal) > -1)
