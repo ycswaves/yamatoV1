@@ -1508,7 +1508,7 @@ ul.list-links li a:hover {
   color: #fff;
   position: absolute;
   top: 0;
-  right: 0;
+  right: 15px;
 }
 
 .search-box .advanced-search h3 {
