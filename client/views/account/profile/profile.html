@@ -28,11 +28,12 @@
 				<!-- My Properties -->
 				<div class="col-xs-10 col-sm-9">
 					<section id="profile">
+						{{#with profile}}
 						<header><h1>个人简介</h1></header>
 						<div class="account-profile">
 							<div class="row">
 								<div class="col-md-3 col-sm-3">
-									<img alt="" class="image radius" src="{{profile.avatar}}">
+									<img alt="" class="image radius" src="{{getAvatarByUserId userid}}">
 								</div>
 								<div class="col-md-9 col-sm-9">
 									<form role="form" id="accountProfile">
@@ -41,36 +42,38 @@
 											<dl class="contact-fields">
 												<dt><label for="form-account-email">邮箱:</label></dt>
 												<dd>
-													<label>{{profile.email.address}}
-														{{#if profile.email.verified}}
+													{{#with getEmailAndStatusByUserId userid}}
+													<label>{{address}}
+														{{#if verified}}
 														<i class="fa fa-check-circle text-success"></i>
 														{{else}}
-														<span class="text-danger pointer" id="verifyEmail">[点击发送验证邮件]</span>
+														<span class="text-danger pointer" id="verifyEmail">[验证]</span>
 														{{/if}}
 													</label>
+													{{/with}}
 												</dd>
 												<dt><label for="form-account-name">名字:</label></dt>
 												<dd><div class="form-group" >
-													<input type="text" class="form-control" id="form-account-name" name="name" value="{{profile.name}}">
+													<input type="text" class="form-control" id="form-account-name" name="name" value="{{getUsernameByUserId userid}}">
 												</div><!-- /.form-group --></dd>
 												<dt><label for="form-account-phone">电话:</label></dt>
 												<dd><div class="form-group" id="phone-form-group">
-													<input type="text" class="form-control" id="form-account-phone" name="phone" value="{{profile.phone}}">
+													<input type="text" class="form-control" id="form-account-phone" name="phone" value="{{phone}}">
 												</div><!-- /.form-group --></dd>
 												<dt><label for="form-account-qq">QQ:</label></dt>
 												<dd><div class="form-group" id="qq-form-group">
-													<input type="text" class="form-control" id="form-account-qq" name="qq" value="{{profile.qq}}">
+													<input type="text" class="form-control" id="form-account-qq" name="qq" value="{{qq}}">
 												</div><!-- /.form-group --></dd>
 												<dt><label for="form-account-wechat">微信:</label></dt>
 												<dd><div class="form-group" id="wechat-form-group">
-													<input type="text" class="form-control" id="form-account-wechat" name="wechat" value="{{profile.wechat}}">
+													<input type="text" class="form-control" id="form-account-wechat" name="wechat" value="{{wechat}}">
 												</div><!-- /.form-group --></dd>
 											</dl>
 										</section>
 										<section id="about-me">
 											<h3>关于我</h3>
 											<div class="form-group">
-												<textarea class="form-control" id="form-contact-agent-message" rows="5" name="about">{{profile.about}}</textarea>
+												<textarea class="form-control" id="form-contact-agent-message" rows="5" name="about">{{about}}</textarea>
 											</div><!-- /.form-group -->
 											<div class="form-group clearfix">
 												<button type="submit" class="btn pull-right btn-default" id="account-submit">保存变更</button>
@@ -80,6 +83,7 @@
 								</div><!-- /.col-md-9 -->
 							</div><!-- /.row -->
 						</div><!-- /.account-profile -->
+						{{/with}}
 					</section><!-- /#profile -->
 				</div><!-- /.col-md-9 -->
 				<!-- end My Properties -->

@@ -147,14 +147,11 @@ Router.map(function () {
           isNotOwner = true;
         }
         bannerImage = property.photos[0];
-        Meteor.subscribe("userProfile", property.author);
-        var userInfo = UserProfiles.findOne({userid: property.author});
       }
       return {
         property: property,
         isNotOwner: isNotOwner,
-        bannerImage: bannerImage,
-        userInfo: userInfo
+        bannerImage: bannerImage
       }
     }
   });

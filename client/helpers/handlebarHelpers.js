@@ -6,20 +6,65 @@ Handlebars.registerHelper('arrayify', function(obj){
   return result;
 });
 
-Handlebars.registerHelper('getUsername', function(loggedInUser){
-  if(loggedInUser.username) return loggedInUser.username;
-  if(loggedInUser.services){
-    var service = loggedInUser.services;
-    if(service.google){
-      return service.google.name;
+Handlebars.registerHelper('getEmailAndStatusByUserId', function(userId){
+  var loggedInUser = Meteor.users.findOne({_id:userId});
+  if (typeof loggedInUser != "undefined") {
+    if(loggedInUser.services){
+      var service = loggedInUser.services;
+      if(service.google){
+        return {address:service.google.email, verified:true};
+      }
+      else if (service.facebook){
+        return {address:service.facebook.email, verified:true};
+      }
     }
-    else if (service.facebook){
-      return service.facebook.name;
-    } else {
-      return 'user';
-    }
+    return loggedInUser.emails[0];
   }
 });
+
+Handlebars.registerHelper('getUsernameByUserId', function(userId){
+  var loggedInUser = Meteor.users.findOne({_id:userId});
+  if (typeof loggedInUser != "undefined") {
+    if(loggedInUser.username) return loggedInUser.username;
+    if(loggedInUser.services){
+      var service = loggedInUser.services;
+      if(service.google){
+        return service.google.name;
+      }
+      else if (service.facebook){
+        return service.facebook.name;
+      }
+    }
+  }
+  //return default
+  return 'user';
+});
+
+Handlebars.registerHelper('getAvatarByUserId', function(userId){
+  Meteor.subscribe("userProfile", userId);
+  var profile = UserProfiles.findOne({userid: userId});
+  if (typeof profile != 'undefined') {
+    if (profile.avatar != null) {
+      return profile.avatar;
+    }
+    else {
+      var user = Meteor.users.findOne({_id:userId});
+      if (user.services) {
+        var service = user.services;
+        if(service.google){
+          return service.google.picture;
+        }
+        else if (service.facebook){
+          return 'https://graph.facebook.com/'+service.facebook.id+'/picture?width=165&height=165';
+        }
+      }
+    }
+  }
+  //google default avatar
+  return 'https://lh3.googleusercontent.com/-_vpNdZdH7QI/AAAAAAAAAAI/AAAAAAAAAAA/fmpFxHRfvb0/s96-c/photo.jpg';
+});
+
+
 
 Handlebars.registerHelper('getAvatarByTopicId', function(topicId){
   var topic = Topics.findOne({_id:topicId});
@@ -32,11 +77,24 @@ Handlebars.registerHelper('getAvatarByTopicId', function(topicId){
   Meteor.subscribe("userProfile", userId);
   var profile = UserProfiles.findOne({userid: userId});
   if (typeof profile != 'undefined') {
-    return profile.avatar;
+    if (profile.avatar != null) {
+      return profile.avatar;
+    }
+    else {
+      var user = Meteor.users.findOne({_id:userId});
+      if (user.services) {
+        var service = user.services;
+        if(service.google){
+          return service.google.picture;
+        }
+        else if (service.facebook){
+          return 'https://graph.facebook.com/'+service.facebook.id+'/picture?width=165&height=165';
+        }
+      }
+    }
   }
-  else {
-    return false;
-  }
+  //google default avatar
+  return 'https://lh3.googleusercontent.com/-_vpNdZdH7QI/AAAAAAAAAAI/AAAAAAAAAAA/fmpFxHRfvb0/s96-c/photo.jpg';
 });
 
 Handlebars.registerHelper('getUserProfile', function(userId){
@@ -129,7 +187,7 @@ Handlebars.registerHelper('transDistr',function(val){
 // helper for MRT
 Handlebars.registerHelper('transMRT',function(val){
   var allMRTs = Config.getMRT()
-    , line = val.substr(0, 2);
+  , line = val.substr(0, 2);
   return allMRTs[line]['stations'][val];
 });
 

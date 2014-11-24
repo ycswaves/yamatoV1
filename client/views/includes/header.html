@@ -33,20 +33,20 @@
           </li>
           <li><a href="/properties/add" class="pointer navlink navpadding"><i class="fa fa-edit"></i>&nbsp;发布信息</a></li>
           <!-- <li><a href="#" class="navlink" id="signout"><i class="fa fa-power-off"></i>&nbsp;登出</a></li> -->
-          {{#with getUserProfile loggedInUser._id}}
+          {{#with loggedInUser._id}}
           <li class="dropdown">
             <a href="javascript:void(0)" class="dropdown-toggle navlink pointer" data-toggle="dropdown">
-              <img src="{{avatar}}" class="image img-circle" width="32px"/>
+              <img src="{{getAvatarByUserId this}}" class="image img-circle" width="32px"/>
             </a>
             <ul class="bs dropdown-menu" role="menu" style="padding-top: 0px; padding-bottom: 0px;">
               <div class="popover-content" style="padding:0px">
                 <div class="profile-box">
                   <div class="profile-info">
                     <div class="row">
-                      <div class="col-xs-5"><img src="{{avatar}}" class="image radius" width="96px"/></div>
+                      <div class="col-xs-5"><img src="{{getAvatarByUserId this}}" class="image radius" width="96px"/></div>
                       <div class="col-xs-7">
-                        <label class="profile-info-name">{{getUsername loggedInUser}}</label>
-                        <p class="profile-info-mail"><small>{{email.address}}</small></p>
+                        <label class="profile-info-name">{{getUsernameByUserId this}}</label>
+                        <p class="profile-info-mail"><small>{{#with getEmailAndStatusByUserId this}}{{address}}{{/with}}</small></p>
                         <a href="{{pathFor 'profile'}}" class="btn btn-default">我的信息</a>
                       </div>
                     </div>
