@@ -12,10 +12,15 @@ Accounts.onCreateUser(function (options, user) {
     var oauthProfile = user.services.google;
     userProfile.name = oauthProfile.name
   }
-
-  if (user.services.facebook){
+  else if (user.services.facebook){
     var oauthProfile = user.services.facebook;
     userProfile.name = oauthProfile.name
+  }
+  else {
+    // 等待meteor新建用户
+    Meteor.setTimeout(function() {
+      Accounts.sendVerificationEmail(user._id);
+    }, 2 * 1000);
   }
 
   UserProfiles.insert(userProfile, function(err, res) {
