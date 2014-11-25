@@ -40,7 +40,7 @@ Handlebars.registerHelper('getUsernameByUserId', function(userId){
   return 'user';
 });
 
-Handlebars.registerHelper('getAvatarByUserId', function(userId){
+function _getAvatarByUserId(userId){
   Meteor.subscribe("userProfile", userId);
   var profile = UserProfiles.findOne({userid: userId});
   if (typeof profile != 'undefined') {
@@ -62,10 +62,12 @@ Handlebars.registerHelper('getAvatarByUserId', function(userId){
   }
   //google default avatar
   return 'https://lh3.googleusercontent.com/-_vpNdZdH7QI/AAAAAAAAAAI/AAAAAAAAAAA/fmpFxHRfvb0/s96-c/photo.jpg';
+}
+Handlebars.registerHelper('getAvatarByUserId', function(userId){
+  return _getAvatarByUserId(userId);
 });
 
-
-
+//get avatar of someone you chat with
 Handlebars.registerHelper('getAvatarByTopicId', function(topicId){
   var topic = Topics.findOne({_id:topicId});
   if(topic.creator == Meteor.userId()) {
@@ -74,27 +76,7 @@ Handlebars.registerHelper('getAvatarByTopicId', function(topicId){
   else {
     var userId = topic.creator;
   }
-  Meteor.subscribe("userProfile", userId);
-  var profile = UserProfiles.findOne({userid: userId});
-  if (typeof profile != 'undefined') {
-    if (profile.avatar != null) {
-      return profile.avatar;
-    }
-    else {
-      var user = Meteor.users.findOne({_id:userId});
-      if (user.services) {
-        var service = user.services;
-        if(service.google){
-          return service.google.picture;
-        }
-        else if (service.facebook){
-          return 'https://graph.facebook.com/'+service.facebook.id+'/picture?width=165&height=165';
-        }
-      }
-    }
-  }
-  //google default avatar
-  return 'https://lh3.googleusercontent.com/-_vpNdZdH7QI/AAAAAAAAAAI/AAAAAAAAAAA/fmpFxHRfvb0/s96-c/photo.jpg';
+  return _getAvatarByUserId(userId);
 });
 
 Handlebars.registerHelper('getUserProfile', function(userId){
