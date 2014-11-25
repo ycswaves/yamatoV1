@@ -5,14 +5,6 @@ var validateUser = function(){
   }
 };
 
-var toggleStatus = function(propID, sts){
-  validateUser();
-  Properties.update(
-    {_id: propID, author: Meteor.userId()},
-    { $set: {status: sts} }
-  );
-}
-
 Meteor.methods({
   addProperty: function(formObj){
   	validateUser();
@@ -34,12 +26,12 @@ Meteor.methods({
     );
   },
 
-  closeProperty: function(propID){
-    toggleStatus(propID, 'closed');
-  },
-
-  reopenProperty: function(propID){
-    toggleStatus(propID, 'open');
+  togglePropertyStatus: function(propID, sts){
+    validateUser();
+    Properties.update(
+      {_id: propID, author: Meteor.userId()},
+      { $set: {status: sts} }
+    );
   },
 
   incPropertyView: function(propID){

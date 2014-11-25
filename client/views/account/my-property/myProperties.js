@@ -2,22 +2,6 @@ Template.myProperties.rendered = function() {
   render();
 }
 
-Template.myProperties.events({
-  // 'click ul.nav-tabs > li > a': function(e, t){
-  //   var clickedLi = t.$(e.target).parent()
-  //     , otherLi = clickedLi.siblings('li');
-
-  //   otherLi.removeClass('active');
-  //   clickedLi.addClass('active');
-  // },
-
-  'click a.close-post': function(e, t){
-    var propertyId = t.$(e.target).data('id');
-    //console.log(propertyId);
-    Meteor.call('closeProperty', propertyId);
-  }
-});
-
 MyPropertiesController = RouteController.extend({
   template: 'myProperties',
   waitOn: function () {
@@ -50,7 +34,7 @@ MyPropertiesController = RouteController.extend({
     }
 
     if(hash == 'inactive-record'){
-      queryFilter.status = 'closed';
+      queryFilter.status ={$ne:'open'};
       showActive = false;
     }
 
@@ -65,7 +49,7 @@ MyPropertiesController = RouteController.extend({
     return {
       properties: paginatedDocs,
       totalActive: Properties.find({author: Meteor.userId(), status: 'open'}).count(),
-      totalInactive: Properties.find({author: Meteor.userId(), status: 'closed'}).count(),
+      totalInactive: Properties.find({author: Meteor.userId(), status: {$ne:'open'}}).count(),
       totalDocs: totalDocs,
       showActive: showActive,
       paginationConfig: {

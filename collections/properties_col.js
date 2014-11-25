@@ -163,7 +163,7 @@ Schemas.Property = new SimpleSchema({
         }
       },
     allowedValues: ['open', 'closed', 'expired', 'deal', 'violate'],
-    optional: true
+    optional: true //TODO: make it required?
   },
   views: {
     type: Number,
