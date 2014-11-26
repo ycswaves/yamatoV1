@@ -266,7 +266,7 @@ Handlebars.registerHelper('mrtColoredLabel', function(mrt){
       break;
   }
 
-  return new Handlebars.SafeString('<span class="label" style="background-color:'+bgColor+'">'
+  return new Handlebars.SafeString('<span class="label" style="width:32px;position:absolute;right:10px;background-color:'+bgColor+'">'
           + mrt +
          '</span>');
 });
