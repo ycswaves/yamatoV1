@@ -244,7 +244,7 @@ Handlebars.registerHelper('displayMap', function(mapDiv, locationObj){
   }
 });
 
-Handlebars.registerHelper('mrtColoredLabel', function(mrt){
+Handlebars.registerHelper('mrtColoredLabel', function(mrt,options){
   var lineCode = mrt.substr(0, 2);
   var bgColor;
   switch(lineCode){
@@ -266,9 +266,18 @@ Handlebars.registerHelper('mrtColoredLabel', function(mrt){
       break;
   }
 
-  return new Handlebars.SafeString('<span class="label" style="width:32px;position:absolute;right:10px;background-color:'+bgColor+'">'
-          + mrt +
-         '</span>');
+  var string = '';
+  if (options == 'inline'){
+    string = '<span class="label" style="padding: 2px;background-color:'+bgColor+'">'
+                  + mrt +
+                 '</span>';
+  }
+  else {
+    string = '<span class="label" style="padding:4px;width:32px;position:absolute;right:10px;background-color:'+bgColor+'">'
+                  + mrt +
+                 '</span>';
+  }
+  return new Handlebars.SafeString(string);
 });
 
 

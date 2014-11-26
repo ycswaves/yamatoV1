@@ -4,15 +4,14 @@
       <header><h3>搜索</h3></header>
       <form role="form" id="search-form-sidebar" class="form-search">
         <div class="form-group">
-          <div class="form-group">
-            <select name="property-type">
-              <option value="">任意房屋类型</option>
-              {{#each arrayify ptypes}}
-              <option value="{{key}}" {{ifSelected key currentQuery.propertyType}}>{{value}}</option>
-              {{/each}}
-            </select>
-          </div><!-- /.form-group -->
-
+          <select name="property-type">
+            <option value="">任意房屋类型</option>
+            {{#each arrayify ptypes}}
+            <option value="{{key}}" {{ifSelected key currentQuery.propertyType}}>{{value}}</option>
+            {{/each}}
+          </select>
+        </div><!-- /.form-group -->
+        <div class="form-group">
           <select name="district">
             <option value="">任意区域</option>
             {{#each arrayify district}}
