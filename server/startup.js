@@ -333,28 +333,28 @@ var createDummyPosts = function(userId, username){
 if(Meteor.users.find().count() < 1){
   userId = Accounts.createUser({
     username: 'ycs',
-    email: 'ycs@gmail.com',
+    email: 'ryuji.shen@gmail.com',
     password: '123456'
   });
   createDummyPosts(userId, 'Yi Chenshu');
 
   userId2 = Accounts.createUser({
     username: 'batman',
-    email: 'batman@gmail.com',
+    email: 'ryuji.shen@gmail.com',
     password: '123456'
   });
   createDummyPosts(userId2, 'Bruce Wayne');
 
   userId3 = Accounts.createUser({
     username: 'superman',
-    email: 'superman@gmail.com',
+    email: 'ryuji.shen@gmail.com',
     password: '123456'
   });
   createDummyPosts(userId3, 'Clark Kent');
 
   userId4 = Accounts.createUser({
     username: 'ironman',
-    email: 'ironman@gmail.com',
+    email: 'ryuji.shen@gmail.com',
     password: '123456'
   });
   createDummyPosts(userId4, 'Tony Stark');
