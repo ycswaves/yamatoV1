@@ -45,10 +45,6 @@ Schema.UserProfile = new SimpleSchema({
     label: "微信ID或号码",
     optional: true
   },
-  email: {
-    type: Schema.Email,
-    label: "Email"
-  },
   about: {
     type: String,
     label: "self description",
