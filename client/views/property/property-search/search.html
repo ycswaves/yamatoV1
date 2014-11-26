@@ -34,7 +34,7 @@
           <select name="mrtlines" id="mrtlines">
             <option value="">任意地铁线</option>
             {{#each arrayify mrtlines}}
-            <option value="{{key}}" {{ifSelected key currentQuery.mrtLines}}>{{value.niceName}}</option>
+            <option value="{{key}}" {{ifSelected key currentQuery.mrtLines}}>{{value.niceName}} {{mrtColoredLabel key}}</option>
             {{/each}}
           </select>
         </div><!-- /.form-group -->

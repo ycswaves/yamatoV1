@@ -5,10 +5,15 @@ Template.sideSearch.rendered = function() {
 Template.sideSearch.events({
   'change #mrtlines': function(e, t){
     e.preventDefault();
-    var mrtLine = t.find('select[name="mrtlines"]').value;
-    if(mrtLine != ''){
-      ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLine));
+    var mrtLineFromQuery = Router.current().params.query.mrtLines
+      , mrtLineFromSearch = t.find('select[name="mrtlines"]').value;
+
+    if(mrtLineFromSearch != ''){ // if user change mrtline at side search
+      ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLineFromSearch));
+    } else if (mrtLineFromQuery){ // otherwise return stations of mrtline in query
+      ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLineFromQuery));
     }
+
     Deps.flush();
     t.$('#stations').selectpicker('refresh');
   },
@@ -81,12 +86,7 @@ Template.sideSearch.helpers({
   },
 
   stations: function(){
-    var mrtline = Router.current().params.query.mrtLines;
-    if(mrtline){
-      return Config.getStationsByLine(mrtline);
-    } else {
-      return ReactiveDS.get('mrtline');
-    }
+    return ReactiveDS.get('mrtline');
   },
 
   facilities: function(){

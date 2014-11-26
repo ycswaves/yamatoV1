@@ -31,7 +31,7 @@ var districtList = {
 
 var mrtList = {
   "NS": {
-    "niceName": "NS - 南北线",
+    "niceName": "南北线",
     "stations": {
       "NS1" : "Jurong East",
       "NS2" : "Bukit Batok",
@@ -62,7 +62,7 @@ var mrtList = {
   },
 
   "EW": {
-    "niceName": "EW - 东西线",
+    "niceName": "东西线",
     "stations": {
       "EW1" : "Pasir Ris",
       "EW2" : "Tampines",
@@ -97,7 +97,7 @@ var mrtList = {
   },
 
   "NE": {
-    "niceName": "NE - 东北线",
+    "niceName": "东北线",
     "stations": {
       "NE1" : "HarbourFront",
       "NE3" : "Outram Park",
@@ -119,7 +119,7 @@ var mrtList = {
   },
 
   "CC": {
-    "niceName": "CC - 环线",
+    "niceName": "环线",
     "stations": {
       "CC1" : "Dhoby Ghaut",
       "CC2" : "Bras Basah",
@@ -154,7 +154,7 @@ var mrtList = {
   },
 
   "DT": {
-    "niceName": "DT - 市区线",
+    "niceName": "市区线",
     "stations": {
       "DT14": "Bugis",
       "DT15": "Promenade",

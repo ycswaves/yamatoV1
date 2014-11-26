@@ -244,3 +244,31 @@ Handlebars.registerHelper('displayMap', function(mapDiv, locationObj){
   }
 });
 
+Handlebars.registerHelper('mrtColoredLabel', function(mrt){
+  var lineCode = mrt.substr(0, 2);
+  var bgColor;
+  switch(lineCode){
+    case 'NS':
+    default:
+      bgColor = '#CD231D';
+      break;
+    case 'EW':
+      bgColor = '#009046';
+      break;
+    case 'NE':
+      bgColor = '#9F01A4';
+      break;
+    case 'CC':
+      bgColor = '#FB9C37';
+      break;
+    case 'DT':
+      bgColor = '#1755B7';
+      break;
+  }
+
+  return new Handlebars.SafeString('<span class="label" style="background-color:'+bgColor+'">'
+          + mrt +
+         '</span>');
+});
+
+
