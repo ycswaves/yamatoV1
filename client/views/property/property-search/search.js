@@ -29,9 +29,9 @@ Template.sideSearch.events({
     }
   },
 
-  'submit #search-form-sidebar': function(e, t){
+  'change select': function(e, t){
     e.preventDefault();
-    e.stopImmediatePropagation();
+    t.find('button').blur(); //need to force to blur
     /*********************************************
         Retrieve form data
     *********************************************/

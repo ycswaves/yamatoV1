@@ -5,6 +5,18 @@ Template.propertyListing.rendered = function() {
 Template.propertyListing.events({
   'click li.pageLink': function(){
     window.scrollTo(0, 0);
+  },
+
+  'change select[name="sorting"]': function(e, t){
+    var sortby = t.find('select[name="sorting"]').value;
+    t.find('button').blur(); //need to force to blur
+    var newQuery = Router.current().params.query || {};
+
+    if(sortby != ''){
+      newQuery['sortby'] = sortby;
+    }
+
+    Router.go('properties', {page: 1}, {query: newQuery});
   }
 });
 
@@ -32,6 +44,7 @@ ListController = RouteController.extend({
 
 
     var filter = {status: 'open'}
+      , sortby = {createdAt: -1}
       , query = params.query
       , queryArr = []; // to pass in footer later
 
@@ -54,6 +67,13 @@ ListController = RouteController.extend({
 
         case 'roomType':
           filter['rentType'] = {$not: 1};
+          break; //TODO: check roomtype and rent type at loop end
+
+        case 'sortby':
+          var sortArr = query[key].split('By');
+          sortby = {};
+          sortby[sortArr[0]] = parseInt(sortArr[1], 10);
+          break;
 
         default:
           filter[key] = query[key];
@@ -61,11 +81,12 @@ ListController = RouteController.extend({
       }
       queryArr.push(key+'='+query[key]); //later revert the query back to string
     }
+
     var totalDocs = Properties.find(filter).count() //filter apply here too
       , totalPages = Math.ceil(totalDocs / pageLimit)
       , paginatedDocs = Properties.find(
           filter,
-          {sort: {createdAt: -1}, skip: (pageNum-1)*pageLimit, limit: pageLimit}
+          {sort: sortby, skip: (pageNum-1)*pageLimit, limit: pageLimit}
         );
 
 
