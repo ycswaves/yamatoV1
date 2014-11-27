@@ -5,6 +5,10 @@ body {
   font-family: 'Roboto', sans-serif, STXihei, "华文细黑", "Microsoft YaHei", "微软雅黑";
 }
 
+.btn .label {
+  top: 0px;
+}
+
 /* h1, h2, h3, h4 */
 h1 {
   font-size: 28px;
