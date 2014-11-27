@@ -19,7 +19,7 @@ Accounts.onCreateUser(function (options, user) {
   else {
     // 等待meteor新建用户
     Meteor.setTimeout(function() {
-      Accounts.sendVerificationEmail(user._id);
+      Meteor.call("sendVerificationEmail",user._id);
     }, 2 * 1000);
   }
 

@@ -16,3 +16,9 @@ Meteor.startup(function() {
     return Handlebars.templates['verify']({url: url});
   };
 });
+
+Meteor.methods({
+  sendVerificationEmail:function(userId){
+    Accounts.sendVerificationEmail(userId);
+  }
+});
