@@ -24,4 +24,5 @@ meteorhacks:kadira
 cfs:gridfs
 meteorhacks:fast-render
 email
+cmather:handlebars-server
 
