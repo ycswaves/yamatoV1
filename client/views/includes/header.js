@@ -1,3 +1,11 @@
+Template.header.rendered = function(){
+  $(document).on('click.nav','.navbar-collapse.in',function(e) {
+    if( $(e.target).is('a') || $(e.target).is('button')) {
+      $(this).collapse('hide');
+    }
+  });
+}
+
 Template.header.events({
   //sign out
   'click #signout' : function(e, t){
