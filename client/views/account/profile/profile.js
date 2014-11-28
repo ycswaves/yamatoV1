@@ -21,6 +21,10 @@ Template.profilePage.rendered = function() {
 
 //Update action
 Template.profilePage.events({
+  'click #verifyEmail' : function(e, t){
+    Meteor.call("sendVerificationEmail",Meteor.userId());
+    NotificationMessages.sendSuccess('发送邮件','验证邮件发送成功，请查收');
+  },
   'submit #accountProfile' : function(e, t) {
     e.preventDefault();
     CommonHelper.lockForm(t);

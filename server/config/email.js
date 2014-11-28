@@ -12,7 +12,13 @@ Meteor.startup(function() {
 
   // A Function that takes a user object and a url, and returns the body text for the email.
   // Note: if you need to return HTML instead, use Accounts.emailTemplates.verifyEmail.html
-  Accounts.emailTemplates.verifyEmail.text = function(user, url) {
-    return '点击验证邮箱: ' + url;
+  Accounts.emailTemplates.verifyEmail.html = function(user, url) {
+    return Handlebars.templates['verify']({url: url});
   };
+});
+
+Meteor.methods({
+  sendVerificationEmail:function(userId){
+    Accounts.sendVerificationEmail(userId);
+  }
 });
