@@ -2,31 +2,15 @@ Template.propertyListing.rendered = function() {
   render();
 }
 
-Template.propertyListing.helpers({
-  enter : function() {
-    return function(stateModifier, done) {
-      stateModifier.setOpacity(0); // hide initially
-      // fadeIn and invoke done() on completion
-      stateModifier.setOpacity(1, { duration: 500, curve: 'easeOut' }, done);
-    };
-  },
-
-  leave : function() {
-    return function(stateModifier, done) {
-      // fadeOut and invoke done() on completion
-      stateModifier.setOpacity(0, { duration: 500, curve: 'easeOut' }, done);
-    };
-  }
-});
-
 Template.propertyListing.events({
   'click li.pageLink': function(){
     window.scrollTo(0, 0);
   },
 
   'change select[name="sorting"]': function(e, t){
-    var sortby = t.find('select[name="sorting"]').value;
+    e.preventDefault();
     t.find('button').blur(); //need to force to blur
+    var sortby = t.find('select[name="sorting"]').value;
     var newQuery = Router.current().params.query || {};
 
     if(sortby != ''){
@@ -82,10 +66,6 @@ ListController = RouteController.extend({
           filter[key] = parseInt(query[key], 10);
           break;
 
-        case 'roomType':
-          filter['rentType'] = {$not: 1};
-          break; //TODO: check roomtype and rent type at loop end
-
         case 'sortby':
           var sortArr = query[key].split('By');
           sortby = {};
@@ -98,6 +78,14 @@ ListController = RouteController.extend({
       }
       queryArr.push(key+'='+query[key]); //later revert the query back to string
     }
+
+    if(filter['rentType'] == 0 && filter['roomtype']){
+      filter['rentType'] = {$not: 1}; //only if rentType is 0, aka singple room and roomType is set
+    } else {
+      filter['roomtype'] = null; // else, unset roomtype
+    }
+
+    console.log(filter);
 
     var totalDocs = Properties.find(filter).count() //filter apply here too
       , totalPages = Math.ceil(totalDocs / pageLimit)
