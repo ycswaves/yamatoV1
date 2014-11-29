@@ -40,8 +40,8 @@
             </div>
 						<section id="properties" class="display-lines">
 							{{#each properties}}
-
-							<div class="property" style="padding-left:0px">
+              {{#AnimateWithVelocity}}
+							<div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='easeInSine' data-easing-out='linear' class="property" style="padding-left:0px">
 								<header><a href="{{pathFor 'propertyDetail' id=_id}}">
                   <h3>{{address}}
                     <span style="font-size: 0.65em; color: gray" class="pull-right hidden-xs">
@@ -84,6 +84,7 @@
                   </aside>
 								</div>
 							</div><!-- /.property -->
+              {{/AnimateWithVelocity}}
 							{{/each}}
 						</section><!-- /#properties-->
 

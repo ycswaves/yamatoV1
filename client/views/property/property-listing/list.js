@@ -2,6 +2,23 @@ Template.propertyListing.rendered = function() {
   render();
 }
 
+Template.propertyListing.helpers({
+  enter : function() {
+    return function(stateModifier, done) {
+      stateModifier.setOpacity(0); // hide initially
+      // fadeIn and invoke done() on completion
+      stateModifier.setOpacity(1, { duration: 500, curve: 'easeOut' }, done);
+    };
+  },
+
+  leave : function() {
+    return function(stateModifier, done) {
+      // fadeOut and invoke done() on completion
+      stateModifier.setOpacity(0, { duration: 500, curve: 'easeOut' }, done);
+    };
+  }
+});
+
 Template.propertyListing.events({
   'click li.pageLink': function(){
     window.scrollTo(0, 0);
