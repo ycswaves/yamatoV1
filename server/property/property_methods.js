@@ -28,8 +28,10 @@ Meteor.methods({
 
   togglePropertyStatus: function(propID, sts){
     validateUser();
+    filter = (Meteor.user().isAdmin)?
+        {_id: propID} : {_id: propID, author: Meteor.userId()}
     Properties.update(
-      {_id: propID, author: Meteor.userId()},
+      filter,
       { $set: {status: sts} }
     );
   },
@@ -44,7 +46,14 @@ Meteor.methods({
 
   deleteProperty: function(propID){
     validateUser();
-    Properties.remove({_id: propID, author: Meteor.userId()});
+
+    filter = (Meteor.user().isAdmin)?
+        {_id: propID} : {_id: propID, author: Meteor.userId()}
+    var prop = Properties.findOne(filter, {photos: 1});
+
+    //Also remember to delete all the photos in the post
+    PropertyImages.remove({_id: {$in: prop.photos}});
+    Properties.remove(filter);
   },
 
   deletePropertyImgs: function(imgArr){

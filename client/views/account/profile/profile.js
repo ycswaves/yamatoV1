@@ -23,7 +23,7 @@ Template.profilePage.rendered = function() {
 Template.profilePage.events({
   'click #verifyEmail' : function(e, t){
     Meteor.call("sendVerificationEmail",Meteor.userId());
-    NotificationMessages.sendSuccess('发送邮件','验证邮件发送成功，请查收');
+    swal('发送邮件', '验证邮件发送成功，请查收', 'success');
   },
   'submit #accountProfile' : function(e, t) {
     e.preventDefault();
@@ -49,7 +49,6 @@ Template.profilePage.events({
     */
     var formObjForValidate = JSON.parse(JSON.stringify(formObj));
     formObjForValidate.userid = 'dummy';
-    formObjForValidate.email = {address: 'dummy', verified: false};
     formObjForValidate.privilege = 0;
 
 
@@ -74,13 +73,14 @@ Template.profilePage.events({
       CommonHelper.showErrorMessageInForm(context, formErrDivID, t);
     }
     else{
+      console.log(formObj);
       Meteor.call('editProfile', Meteor.userId(), formObj, function(err){
         if(err){
-          NotificationMessages.sendError('账户','用户资料更新失败');
+          swal('', '用户资料更新失败.', 'error');
           return false;
         }
         else{
-          NotificationMessages.sendSuccess('账户','用户资料更新成功');
+          swal('', '用户资料更新成功!', 'success');
           //Router.go('propertyDetail', {id: propertyid});
         }
         CommonHelper.unlockForm(t);

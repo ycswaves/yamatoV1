@@ -17,10 +17,10 @@ Template.myPropertyList.events({
 
     Meteor.call('togglePropertyStatus', propertyId, status, function(err){
       if(err){
-        NotificationMessages.sendError('我的房屋','房屋状态更新失败');
+        swal('', '房屋状态更新失败.', 'error');
         return false;
       } else {
-        NotificationMessages.sendSuccess('我的房屋','房屋状态更新成功');
+        swal('', '房屋状态更新成功!', 'success');
       }
     });
   }

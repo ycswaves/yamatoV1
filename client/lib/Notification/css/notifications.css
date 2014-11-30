@@ -43,50 +43,50 @@
     overflow: hidden;
 }
 
-.notice {
+.piece.notice {
     color: white;
     text-align: center;
     line-height: 50px;
     background-color: #92cf5c;
 }
 
-.notice:after {
+.piece.notice:after {
     content: "提醒"
 }
 
 /* Background */
-.reply {
+.piece.reply {
     color: white;
     text-align: center;
     line-height: 50px;
     background-color: #1396e2;
 }
 
-.reply:after {
+.piece.reply:after {
     content: "回复"
 }
 
 /* Background */
-.error {
+.piece.error {
     color: white;
     text-align: center;
     line-height: 50px;
     background-color: #fb6b5b;
 }
 
-.error:after {
+.piece.error:after {
     content: "失败"
 }
 
 /* Background */
-.warning {
+.piece.warning {
     color: white;
     text-align: center;
     line-height: 50px;
     background-color: #fcc44d;
 }
 
-.warning:after {
+.piece.warning:after {
     content: "注意"
 }
 

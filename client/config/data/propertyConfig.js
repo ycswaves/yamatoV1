@@ -83,6 +83,10 @@ Config.getAllPropertyStatus = function(){
   return userPropertyStatus;
 }
 
+Config.getAdminPropertyStatus = function(){
+  return adminPropertyStatus;
+}
+
 Config.getPriceRange = function(){
   return priceRange;
 }
