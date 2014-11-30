@@ -91,6 +91,15 @@ Router.map(function () {
     }
   });
 
+  this.route('adminproperty', {
+    path: '/admin/property/:page',
+    controller: 'AdminPropertiesController',
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '管理房屋';
+    }
+  });
+
+
   this.route('properties', {
     path: '/properties/list/:page',
     controller: 'ListController',
