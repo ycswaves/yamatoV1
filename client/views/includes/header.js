@@ -15,6 +15,7 @@ Template.header.events({
       conversations.remove({});
       Router.go(Session.get('currentPath')); //返回当前页面
       delete Session.keys['currentPath']; //删除当前Session
+      delete Session.keys['resetPassword'];
     });
   }
 })

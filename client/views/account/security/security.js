@@ -18,6 +18,16 @@ function isSame(val1,val2) {
   return true;
 }
 
+function isValidPassword(val) {
+  if (val.length >= 6) {
+    return true;
+  } else {
+    FlashMessages.clear();
+    FlashMessages.sendError("请输入六位以上的密码");
+    return false;
+  }
+}
+
 //Login action
 Template.securityPage.events({
   //Normal login
@@ -27,7 +37,8 @@ Template.securityPage.events({
       , newpass = t.find('input[name=newpass]').value
       , repeatpass = t.find('input[name=repeatpass]').value;
 
-    if (isNotEmpty(oldpass) && isNotEmpty(newpass) && isNotEmpty(repeatpass)){
+    if (isNotEmpty(oldpass) && isNotEmpty(newpass) && isNotEmpty(repeatpass)
+        && isValidPassword(newpass)){
       if (isSame(newpass,repeatpass)) {
         Accounts.changePassword(oldpass, newpass, function(err){
           if (typeof err == 'undefined') {

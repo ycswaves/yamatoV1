@@ -15,6 +15,14 @@ Meteor.startup(function() {
   Accounts.emailTemplates.verifyEmail.html = function(user, url) {
     return Handlebars.templates['verify']({name:user.username, url: url});
   };
+
+  Accounts.emailTemplates.resetPassword.subject = function(user) {
+    return '设置新密码';
+  };
+
+  Accounts.emailTemplates.resetPassword.html = function(user, url) {
+    return Handlebars.templates['reset']({name:user.username, url: url});
+  };
 });
 
 Meteor.methods({

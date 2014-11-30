@@ -1,16 +1,49 @@
+Template.forgotPassPopup.events({
+  'click #forgotPassBtn' : function(e, t) {
+    var email = t.find('input[name=email]').value;
+    Accounts.forgotPassword({email:email}, function(err){
+      if (typeof err == 'undefined') {
+        swal('验证邮箱', '一封验证邮件已发送，请查收', 'success');
+        $('#forgotPassModal').modal('hide');
+      }
+      else {
+        swal('验证邮箱', '邮件发送失败，未找到相关账号', 'error');
+      }
+    })
+  }
+});
+
+Template.resetPassPopup.events({
+  'click #resetPassBtn' : function(e, t) {
+    var newpass = t.find('input[name=newpass]').value
+    , repeatpass = t.find('input[name=repeatpass]').value;
+    if (isSame(newpass,repeatpass) && isValidPassword(newpass)) {
+      token = Session.get('resetPassword');
+      Accounts.resetPassword(token,newpass,function(err){
+        if (typeof err == 'undefined') {
+          swal('重置密码', '密码已重置，请牢记新密码', 'success');
+          delete Session.keys['resetPassword'];
+          $('#resetPassModal').modal('hide');
+        }
+        else {
+          swal('重置密码', '密码失败，请重试', 'error');
+        }
+      })
+    }
+  }
+});
+
 //Login action
 Template.loginForm.events({
   //Normal login
   'submit #loginForm' : function(e, t) {
     e.preventDefault();
     var username = trimInput(t.find('input[name=username]').value.toLowerCase())
-      , password = t.find('input[name=password]').value;
+    , password = t.find('input[name=password]').value;
 
-    if (isNotEmpty(username, 'loginError')
-        && isNotEmpty(password, 'loginError')){
+    if (isNotEmpty(username) && isNotEmpty(password)){
       Meteor.loginWithPassword(username, password, function(err){
         if (err && err.error === 403) {
-          // Session.set('displayMessage', '用户名或密码不正确');
           FlashMessages.clear();
           FlashMessages.sendError("用户名或密码不正确");
         } else {
@@ -43,6 +76,9 @@ Template.loginForm.events({
         Router.go(Session.get('currentPath') || 'landing');
       }
     });
+  },
+  'click #forgetPassLink' : function(){
+    $('#forgotPassModal').modal('show');
   }
 });
 
@@ -60,12 +96,12 @@ function trimInput(val) {
 // Validations
 function isEmail(val) {
   if (val.indexOf('@') !== -1) {
-      return true;
-    } else {
-      FlashMessages.clear();
-      FlashMessages.sendError("无效邮箱地址");
-      return false;
-    }
+    return true;
+  } else {
+    FlashMessages.clear();
+    FlashMessages.sendError("无效邮箱地址");
+    return false;
+  }
 }
 
 function isValidPassword(val) {
@@ -127,16 +163,16 @@ Template.signupForm.events({
   'submit #signupForm' : function(e, t) {
     e.preventDefault();
     var email = trimInput(t.find('input[name=email]').value.toLowerCase())
-      , password = t.find('input[name=password]').value
-      , password2 = t.find('input[name=passwordAgain]').value
-      , username = t.find('input[name=username]').value;
+    , password = t.find('input[name=password]').value
+    , password2 = t.find('input[name=passwordAgain]').value
+    , username = t.find('input[name=username]').value;
     if (isNotEmpty(email)
-        && isNotEmpty(password)
-        && isEmail(email)
-        && isValidPassword(password)
-        && isSame(password,password2)
-        && isNotEmpty(username)
-        && isValidName(username))
+      && isNotEmpty(password)
+      && isEmail(email)
+      && isValidPassword(password)
+      && isSame(password,password2)
+      && isNotEmpty(username)
+      && isValidName(username))
     {
       Accounts.createUser({
         username: username,
@@ -144,7 +180,6 @@ Template.signupForm.events({
         password: password
       }, function(err){
         if (err && err.error === 403) {
-          // Session.set('displayMessage', '用户名或密码不正确');
           FlashMessages.clear();
           FlashMessages.sendError(err.reason);
         } else {
@@ -154,8 +189,6 @@ Template.signupForm.events({
           Router.go(Session.get('currentPath') || 'landing');
         }
       });
-    }else{
-
     }
     return false;
   }
