@@ -2,17 +2,6 @@ UserProfiles = new Meteor.Collection("userProfiles");
 
 var Schema = {};
 
-Schema.Email = new SimpleSchema({
-  address: {
-    type: String,
-    label: "Email address"
-  },
-  verified: {
-    type: Boolean,
-    label: "Verification status"
-  }
-});
-
 Schema.UserProfile = new SimpleSchema({
   userid: {
     type: String,

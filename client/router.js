@@ -24,9 +24,18 @@ var prevUrl = function(){
   this.next();
 }
 
+var isAdmin = function(){
+  if (!Meteor.user().isAdmin) {
+    Router.go('landing');
+  } else {
+    this.next();
+  }
+}
+
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
 Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
 Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail']});
+Router.onBeforeAction(isAdmin, {only: ['adminproperty']});
 
 var TITLE = '家易';
 Router.map(function () {

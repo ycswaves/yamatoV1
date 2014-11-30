@@ -13,7 +13,7 @@
 ===========================================================
 ## Pagination
 - How to
-  - In router controller (it's recommended to create a router controller and output data from controller instead of using Template helpers), calculate `totalDocs`. This step requires 2 queries, one for total and the other the paginated Docs. 
+  - In router controller (it's recommended to create a router controller and output data from controller instead of using Template helpers), calculate `totalDocs`. This step requires 2 queries, one for total and the other the paginated Docs.
 
   ```JavaScript
   data: function () {
@@ -47,7 +47,7 @@
         }
       }
     }
-  ```  
+  ```
   - The `paginationConfig` in above code listing is the core data for pagination footer. It's then passed into your _VIEW_.html as
   ```
   {{>Template.dynamic template="pagination" data=paginationConfig}}
@@ -71,7 +71,10 @@
 - `helpers/handlebarHelpers.js`
   - handlerbar syntax extension, e.g `{{#arrayify}}`, for iterate a Object's properties. (Lastest Handlerbar.js support `@key`, but not in Meteor.js yet)
 
-Reminder:
+## Admin Setup
+- `db.users.update({username:"ycs"},{$set:{isAdmin:true}})`
+
+## Reminder:
 - Search Form directly use the attribute name as query key, so any changes on the **name** of Collection Schema requires changes on search query too (including both side-bar and landing page)
 
 - `collections/images_col.js` is not using SimpleSchema because of CollectionFS
