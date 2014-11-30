@@ -91,17 +91,6 @@ Router.map(function () {
     }
   });
 
-  this.route('security', {
-    path: '/security',
-    template: 'securityPage',
-    action: function () {
-      this.render();
-    },
-    onAfterAction: function () {
-      document.title = TITLE + ' | ' + '安全设置';
-    }
-  });
-
   this.route('properties', {
     path: '/properties/list/:page',
     controller: 'ListController',
@@ -183,6 +172,17 @@ Router.map(function () {
     },
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '收件箱';
+    }
+  });
+
+  this.route('security', {
+    path: '/security',
+    template: 'securityPage',
+    action: function () {
+      this.render();
+    },
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '安全设置';
     }
   });
 

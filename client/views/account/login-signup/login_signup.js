@@ -149,6 +149,7 @@ Template.signupForm.events({
           FlashMessages.sendError(err.reason);
         } else {
           t.$('#signupModal').modal('hide');
+          swal('验证邮箱', '一封验证邮件已发送，请查收', 'success');
           NotificationMessages.sendSuccess('注册成功','欢迎您的加入');
           Router.go(Session.get('currentPath') || 'landing');
         }
