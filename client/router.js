@@ -91,6 +91,17 @@ Router.map(function () {
     }
   });
 
+  this.route('security', {
+    path: '/security',
+    template: 'securityPage',
+    action: function () {
+      this.render();
+    },
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '安全设置';
+    }
+  });
+
   this.route('properties', {
     path: '/properties/list/:page',
     controller: 'ListController',
