@@ -91,6 +91,14 @@ Router.map(function () {
     }
   });
 
+  this.route('adminproperty', {
+    path: '/admin/property/:page',
+    controller: 'AdminPropertiesController',
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '管理房屋';
+    }
+  });
+  
   this.route('properties', {
     path: '/properties/list/:page',
     controller: 'ListController',
@@ -156,35 +164,35 @@ Router.map(function () {
     }
   });
 
-  this.route('sales', {
-    path: '/sales/list',
-    controller: 'SalesListController',
-    onAfterAction: function () {
-      document.title = TITLE + ' | ' + '二手产品列表';
-    }
-  });
+this.route('sales', {
+  path: '/sales/list',
+  controller: 'SalesListController',
+  onAfterAction: function () {
+    document.title = TITLE + ' | ' + '二手产品列表';
+  }
+});
 
-  this.route('inbox', {
-    path: '/inbox',
-    template: 'inboxPage',
-    action: function () {
-      this.render();
-    },
-    onAfterAction: function () {
-      document.title = TITLE + ' | ' + '收件箱';
-    }
-  });
+this.route('inbox', {
+  path: '/inbox',
+  template: 'inboxPage',
+  action: function () {
+    this.render();
+  },
+  onAfterAction: function () {
+    document.title = TITLE + ' | ' + '收件箱';
+  }
+});
 
-  this.route('security', {
-    path: '/security',
-    template: 'securityPage',
-    action: function () {
-      this.render();
-    },
-    onAfterAction: function () {
-      document.title = TITLE + ' | ' + '安全设置';
-    }
-  });
+this.route('security', {
+  path: '/security',
+  template: 'securityPage',
+  action: function () {
+    this.render();
+  },
+  onAfterAction: function () {
+    document.title = TITLE + ' | ' + '安全设置';
+  }
+});
 
   // matches all urls but doesn't get called until all previous routes have been tested
   // so in this case for invalid url
