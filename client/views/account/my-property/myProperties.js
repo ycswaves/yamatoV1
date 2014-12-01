@@ -40,16 +40,35 @@ MyPropertiesController = RouteController.extend({
 
     var totalDocs = Properties.find(queryFilter).count()
       , totalPages = Math.ceil(totalDocs / pageLimit)
+
       , paginatedDocs = Properties.find(
-          queryFilter,
-          { _id: 1, address:1, price:1, photos:1, createdAt: 1, sort: {createdAt: -1},
-            skip: (pageNum-1)*pageLimit, limit: pageLimit }
-        );
+                          queryFilter,
+                          { _id: 1, address:1, price:1, photos:1, createdAt: 1, sort: {createdAt: -1},
+                            skip: (pageNum-1)*pageLimit, limit: pageLimit }
+                        )
+
+      , statusCount = Properties.find(
+                        {author: Meteor.userId()},
+                        {status: 1}
+                      ).fetch();
+
+      var statusCountMapping = {};
+      for(var i in statusCount){
+        var sts = statusCount[i].status;
+        if(statusCountMapping[sts] == undefined){
+          statusCountMapping[sts] = 1;
+        } else {
+          statusCountMapping[sts]++;
+        }
+      }
+
+      console.log(statusCountMapping);
+
 
     return {
       properties: paginatedDocs,
-      totalActive: Properties.find({author: Meteor.userId(), status: 'open'}).count(),
-      totalInactive: Properties.find({author: Meteor.userId(), status: {$ne:'open'}}).count(),
+      totalActive: statusCountMapping['open'] || 0,
+      totalInactive: (statusCountMapping['closed'] || 0) + (statusCountMapping['deal'] || 0),
       totalDocs: totalDocs,
       showActive: showActive,
       paginationConfig: {

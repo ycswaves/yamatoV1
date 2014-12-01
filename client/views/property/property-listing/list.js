@@ -85,8 +85,6 @@ ListController = RouteController.extend({
       filter['roomtype'] = null; // else, unset roomtype
     }
 
-    console.log(filter);
-
     var totalDocs = Properties.find(filter).count() //filter apply here too
       , totalPages = Math.ceil(totalDocs / pageLimit)
       , paginatedDocs = Properties.find(
