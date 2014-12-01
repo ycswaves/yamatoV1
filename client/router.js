@@ -17,16 +17,25 @@ var filters = {
 var storeUrl = function(){
   Session.set('currentPath', Router.current().url);
   this.next();
-}
+};
 
 var prevUrl = function(){
   Session.set('prevPath', Router.current().url);
   this.next();
-}
+};
+
+var isAdmin = function(){
+  if (!Meteor.user().isAdmin) {
+    Router.go('landing');
+  } else {
+    this.next();
+  }
+};
 
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
 Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
 Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail']});
+Router.onBeforeAction(isAdmin, {only: ['adminproperty']});
 
 var TITLE = '家易';
 Router.map(function () {
@@ -98,7 +107,7 @@ Router.map(function () {
       document.title = TITLE + ' | ' + '管理房屋';
     }
   });
-  
+
   this.route('properties', {
     path: '/properties/list/:page',
     controller: 'ListController',
