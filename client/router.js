@@ -17,16 +17,25 @@ var filters = {
 var storeUrl = function(){
   Session.set('currentPath', Router.current().url);
   this.next();
-}
+};
 
 var prevUrl = function(){
   Session.set('prevPath', Router.current().url);
   this.next();
-}
+};
+
+var isAdmin = function(){
+  if (!Meteor.user().isAdmin) {
+    Router.go('landing');
+  } else {
+    this.next();
+  }
+};
 
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
 Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
 Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail']});
+Router.onBeforeAction(isAdmin, {only: ['adminproperty']});
 
 var TITLE = '家易';
 Router.map(function () {
@@ -98,7 +107,7 @@ Router.map(function () {
       document.title = TITLE + ' | ' + '管理房屋';
     }
   });
-  
+
   this.route('properties', {
     path: '/properties/list/:page',
     controller: 'ListController',
@@ -164,35 +173,35 @@ Router.map(function () {
     }
   });
 
-this.route('sales', {
-  path: '/sales/list',
-  controller: 'SalesListController',
-  onAfterAction: function () {
-    document.title = TITLE + ' | ' + '二手产品列表';
-  }
-});
+  this.route('sales', {
+    path: '/sales/list',
+    controller: 'SalesListController',
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '二手产品列表';
+    }
+  });
 
-this.route('inbox', {
-  path: '/inbox',
-  template: 'inboxPage',
-  action: function () {
-    this.render();
-  },
-  onAfterAction: function () {
-    document.title = TITLE + ' | ' + '收件箱';
-  }
-});
+  this.route('inbox', {
+    path: '/inbox',
+    template: 'inboxPage',
+    action: function () {
+      this.render();
+    },
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '收件箱';
+    }
+  });
 
-this.route('security', {
-  path: '/security',
-  template: 'securityPage',
-  action: function () {
-    this.render();
-  },
-  onAfterAction: function () {
-    document.title = TITLE + ' | ' + '安全设置';
-  }
-});
+  this.route('security', {
+    path: '/security',
+    template: 'securityPage',
+    action: function () {
+      this.render();
+    },
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '安全设置';
+    }
+  });
 
   // matches all urls but doesn't get called until all previous routes have been tested
   // so in this case for invalid url
