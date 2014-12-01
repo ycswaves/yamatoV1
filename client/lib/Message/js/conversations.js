@@ -4,6 +4,7 @@ Conversations = {
 	init: function(topicId) {
 		if(conversations.find({topicId:topicId}).count() == 0){
 			conversations.insert({topicId:topicId});
+			Session.set('Conversation.currentTopicId',topicId);
 		}
 	},
 	remove: function(topicId) {
@@ -64,7 +65,7 @@ Template.conversationTopic.helpers({
 			return false;
 		}
 	},
-	chatWith : function (topicId) {
+	isAdmin : function (topicId) {
 		var topic = Topics.findOne({_id:topicId});
 		if(topic.creator == Meteor.userId()) {
 			var userId = topic.chatWith;
@@ -73,7 +74,7 @@ Template.conversationTopic.helpers({
 			var userId = topic.creator;
 		}
 		var chatWith = Meteor.users.findOne({_id: userId});
-		return chatWith.username;
+		return chatWith.isAdmin;
 	},
 	refer: function (topicId) {
 		var topic = Topics.findOne({_id:topicId});

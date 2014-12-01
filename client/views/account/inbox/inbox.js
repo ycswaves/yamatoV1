@@ -84,7 +84,6 @@ Template.inboxPage.helpers({
 				if(lastMessage){
 					var sender = Meteor.users.findOne({_id:talkTo});
 					var username = sender.username;
-					topic.sender = username;
 					topic.message = lastMessage.content;
 					topic.lastTime = moment(lastMessage.createdAt).fromNow();
 					topic.mine = false;

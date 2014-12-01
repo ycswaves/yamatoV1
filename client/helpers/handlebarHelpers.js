@@ -22,7 +22,17 @@ Handlebars.registerHelper('getEmailAndStatusByUserId', function(userId){
   }
 });
 
-Handlebars.registerHelper('getUsernameByUserId', function(userId){
+Handlebars.registerHelper('isAdmin', function(userId){
+  var user = Meteor.users.findOne({_id:userId});
+  if (typeof user.isAdmin != "undefined") {
+    return true;
+  }
+  else {
+    return false;
+  }
+});
+
+function _getUsernameByUserId(userId){
   var loggedInUser = Meteor.users.findOne({_id:userId});
   if (typeof loggedInUser != "undefined") {
     if(loggedInUser.username) return loggedInUser.username;
@@ -38,6 +48,22 @@ Handlebars.registerHelper('getUsernameByUserId', function(userId){
   }
   //return default
   return 'user';
+}
+
+Handlebars.registerHelper('getUsernameByUserId', function(userId){
+  return _getUsernameByUserId(userId);
+});
+
+//get username of someone you chat with
+Handlebars.registerHelper('getUsernameByTopicId', function(topicId){
+  var topic = Topics.findOne({_id:topicId});
+  if(topic.creator == Meteor.userId()) {
+    var userId = topic.chatWith;
+  }
+  else {
+    var userId = topic.creator;
+  }
+  return _getUsernameByUserId(userId);
 });
 
 function _getAvatarByUserId(userId){
@@ -63,6 +89,8 @@ function _getAvatarByUserId(userId){
   //google default avatar
   return 'https://lh3.googleusercontent.com/-_vpNdZdH7QI/AAAAAAAAAAI/AAAAAAAAAAA/fmpFxHRfvb0/s96-c/photo.jpg';
 }
+
+
 Handlebars.registerHelper('getAvatarByUserId', function(userId){
   return _getAvatarByUserId(userId);
 });
