@@ -2,14 +2,16 @@
 	{{#if conversationTopics}}
 	<div class="ActiveConversations">
 		{{#each conversationTopics}}
-		{{> conversationTopic}}
+		{{#AnimateWithVelocity}}
+			{{> conversationTopic}}
+		{{/AnimateWithVelocity}}
 		{{/each}}
 	</div>
 	{{/if}}
 </template>
 
 <template name="conversationTopic">
-	<div class="Conversation">
+	<div class="Conversation" data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='easeInSine' data-easing-out='linear'>
 		<div class="ConversationHead normal">
 			<button class="cancelButton borderless conversationHeadClose" type="button" data-topic-id="{{topicId}}"></button>
 			<div class="topicAvatar headWrapper">

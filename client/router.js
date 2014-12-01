@@ -24,18 +24,9 @@ var prevUrl = function(){
   this.next();
 }
 
-var isAdmin = function(){
-  if (!Meteor.user().isAdmin) {
-    Router.go('landing');
-  } else {
-    this.next();
-  }
-}
-
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
 Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
 Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail']});
-Router.onBeforeAction(isAdmin, {only: ['adminproperty']});
 
 var TITLE = '家易';
 Router.map(function () {
@@ -99,15 +90,6 @@ Router.map(function () {
       document.title = TITLE + ' | ' + '我的房屋';
     }
   });
-
-  this.route('adminproperty', {
-    path: '/admin/property/:page',
-    controller: 'AdminPropertiesController',
-    onAfterAction: function () {
-      document.title = TITLE + ' | ' + '管理房屋';
-    }
-  });
-
 
   this.route('properties', {
     path: '/properties/list/:page',
@@ -190,6 +172,17 @@ Router.map(function () {
     },
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '收件箱';
+    }
+  });
+
+  this.route('security', {
+    path: '/security',
+    template: 'securityPage',
+    action: function () {
+      this.render();
+    },
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '安全设置';
     }
   });
 
