@@ -41,6 +41,7 @@ Template.inboxPage.helpers({
 	},
 	refer: function (topicId) {
 		if (typeof topicId != "undefined") {
+			var object = false;
 			var topic = Topics.findOne({_id:topicId});
 			var referId = topic.referId;
 			var referType = topic.referType;

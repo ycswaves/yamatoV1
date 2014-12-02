@@ -77,6 +77,7 @@ Template.conversationTopic.helpers({
 		return chatWith.isAdmin;
 	},
 	refer: function (topicId) {
+		var object = false;
 		var topic = Topics.findOne({_id:topicId});
 		var referId = topic.referId;
 		var referType = topic.referType;
