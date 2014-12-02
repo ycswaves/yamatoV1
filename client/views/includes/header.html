@@ -31,7 +31,10 @@
               {{> messages}}
             </ul>
           </li>
-          <li><a href="/properties/add" class="pointer navlink navpadding"><i class="fa fa-edit"></i>&nbsp;发布信息</a></li>
+          <li><a href="{{pathFor 'addProperty'}}" class="pointer navlink navpadding"><i class="fa fa-edit"></i>&nbsp;发布信息</a></li>
+          {{#if isAdmin loggedInUser._id}}
+          <li><a href="/admin/property/1" class="pointer navlink navpadding"><i class="fa fa-bar-chart"></i>&nbsp;控制面板</a></li>
+          {{/if}}
           <!-- <li><a href="#" class="navlink" id="signout"><i class="fa fa-power-off"></i>&nbsp;登出</a></li> -->
           {{#with loggedInUser._id}}
           <li class="dropdown">

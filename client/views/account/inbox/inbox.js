@@ -41,6 +41,7 @@ Template.inboxPage.helpers({
 	},
 	refer: function (topicId) {
 		if (typeof topicId != "undefined") {
+			var object = false;
 			var topic = Topics.findOne({_id:topicId});
 			var referId = topic.referId;
 			var referType = topic.referType;
@@ -84,7 +85,6 @@ Template.inboxPage.helpers({
 				if(lastMessage){
 					var sender = Meteor.users.findOne({_id:talkTo});
 					var username = sender.username;
-					topic.sender = username;
 					topic.message = lastMessage.content;
 					topic.lastTime = moment(lastMessage.createdAt).fromNow();
 					topic.mine = false;

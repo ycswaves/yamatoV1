@@ -21,7 +21,10 @@
 			</div>
 			<div class="popover conversation-popover right" role="tooltip" style="display: none; left: 60px; top: -345px;">
 				<div class="arrow sidearrow"></div>
-				<h3 class="popover-title">{{chatWith topicId}}
+				<h3 class="popover-title">{{getUsernameByTopicId topicId}}
+				{{#if isAdmin topicId}}
+				<span class="label background-color-danger" style="margin-left: 10px;">管理员大神</span>
+				{{/if}}
 				<button type="button" class="close closeConversation">
 					<span aria-hidden="true">×</span>
 					<span class="sr-only">Close</span>

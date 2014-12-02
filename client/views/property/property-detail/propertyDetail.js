@@ -33,6 +33,14 @@ Template.propertyDetail.events({
 		e.preventDefault();
 		var referId = $('#enquiry-btn').data('referId');
 		Conversations.start(referId,'Property');
+		// 等待meteor建立对话
+    Meteor.setTimeout(function() {
+    	if (typeof Session.get('Conversation.currentTopicId') != 'undefined') {
+    		var topicId = Session.get('Conversation.currentTopicId');
+	      $('button[data-topic-id='+topicId+']').parent().find('.topicAvatar').click();
+	      delete Session.keys['Conversation.currentTopicId'];
+	    }
+    }, 2 * 1000);
 	},
 	'click #return-btn': function(e,t){
 		Router.go(Session.get('prevPath') || 'landing');
