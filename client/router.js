@@ -42,7 +42,6 @@ Router.map(function () {
   this.route('landing', {
     path: '/',
     template: 'landingPage',
-    name: 'landing',
     action: function () {
       this.render();
     },
@@ -55,7 +54,6 @@ Router.map(function () {
     path: '/account/signin',
     template: 'loginForm',
     parent:'landing',
-    name: 'signin',
     label: '登录',
     action: function () {
       this.render();
@@ -69,7 +67,6 @@ Router.map(function () {
     path: '/account/signup',
     template: 'signupForm',
     parent:'landing',
-    name: 'signup',
     label: '注册',
     action: function () {
       this.render();
@@ -83,7 +80,6 @@ Router.map(function () {
     path: '/profile',
     template: 'profilePage',
     parent:'landing',
-    name: 'profile',
     label: '个人简介',
     waitOn: function () {
       return Meteor.subscribe("userProfile", Meteor.userId());
@@ -105,7 +101,6 @@ Router.map(function () {
   this.route('myproperty', {
     path: '/myproperty/list/:type/:page',
     parent:'landing',
-    name: 'myproperty',
     label: '我的房屋',
     controller: 'MyPropertiesController',
     onAfterAction: function () {
@@ -115,6 +110,8 @@ Router.map(function () {
 
   this.route('adminproperty', {
     path: '/admin/property/:type/:page',
+    parent:'landing',
+    label: '管理房屋',
     controller: 'AdminPropertiesController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '管理房屋';
@@ -123,6 +120,8 @@ Router.map(function () {
 
   this.route('properties', {
     path: '/properties/list/:page',
+    parent:'landing',
+    label: '房屋列表',
     controller: 'ListController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '房屋列表';
@@ -131,6 +130,8 @@ Router.map(function () {
 
   this.route('addProperty', {
     path: '/properties/add',
+    parent:'landing',
+    label: '发布房屋信息',
     controller: 'AddPropertyController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '发布';
@@ -139,6 +140,8 @@ Router.map(function () {
 
   this.route('editProperty', {
     path: '/properties/edit/:id',
+    parent:'landing',
+    label: '修改房屋信息',
     controller: 'EditPropertyController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '编辑';
