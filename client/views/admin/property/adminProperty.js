@@ -1,11 +1,11 @@
-Template.myProperties.rendered = function() {
+Template.adminProperty.rendered = function() {
   render();
 }
 
-MyPropertiesController = RouteController.extend({
-  template: 'myProperties',
+AdminPropertiesController = RouteController.extend({
+  template: 'adminProperty',
   waitOn: function () {
-	  return (Meteor.subscribe('userData') && Meteor.subscribe("myProperty", Meteor.userId()));
+    return Meteor.subscribe('properties');
   },
 
   action: function () {
@@ -20,12 +20,11 @@ MyPropertiesController = RouteController.extend({
       , statusType = params.type || 'open'
       , pageLimit = 6
       , pageNum = 1
-      , activeTab = true
+      , activeTab = 'open'
       , visibleTbl = 'active-record';
 
 
     var queryFilter = {
-      author: Meteor.userId(),
       status: 'open'
     };
 
@@ -47,17 +46,13 @@ MyPropertiesController = RouteController.extend({
 
     var totalDocs = Properties.find(queryFilter).count()
       , totalPages = Math.ceil(totalDocs / pageLimit)
-
       , paginatedDocs = Properties.find(
                           queryFilter,
                           { _id: 1, address:1, price:1, photos:1, createdAt: 1, sort: {createdAt: -1},
                             skip: (pageNum-1)*pageLimit, limit: pageLimit }
                         )
 
-      , statusCount = Properties.find(
-                        {author: Meteor.userId()},
-                        {status: 1}
-                      ).fetch();
+      , statusCount = Properties.find({},{status: 1}).fetch();
 
       var statusCountMapping = {};
       for(var i=0; i<statusCount.length; i++){
@@ -68,7 +63,7 @@ MyPropertiesController = RouteController.extend({
           statusCountMapping[sts]++;
         }
       }
-
+      console.log(statusCountMapping);
     return {
       properties: paginatedDocs,
       totalActive: statusCountMapping['open'] || 0,
@@ -82,7 +77,7 @@ MyPropertiesController = RouteController.extend({
           pageLimit: pageLimit,
           windowSize: 5, // asa # of pages displayed in the pagination must be odd number
           totalDocs: totalDocs,
-          routeName: 'myproperty'
+          routeName: 'adminproperty'
         }
       }
     }

@@ -126,8 +126,8 @@ Handlebars.registerHelper('nullHelper', function(obj){
 });
 
 // used in display active page in pagination
-Handlebars.registerHelper('pageHelper', function(currentPage, pageNum){
-  if(currentPage == pageNum)
+Handlebars.registerHelper('activeClassHelper', function(a, b){
+  if(a == b)
     return 'active';
   else
     return '';
