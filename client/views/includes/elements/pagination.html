@@ -3,7 +3,7 @@
   <div class="center">
     <ul class="pagination">
       {{#each paginations}}
-      <li class="pageLink {{pageHelper ../currentPage this}}">
+      <li class="pageLink {{activeClassHelper ../currentPage this}}">
         <a href="{{pathFor ../routeName page=this query=../queryStr}}">{{this}}</a>
       </li>
       {{/each}}

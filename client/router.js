@@ -93,7 +93,7 @@ Router.map(function () {
   });
 
   this.route('myproperty', {
-    path: '/myproperty/list/:page',
+    path: '/myproperty/list/:type/:page',
     controller: 'MyPropertiesController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '我的房屋';
@@ -101,7 +101,7 @@ Router.map(function () {
   });
 
   this.route('adminproperty', {
-    path: '/admin/property/:page',
+    path: '/admin/property/:type/:page',
     controller: 'AdminPropertiesController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '管理房屋';
