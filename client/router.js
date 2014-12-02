@@ -201,7 +201,6 @@ Router.map(function () {
     path: '/inbox',
     template: 'inboxPage',
     parent:'landing',
-    name: 'inbox',
     label: '收件箱',
     action: function () {
       this.render();
