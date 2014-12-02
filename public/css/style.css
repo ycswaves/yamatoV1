@@ -4587,3 +4587,7 @@ html, body {
   overflow: hidden;
   height: 20px;
 }
+
+.sweet-overlay {
+  z-index: 2000;
+}

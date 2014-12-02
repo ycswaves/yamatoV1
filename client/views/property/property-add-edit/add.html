@@ -6,14 +6,7 @@
     }
   </style>
   <div class="page-gradient">
-    <!-- Breadcrumb -->
-    <div class="container">
-      <ol class="breadcrumb">
-        <li><a href="{{pathFor 'properties' page=1}}">首页</a></li>
-        <li class="active">{{#if myProperty}}编辑{{else}}发布{{/if}}</li>
-      </ol>
-    </div>
-    <!-- end Breadcrumb -->
+    {{> breadcrumbs}}
     <div class="container">
       <header>
         <h1>

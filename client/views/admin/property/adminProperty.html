@@ -1,11 +1,5 @@
 <template name="adminProperty">
-  <div class="container">
-    <ol class="breadcrumb">
-      <li><a href="{{pathFor 'properties' page=1}}">首页</a></li>
-      <li><a href="{{pathFor 'profile'}}">管理员</a></li>
-      <li class="active">管理房屋</li>
-    </ol>
-  </div>
+  {{> breadcrumbs}}
   <div class="container">
     <div class="row">
     <div class="col-xs-2 col-sm-3">
