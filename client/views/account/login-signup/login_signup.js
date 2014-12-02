@@ -22,12 +22,12 @@ Template.resetPassPopup.events({
       Accounts.resetPassword(token,newpass,function(err){
         if (typeof err == 'undefined') {
           swal('重置密码', '密码已重置，请牢记新密码', 'success');
-          delete Session.keys['resetPassword'];
           $('#resetPassModal').modal('hide');
         }
         else {
           swal('重置密码', '密码失败，请重试', 'error');
         }
+        delete Session.keys['resetPassword'];
       })
     }
   }

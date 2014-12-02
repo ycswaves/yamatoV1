@@ -84,8 +84,8 @@ Template.landingPage.helpers({
   }
 });
 
-//验证邮箱
 Template.landingPage.created = function() {
+  //验证邮箱
   if (Accounts._verifyEmailToken) {
     Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
       if (err != null) {
@@ -95,9 +95,13 @@ Template.landingPage.created = function() {
       } else {
         swal('验证邮箱', '欢迎回来，已成功验证邮箱!', 'success');
       }
+      //避免再次弹窗
+      delete Accounts._verifyEmailToken;
     });
   };
+  //忘记密码
   if (Accounts._resetPasswordToken) {
     Session.set('resetPassword',Accounts._resetPasswordToken);
+    delete Accounts._resetPasswordToken;
   }
 };
