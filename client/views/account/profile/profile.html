@@ -1,13 +1,6 @@
 <template name="profilePage">
 	<div>
-		<div class="container">
-			<ol class="breadcrumb">
-				<li><a href="{{pathFor 'properties' page=1}}">首页</a></li>
-				<li class="active">账户</li>
-			</ol>
-		</div>
-		<!-- end Breadcrumb -->
-
+		{{> breadcrumbs}}
 		<div class="container">
 			<div class="row">
 				<!-- sidebar -->

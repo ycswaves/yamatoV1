@@ -1,0 +1,17 @@
+<template name="breadcrumbs">
+  <div class="container">
+    <ol class="breadcrumb">
+      <li>
+        <a href="{{pathFor route='landing'}}">首页</a>
+      </li>
+      {{#each intermediateRoutes}}
+      <li>
+        <a href="{{pathFor route=name}}">{{label}}</a>
+      </li>
+      {{/each}}
+      <li class="active">
+        {{currentRouteLabel}}
+      </li>
+    </ol>
+  </div>
+</template>

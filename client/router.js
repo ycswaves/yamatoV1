@@ -42,6 +42,7 @@ Router.map(function () {
   this.route('landing', {
     path: '/',
     template: 'landingPage',
+    name: 'landing',
     action: function () {
       this.render();
     },
@@ -53,6 +54,9 @@ Router.map(function () {
   this.route('signin', {
     path: '/account/signin',
     template: 'loginForm',
+    parent:'landing',
+    name: 'signin',
+    label: '登录',
     action: function () {
       this.render();
     },
@@ -64,6 +68,9 @@ Router.map(function () {
   this.route('signup', {
     path: '/account/signup',
     template: 'signupForm',
+    parent:'landing',
+    name: 'signup',
+    label: '注册',
     action: function () {
       this.render();
     },
@@ -74,10 +81,13 @@ Router.map(function () {
 
   this.route('profile', {
     path: '/profile',
+    template: 'profilePage',
+    parent:'landing',
+    name: 'profile',
+    label: '个人简介',
     waitOn: function () {
       return Meteor.subscribe("userProfile", Meteor.userId());
     },
-    template: 'profilePage',
     action: function () {
       this.render();
     },
@@ -94,6 +104,9 @@ Router.map(function () {
 
   this.route('myproperty', {
     path: '/myproperty/list/:page',
+    parent:'landing',
+    name: 'myproperty',
+    label: '我的房屋',
     controller: 'MyPropertiesController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '我的房屋';
@@ -184,6 +197,9 @@ Router.map(function () {
   this.route('inbox', {
     path: '/inbox',
     template: 'inboxPage',
+    parent:'landing',
+    name: 'inbox',
+    label: '收件箱',
     action: function () {
       this.render();
     },
@@ -195,6 +211,9 @@ Router.map(function () {
   this.route('security', {
     path: '/security',
     template: 'securityPage',
+    parent:'landing',
+    name: 'security',
+    label: '安全设置',
     action: function () {
       this.render();
     },
@@ -207,3 +226,17 @@ Router.map(function () {
   // so in this case for invalid url
   this.route('notFound', {path: '*'});
 })
+
+_.extend(Router,{
+  parentRoutes:function(){
+    if(!this.current()){
+      return;
+    }
+    //
+    var routes=[];
+    for(var route=this.current().route;!_.isUndefined(route);route=this.routes[route.options.parent]){
+      routes.push(route);
+    }
+    return routes.reverse();
+  }
+});
