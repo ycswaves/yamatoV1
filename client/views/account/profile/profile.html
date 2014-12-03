@@ -41,7 +41,11 @@
 														{{#if verified}}
 														<i class="fa fa-check-circle text-success"></i>
 														{{else}}
-														<span class="text-danger pointer" id="verifyEmail">[验证]</span>
+															{{#if countDown}}
+																<span class="text-default pointer">[{{countDown}}]</span>
+															{{else}}
+																<span class="text-danger pointer" id="verifyEmail">[验证]</span>
+															{{/if}}
 														{{/if}}
 													</label>
 													{{/with}}

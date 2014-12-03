@@ -46,11 +46,32 @@ CommonHelper = {
     template.$('i', 'button[type="submit"]').remove();
   },
 
-  'countDown' : function(placeholder,seconds) {
+  //unit can be years, months, days, hours, seconds
+  'setCountDown' : function(placeholder,number) {
+    if (typeof timer != 'undefined') {
+      Meteor.clearInterval(timer);
+    }
     var sessionName = 'Countdown.'+placeholder;
-    // Session.set(sessionName,time());
-    Meteor.setTimeout(function() {
-      Meteor.call("sendVerificationEmail",user._id);
-    }, seconds * 1000);
+    var future = moment().add(number,'seconds').format('YYYY-MM-DD HH:mm:ss');
+    //预设timer起始时间，修复过一秒才开始的bug
+    Session.set(sessionName,moment(future).fromNow());
+    timer = Meteor.setInterval(function() {
+      if (moment().diff(future, 'seconds')>=0) {
+        Session.set(sessionName,false);
+        Meteor.clearInterval(timer);
+      }
+      else {
+        Session.set(sessionName,moment(future).fromNow());
+      }
+    },1000);
+  },
+
+  'getCountDown' : function(placeholder) {
+    if (typeof Session.get('Countdown.'+placeholder) != 'undefined') {
+      return Session.get('Countdown.'+placeholder);
+    }
+    else {
+      return false;
+    }
   }
 }
