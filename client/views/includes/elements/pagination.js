@@ -24,6 +24,7 @@ Template.pagination.helpers({
       paginations: pageNumberArr,
       currentPage: config.pageNum,
       routeName: config.routeName,
+      routeParam: config.routeParam,
       queryStr: queryStr
     };
   }

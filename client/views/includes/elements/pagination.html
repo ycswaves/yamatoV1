@@ -4,7 +4,7 @@
     <ul class="pagination">
       {{#each paginations}}
       <li class="pageLink {{activeClassHelper ../currentPage this}}">
-        <a href="{{pathFor ../routeName page=this query=../queryStr}}">{{this}}</a>
+        <a href="{{pathFor ../routeName page=this data=../routeParam query=../queryStr}}">{{this}}</a>
       </li>
       {{/each}}
     </ul><!-- /.pagination-->

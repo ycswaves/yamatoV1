@@ -63,7 +63,6 @@ AdminPropertiesController = RouteController.extend({
           statusCountMapping[sts]++;
         }
       }
-      console.log(statusCountMapping);
     return {
       properties: paginatedDocs,
       totalActive: statusCountMapping['open'] || 0,
@@ -77,7 +76,8 @@ AdminPropertiesController = RouteController.extend({
           pageLimit: pageLimit,
           windowSize: 5, // asa # of pages displayed in the pagination must be odd number
           totalDocs: totalDocs,
-          routeName: 'adminproperty'
+          routeName: 'adminproperty',
+          routeParam: {type: statusType}
         }
       }
     }
