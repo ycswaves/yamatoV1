@@ -19,10 +19,17 @@ Template.profilePage.rendered = function() {
     });
 }
 
+Template.profilePage.helpers({
+  countDown:function(){
+    return CommonHelper.getCountDown('EmailCountDown');
+  }
+})
+
 //Update action
 Template.profilePage.events({
   'click #verifyEmail' : function(e, t){
     Meteor.call("sendVerificationEmail",Meteor.userId());
+    CommonHelper.setCountDown('EmailCountDown',45);
     swal('发送邮件', '验证邮件发送成功，请查收', 'success');
   },
   'submit #accountProfile' : function(e, t) {
