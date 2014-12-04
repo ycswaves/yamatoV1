@@ -308,4 +308,13 @@ Handlebars.registerHelper('mrtColoredLabel', function(mrt,options){
   return new Handlebars.SafeString(string);
 });
 
+Handlebars.registerHelper('isAdministrated', function(status){
+  var normalStatus = Config.getAllPropertyStatus();
+  return (!normalStatus[status]); //not in normal status, then must be administrated
+});
+
+Handlebars.registerHelper('transPropStatus', function(status){
+  return Config.getAdminPropertyStatus()[status];
+});
+
 
