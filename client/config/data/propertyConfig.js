@@ -46,6 +46,7 @@ var agencyList = {
 };
 
 var propertyFacilities = {
+  "hasFurniture": "家具齐全",
   "furnished": "精装修",
   "noLandlord": "无房东",
   "aircon": "空调",
@@ -57,7 +58,6 @@ var propertyFacilities = {
   "allowCooking": "可煮",
   "swimmingPool": "游泳池",
   "tennisCourt": "网球场",
-  "cableTV": "有线电视",
   "balcony": "阳台",
   "parkingSlot": "停车场",
   "gym": "健身房"

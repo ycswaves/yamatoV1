@@ -6,25 +6,24 @@ Template.addProperty.rendered = function() {
   });
   $('.picker__holder').css('min-width', '274px');
 
-  //Dropzone.autoDiscover = false;
-  //dictResponseError = 'Error uploading file!';
   $('#upload').dropzone({
     addRemoveLinks : true,
     maxFiles: Config.getMaxImageUploaded(),
     maxFilesize: Config.getMaxImageSize(),
 
-    init: function () {
-        this.on("complete", function (file) {
-          console.log(file);
-          if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
-            imgTemp.push(file);
-          }
-        });
-    },
-    // accept: function(file, done) {
-    //   //todo: process file
-    //   imgTemp.push(file);
+    // init: function () {
+    //     this.on("complete", function (file) {
+    //       console.log(file);
+    //       if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
+    //         imgTemp.push(file);
+    //       }
+    //     });
     // },
+    accept: function(file, done) {
+      if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
+        imgTemp.push(file);
+      }
+    },
     removedfile: function(file){
       // remove preview
       file.previewElement.parentNode.removeChild(file.previewElement);
@@ -37,6 +36,7 @@ Template.addProperty.rendered = function() {
     }
   });
   render();
+  $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
 }
 
 Template.addProperty.events({
@@ -112,7 +112,7 @@ Template.addProperty.events({
           email: t.find('input[name=contact-email]').value || null
         };
 
-      
+
 
     /*********************************************
         data available in edit mode
