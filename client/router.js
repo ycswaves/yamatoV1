@@ -1,7 +1,8 @@
 Router.configure({
   notFoundTemplate: 'notFound',
   loadingTemplate: 'loading',
-  layoutTemplate: 'layout'
+  layoutTemplate: 'layout',
+  trackPageView: true //for google analytics
 });
 
 var filters = {
@@ -46,7 +47,7 @@ Router.map(function () {
       this.render();
     },
     onAfterAction: function () {
-      document.title = TITLE;
+      document.title = TITLE + ' | ' + '新加坡一站式搜房租房买房平台';
     }
   });
 
@@ -108,6 +109,16 @@ Router.map(function () {
     }
   });
 
+  this.route('adminuser', {
+    path: '/admin/user/:type/:page',
+    parent:'landing',
+    label: '管理用户',
+    controller: 'AdminUsersController',
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '管理用户';
+    }
+  });
+
   this.route('adminproperty', {
     path: '/admin/property/:type/:page',
     parent:'landing',
@@ -165,6 +176,18 @@ Router.map(function () {
     },
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '房屋详情';
+      console.log(1);
+      // var property = this.data().property;
+      // var bannerImage = this.data().bannerImage;
+      // SEO.set({
+      //   meta: {
+      //     'description': property.description
+      //   },
+      //   og: {
+      //     'description': property.description,
+      //     'image': bannerImage
+      //   }
+      // });
     },
     data: function () {
       var params = this.params;
@@ -214,7 +237,6 @@ Router.map(function () {
     path: '/security',
     template: 'securityPage',
     parent:'landing',
-    name: 'security',
     label: '安全设置',
     action: function () {
       this.render();
