@@ -2152,14 +2152,14 @@ F
 }
 
 .feature-box {
-  border: 2px solid #f3f3f3;
+  border: 2px solid #1396e2;
   margin-bottom: 30px;
   padding: 0 20px 15px 80px;
   position: relative;
   border-radius: 2px;
 }
 .feature-box .description h3 {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid #1396e2;
   color: #073855;
   font-weight: normal;
   padding-bottom: 10px;
