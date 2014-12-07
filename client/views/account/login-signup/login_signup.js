@@ -1,3 +1,15 @@
+Meteor.autorun(function(){
+  if (Meteor.user()) {
+    if (typeof Meteor.user().status !== "undefined") {
+      if (Meteor.user().status !== "active") {
+        Meteor.logout(function(){
+          swal("注意!", "您的账号因某原因被封停，请联系管理员!", "warning");
+        });  
+      }   
+    }
+  }
+});
+
 Template.forgotPassPopup.events({
   'click #forgotPassBtn' : function(e, t) {
     var email = t.find('input[name=email]').value;

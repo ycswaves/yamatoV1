@@ -8,7 +8,7 @@
           <aside>
             <ul class="sidebar-navigation">
               <li class="active radius"><a href="#"><i class="fa fa-user"></i><span class="hidden-xs">管理用户</span></a></li>
-              <li><a href="{{pathFor 'adminproperty'}}"><i class="fa fa-home"></i><span class="hidden-xs">管理房屋</span></a></li>
+              <li><a href="{{pathFor 'adminproperty' type='open' page='1'}}"><i class="fa fa-home"></i><span class="hidden-xs">管理房屋</span></a></li>
               <li><a href=""><i class="fa fa-inbox"></i><span class="hidden-xs">收发件箱</span></a></li>
             </ul>
           </aside>
@@ -17,7 +17,8 @@
       <!-- end Sidebar -->
       <div class="col-xs-10 col-sm-9">
         <section id="admin-properties">
-          <header><h1>用户管理</h1></header>
+          <header><h1>管理用户</h1></header>
+          {{> adminUserList}}
         </section><!-- /#my-properties -->
       </div><!-- /.col-md-9 -->
     </div><!-- /.row -->
