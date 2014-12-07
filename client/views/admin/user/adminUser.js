@@ -64,7 +64,7 @@ AdminUsersController = RouteController.extend({
           pageLimit: pageLimit,
           windowSize: 5, // asa # of pages displayed in the pagination must be odd number
           totalDocs: totalDocs,
-          routeName: 'adminproperty',
+          routeName: 'adminuser',
           routeParam: {type: statusType}
         }
       }
