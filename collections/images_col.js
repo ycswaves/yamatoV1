@@ -9,7 +9,20 @@ var imageStore = new FS.Store.S3("property-images", { //todo: update 'image' to 
 });
 
 PropertyImages = new FS.Collection("property-images", { //todo: update 'image' to 'property-image'
-  stores: [imageStore]
+  stores: [imageStore],
+  filter: {
+    allow: {
+      contentTypes: ['image/*'], //allow only images in this FS.Collection
+      extensions: ['jpeg','jpg','png','JPEG','JPG','PNG']
+    },
+    onInvalid: function (message) {
+      if (Meteor.isClient) {
+        swal('', '图片格式不对，上传失败.', 'error');
+      } else {
+        //console.log(message);
+      }
+    }
+  }
 });
 
 
