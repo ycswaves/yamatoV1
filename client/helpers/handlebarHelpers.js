@@ -18,7 +18,9 @@ Handlebars.registerHelper('getEmailAndStatusByUserId', function(userId){
         return {address:service.facebook.email, verified:true};
       }
     }
-    return loggedInUser.emails[0];
+    if(loggedInUser.emails){
+      return loggedInUser.emails[0];
+    }
   }
 });
 

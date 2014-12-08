@@ -4,6 +4,9 @@ Template.adminUser.rendered = function() {
 
 AdminUsersController = RouteController.extend({
   template: 'adminUser',
+  waitOn: function () {
+    return Meteor.subscribe("userData");
+  },
   action: function () {
     if (this.ready()){
       this.render();

@@ -33,10 +33,26 @@ var isAdmin = function(){
   }
 };
 
+var isVerified = function(){
+  var status = CommonHelper.getEmailAndStatusByUserId(Meteor.userId());
+  console.log(status);
+  console.log(Meteor.user().isAdmin);
+  if(!Meteor.user().isAdmin) {
+    if(status){
+      if(status.verified){
+        this.next();
+      }
+    }
+  } else {
+    this.next();
+  }
+}
+
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
 Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
 Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail']});
-Router.onBeforeAction(isAdmin, {only: ['adminproperty']});
+Router.onBeforeAction(isAdmin, {only: ['adminuser','adminproperty']});
+Router.onBeforeAction(isVerified, {only: ['addProperty']});
 
 var TITLE = '家易';
 Router.map(function () {
@@ -176,7 +192,6 @@ Router.map(function () {
     },
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '房屋详情';
-      console.log(1);
       // var property = this.data().property;
       // var bannerImage = this.data().bannerImage;
       // SEO.set({

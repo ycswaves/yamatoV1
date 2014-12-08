@@ -86,5 +86,23 @@ CommonHelper = {
     else {
       return false;
     }
+  },
+
+  'getEmailAndStatusByUserId' : function(userId){
+    var loggedInUser = Meteor.users.findOne({_id:userId});
+    if (typeof loggedInUser != "undefined") {
+      if(loggedInUser.services){
+        var service = loggedInUser.services;
+        if(service.google){
+          return {address:service.google.email, verified:true};
+        }
+        else if (service.facebook){
+          return {address:service.facebook.email, verified:true};
+        }
+      }
+      if(loggedInUser.emails){
+        return loggedInUser.emails[0];
+      }
+    }
   }
 }
