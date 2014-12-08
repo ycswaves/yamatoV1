@@ -10,6 +10,7 @@ Template.addProperty.rendered = function() {
     addRemoveLinks : true,
     maxFiles: Config.getMaxImageUploaded(),
     maxFilesize: Config.getMaxImageSize(),
+    acceptedFiles: 'image/*',
 
     // init: function () {
     //     this.on("complete", function (file) {
@@ -112,37 +113,6 @@ Template.addProperty.events({
           email: t.find('input[name=contact-email]').value || null
         };
 
-
-
-    /*********************************************
-        data available in edit mode
-    *********************************************/
-    var propertyid = t.find('input[name="propertyid"]').value || ''
-      , existingPhotosArr = []
-      , deletedPhotoArr = [];
-
-    $('.existingImage').each(function(){
-      if($(this).hasClass('deleted')){
-        deletedPhotoArr.push($(this).data('id'));
-      }
-      else {
-        existingPhotosArr.push($(this).data('id'));
-      }
-    });
-
-
-    var imageIDs = [];
-    imgTemp.forEach(function(file){
-      // PropertyImages.insert will return file object of inserted image
-      if(imageIDs.length + existingPhotosArr.length >= Config.getMaxImageUploaded()){
-        return; //resulted photo should not exceeds max allowd
-      }
-      var imageUploaded = PropertyImages.insert(file);
-      imageIDs.push(imageUploaded._id);
-    });
-
-    imgTemp = []; //clear imgTemp
-
     /*********************************************
         Map form data to schema
     *********************************************/
@@ -163,7 +133,6 @@ Template.addProperty.events({
       bathroom: (bathroom != null)? parseInt(bathroom, 10) : null,
       mrt: nearestMRT,
       contact: contactInfo,
-      photos: imageIDs.concat(existingPhotosArr),
       facilities: facilities
     };
 
@@ -200,35 +169,54 @@ Template.addProperty.events({
       CommonHelper.showErrorMessageInForm(context, formErrDivID, t);
     }
     else {
-      // if all fields are valid, convert address to latitude-longitude
-      CommonHelper.convertAddressAsync(address, function(err, addr){
-        if(addr){
-          formObj.map = addr;
-        }
+      /*********************************************
+          data available in edit mode
+      *********************************************/
+      var propertyid = t.find('input[name="propertyid"]').value || ''
+        , existingPhotosArr = []
+        , deletedPhotoArr = [];
 
-        if(propertyid.length > 0){ // edit mode
-          Meteor.call('editProperty', propertyid, formObj, function(err){
-            if(err){
-              NotificationMessages.sendSuccess('发布','房屋资料更新失败');
-              return false;
-            }
-            if(deletedPhotoArr.length > 0){
-              Meteor.call('deletePropertyImgs', deletedPhotoArr);
-            }
-            Router.go('propertyDetail', {id: propertyid});
-          });
+      $('.existingImage').each(function(){
+        if($(this).hasClass('deleted')){
+          deletedPhotoArr.push($(this).data('id'));
         }
-        else{ // add new mode
-          Meteor.call('addProperty', formObj, function(err, id){
-            if(err){
-              NotificationMessages.sendSuccess('发布','房屋发布失败');
-              return false;
-            }
-            Router.go('/myproperty/list/1');
-          });
+        else {
+          existingPhotosArr.push($(this).data('id'));
         }
-
       });
+
+
+      var imageIDs = []
+        , toBeInsert = imgTemp.length
+        , insertCounter = 0;
+
+      if(toBeInsert > 0){
+        imgTemp.forEach(function(file){
+          // PropertyImages.insert will return file object of inserted image
+          if(imageIDs.length + existingPhotosArr.length >= Config.getMaxImageUploaded()){
+            return; //resulted photo should not exceeds max allowd
+          }
+          PropertyImages.insert(file, function(err, imageUploaded){
+            if(err){
+              //bcoz it's async, even if upload fail, the rest fields should be saved
+              // and redirect to the property detail
+            } else {
+              imageIDs.push(imageUploaded._id);
+            }
+
+            insertCounter++; //order matters: MUST inc first, then check if >= toBeInsert
+            if(insertCounter >= toBeInsert){
+              formObj.photos = imageIDs.concat(existingPhotosArr);
+              creatPropertyPost(formObj, propertyid, deletedPhotoArr);
+              imgTemp = []; //clear imgTemp
+            }
+
+          });
+        });
+      } else {
+        formObj.photos = existingPhotosArr;
+        creatPropertyPost(formObj, propertyid, deletedPhotoArr);
+      }
     }
   },
 
@@ -246,7 +234,37 @@ Template.addProperty.events({
   }
 });
 
+var creatPropertyPost = function(formObj, propertyid, deletedPhotoArr){
+  // if all fields are valid, convert address to latitude-longitude
+  CommonHelper.convertAddressAsync(formObj.address, function(err, addr){
+    if(addr){
+      formObj.map = addr;
+    }
 
+    if(propertyid.length > 0){ // edit mode
+      Meteor.call('editProperty', propertyid, formObj, function(err){
+        if(err){
+          NotificationMessages.sendSuccess('发布','房屋资料更新失败');
+          return false;
+        }
+        if(deletedPhotoArr.length > 0){
+          Meteor.call('deletePropertyImgs', deletedPhotoArr);
+        }
+        Router.go('propertyDetail', {id: propertyid});
+      });
+    }
+    else{ // add new mode
+      Meteor.call('addProperty', formObj, function(err, id){
+        if(err){
+          NotificationMessages.sendSuccess('发布','房屋发布失败');
+          return false;
+        }
+        Router.go('/myproperty/list/1');
+      });
+    }
+
+  });
+}
 
 Template.addProperty.helpers({
   district: function(){

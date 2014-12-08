@@ -15,7 +15,6 @@ cfs:standard-packages
 cfs:s3
 awatson1978:dropzone
 service-configuration
-insecure
 richsilv:owl-carousel
 mrt:moment
 steeve:jquery-qrcode
@@ -30,4 +29,3 @@ kevohagan:sweetalert
 reywood:iron-router-ga
 spiderable
 manuelschoebel:ms-seo
-
