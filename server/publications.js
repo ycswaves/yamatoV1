@@ -3,6 +3,10 @@ Meteor.publish('userData', function () {
     return Meteor.users.find();
 });
 
+Meteor.publish('currentUserData', function (userId) {
+    return Meteor.users.find({_id:userId});
+});
+
 Meteor.publish("property-images", function() {
   return PropertyImages.find();
 });

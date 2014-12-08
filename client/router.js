@@ -35,16 +35,13 @@ var isAdmin = function(){
 
 var isVerified = function(){
   var status = CommonHelper.getEmailAndStatusByUserId(Meteor.userId());
-  console.log(status);
-  console.log(Meteor.user().isAdmin);
-  if(!Meteor.user().isAdmin) {
-    if(status){
-      if(status.verified){
-        this.next();
-      }
+  if(status){
+    if(status.verified || Meteor.user().isAdmin){
+      this.next();
+    } else {
+      Router.go('profile');
+      swal("注意!", "发布信息之前，请先验证你的邮箱", "warning");
     }
-  } else {
-    this.next();
   }
 }
 

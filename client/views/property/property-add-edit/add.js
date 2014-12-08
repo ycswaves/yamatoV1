@@ -303,6 +303,9 @@ Template.addProperty.helpers({
 
 AddPropertyController = RouteController.extend({
   template: 'addProperty',
+  waitOn: function () {
+    return Meteor.subscribe("currentUserData");
+  },
 
   action: function () {
     this.render();
