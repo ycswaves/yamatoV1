@@ -28,7 +28,7 @@
             </td>
             <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
             <td class="actions" style="text-align:left">
-              <a class="delete" style="cursor: pointer;" data-propid="{{_id}}"><i class="fa fa-trash-o"></i>删除</a>
+              <a class="delete" style="cursor: pointer; top:0px" data-propid="{{_id}}"><i class="fa fa-trash-o"></i>删除</a>
             </td>
             <td>
               <select class="status" id="{{_id}}">

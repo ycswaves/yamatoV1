@@ -4,8 +4,9 @@
       <table class="table">
         <thead>
         <tr>
-          <th style="width:15%">我的房屋</th>
-          <th style="width:35%"></th>
+          <th style="width:15%">房屋列表</th>
+          <th style="width:30%"></th>
+          <th style="width:10%"></th>
           <th>发布时间</th>
           <th>操作</th>
           <th>状态</th>
@@ -19,15 +20,17 @@
           {{#each properties}}
           <tr>
             <td>
-              <div class="thumbnail" style="width: 64px;">
+              <div class="thumbnail" style="margin-bottom:0px">
                 <a href="{{pathFor 'propertyDetail' id=_id}}"><img alt="" src="{{getImageURL photos}}"></a>
               </div>
             </td>
             <td>
               <div class="inner">
                 <a href="{{pathFor 'propertyDetail' id=_id}}"><figure>{{address}}</figure></a>
-                <div class="tag price">$ {{price}}</div>
               </div>
+            </td>
+            <td>
+              <div class="tag price">${{price}}</div>
             </td>
             <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
             <td class="actions">
