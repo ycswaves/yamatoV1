@@ -16,12 +16,6 @@ Accounts.onCreateUser(function (options, user) {
     var oauthProfile = user.services.facebook;
     userProfile.name = oauthProfile.name
   }
-  else {
-    // 等待meteor新建用户
-    Meteor.setTimeout(function() {
-      Meteor.call("sendVerificationEmail",user._id);
-    }, 2 * 1000);
-  }
 
   UserProfiles.insert(userProfile, function(err, res) {
     if(err){

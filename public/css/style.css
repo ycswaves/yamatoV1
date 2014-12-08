@@ -2533,7 +2533,6 @@ M
 .my-properties table tbody tr td.actions .delete {
   color: red;
   position: relative;
-  top: 5px;
 }
 .my-properties table tbody tr td.image {
   width: 125px;

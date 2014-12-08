@@ -73,5 +73,18 @@ CommonHelper = {
     else {
       return false;
     }
+  },
+
+  'checkCurrentUserStatus' : function(){
+    var user = Meteor.user();
+    if (user) {
+      if (typeof user.status === 'undefined') {
+        return 'active';
+      }
+      return user.status;
+    }
+    else {
+      return false;
+    }
   }
 }
