@@ -18,7 +18,7 @@ AdminUsersController = RouteController.extend({
       , pageNum = 1;
 
     var queryFilter = {
-      status: 'active'
+      status: {$nin:['blocked']}
     };
 
     if(params.page && CommonHelper.isInteger(params.page)){
