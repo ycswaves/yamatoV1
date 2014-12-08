@@ -1,4 +1,4 @@
-
+/*
 var createDummyPosts = function(userId, username){
     var contactInfo = {
       name: username,
@@ -338,4 +338,4 @@ if(Meteor.users.find().count() < 1){
   });
   createDummyPosts(userId, 'Yi Chenshu');
 }
-
+*/
