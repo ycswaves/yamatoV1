@@ -9,6 +9,7 @@ Template.propertyDetail.rendered = function() {
   window.scrollTo(0, 0); //scroll back to top after editing
   initializeMap();
   render();
+  $('.hoverInfo').popover();
   //pin it
   $(".infoPanel").pin({containerSelector: ".infoArea",padding: {top: 112}});
 }
