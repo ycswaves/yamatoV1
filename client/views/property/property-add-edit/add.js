@@ -259,10 +259,9 @@ var creatPropertyPost = function(formObj, propertyid, deletedPhotoArr){
           NotificationMessages.sendSuccess('发布','房屋发布失败');
           return false;
         }
-        Router.go('/myproperty/list/1');
+        Router.go('propertyDetail',{id:id});
       });
     }
-
   });
 }
 
