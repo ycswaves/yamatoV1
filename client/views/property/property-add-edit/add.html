@@ -27,13 +27,21 @@
                 <section id="basic-information">
                   <header><h2><i class="fa fa-list-alt"></i> 基本信息</h2></header>
                   <div class="row">
-                    <div class="col-md-8">
+                    <div class="col-md-6">
                       <div class="form-group" id="address-form-group">
                         <label for="submit-title">地址 *</label>
                         <input type="text" class="form-control" id="submit-title" name="address" value="{{myProperty.address}}">
                       </div><!-- /.form-group -->
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
+                      <div class="form-group" id="postcode-form-group">
+                        <label for="submit-postcode">邮编 (Singapore) *</label>
+                        <div class="input-group">
+                          <input type="text" class="form-control" id="submit-postcode" name="postcode" value="{{myProperty.postcode}}">
+                        </div>
+                      </div><!-- /.form-group -->
+                    </div>
+                    <div class="col-md-3">
                       <div class="form-group" id="price-form-group">
                         <label for="submit-price">价格 *</label>
                         <div class="input-group">

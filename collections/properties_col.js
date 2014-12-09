@@ -50,6 +50,11 @@ Schemas.Property = new SimpleSchema({
     label: "地址"
     //max: 200
   },
+  postcode: {
+    type: String,
+    label: "邮编",
+    regEx: /\d{6}/
+  },
   author: {
     type: String,
     label: "帖主"
