@@ -5,4 +5,5 @@ Meteor.subscribe("properties");
 //需要继续修改，一旦改成需要ID，即时消息将接收不到
 Meteor.subscribe("messages");
 Meteor.subscribe("topics");
+Meteor.subscribe("currentUserData",Meteor.userId());
 // Meteor.subscribe("userProfile", Meteor.userId()); //subscribed in router

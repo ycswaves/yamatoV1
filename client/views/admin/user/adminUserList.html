@@ -1,15 +1,23 @@
 <template name="adminUserList">
+  <div class="m-b">
+    <ul class="nav nav-pills">
+      <li role="presentation" class="active"><a href="{{pathFor 'adminuser' type='all' page=1}}">所有</a></li>
+      {{#each arrayify userStatus}}
+      <li role="presentation"><a href="{{pathFor 'adminuser' type=key page=1}}">{{value}}</a></li>
+      {{/each}}
+    </ul>
+  </div>
   <div class="my-properties">
     <div class="table-responsive">
       <table class="table">
         <thead>
-        <tr>
-          <th style="width:15%">用户</th>
-          <th style="width:35%"></th>
-          <th>注册时间</th>
-          <th>操作</th>
-          <th>状态</th>
-        </tr>
+          <tr>
+            <th style="width:15%">用户</th>
+            <th style="width:35%"></th>
+            <th>注册时间</th>
+            <th>操作</th>
+            <th>状态</th>
+          </tr>
         </thead>
         <tbody>
           {{#unless users.count}}
@@ -23,7 +31,7 @@
             </td>
             <td>
               {{#with getEmailAndStatusByUserId _id}}
-                {{address}}
+              {{address}}
               {{/with}}
             </td>
             <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>

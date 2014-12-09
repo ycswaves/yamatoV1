@@ -4,6 +4,9 @@ Template.adminUser.rendered = function() {
 
 AdminUsersController = RouteController.extend({
   template: 'adminUser',
+  waitOn: function () {
+    return Meteor.subscribe("currentUserData");
+  },
   action: function () {
     if (this.ready()){
       this.render();
@@ -46,15 +49,15 @@ AdminUsersController = RouteController.extend({
 
       , statusCount = Meteor.users.find({},{status: 1}).fetch();
 
-      var statusCountMapping = {};
-      for(var i=0; i<statusCount.length; i++){
-        var sts = statusCount[i].status;
-        if(statusCountMapping[sts] == undefined){
-          statusCountMapping[sts] = 1;
-        } else {
-          statusCountMapping[sts]++;
-        }
+    var statusCountMapping = {};
+    for(var i=0; i<statusCount.length; i++){
+      var sts = statusCount[i].status;
+      if(statusCountMapping[sts] == undefined){
+        statusCountMapping[sts] = 1;
+      } else {
+        statusCountMapping[sts]++;
       }
+    }
     return {
       users: paginatedDocs,
       totalDocs: totalDocs,
@@ -69,6 +72,5 @@ AdminUsersController = RouteController.extend({
         }
       }
     }
-
   }
 });
