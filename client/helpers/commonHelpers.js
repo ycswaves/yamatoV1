@@ -17,9 +17,9 @@ CommonHelper = {
     });
   },
 
-  'convertAddressAsync': function(address,callback){
+  'convertAddressAsync': function(postcode,callback){
     geocoder = new google.maps.Geocoder();
-    geocoder.geocode( { 'address': address}, function(results, status) {
+    geocoder.geocode( { 'address': 'Singapore '+postcode }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         var lat = results[0].geometry.location.k;
         var lng = results[0].geometry.location.B;

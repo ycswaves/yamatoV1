@@ -60,20 +60,20 @@ Template.addProperty.events({
     t.$('#stations').selectpicker('refresh');
   },
 
-  'blur input[name="address"]': function(e, t){
-    t.$('#not-found-on-map').remove(); // clear err msg
-    var address = t.find('input[name="address"]').value || null
-    if(address == '') return;
+  // 'blur input[name="address"]': function(e, t){
+  //   t.$('#not-found-on-map').remove(); // clear err msg
+  //   var address = t.find('input[name="address"]').value || null
+  //   if(address == '') return;
 
-    CommonHelper.convertAddressAsync(address, function(err, addr){
-      if(err){
-        t.$('#address-form-group').append(
-        '<span id="not-found-on-map" style="color: red" class="help-block"><i class="fa fa-exclamation-triangle"></i> '
-        + '无法在地图上找到此地址，请再次确认' +
-        '</span>');
-      }
-    });
-  },
+  //   CommonHelper.convertAddressAsync(address, function(err, addr){
+  //     if(err){
+  //       t.$('#address-form-group').append(
+  //       '<span id="not-found-on-map" style="color: red" class="help-block"><i class="fa fa-exclamation-triangle"></i> '
+  //       + '无法在地图上找到此地址，请再次确认' +
+  //       '</span>');
+  //     }
+  //   });
+  // },
 
   'submit #propertyForm': function(e, t){
     e.preventDefault();
@@ -84,6 +84,7 @@ Template.addProperty.events({
         Retrieve form data
     *********************************************/
     var address = t.find('input[name="address"]').value || null
+      , postcode = t.find('input[name="postcode"]').value || null
       , price = t.find('input[name="price"]').value || null
       , descr = t.find('textarea[name="description"]').value || null
       , district = t.find('select[name="district"]').value || null
@@ -120,6 +121,7 @@ Template.addProperty.events({
     var formObj = {
       address: address,
       author: Meteor.userId(),
+      postcode: postcode,
       price: (price != null)? parseInt(price, 10) : null,
       description: descr,
       district: district,
@@ -145,6 +147,7 @@ Template.addProperty.events({
     var formErrDivID = {
       "address": "#address-form-group",
       //author: "",
+      "postcode": "#postcode-form-group",
       "price": "#price-form-group",
       "description": "#descr-form-group",
       //"district": "district-form-group",
@@ -235,8 +238,8 @@ Template.addProperty.events({
 });
 
 var creatPropertyPost = function(formObj, propertyid, deletedPhotoArr){
-  // if all fields are valid, convert address to latitude-longitude
-  CommonHelper.convertAddressAsync(formObj.address, function(err, addr){
+  // if all fields are valid, convert postcode to latitude-longitude
+  CommonHelper.convertAddressAsync(formObj.postcode, function(err, addr){
     if(addr){
       formObj.map = addr;
     }
