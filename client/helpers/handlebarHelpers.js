@@ -319,4 +319,9 @@ Handlebars.registerHelper('transPropStatus', function(status){
   return Config.getAdminPropertyStatus()[status];
 });
 
+Handlebars.registerHelper('breaklines', function(text) {
+    text = text.replace(/(\r\n|\n|\r)/gm, '<br>');
+    return new Handlebars.SafeString(text);
+});
+
 

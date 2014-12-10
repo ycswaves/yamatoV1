@@ -210,16 +210,20 @@ Router.map(function () {
       }
       var isNotOwner = false;
       var bannerImage = false;
+      var authorProfile = false;
       if(typeof property!="undefined"){
         if(property.author != Meteor.userId()) {
           isNotOwner = true;
         }
         bannerImage = property.photos[0];
+        Meteor.subscribe("userProfile", property.author);
+        var authorProfile = UserProfiles.findOne({userid:property.author});
       }
       return {
         property: property,
         isNotOwner: isNotOwner,
-        bannerImage: bannerImage
+        bannerImage: bannerImage,
+        authorProfile: authorProfile
       }
     }
   });
