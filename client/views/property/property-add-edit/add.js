@@ -38,6 +38,9 @@ Template.addProperty.rendered = function() {
   });
   render();
   $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
+  GoogleAutoComplete.init('submit-title', function(places){
+    console.log(places);
+  });
 }
 
 Template.addProperty.events({
@@ -74,6 +77,10 @@ Template.addProperty.events({
   //     }
   //   });
   // },
+
+  'focus input[name="address"]': function(e, t){
+    GoogleAutoComplete.geolocate();
+  },
 
   'submit #propertyForm': function(e, t){
     e.preventDefault();
