@@ -10,7 +10,6 @@ Template.propertyDetail.rendered = function() {
   initializeMap();
   render();
   $('.hoverInfo').popover();
-  GoogleDirection.to();
   //pin it
   // $(".infoPanel").pin({containerSelector: ".infoArea",padding: {top: 112}});
 }

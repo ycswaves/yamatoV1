@@ -651,7 +651,7 @@ fieldset[disabled] .btn-gplus.active {
 
 .background-color-white {
   color: #000;
-  background-color: #fff;
+  background-color: #fff !important;
 }
 
 .color-wechat {
@@ -4589,4 +4589,22 @@ html, body {
 
 .sweet-overlay {
   z-index: 2000;
+}
+
+/*
+Property detail travel
+ */
+.travel-mode-button {
+  padding: 7px 17px 6px;
+}
+
+.travel-mode-button .travel-icon {
+  background-image: url('/img/sprite.png');
+  background-size: 20px 20px;
+  width: 20px;
+  height: 20px;
+}
+
+.directions-mixed-icon {
+  background-position: 0 -20px;
 }

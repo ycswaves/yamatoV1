@@ -1,5 +1,5 @@
 Meteor.methods({
-  'directionTo' : function(url,options){
+  'get' : function(url,options){
     return HTTP.get(url,options);
   }
 });
