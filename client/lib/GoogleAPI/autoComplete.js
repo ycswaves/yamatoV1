@@ -1,6 +1,6 @@
-GoogleAutoComplete = {
-  'autocomplete': {},
-  'init': function(divID, callback){
+GoogleAutoComplete = function(){
+  this.autocomplete = {},
+  this.init = function(divID, callback){
     var self = this;
     // Create the autocomplete object, restricting the search
     // to geographical location types.
@@ -23,7 +23,7 @@ GoogleAutoComplete = {
 
   // Bias the autocomplete object to the user's geographical location,
   // as supplied by the browser's 'navigator.geolocation' object.
-  'geolocate': function(){
+  this.geolocate = function(){
     if (navigator.geolocation) {
       var self = this;
       navigator.geolocation.getCurrentPosition(function(position) {

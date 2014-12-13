@@ -1,5 +1,5 @@
 var imgTemp = []; //to hold the to be uploaded images temporarily
-
+var autoCompl = new GoogleAutoComplete();
 Template.addProperty.rendered = function() {
   $('.datepicker').pickadate({
     format: 'yyyy/mm/dd'
@@ -38,9 +38,12 @@ Template.addProperty.rendered = function() {
   });
   render();
   $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
-  GoogleAutoComplete.init('submit-title', function(places){
+
+  autoCompl.init('submit-title', function(places){
     console.log(places);
   });
+  console.log(autoCompl);
+
 }
 
 Template.addProperty.events({
@@ -79,7 +82,7 @@ Template.addProperty.events({
   // },
 
   'focus input[name="address"]': function(e, t){
-    GoogleAutoComplete.geolocate();
+    autoCompl.geolocate();
   },
 
   'submit #propertyForm': function(e, t){
