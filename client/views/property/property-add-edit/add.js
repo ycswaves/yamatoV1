@@ -1,5 +1,7 @@
-var imgTemp = []; //to hold the to be uploaded images temporarily
-var autoCompl = new GoogleAutoComplete();
+var global_imgTemp = []; //to hold the to be uploaded images temporarily
+var global_autoCompl = new GoogleAutoComplete();
+var global_location = undefined;
+
 Template.addProperty.rendered = function() {
   $('.datepicker').pickadate({
     format: 'yyyy/mm/dd'
@@ -16,22 +18,22 @@ Template.addProperty.rendered = function() {
     //     this.on("complete", function (file) {
     //       console.log(file);
     //       if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
-    //         imgTemp.push(file);
+    //         global_imgTemp.push(file);
     //       }
     //     });
     // },
     accept: function(file, done) {
       if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
-        imgTemp.push(file);
+        global_imgTemp.push(file);
       }
     },
     removedfile: function(file){
       // remove preview
       file.previewElement.parentNode.removeChild(file.previewElement);
       // remove the file from temp queue
-      imgTemp.forEach(function(e, i){
+      global_imgTemp.forEach(function(e, i){
         if(e.name == file.name){
-          imgTemp.splice(i,1);
+          global_imgTemp.splice(i,1);
         }
       });
     }
@@ -39,11 +41,20 @@ Template.addProperty.rendered = function() {
   render();
   $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
 
-  autoCompl.init('submit-title', function(places){
-    console.log(places);
-  });
-  console.log(autoCompl);
+  global_autoCompl.init('submit-title', function(place){
+    console.log(place);
+    var address = place.formatted_address,
+        postcodeFound = address.match(/singapore (\d{6})/i);
 
+    global_location = {
+      latitude: place.geometry.location.k,
+      longitude: place.geometry.location.D
+    };
+
+    if(postcodeFound.length>1){
+      $('#propertyForm input[name="postcode"]').val(postcodeFound[1]);
+    }
+  });
 }
 
 Template.addProperty.events({
@@ -82,7 +93,7 @@ Template.addProperty.events({
   // },
 
   'focus input[name="address"]': function(e, t){
-    autoCompl.geolocate();
+    global_autoCompl.geolocate();
   },
 
   'submit #propertyForm': function(e, t){
@@ -145,7 +156,8 @@ Template.addProperty.events({
       bathroom: (bathroom != null)? parseInt(bathroom, 10) : null,
       mrt: nearestMRT,
       contact: contactInfo,
-      facilities: facilities
+      facilities: facilities,
+      map: global_location
     };
 
     /*************************************************
@@ -200,11 +212,11 @@ Template.addProperty.events({
 
 
       var imageIDs = []
-        , toBeInsert = imgTemp.length
+        , toBeInsert = global_imgTemp.length
         , insertCounter = 0;
 
       if(toBeInsert > 0){
-        imgTemp.forEach(function(file){
+        global_imgTemp.forEach(function(file){
           // PropertyImages.insert will return file object of inserted image
           if(imageIDs.length + existingPhotosArr.length >= Config.getMaxImageUploaded()){
             return; //resulted photo should not exceeds max allowd
@@ -221,7 +233,7 @@ Template.addProperty.events({
             if(insertCounter >= toBeInsert){
               formObj.photos = imageIDs.concat(existingPhotosArr);
               creatPropertyPost(formObj, propertyid, deletedPhotoArr);
-              imgTemp = []; //clear imgTemp
+              global_imgTemp = []; //clear global_imgTemp
             }
 
           });
@@ -248,34 +260,45 @@ Template.addProperty.events({
 });
 
 var creatPropertyPost = function(formObj, propertyid, deletedPhotoArr){
-  // if all fields are valid, convert postcode to latitude-longitude
-  CommonHelper.convertAddressAsync(formObj.postcode, function(err, addr){
-    if(addr){
-      formObj.map = addr;
-    }
+    var insert = function(){
+      if(propertyid.length > 0){ // edit mode
+        Meteor.call('editProperty', propertyid, formObj, function(err){
+          if(err){
+            NotificationMessages.sendSuccess('发布','房屋资料更新失败');
+            return false;
+          }
+          if(deletedPhotoArr.length > 0){
+            Meteor.call('deletePropertyImgs', deletedPhotoArr);
+          }
+          Router.go('propertyDetail', {id: propertyid});
+        });
+      }
+      else{ // add new mode
+        Meteor.call('addProperty', formObj, function(err, id){
+          if(err){
+            NotificationMessages.sendSuccess('发布','房屋发布失败');
+            return false;
+          }
+          Router.go('propertyDetail',{id:id});
+        });
+      }
+    };
 
-    if(propertyid.length > 0){ // edit mode
-      Meteor.call('editProperty', propertyid, formObj, function(err){
-        if(err){
-          NotificationMessages.sendSuccess('发布','房屋资料更新失败');
-          return false;
+    if (formObj.map) {
+      console.log('already found');
+      insert();
+    } else {
+      console.log('find from postcode');
+      // if all fields are valid, convert postcode to latitude-longitude
+      CommonHelper.convertAddressAsync(formObj.postcode, function(err, addr){
+        console.log(addr);
+        if(addr){
+          formObj.map = addr;
         }
-        if(deletedPhotoArr.length > 0){
-          Meteor.call('deletePropertyImgs', deletedPhotoArr);
-        }
-        Router.go('propertyDetail', {id: propertyid});
+        console.log(formObj);
+        insert();
       });
     }
-    else{ // add new mode
-      Meteor.call('addProperty', formObj, function(err, id){
-        if(err){
-          NotificationMessages.sendSuccess('发布','房屋发布失败');
-          return false;
-        }
-        Router.go('propertyDetail',{id:id});
-      });
-    }
-  });
 }
 
 Template.addProperty.helpers({

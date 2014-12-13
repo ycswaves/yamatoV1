@@ -22,7 +22,7 @@ CommonHelper = {
     geocoder.geocode( { 'address': 'Singapore '+postcode }, function(results, status) {
       if (status == google.maps.GeocoderStatus.OK) {
         var lat = results[0].geometry.location.k;
-        var lng = results[0].geometry.location.B;
+        var lng = results[0].geometry.location.D;
         callback(null, {latitude: lat,longitude: lng});
       } else {
         callback('not able to get geo-location', null);
