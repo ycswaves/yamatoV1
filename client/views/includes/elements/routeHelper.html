@@ -2,25 +2,25 @@
   <div class="panel panel-default" style="border:none;margin-bottom:0px;">
     <div class="panel-heading background-color-white" style="border-color: 1px solid #f5f5f5;padding:0px">
       <div class="travel-mode selected">
-        <div class="travel-mode-button ">
+        <div class="travel-mode-button">
           <div class="travel-icon directions-mixed-icon"></div>
           <div class="travel-icon travel-mode-breadcrumb"></div>
         </div>
         <div class="directions-travel-mode-underline" style="width:47px;"></div>
       </div>
-      <div class="travel-mode">
+      <div class="travel-mode" data-travel-mode="driving">
         <div class="travel-mode-button">
           <div class="travel-icon directions-drive-icon"></div>
         </div>
         <div class="directions-travel-mode-underline"></div>
       </div>
-      <div class="travel-mode">
+      <div class="travel-mode" data-travel-mode="transit">
         <div class="travel-mode-button">
           <div class="travel-icon directions-transit-icon"></div>
         </div>
         <div class="directions-travel-mode-underline"></div>
       </div>
-      <div class="travel-mode">
+      <div class="travel-mode" data-travel-mode="walking">
         <div class="travel-mode-button">
           <div class="travel-icon directions-walk-icon"></div>
         </div>
@@ -37,12 +37,24 @@
         <span class="input-group-addon text-danger"><i class="fa fa-map-marker icon-align"></i></span>
         <input type="text" id="route-destination" name="route-destination" class="form-control" placeholder="输入目的地">
       </div>
-      {{#with routes}}
+      {{#each routes}}
       <hr>
       <div>
-        路线
+        <div class="timeline-centered">
+          <article class="timeline-entry">
+            <div class="timeline-entry-inner">
+              <div class="timeline-icon bg-info">
+                <i class="entypo-feather">1</i>
+              </div>
+              <div class="timeline-label">
+                <h2>{{summary}}</h2>
+                <p>还想再快一点？可选择用google或者facebook帐号登录。</p>
+              </div>
+            </div>
+          </article>
+        </div>
       </div>
-      {{/with}}
+      {{/each}}
     </div>
   </div>
 </template>
