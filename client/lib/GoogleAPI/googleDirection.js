@@ -8,7 +8,7 @@ GoogleDirection = {
    * @param  {[string]} mode [driving,walking,bicyling,transit,默认driving]
    * @return {[object]} 
    */
-  'to' : function(from, to, mode){
+  'to' : function(from, to, mode, callback){
     Meteor.call('get',directionURL,{
       params:{
         origin : from,
@@ -22,7 +22,7 @@ GoogleDirection = {
         
       }
       else {
-        console.log(response);
+        callback(response.data);
       }
     })
   }

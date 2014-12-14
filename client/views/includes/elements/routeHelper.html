@@ -29,6 +29,20 @@
       <div style="clear:both;"></div>
     </div>
     <div class="panel-body" style="border:none;height:100%">
+      <div class="input-group m-b">
+        <span class="input-group-addon"><i class="fa fa-circle-o icon-align"></i></span>
+        <input type="text" id="route-origin" name="route-origin" class="form-control" placeholder="出发地" value="{{this}}">
+      </div>
+      <div class="input-group">
+        <span class="input-group-addon text-danger"><i class="fa fa-map-marker icon-align"></i></span>
+        <input type="text" id="route-destination" name="route-destination" class="form-control" placeholder="输入目的地">
+      </div>
+      {{#with routes}}
+      <hr>
+      <div>
+        路线
+      </div>
+      {{/with}}
     </div>
   </div>
 </template>

@@ -5,7 +5,7 @@ CommonHelper = {
   },
 
   'isEmptyString': function(n){
-    return '' === n;
+    return '' === n.trim();
   },
 
   'showErrorMessageInForm': function(context, formErrDivID, template){
