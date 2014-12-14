@@ -13,7 +13,7 @@
     <div class="infoArea">
       <div style="border-bottom: 1px solid #dce0e0;">
         <div class="container" style="padding-left:25px;padding-right:25px;">
-          <div class="col-sm-7 with-padding">
+          <div class="col-sm-8 with-padding">
             <section id="contact-info">
               <div class="row">
                 <div class="col-xs-3 center">
@@ -64,7 +64,7 @@
             </section><!-- /#edit-search -->
           </div>
           <div class="col-sm-4">
-            <div class="panel panel-default contact-panel hidden-xs infoPanel" style="margin-top:-41px;border:none;margin-bottom:0px;box-shadow: none;width:300px">
+            <div class="panel panel-default contact-panel hidden-xs infoPanel" style="margin-top:-41px;border:none;margin-bottom:0px;box-shadow: none;">
               <div class="panel-heading background-color-default text-white" style="border-color: #1396e2;">
                 <strong>$ {{property.price}} </strong><sup>SGD</sup>
                 <span class="pull-right">每月</span>
@@ -92,7 +92,7 @@
       <div class="background-color-grey-light" style="border-bottom: 1px solid #dce0e0;">
         <div class="container with-padding">
           <!-- Property Detail Content -->
-          <div class="col-sm-7">
+          <div class="col-md-8">
             <section id="price" style="margin-bottom:20px;" class="visible-xs">
               <header>
                 <h2>
@@ -173,13 +173,17 @@
             </section><!-- /#property-features -->
           </div><!-- /.col-md-9 -->
           <!-- end Property Detail Content -->
+          <!-- route tool -->
+          <div class="col-md-4">
+            {{> routeHelper property.address}}
+          </div>
         </div><!-- /.row -->
       </div><!-- /.container -->
     </div>
     {{!--
     <div>
       <div class="container with-padding">
-        <div class="col-sm-7">
+        <div class="col-sm-8">
           {{#with authorProfile}}
           <section id="user-info">
             <header><h2>关于发帖人，{{name}}</h2></header>

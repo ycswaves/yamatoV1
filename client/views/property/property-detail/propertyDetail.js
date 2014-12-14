@@ -11,7 +11,7 @@ Template.propertyDetail.rendered = function() {
   render();
   $('.hoverInfo').popover();
   //pin it
-  $(".infoPanel").pin({containerSelector: ".infoArea",padding: {top: 112}});
+  // $(".infoPanel").pin({containerSelector: ".infoArea",padding: {top: 112}});
 }
 
 function initializeMap() {
