@@ -139,14 +139,24 @@
                             <div class="col-md-4 col-sm-4">
                               <div class="form-group" id="bedroom-form-group">
                                 <label for="bedroom">房间数</label>
-                                <input type="text" class="form-control" name="bedroom" value="{{myProperty.bedroom}}">
+                                <!-- <input type="text" class="form-control" name="bedroom" value="{{myProperty.bedroom}}"> -->
+                                <select name="bedroom">
+                                  {{#each bedroomNum}}
+                                  <option value="{{this}}" {{ifSelected this ../myProperty.bedroom}}>{{this}}</option>
+                                  {{/each}}
+                                </select>
                               </div><!-- /.form-group -->
                             </div><!-- /.col-md-4 -->
 
                             <div class="col-md-4 col-sm-4">
                               <div class="form-group" id="bathroom-form-group">
                                 <label for="bathroom">卫生间</label>
-                                <input type="text" class="form-control" name="bathroom" value="{{myProperty.bathroom}}">
+                                <!-- <input type="text" class="form-control" name="bathroom" value="{{myProperty.bathroom}}"> -->
+                                <select name="bathroom">
+                                  {{#each bathroomNum}}
+                                  <option value="{{this}}" {{ifSelected this ../myProperty.bathroom}}>{{this}}</option>
+                                  {{/each}}
+                                </select>
                               </div><!-- /.form-group -->
                             </div><!-- /.col-md-4 -->
 

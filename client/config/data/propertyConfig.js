@@ -99,3 +99,11 @@ Config.getMaxImageSize = function(){
   return 2; // Metric: MB
 }
 
+Config.getBedroomNum = function(){
+  return [1,2,3,4,5,6,7];
+}
+
+Config.getBathroomNum = function(){
+  return [1,2,3,4];
+}
+

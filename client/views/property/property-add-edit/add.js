@@ -96,6 +96,14 @@ Template.addProperty.events({
     global_autoCompl.geolocate();
   },
 
+  'keyup input[name="address"], keypress input[name="address"]': function(e, t){
+    console.log(e.keyCode);
+    if (e.keyCode == 13) {
+      e.preventDefault();
+      return false;
+    }
+  },
+
   'submit #propertyForm': function(e, t){
     e.preventDefault();
     CommonHelper.lockForm(t);
@@ -115,9 +123,9 @@ Template.addProperty.events({
       , rentType = t.find('select[name="rent-type"]').value || null
       , hasAgentFee = t.find('input:checked[name="has-agent-fee"]').value || null
       , moveInDate = t.find('input[name="move-in-date"]').value || null
-      , bedroom = t.find('input[name="bedroom"]').value || null
+      , bedroom = t.find('select[name="bedroom"]').value || null
       , area = t.find('input[name="property-area"]').value || null
-      , bathroom = t.find('input[name="bathroom"]').value || null
+      , bathroom = t.find('select[name="bathroom"]').value || null
       , nearestMRT = t.find('select[name="stations"]').value || null
       // photo gallerty
       , facilities = t.findAll('input:checkbox.property-facility').reduce(function (pre, current) {
@@ -332,6 +340,14 @@ Template.addProperty.helpers({
 
   maxFilesize: function(){
     return Config.getMaxImageSize();
+  },
+
+  bathroomNum: function(){
+    return Config.getBathroomNum();
+  },
+
+  bedroomNum: function(){
+    return Config.getBedroomNum();
   }
 
 });
