@@ -46,10 +46,23 @@ Template.addProperty.rendered = function() {
     var address = place.formatted_address,
         postcodeFound = address.match(/singapore (\d{6})/i);
 
-    global_location = {
-      latitude: place.geometry.location.k,
-      longitude: place.geometry.location.D
-    };
+    if(place.geometry.location){
+      var lat = place.geometry.location.k
+        , lng = place.geometry.location.D;
+
+      global_location = { // get geometry and store in global variable to use later
+        latitude: lat,
+        longitude: lng
+      };
+
+      GooglePlace.getNearby(lat, lng, 'subway_station', function(err, data){
+        console.log(data);
+      });
+    }
+
+
+
+
 
     if(postcodeFound.length>1){
       $('#propertyForm input[name="postcode"]').val(postcodeFound[1]);
@@ -97,7 +110,6 @@ Template.addProperty.events({
   },
 
   'keyup input[name="address"], keypress input[name="address"]': function(e, t){
-    console.log(e.keyCode);
     if (e.keyCode == 13) {
       e.preventDefault();
       return false;
