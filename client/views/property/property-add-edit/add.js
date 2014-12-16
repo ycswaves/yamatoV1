@@ -55,7 +55,7 @@ Template.addProperty.rendered = function() {
         longitude: lng
       };
 
-      GooglePlace.getNearby(lat, lng, 'subway_station', function(err, data){
+      GooglePlace.getNearby(lat, lng, 'subway_station|bus_station', function(err, data){
         console.log(data);
       });
     }
