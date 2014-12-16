@@ -25,7 +25,7 @@ h2 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   /*margin-bottom: 30px;*/
   margin-top: 10px;
-  padding-bottom: 15px;
+  padding-bottom: 15px !important;
 }
 
 h3 {
@@ -4660,3 +4660,30 @@ Property detail travel
     height: 3px;
 }
 
+.travel-mode-icon {
+  background-image: url('/img/sprite.png');
+  background-size: 20px 276px;
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  bottom: 2px;
+}
+
+.travel-mode-icon.driving{
+ background-position: 0 -40px; 
+}
+
+.travel-mode-icon.transit{
+ background-position: 0 -80px; 
+}
+
+.travel-mode-icon.walking{
+ background-position: 0 -120px; 
+}
+
+.route-element {
+  padding: 10px;
+  border: 1px solid #ccc;
+}

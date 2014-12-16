@@ -13,7 +13,8 @@ GoogleDirection = {
       params:{
         origin : from,
         destination : to,
-        mode : mode
+        mode : mode,
+        alternatives : true
       }
     },function(error,response){
       //if an error happened, error argument contains the details

@@ -2,25 +2,25 @@
   <div class="panel panel-default" style="border:none;margin-bottom:0px;">
     <div class="panel-heading background-color-white" style="border-color: 1px solid #f5f5f5;padding:0px">
       <div class="travel-mode selected">
-        <div class="travel-mode-button ">
+        <div class="travel-mode-button">
           <div class="travel-icon directions-mixed-icon"></div>
           <div class="travel-icon travel-mode-breadcrumb"></div>
         </div>
         <div class="directions-travel-mode-underline" style="width:47px;"></div>
       </div>
-      <div class="travel-mode">
+      <div class="travel-mode" data-travel-mode="driving">
         <div class="travel-mode-button">
           <div class="travel-icon directions-drive-icon"></div>
         </div>
         <div class="directions-travel-mode-underline"></div>
       </div>
-      <div class="travel-mode">
+      <div class="travel-mode" data-travel-mode="transit">
         <div class="travel-mode-button">
           <div class="travel-icon directions-transit-icon"></div>
         </div>
         <div class="directions-travel-mode-underline"></div>
       </div>
-      <div class="travel-mode">
+      <div class="travel-mode" data-travel-mode="walking">
         <div class="travel-mode-button">
           <div class="travel-icon directions-walk-icon"></div>
         </div>
@@ -30,19 +30,30 @@
     </div>
     <div class="panel-body" style="border:none;height:100%">
       <div class="input-group m-b">
-        <span class="input-group-addon"><i class="fa fa-circle-o icon-align"></i></span>
-        <input type="text" id="route-origin" name="route-origin" class="form-control" placeholder="出发地" value="{{this}}">
+        <span style="padding:6px 12px"><i class="fa fa-circle-o icon-align"></i></span>
+        <label style="margin-left:8px" id="route-origin" data-map-lat="{{latitude}}" data-map-lng="{{longitude}}">当前地址</label>
       </div>
       <div class="input-group">
         <span class="input-group-addon text-danger"><i class="fa fa-map-marker icon-align"></i></span>
         <input type="text" id="route-destination" name="route-destination" class="form-control" placeholder="输入目的地">
       </div>
-      {{#with routes}}
-      <hr>
-      <div>
-        路线
-      </div>
-      {{/with}}
+      {{#if routes}}
+        <hr>
+        {{#each routes}}
+        {{#AnimateWithVelocity}}
+        <div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='linear'>
+          <div class="route-element radius panel">
+            <span class="travel-mode-icon {{mode}}"></span>&nbsp;经过<strong> {{summary}}</strong>
+            {{#each legs}}
+            <div style="padding:10px 0px">
+              总距离{{distance.text}}, 大概需要{{duration.text}}的时间才能到达
+            </div>
+            {{/each}}
+          </div>
+        </div>
+        {{/AnimateWithVelocity}}
+        {{/each}}
+      {{/if}}
     </div>
   </div>
 </template>
