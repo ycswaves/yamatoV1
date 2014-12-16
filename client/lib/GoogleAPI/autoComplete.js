@@ -5,7 +5,7 @@ GoogleAutoComplete = function(){
     // Create the autocomplete object, restricting the search
     // to geographical location types.
     var options = {
-      types: ['establishment']
+      // types: ['establishment']
     };
 
     self.autocomplete = new google.maps.places.Autocomplete(

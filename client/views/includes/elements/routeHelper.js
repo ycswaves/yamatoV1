@@ -11,19 +11,29 @@ Template.routeHelper.events({
 
 Template.routeHelper.rendered = function() {
   //删除路线信息
-  // delete Session.keys['Direction.routes'];
+  delete Session.keys['Direction.routes'];
 
-  autoCompl.init('route-origin', function(places){
-    searchForRoute();
+  autoCompl.init('route-origin', function(place){
+    searchForRoute(place);
   });
 
-  autoCompl.init('route-destination', function(places){
-    searchForRoute();
+  autoCompl.init('route-destination', function(place){
+    searchForRoute(place);
   });
 
-  function searchForRoute(){
-    var origin = $('#route-origin').val();
-    var destination = $('#route-destination').val();
+  function searchForRoute(place){
+    var origin = $('#route-origin').data('mapLat')+","+$('#route-origin').data('mapLng');
+    //get lat, lng from searched location
+    if (typeof place != "undefined") {
+      var address = place.formatted_address,
+          postcodeFound = address.match(/singapore (\d{6})/i);
+
+      if(place.geometry.location){
+        $('#route-destination').data('mapLat',place.geometry.location.k).data('mapLng',place.geometry.location.D);
+      }
+    }
+
+    var destination = $('#route-destination').data('mapLat')+","+$('#route-destination').data('mapLng');
     if (!CommonHelper.isEmptyString(origin) && !CommonHelper.isEmptyString(destination)){
       var mode = null;
       $('.travel-mode').each(function(){

@@ -30,31 +30,24 @@
     </div>
     <div class="panel-body" style="border:none;height:100%">
       <div class="input-group m-b">
-        <span class="input-group-addon"><i class="fa fa-circle-o icon-align"></i></span>
-        <input type="text" id="route-origin" name="route-origin" class="form-control" placeholder="出发地" value="{{this}}">
+        <span style="padding:6px 12px"><i class="fa fa-circle-o icon-align"></i></span>
+        <label style="margin-left:8px" id="route-origin" data-map-lat="{{latitude}}" data-map-lng="{{longitude}}">当前地址</label>
       </div>
       <div class="input-group">
         <span class="input-group-addon text-danger"><i class="fa fa-map-marker icon-align"></i></span>
         <input type="text" id="route-destination" name="route-destination" class="form-control" placeholder="输入目的地">
       </div>
-      {{#each routes}}
-      <hr>
-      <div>
-        <div class="timeline-centered">
-          <article class="timeline-entry">
-            <div class="timeline-entry-inner">
-              <div class="timeline-icon bg-info">
-                <i class="entypo-feather">1</i>
-              </div>
-              <div class="timeline-label">
-                <h2>{{summary}}</h2>
-                <p>还想再快一点？可选择用google或者facebook帐号登录。</p>
-              </div>
-            </div>
-          </article>
+      {{#if routes}}
+        <hr>
+        {{#each routes}}
+        <div>        
+          <div class="route-element radius panel">
+            <span class="travel-mode-icon drive"></span>via {{summary}}
+            <p>还想再快一点？可选择用google或者facebook帐号登录。</p>
+          </div>
         </div>
-      </div>
-      {{/each}}
+        {{/each}}
+      {{/if}}
     </div>
   </div>
 </template>

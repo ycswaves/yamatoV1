@@ -25,7 +25,7 @@ h2 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
   /*margin-bottom: 30px;*/
   margin-top: 10px;
-  padding-bottom: 15px;
+  padding-bottom: 15px !important;
 }
 
 h3 {
@@ -4660,3 +4660,22 @@ Property detail travel
     height: 3px;
 }
 
+.travel-mode-icon {
+  background-image: url('/img/travelmodes.png');
+  background-size: 16px 70px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  bottom: 2px;
+}
+
+.travel-mode-icon.drive{
+ background-position: 0 -10px; 
+}
+
+.route-element {
+  padding: 10px;
+  border: 1px solid #ccc;
+}
