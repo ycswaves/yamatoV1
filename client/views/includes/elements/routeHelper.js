@@ -11,7 +11,7 @@ Template.routeHelper.events({
 
 Template.routeHelper.rendered = function() {
   //删除路线信息
-  delete Session.keys['Direction.routes'];
+  Session.set('Direction.routes',null);
 
   autoCompl.init('route-origin', function(place){
     searchForRoute(place);
@@ -22,6 +22,8 @@ Template.routeHelper.rendered = function() {
   });
 
   function searchForRoute(place){
+    //删除路线信息
+    Session.set('Direction.routes',null);
     var origin = $('#route-origin').data('mapLat')+","+$('#route-origin').data('mapLng');
     //get lat, lng from searched location
     if (typeof place != "undefined") {
@@ -35,16 +37,19 @@ Template.routeHelper.rendered = function() {
 
     var destination = $('#route-destination').data('mapLat')+","+$('#route-destination').data('mapLng');
     if (!CommonHelper.isEmptyString(origin) && !CommonHelper.isEmptyString(destination)){
-      var mode = null;
+      var mode;
       $('.travel-mode').each(function(){
         if ($(this).hasClass('selected')) {
           mode = $(this).data('travel-mode');
         }
       })
+      if (typeof mode == "undefined") {
+        mode = 'driving';
+      }
+      Session.set('Direction.mode',mode);
       GoogleDirection.to(origin,destination,mode,function(data){
         if (data.status == "OK") {
           Session.set('Direction.routes',data.routes);
-          console.log(Session.get('Direction.routes'));
         }
         else {
           console.log(data.status);
@@ -56,11 +61,15 @@ Template.routeHelper.rendered = function() {
   $('body').off('click','.travel-mode').on('click','.travel-mode',function(){
     $('.travel-mode').removeClass('selected');
     $(this).addClass('selected');
+    searchForRoute();
   })
 }
 
 Template.routeHelper.helpers({
   routes: function(){
     return Session.get('Direction.routes');
+  },
+  mode: function(){
+    return Session.get('Direction.mode');
   }
 })

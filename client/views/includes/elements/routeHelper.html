@@ -40,12 +40,18 @@
       {{#if routes}}
         <hr>
         {{#each routes}}
-        <div>        
+        {{#AnimateWithVelocity}}
+        <div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='linear'>
           <div class="route-element radius panel">
-            <span class="travel-mode-icon drive"></span>via {{summary}}
-            <p>还想再快一点？可选择用google或者facebook帐号登录。</p>
+            <span class="travel-mode-icon {{mode}}"></span>&nbsp;经过<strong> {{summary}}</strong>
+            {{#each legs}}
+            <div style="padding:10px 0px">
+              总距离{{distance.text}}, 大概需要{{duration.text}}的时间才能到达
+            </div>
+            {{/each}}
           </div>
         </div>
+        {{/AnimateWithVelocity}}
         {{/each}}
       {{/if}}
     </div>

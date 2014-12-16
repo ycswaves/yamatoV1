@@ -4661,18 +4661,26 @@ Property detail travel
 }
 
 .travel-mode-icon {
-  background-image: url('/img/travelmodes.png');
-  background-size: 16px 70px;
-  width: 16px;
-  height: 16px;
+  background-image: url('/img/sprite.png');
+  background-size: 20px 276px;
+  width: 20px;
+  height: 20px;
   display: inline-block;
   vertical-align: middle;
   position: relative;
   bottom: 2px;
 }
 
-.travel-mode-icon.drive{
- background-position: 0 -10px; 
+.travel-mode-icon.driving{
+ background-position: 0 -40px; 
+}
+
+.travel-mode-icon.transit{
+ background-position: 0 -80px; 
+}
+
+.travel-mode-icon.walking{
+ background-position: 0 -120px; 
 }
 
 .route-element {
