@@ -27,6 +27,7 @@ Template.routeHelper.rendered = function() {
     var origin = $('#route-origin').data('mapLat')+","+$('#route-origin').data('mapLng');
     //get lat, lng from searched location
     if (typeof place != "undefined") {
+      console.log(place);
       var address = place.formatted_address,
           postcodeFound = address.match(/singapore (\d{6})/i);
 
@@ -49,6 +50,7 @@ Template.routeHelper.rendered = function() {
       Session.set('Direction.mode',mode);
       GoogleDirection.to(origin,destination,mode,function(data){
         if (data.status == "OK") {
+          console.log(data.routes);
           Session.set('Direction.routes',data.routes);
         }
         else {

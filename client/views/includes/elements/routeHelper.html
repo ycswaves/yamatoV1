@@ -40,8 +40,7 @@
       {{#if routes}}
         <hr>
         {{#each routes}}
-        {{#AnimateWithVelocity}}
-        <div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='linear'>
+        <div>
           <div class="route-element radius panel">
             <span class="travel-mode-icon {{mode}}"></span>&nbsp;经过<strong> {{summary}}</strong>
             {{#each legs}}
@@ -51,7 +50,6 @@
             {{/each}}
           </div>
         </div>
-        {{/AnimateWithVelocity}}
         {{/each}}
       {{/if}}
     </div>

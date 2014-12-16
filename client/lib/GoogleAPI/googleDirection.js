@@ -9,13 +9,25 @@ GoogleDirection = {
    * @return {[object]} 
    */
   'to' : function(from, to, mode, callback){
+    if (mode == "transit") {
+      var params = {
+          origin : from,
+          destination : to,
+          mode : mode,
+          departure_time:Math.floor(new Date().getTime()/1000), //一定需要
+          alternatives : true
+        };
+    }
+    else {
+      var params = {
+          origin : from,
+          destination : to,
+          mode : mode,
+          alternatives : true
+        };
+    }
     Meteor.call('get',directionURL,{
-      params:{
-        origin : from,
-        destination : to,
-        mode : mode,
-        alternatives : true
-      }
+      params:params
     },function(error,response){
       //if an error happened, error argument contains the details
       //if the request succeeded, the response will contain the response of the server request
