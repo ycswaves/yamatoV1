@@ -42,7 +42,6 @@ Template.addProperty.rendered = function() {
   $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
 
   global_autoCompl.init('submit-title', function(place){
-    console.log(place);
     var address = place.formatted_address,
         postcodeFound = address.match(/singapore (\d{6})/i);
 
@@ -57,6 +56,16 @@ Template.addProperty.rendered = function() {
 
       GooglePlace.getNearby(lat, lng, 'subway_station', function(err, data){
         console.log(data);
+        if(data.results.length>0){
+          var mrtName = data.results[0].name;
+          var stationInfoObj = Config.getStationCodeByName(mrtName);
+          ReactiveDS.set('mrtline', Config.getStationsByLine(stationInfoObj.lineCode));
+          Deps.flush();
+          $('select[name="mrtlines"]').val(stationInfoObj.lineCode);
+          $('#mrtlines').selectpicker('refresh');
+          $('select[name="stations"]').val(stationInfoObj.stationCode);
+          $('#stations').selectpicker('refresh');
+        }
       });
     }
 
@@ -64,7 +73,7 @@ Template.addProperty.rendered = function() {
 
 
 
-    if(postcodeFound.length>1){
+    if(postcodeFound && postcodeFound.length>1){
       $('#propertyForm input[name="postcode"]').val(postcodeFound[1]);
     }
   });
@@ -105,9 +114,9 @@ Template.addProperty.events({
   //   });
   // },
 
-  'focus input[name="address"]': function(e, t){
-    global_autoCompl.geolocate();
-  },
+  // 'focus input[name="address"]': function(e, t){
+  //   global_autoCompl.geolocate();
+  // },
 
   'keyup input[name="address"], keypress input[name="address"]': function(e, t){
     if (e.keyCode == 13) {

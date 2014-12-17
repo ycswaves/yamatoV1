@@ -48,7 +48,7 @@ var mrtList = {
       "NS15": "Yio Chu Kang",
       "NS16": "Ang Mo Kio",
       "NS17": "Bishan",
-      "NS18": "Braddle",
+      "NS18": "Braddell",
       "NS19": "Toa Payoh",
       "NS20": "Novena",
       "NS21": "Newton",
@@ -180,3 +180,14 @@ Config.getStationsByLine = function(line){
   if(line == undefined) line = 'NS';
   return mrtList[line.toUpperCase()].stations || mrtList.NS.stations;
 };
+
+Config.getStationCodeByName = function(name){
+  for(var lineCode in mrtList){
+    for(var mrtCode in mrtList[lineCode]['stations']){
+      if(mrtList[lineCode]['stations'][mrtCode] == name){
+        return {stationCode: mrtCode, lineCode: lineCode};
+      }
+    }
+  }
+  return false;
+}
