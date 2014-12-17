@@ -48,7 +48,7 @@ var mrtList = {
       "NS15": "Yio Chu Kang",
       "NS16": "Ang Mo Kio",
       "NS17": "Bishan",
-      "NS18": "Braddle",
+      "NS18": "Braddell",
       "NS19": "Toa Payoh",
       "NS20": "Novena",
       "NS21": "Newton",
