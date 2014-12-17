@@ -4687,3 +4687,10 @@ Property detail travel
   padding: 10px;
   border: 1px solid #ccc;
 }
+
+.switchPlace{
+  color:#ccc;
+}
+
+.switchPlace:hover{
+  color:#5a5a5a;
