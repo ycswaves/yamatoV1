@@ -29,28 +29,37 @@
       <div style="clear:both;"></div>
     </div>
     <div class="panel-body" style="border:none;height:100%">
-      <div class="input-group m-b">
-        <span style="padding:6px 12px"><i class="fa fa-circle-o icon-align"></i></span>
-        <label style="margin-left:8px" id="route-origin" data-map-lat="{{latitude}}" data-map-lng="{{longitude}}">当前地址</label>
-      </div>
-      <div class="input-group">
-        <span class="input-group-addon text-danger"><i class="fa fa-map-marker icon-align"></i></span>
-        <input type="text" id="route-destination" name="route-destination" class="form-control" placeholder="输入目的地">
-      </div>
-      {{#if routes}}
-        <hr>
-        {{#each routes}}
-        <div>
-          <div class="route-element radius panel">
-            <span class="travel-mode-icon {{mode}}"></span>&nbsp;经过<strong> {{summary}}</strong>
-            {{#each legs}}
-            <div style="padding:10px 0px">
-              总距离{{distance.text}}, 大概需要{{duration.text}}的时间才能到达
-            </div>
-            {{/each}}
+      <div class="row">
+        <div class="col-xs-10" style="border-right: 1px solid #eee">
+          <div class="input-group m-b">
+            <span style="padding:6px 12px"><i class="fa fa-circle-o icon-align"></i></span>
+            <label style="margin-left:8px" id="route-origin" name="route-origin" data-map-lat="{{latitude}}" data-map-lng="{{longitude}}">当前地址</label>
+          </div>
+          <div class="input-group">
+            <span class="input-group-addon text-danger"><i class="fa fa-map-marker icon-align"></i></span>
+            <input type="text" id="route-destination" name="route-destination" class="form-control routeInput" placeholder="输入目的地">
           </div>
         </div>
-        {{/each}}
+        <div class="col-xs-2">
+          <div style="padding-top:25px"><i class="fa fa-random pointer switchPlace"></i></div>
+        </div>
+      </div>
+      {{#if routes}}
+        <div>
+          <hr>
+          {{#each routes}}
+          <div>
+            <div class="route-element radius panel">
+              <span class="travel-mode-icon {{mode}}"></span>&nbsp;经过<strong> {{summary}}</strong>
+              {{#each legs}}
+              <div style="padding:10px 0px">
+                总距离{{distance.text}}, 大概需要{{duration.text}}的时间才能到达
+              </div>
+              {{/each}}
+            </div>
+          </div>
+          {{/each}}
+        </div>
       {{/if}}
     </div>
   </div>
