@@ -53,8 +53,17 @@ Template.routeHelper.rendered = function() {
       console.log(destination);
       GoogleDirection.to(origin,destination,mode,function(data){
         if (data.status == "OK") {
-          console.log(data.routes);
-          
+          if (mode == "transit") {
+            $.each(data.routes, function(i, route){
+              var routing = [];
+              var steps = route.legs[0].steps;
+              $.each(steps,function(o, step){
+                routing.push(step.travel_mode.toLowerCase());
+              })
+              data.routes[i].routing = routing;
+            })
+            console.log(data.routes);
+          }
           Session.set('Direction.routes',data.routes);
         }
         else {
