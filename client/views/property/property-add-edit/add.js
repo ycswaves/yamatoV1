@@ -13,15 +13,6 @@ Template.addProperty.rendered = function() {
     maxFiles: Config.getMaxImageUploaded(),
     maxFilesize: Config.getMaxImageSize(),
     acceptedFiles: 'image/*',
-
-    // init: function () {
-    //     this.on("complete", function (file) {
-    //       console.log(file);
-    //       if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
-    //         global_imgTemp.push(file);
-    //       }
-    //     });
-    // },
     accept: function(file, done) {
       if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
         global_imgTemp.push(file);
@@ -54,6 +45,7 @@ Template.addProperty.rendered = function() {
         longitude: lng
       };
 
+      // search mrt station
       GooglePlace.getNearby(lat, lng, 'subway_station', function(err, data){
         console.log(data);
         if(data.results.length>0){
@@ -67,11 +59,17 @@ Template.addProperty.rendered = function() {
           $('#stations').selectpicker('refresh');
         }
       });
+
+      /* https://developers.google.com/places/documentation/supported_types */
+      // search 超市，餐馆，诊所
+      GooglePlace.getNearby(lat, lng, 'grocery_or_supermarket|bus_station|restaurant|food', 
+        function(err, data){
+          console.log(data);
+          if(data.results.length>0){//and save these info into DB
+            Meteor.call('saveNearby', data.results, function(){});
+          }
+        });
     }
-
-
-
-
 
     if(postcodeFound && postcodeFound.length>1){
       $('#propertyForm input[name="postcode"]').val(postcodeFound[1]);
