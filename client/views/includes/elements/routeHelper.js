@@ -58,11 +58,31 @@ Template.routeHelper.rendered = function() {
               var routing = [];
               var steps = route.legs[0].steps;
               $.each(steps,function(o, step){
-                routing.push(step.travel_mode.toLowerCase());
+                var hasIcon = true;
+                var bgColor = null;
+                var shortName = null;
+                if (step.travel_mode=="TRANSIT") {
+                  if (typeof step.transit_details.line.color != "undefined") {
+                    hasIcon = false;
+                    bgColor = step.transit_details.line.color;  
+                  }
+                  shortName = step.transit_details.line.short_name;
+                }
+                routing.push({
+                  mode:step.travel_mode.toLowerCase(),
+                  hasIcon:hasIcon, //需不需要显示图标
+                  bgColor:bgColor,
+                  shortName:shortName
+                });
               })
               data.routes[i].routing = routing;
             })
             console.log(data.routes);
+          }
+          else {
+            $.each(data.routes, function(i, route){
+              data.routes[i].routing = [{mode:mode,hasIcon:true}];
+            })
           }
           Session.set('Direction.routes',data.routes);
         }

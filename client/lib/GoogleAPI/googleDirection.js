@@ -32,7 +32,7 @@ GoogleDirection = {
       //if an error happened, error argument contains the details
       //if the request succeeded, the response will contain the response of the server request
       if (error) {
-        
+        callback(null);
       }
       else {
         callback(response.data);
