@@ -49,46 +49,14 @@ Template.routeHelper.rendered = function() {
       if (typeof mode == "undefined") {
         mode = 'driving';
       }
-      console.log(origin);
-      console.log(destination);
       GoogleDirection.to(origin,destination,mode,function(data){
-        if (data.status == "OK") {
-          if (mode == "transit") {
-            $.each(data.routes, function(i, route){
-              var routing = [];
-              var steps = route.legs[0].steps;
-              $.each(steps,function(o, step){
-                var hasIcon = true;
-                var bgColor = null;
-                var shortName = null;
-                if (step.travel_mode=="TRANSIT") {
-                  if (typeof step.transit_details.line.color != "undefined") {
-                    hasIcon = false;
-                    bgColor = step.transit_details.line.color;  
-                  }
-                  shortName = step.transit_details.line.short_name;
-                }
-                routing.push({
-                  mode:step.travel_mode.toLowerCase(),
-                  hasIcon:hasIcon, //需不需要显示图标
-                  bgColor:bgColor,
-                  shortName:shortName
-                });
-              })
-              data.routes[i].routing = routing;
-            })
-            console.log(data.routes);
-          }
-          else {
-            $.each(data.routes, function(i, route){
-              data.routes[i].routing = [{mode:mode,hasIcon:true}];
-            })
-          }
+        if (data) {
           Session.set('Direction.routes',data.routes);
         }
-        else {
-          console.log(data.status);
-        }
+      })
+      //测试两点之间最短距离及时间
+      GoogleDirection.shortest(origin,destination,mode,function(data){
+        console.log(data);
       })
     }
   }
