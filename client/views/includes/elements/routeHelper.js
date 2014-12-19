@@ -12,7 +12,7 @@ Template.routeHelper.events({
 Template.routeHelper.rendered = function() {
   //删除路线信息
   Session.set('Direction.routes',null);
-
+  
   autoCompl.init('route-origin', function(place){
     searchForRoute(place);
   });
@@ -21,20 +21,23 @@ Template.routeHelper.rendered = function() {
     searchForRoute(place);
   });
 
+  //交换出发地按钮
+  //保存原有的data，然后塞进后来形成的DOM
+  $('body').off('click','.switchPlace').on('click','.switchPlace',function(){
+    
+  })
+
   function searchForRoute(place){
     //删除路线信息
     Session.set('Direction.routes',null);
-    var origin = $('#route-origin').data('mapLat')+","+$('#route-origin').data('mapLng');
     //get lat, lng from searched location
     if (typeof place != "undefined") {
-      var address = place.formatted_address,
-          postcodeFound = address.match(/singapore (\d{6})/i);
-
       if(place.geometry.location){
         $('#route-destination').data('mapLat',place.geometry.location.k).data('mapLng',place.geometry.location.D);
       }
     }
 
+    var origin = $('#route-origin').data('mapLat')+","+$('#route-origin').data('mapLng');
     var destination = $('#route-destination').data('mapLat')+","+$('#route-destination').data('mapLng');
     if (!CommonHelper.isEmptyString(origin) && !CommonHelper.isEmptyString(destination)){
       var mode;
@@ -46,14 +49,14 @@ Template.routeHelper.rendered = function() {
       if (typeof mode == "undefined") {
         mode = 'driving';
       }
-      Session.set('Direction.mode',mode);
       GoogleDirection.to(origin,destination,mode,function(data){
-        if (data.status == "OK") {
+        if (data) {
           Session.set('Direction.routes',data.routes);
         }
-        else {
-          console.log(data.status);
-        }
+      })
+      //测试两点之间最短距离及时间
+      GoogleDirection.shortest(origin,destination,mode,function(data){
+        console.log(data);
       })
     }
   }
@@ -68,8 +71,5 @@ Template.routeHelper.rendered = function() {
 Template.routeHelper.helpers({
   routes: function(){
     return Session.get('Direction.routes');
-  },
-  mode: function(){
-    return Session.get('Direction.mode');
   }
 })

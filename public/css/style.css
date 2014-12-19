@@ -4667,7 +4667,6 @@ Property detail travel
   height: 20px;
   display: inline-block;
   vertical-align: middle;
-  position: relative;
   bottom: 2px;
 }
 
@@ -4687,3 +4686,10 @@ Property detail travel
   padding: 10px;
   border: 1px solid #ccc;
 }
+
+.switchPlace{
+  color:#ccc;
+}
+
+.switchPlace:hover{
+  color:#5a5a5a;
