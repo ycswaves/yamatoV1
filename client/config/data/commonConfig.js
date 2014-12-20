@@ -29,6 +29,37 @@ var districtList = {
   "D28": "Seletar / Yio Chu Kang"
 };
 
+var postalDistrict = {
+  "D01": "01,02,03,04,05,06",
+  "D02": "07,08",
+  "D03": "14,15,16",
+  "D04": "09,10",
+  "D05": "11,12,13",
+  "D06": "17",
+  "D07": "18,19",
+  "D08": "20,21",
+  "D09": "22,23",
+  "D10": "24,25,26,27",
+  "D11": "28,29,30",
+  "D12": "31,32,33",
+  "D13": "34,35,36,37",
+  "D14": "38,39,40,41",
+  "D15": "42,43,44,45",
+  "D16": "46,47,48",
+  "D17": "49,50,81",
+  "D18": "51,52",
+  "D19": "53,54,55,82",
+  "D20": "56,57",
+  "D21": "58,59",
+  "D22": "60,61,62,63,64",
+  "D23": "65,66,67,68",
+  "D24": "69,70,71",
+  "D25": "72,73",
+  "D26": "77,78",
+  "D27": "75,76",
+  "D28": "79,80"
+};
+
 var mrtList = {
   "NS": {
     "niceName": "南北线",
@@ -171,6 +202,16 @@ Config = {};
 Config.getDistrict = function(){
   return districtList;
 };
+
+Config.getDistrictByPostal = function(postcode){
+  var postSector = postcode.substr(0,2);
+  for(var districtCode in postalDistrict){
+    if(postalDistrict[districtCode].indexOf(postSector) > -1){
+      return districtCode;
+    }
+  }
+  return false;
+}
 
 Config.getMRT = function(){
   return mrtList;

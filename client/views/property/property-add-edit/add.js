@@ -47,7 +47,6 @@ Template.addProperty.rendered = function() {
 
       // search mrt station
       GooglePlace.getNearby(lat, lng, 'subway_station', function(err, data){
-        console.log(data);
         if(data.results.length>0){
           var mrtName = data.results[0].name;
           var stationInfoObj = Config.getStationCodeByName(mrtName);
@@ -62,7 +61,7 @@ Template.addProperty.rendered = function() {
 
       /* https://developers.google.com/places/documentation/supported_types */
       // search 超市，餐馆，诊所
-      GooglePlace.getNearby(lat, lng, 'grocery_or_supermarket|bus_station|restaurant|food', 
+      GooglePlace.getNearby(lat, lng, 'grocery_or_supermarket|bus_station|restaurant|food',
         function(err, data){
           console.log(data);
           if(data.results.length>0){//and save these info into DB
@@ -72,7 +71,13 @@ Template.addProperty.rendered = function() {
     }
 
     if(postcodeFound && postcodeFound.length>1){
-      $('#propertyForm input[name="postcode"]').val(postcodeFound[1]);
+      var postcode = postcodeFound[1];
+      $('#propertyForm input[name="postcode"]').val(postcode);
+      var districtCode = Config.getDistrictByPostal(postcode);
+      if(districtCode){
+        $('select[name="district"]').val(districtCode);
+        $('select[name="district"]').selectpicker('refresh');
+      }
     }
   });
 }
