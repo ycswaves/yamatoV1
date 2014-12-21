@@ -59,5 +59,15 @@ Meteor.methods({
   deletePropertyImgs: function(imgArr){
     validateUser();
     PropertyImages.remove({_id: {$in: imgArr}});
+  },
+
+  saveNearby: function(propId, category, dataArr){
+    var set = {};
+    set[category] = dataArr;
+    Nearby.update(
+      {propertyId: propId},
+      {$set: set},
+      {upsert: true}
+    );
   }
 });

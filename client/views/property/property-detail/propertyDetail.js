@@ -16,7 +16,7 @@ Template.propertyDetail.rendered = function() {
 
 function initializeMap() {
   var latitude = $('input[name="latitude"]').val() || null
-    , longitude = $('input[name="longitude"]').val() || null
+    , longitude = $('input[name="longitude"]').val() || null;
 
   if(latitude && longitude) {
     L.mapbox.accessToken = 'pk.eyJ1IjoiZGF2ZW4wMDkiLCJhIjoiel9vX2hxSSJ9.Ag0_rnoJmLvScwqMR-gjyg';
@@ -30,6 +30,46 @@ function initializeMap() {
 }
 
 Template.propertyDetail.events({
+  'click #loadFoodPlace': function(e, t){
+    /* https://developers.google.com/places/documentation/supported_types */
+    // search 餐馆，诊所
+    var latitude = $('input[name="latitude"]').val() || null
+      , longitude = $('input[name="longitude"]').val() || null
+      , propId = $('input[name="propId"]').val() || null;
+
+    if(latitude && longitude && propId) {
+      GooglePlace.getNearby(latitude, longitude, 'restaurant|food',
+        function(err, data){
+          console.log(data);
+          if(data.results.length>0){//and save these info into DB
+            Meteor.call('saveNearby', propId, 'food', data.results, function(e){
+              if(e){console.log(e);}
+            });
+          }
+        }
+      );
+    }
+  },
+
+  'click #loadMart': function(e, t){
+    /* https://developers.google.com/places/documentation/supported_types */
+    // search 超市
+    var latitude = $('input[name="latitude"]').val() || null
+      , longitude = $('input[name="longitude"]').val() || null
+      , propId = $('input[name="propId"]').val() || null;
+
+    if(latitude && longitude) {
+      GooglePlace.getNearby(latitude, longitude, 'grocery_or_supermarket',
+        function(err, data){
+          console.log(data);
+          if(data.results.length>0){//and save these info into DB
+            Meteor.call('saveNearby', propId, 'mart', data.results, function(){});
+          }
+        }
+      );
+    }
+  },
+
   'click #enquiry-btn': function(e, t){
     e.preventDefault();
     var referId = $('#enquiry-btn').data('referId');

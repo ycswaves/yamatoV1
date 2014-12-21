@@ -59,17 +59,10 @@ Template.addProperty.rendered = function() {
         }
       });
 
-      /* https://developers.google.com/places/documentation/supported_types */
-      // search 超市，餐馆，诊所
-      GooglePlace.getNearby(lat, lng, 'grocery_or_supermarket|bus_station|restaurant|food',
-        function(err, data){
-          console.log(data);
-          if(data.results.length>0){//and save these info into DB
-            Meteor.call('saveNearby', data.results, function(){});
-          }
-        });
+
     }
 
+    // Update postcode field and district selection
     if(postcodeFound && postcodeFound.length>1){
       var postcode = postcodeFound[1];
       $('#propertyForm input[name="postcode"]').val(postcode);
