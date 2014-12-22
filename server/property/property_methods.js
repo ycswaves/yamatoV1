@@ -64,7 +64,7 @@ Meteor.methods({
   saveNearby: function(propId, category, dataArr){
     var set = {};
     set[category] = dataArr;
-    Nearby.update(
+    NearbyCollection.update(
       {propertyId: propId},
       {$set: set},
       {upsert: true}

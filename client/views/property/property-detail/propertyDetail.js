@@ -51,41 +51,83 @@ Template.propertyDetail.events({
     }
   },
 
-  'click #loadMart': function(e, t){
-    /* https://developers.google.com/places/documentation/supported_types */
-    // search 超市
-    var latitude = $('input[name="latitude"]').val() || null
-      , longitude = $('input[name="longitude"]').val() || null
-      , propId = $('input[name="propId"]').val() || null;
-
-    if(latitude && longitude) {
-      GooglePlace.getNearby(latitude, longitude, 'grocery_or_supermarket',
-        function(err, data){
-          console.log(data);
-          if(data.results.length>0){//and save these info into DB
-            Meteor.call('saveNearby', propId, 'mart', data.results, function(){});
-          }
-        }
-      );
-    }
-  },
-
-  'click #enquiry-btn': function(e, t){
-    e.preventDefault();
-    var referId = $('#enquiry-btn').data('referId');
-    Conversations.start(referId,'Property');
-    // 等待meteor建立对话
-    Meteor.setTimeout(function() {
-      if (typeof Session.get('Conversation.currentTopicId') != 'undefined') {
-        var topicId = Session.get('Conversation.currentTopicId');
-        if (!$('button[data-topic-id='+topicId+']').parent().find('.topicAvatar').next().is(':visible')) {
-          $('button[data-topic-id='+topicId+']').parent().find('.topicAvatar').click();
-        }
-        delete Session.keys['Conversation.currentTopicId'];
-      }
-    }, 2 * 1000);
-  },
   'click #return-btn': function(e,t){
     Router.go(Session.get('prevPath') || 'landing');
   }
-})
+});
+
+
+PropertyDetailController = RouteController.extend({
+  waitOn: function () {
+    return Meteor.subscribe('propertyDetail', this.params.id)
+          && Meteor.subscribe('propertyNearby', this.params.id);
+  },
+  template: 'propertyDetail',
+  action: function () {
+    if (this.ready()){
+      Meteor.call('incPropertyView', this.params.id); //TODO: use sampling if high I/O
+      this.render();
+    }
+    else{
+      this.render('loading');
+    }
+  },
+
+  data: function () {
+      var params = this.params;
+      var property = Properties.findOne({_id: params.id});
+      if(!property){
+        this.render('notFound');
+        return;
+      }
+      var isNotOwner = false;
+      var bannerImage = false;
+      var authorProfile = false;
+      if(typeof property!="undefined"){
+        if(property.author != Meteor.userId()) {
+          isNotOwner = true;
+        }
+        bannerImage = property.photos[0];
+        Meteor.subscribe("userProfile", property.author);
+        var authorProfile = UserProfiles.findOne({userid:property.author});
+      }
+
+      //get nearby
+      var nearby = NearbyCollection.findOne({propertyId: property._id});
+      if(!nearby && property.map.latitude){ // if nearby not init, query google
+        var lat = property.map.latitude
+          , lng = property.map.longitude;
+
+        //search 超市
+        GooglePlace.getNearby(lat, lng, 'grocery_or_supermarket',
+          function(err, data){
+            //console.log(data);
+            if(data.results.length>0){//and save these info into DB
+              Meteor.call('saveNearby', property._id, 'mart', data.results, function(){});
+            }
+          }
+        );
+
+        // search 餐馆
+        GooglePlace.getNearby(lat, lng, 'grocery_or_supermarket',
+          function(err, data){
+            //console.log(data);
+            if(data.results.length>0){//and save these info into DB
+              Meteor.call('saveNearby', property._id, 'mart', data.results, function(){});
+            }
+          }
+        );
+
+        //TODO: search clinic
+
+      }
+
+      return {
+        property: property,
+        nearby: nearby,
+        isNotOwner: isNotOwner,
+        bannerImage: bannerImage,
+        authorProfile: authorProfile
+      }
+    }
+});

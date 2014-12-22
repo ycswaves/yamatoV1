@@ -174,19 +174,7 @@ Router.map(function () {
 
   this.route('propertyDetail', {
     path: '/property/:id',
-    waitOn: function () {
-      return Meteor.subscribe('propertyDetail', this.params.id);
-    },
-    template: 'propertyDetail',
-    action: function () {
-      if (this.ready()){
-        Meteor.call('incPropertyView', this.params.id); //TODO: use sampling if high I/O
-        this.render();
-      }
-      else{
-        this.render('loading');
-      }
-    },
+    controller: 'PropertyDetailController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '房屋详情';
       // var property = this.data().property;
@@ -200,31 +188,6 @@ Router.map(function () {
       //     'image': bannerImage
       //   }
       // });
-    },
-    data: function () {
-      var params = this.params;
-      var property = Properties.findOne({_id: params.id});
-      if(!property){
-        this.render('notFound');
-        return;
-      }
-      var isNotOwner = false;
-      var bannerImage = false;
-      var authorProfile = false;
-      if(typeof property!="undefined"){
-        if(property.author != Meteor.userId()) {
-          isNotOwner = true;
-        }
-        bannerImage = property.photos[0];
-        Meteor.subscribe("userProfile", property.author);
-        var authorProfile = UserProfiles.findOne({userid:property.author});
-      }
-      return {
-        property: property,
-        isNotOwner: isNotOwner,
-        bannerImage: bannerImage,
-        authorProfile: authorProfile
-      }
     }
   });
 

@@ -1,4 +1,4 @@
-Nearby = new Meteor.Collection("nearby");
+NearbyCollection = new Meteor.Collection("nearby");
 
 var NearBySchema = new SimpleSchema({
   propertyId: {
