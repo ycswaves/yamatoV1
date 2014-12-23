@@ -1,9 +1,17 @@
+var global_autoCompl = new GoogleAutoComplete();
+
 Template.landingPage.rendered = function() {
   render();
   if (Session.get('resetPassword')) {
     $('#resetPassModal').modal('show');
   }
+  
   ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
+
+  global_autoCompl.init('frequentAddr', function(place){
+
+  })
+
 }
 
 Template.landingPage.events({
@@ -81,7 +89,11 @@ Template.landingPage.helpers({
 
   priceRange: function(){
     return Config.getPriceRange();
-  }
+  },
+
+  facilities: function(){
+    return Config.getFavFacilities();
+  },
 });
 
 Template.landingPage.created = function() {

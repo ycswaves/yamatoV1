@@ -63,8 +63,21 @@ var propertyFacilities = {
   "gym": "健身房"
 };
 
+var favPropertyFacilities = {
+  "hasFurniture": "家具齐全",
+  "furnished": "精装修",
+  "noLandlord": "无房东",
+  "allowCooking": "可煮",
+  "aircon": "空调",
+  "washer": "洗衣机"
+};
+
 Config.getFacilities = function(){
   return propertyFacilities;
+};
+
+Config.getFavFacilities = function(){
+  return favPropertyFacilities;
 };
 
 Config.getPropertyTypes = function(){
