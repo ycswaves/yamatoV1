@@ -51,9 +51,10 @@ Meteor.methods({
         {_id: propID} : {_id: propID, author: Meteor.userId()}
     var prop = Properties.findOne(filter, {photos: 1});
 
-    //Also remember to delete all the photos in the post
+    //Also remember to delete all the photos in the post and nearby info
     PropertyImages.remove({_id: {$in: prop.photos}});
     Properties.remove(filter);
+    NearbyCollection.remove({_id: propID});
   },
 
   deletePropertyImgs: function(imgArr){
@@ -69,5 +70,10 @@ Meteor.methods({
       {$set: set},
       {upsert: true}
     );
+  },
+
+  deleteNearby: function(propId){
+    validateUser();
+    NearbyCollection.remove({_id: propID});
   }
 });

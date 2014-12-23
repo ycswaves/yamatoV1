@@ -109,15 +109,14 @@ PropertyDetailController = RouteController.extend({
         );
 
         // search 餐馆
-        GooglePlace.getNearby(lat, lng, 'grocery_or_supermarket',
+        GooglePlace.getNearby(lat, lng, 'restaurant|food',
           function(err, data){
             //console.log(data);
             if(data.results.length>0){//and save these info into DB
-              Meteor.call('saveNearby', property._id, 'mart', data.results, function(){});
+              Meteor.call('saveNearby', property._id, 'food', data.results, function(){});
             }
           }
         );
-
         //TODO: search clinic
 
       }
