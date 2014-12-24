@@ -1,6 +1,7 @@
 var global_imgTemp = []; //to hold the to be uploaded images temporarily
 var global_autoCompl = new GoogleAutoComplete();
 var global_location = undefined;
+var global_addrChanged = false; //to test if address is edited
 
 Template.addProperty.rendered = function() {
   $('.datepicker').pickadate({
@@ -95,24 +96,9 @@ Template.addProperty.events({
     t.$('#stations').selectpicker('refresh');
   },
 
-  // 'blur input[name="address"]': function(e, t){
-  //   t.$('#not-found-on-map').remove(); // clear err msg
-  //   var address = t.find('input[name="address"]').value || null
-  //   if(address == '') return;
-
-  //   CommonHelper.convertAddressAsync(address, function(err, addr){
-  //     if(err){
-  //       t.$('#address-form-group').append(
-  //       '<span id="not-found-on-map" style="color: red" class="help-block"><i class="fa fa-exclamation-triangle"></i> '
-  //       + '无法在地图上找到此地址，请再次确认' +
-  //       '</span>');
-  //     }
-  //   });
-  // },
-
-  // 'focus input[name="address"]': function(e, t){
-  //   global_autoCompl.geolocate();
-  // },
+  'change input[name="address"], change input[name="postcode"]': function(e, t){
+    global_addrChanged = true; // to notify server to delete nearby upon form submission
+  },
 
   'keyup input[name="address"], keypress input[name="address"]': function(e, t){
     if (e.keyCode == 13) {
@@ -295,6 +281,11 @@ var creatPropertyPost = function(formObj, propertyid, deletedPhotoArr){
           if(deletedPhotoArr.length > 0){
             Meteor.call('deletePropertyImgs', deletedPhotoArr);
           }
+          if(global_addrChanged){
+            //delete previous address nearby info,
+            // and info will be re-retrieved in propertyDetail after redirect
+            Meteor.call('deleteNearby', propertyid);
+          }
           Router.go('propertyDetail', {id: propertyid});
         });
       }
@@ -310,17 +301,13 @@ var creatPropertyPost = function(formObj, propertyid, deletedPhotoArr){
     };
 
     if (formObj.map) {
-      console.log('already found');
       insert();
     } else {
-      console.log('find from postcode');
       // if all fields are valid, convert postcode to latitude-longitude
       CommonHelper.convertAddressAsync(formObj.postcode, function(err, addr){
-        console.log(addr);
         if(addr){
           formObj.map = addr;
         }
-        console.log(formObj);
         insert();
       });
     }

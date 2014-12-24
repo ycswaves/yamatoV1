@@ -42,3 +42,7 @@ Meteor.publish("topics", function() {
 Meteor.publish("userProfile", function(id) {
   return UserProfiles.find({userid: id});
 });
+
+Meteor.publish("propertyNearby", function(id) {
+  return NearbyCollection.find({propertyId: id});
+});
