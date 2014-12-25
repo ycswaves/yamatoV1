@@ -1,8 +1,8 @@
 <template name="landingPage">
 	<div class="welcome">
 		<div class="container slogan">
-			<h1>寻找属于你的那个家。</h1>
-			<h2>一站式家居体验，从这里开始 !</h2>
+			<h1>在狮城寻找属于你的那个家。</h1>
+			<h2>一站式租房体验，从这里开始 !</h2>
 		</div>
 		<div class="container search-box">
 			<ul class="nav nav-pills">
@@ -21,18 +21,38 @@
 					<form role="form" id="search-form-landing" class="form-map form-search clearfix">
 						<div id="advanced-search-rent" class="panel-collapse collapse">
 							<div class="advanced-search">
-								<header><h3>家居设施</h3></header>
-								<ul class="submit-features">
-									<li><div class="checkbox"><label><input type="checkbox">Cable TV</label></div></li>
-									<li><div class="checkbox"><label><input type="checkbox">Parquet</label></div></li>
-									<li><div class="checkbox"><label><input type="checkbox">Roof terrace</label></div></li>
-									<li><div class="checkbox"><label><input type="checkbox">Terrace</label></div></li>
-									<li><div class="checkbox"><label><input type="checkbox">Balcony</label></div></li>
-									<li><div class="checkbox"><label><input type="checkbox">Iron</label></div></li>
-									<li><div class="checkbox"><label><input type="checkbox">Hi-Fi</label></div></li>
-									<li><div class="checkbox"><label><input type="checkbox">Beach</label></div></li>
-									<li><div class="checkbox"><label><input type="checkbox">Garage</label></div></li>
-								</ul>
+								<h3 style="margin-bottom: 10px;">常用地址</h3>
+								<div class="row">
+									<div class="col-sm-3">
+										<div class="form-group">
+											<input type="text" class="form-control" id="frequentAddr" name="frequentAddr" placeholder="输入您的常用地址">
+										</div>
+									</div>
+									<div class="col-sm-2">
+										<div class="form-group">
+											<select name="district">
+												<option value="transit">公共交通</option>
+												<option value="driving">驾车</option>
+												<option value="walking">步行</option>
+											</select>
+										</div><!-- /.form-group -->
+									</div>
+									<div class="col-sm-1">
+										<div class="form-group">
+											<button type="submit" class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i></button>
+										</div><!-- /.form-group -->
+									</div>
+								</div>
+								<hr style="border-color:white">
+								<h3 style="margin-bottom: 10px;">家居设施</h3>
+								<div class="row">
+									{{#each arrayify facilities}}
+									<div class="col-sm-4 col-xs-6">
+										<div class="checkbox"><label><input type="checkbox" value="{{key}}">{{value}}</label></div>
+									</div>
+									{{/each}}
+								</div>
+								<hr style="border-color:white">
 							</div>
 						</div>
 						<div class="row">
@@ -61,8 +81,8 @@
 									<select name="price">
 										<option value="">任意价格</option>
 										{{#each arrayify priceRange}}
-                    <option value="{{key}}">{{value}}</option>
-                    {{/each}}
+										<option value="{{key}}">{{value}}</option>
+										{{/each}}
 									</select>
 								</div>
 							</div>
@@ -114,9 +134,16 @@
 			</div>
 		</div>
 	</section><!-- /#banner -->
-  <section class="block">
-    {{> introFlow}}
-  </section>
+	<section class="block">
+		{{> introFlow}}
+	</section>
+	<section id="banner">
+		<div class="block text-white background-color-primary center text-banner">
+			<div class="container">
+				<h3>有人说，这将是新加坡最好用的华人找房平台</h3>
+			</div>
+		</div>
+	</section><!-- /#banner -->
 	<section id="our-services" class="block background-color-grey-light">
 		<div class="container">
 			<header class="section-title"><h2>极简平台</h2></header>
@@ -143,8 +170,8 @@
 					<div class="feature-box equal-height" style="height:160px">
 						<figure class="icon"><i class="fa fa-bullhorn"></i></figure>
 						<aside class="description">
-							<header><h3>推送功能</h3></header>
-							<p>独特的推送系统会自动将满足您设置好的条件的房源直推给您，让你最快获得第一手信息</p>
+							<header><h3>最优计算</h3></header>
+							<p>独特的最优计算系统会自动计算你的常用地址，并推荐最合适你的房源</p>
 						</aside>
 					</div><!-- /.feature-box -->
 				</div><!-- /.col-md-4 -->
