@@ -3,7 +3,17 @@ var imageStore = new FS.Store.S3("property-images", { //todo: update 'image' to 
   bucket: "yamato-image", //required
   ACL: "public-read", //optional, default is 'private', but you can allow public or secure access routed through your app URL
   // // The rest are generic store options supported by all storage adapters
-  // transformWrite: myTransformWriteFunction, //optional
+  transformWrite: function(fileObj, readStream, writeStream){
+    gm(readStream)
+      .strokeWidth(15)
+      .drawText(30, 20, "GMagick!")
+      .stream(function (err, stdout, stderr) {
+        if(err){
+          console.log(err);
+        }
+        stdout.pipe(writeStream);
+      });
+  },
   // transformRead: myTransformReadFunction, //optional
   maxTries: 1 //optional, default 5
 });
