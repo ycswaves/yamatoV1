@@ -1,0 +1,181 @@
+<template name="landingPage">
+	<div class="welcome">
+		<div class="container slogan">
+			<h1>在狮城寻找属于你的那个家。</h1>
+			<h2>一站式租房体验，从这里开始 !</h2>
+		</div>
+		<div class="container search-box">
+			<ul class="nav nav-pills">
+				<li class="active"><a href="#search-form-rent" data-toggle="tab">租房</a></li>
+				<li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">跳蚤市场</a></li>
+				{{!--
+				<li><a href="#search-form-secondhand" data-toggle="tab">二手家具</a></li>
+				<li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">搬家</a></li>
+				<li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">家政</a></li>
+				--}}
+			</ul>
+			<hr>
+			<div class="tab-content m-b">
+				<div class="tab-pane fade in active" id="search-form-rent">
+					<a class="advanced-search-toggle" data-toggle="collapse" data-parent="#accordion" href="#advanced-search-rent">高级搜索条件 <i class="fa fa-plus"></i></a>
+					<form role="form" id="search-form-landing" class="form-map form-search clearfix">
+						<div id="advanced-search-rent" class="panel-collapse collapse">
+							<div class="advanced-search">
+								<h3 style="margin-bottom: 10px;">常用地址</h3>
+								<div class="row">
+									<div class="col-sm-3">
+										<div class="form-group">
+											<input type="text" class="form-control" id="frequentAddr" name="frequentAddr" placeholder="输入您的常用地址">
+										</div>
+									</div>
+									<div class="col-sm-2">
+										<div class="form-group">
+											<select name="travelMode">
+												<option value="transit">公共交通</option>
+												<option value="driving">驾车</option>
+												<option value="walking">步行</option>
+											</select>
+										</div><!-- /.form-group -->
+									</div>
+									<div class="col-sm-1">
+										<div class="form-group">
+											<button type="submit" class="btn btn-default"><i class="fa fa-plus" style="margin-right: 5px"></i></button>
+										</div><!-- /.form-group -->
+									</div>
+								</div>
+								<hr style="border-color:white">
+								<h3 style="margin-bottom: 10px;">家居设施</h3>
+								<div class="row">
+									{{#each arrayify facilities}}
+									<div class="col-sm-4 col-xs-6">
+										<div class="checkbox"><label><input type="checkbox" value="{{key}}">{{value}}</label></div>
+									</div>
+									{{/each}}
+								</div>
+								<hr style="border-color:white">
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="property-type">
+										<option value="">任意房屋类型</option>
+										{{#each arrayify ptypes}}
+										<option value="{{key}}">{{value}}</option>
+										{{/each}}
+									</select>
+								</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="district">
+										<option value="">任意区域</option>
+										{{#each arrayify district}}
+										<option value="{{key}}">{{key}} - {{value}}</option>
+										{{/each}}
+									</select>
+								</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="price">
+										<option value="">任意价格</option>
+										{{#each arrayify priceRange}}
+										<option value="{{key}}">{{value}}</option>
+										{{/each}}
+									</select>
+								</div>
+							</div>
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="mrtlines" id="mrtlines">
+										<option value="">任意地铁线</option>
+										{{#each arrayify mrtlines}}
+										<option value="{{key}}">{{mrtColoredLabel key}} {{value.niceName}}</option>
+										{{/each}}
+									</select>
+								</div><!-- /.form-group -->
+							</div>
+
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<select name="stations" id="stations">
+										<option value="">站名</option>
+										{{#each arrayify stations}}
+										<option value="{{key}}">{{key}} - {{value}}</option>
+										{{/each}}
+									</select>
+								</div><!-- /.form-group -->
+							</div>
+							<div class="col-md-2 col-sm-4">
+								<div class="form-group">
+									<button type="submit" class="btn btn-default"><i class="fa fa-search" style="margin-right: 5px"></i> 搜索</button>
+								</div><!-- /.form-group -->
+							</div>
+						</div>
+					</form><!-- /#form-map -->
+				</div>
+			</div>
+		</div>
+	</div>
+	<section id="banner">
+		<div class="block text-white background-color-default center text-banner">
+
+			<div class="container">
+				<!-- <h1 class="no-bottom-margin no-border">家易</h1> -->
+				<div>
+					<img src="/img/h1.png" height="120px;">
+				</div>
+				<h3>家居从未如此简单</h3>
+			</div>
+
+			<div class="container text-center">
+				<a href="{{pathFor 'addProperty'}}" class="btn btn-ghost" style="font-size:24px; padding: 20px 120px">发布信息</a>
+			</div>
+		</div>
+	</section><!-- /#banner -->
+	<section class="block">
+		{{> introFlow}}
+	</section>
+	<section id="banner">
+		<div class="block text-white background-color-primary center text-banner">
+			<div class="container">
+				<h3>有人说，这将是新加坡最好用的华人找房平台</h3>
+			</div>
+		</div>
+	</section><!-- /#banner -->
+	<section id="our-services" class="block background-color-grey-light">
+		<div class="container">
+			<header class="section-title"><h2>极简平台</h2></header>
+			<div class="row">
+				<div class="col-md-4 col-sm-4">
+					<div class="feature-box equal-height" style="height:160px">
+						<figure class="icon"><i class="fa fa-building-o"></i></figure>
+						<aside class="description">
+							<header><h3>丰富的房源</h3></header>
+							<p>网罗海外华人资源，联合众多房屋经纪公司共同打造实时海量房源</p>
+						</aside>
+					</div><!-- /.feature-box -->
+				</div><!-- /.col-md-4 -->
+				<div class="col-md-4 col-sm-4">
+					<div class="feature-box equal-height" style="height:160px">
+						<figure class="icon"><i class="fa fa-search"></i></figure>
+						<aside class="description">
+							<header><h3>极致的搜索</h3></header>
+							<p>分门别类，多样化的搜索条件让结果更为贴近实际要求，对麻烦说不</p>
+						</aside>
+					</div><!-- /.feature-box -->
+				</div><!-- /.col-md-4 -->
+				<div class="col-md-4 col-sm-4">
+					<div class="feature-box equal-height" style="height:160px">
+						<figure class="icon"><i class="fa fa-bullhorn"></i></figure>
+						<aside class="description">
+							<header><h3>最优计算</h3></header>
+							<p>独特的最优计算系统会自动计算你的常用地址，并推荐最合适你的房源</p>
+						</aside>
+					</div><!-- /.feature-box -->
+				</div><!-- /.col-md-4 -->
+			</div><!-- /.row -->
+		</div><!-- /.container -->
+	</section><!-- /#our-services -->
+</template>

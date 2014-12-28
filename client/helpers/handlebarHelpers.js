@@ -89,7 +89,7 @@ function _getAvatarByUserId(userId){
     }
   }
   //google default avatar
-  return 'https://lh3.googleusercontent.com/-_vpNdZdH7QI/AAAAAAAAAAI/AAAAAAAAAAA/fmpFxHRfvb0/s96-c/photo.jpg';
+  return '/images/avatar.jpg';
 }
 
 

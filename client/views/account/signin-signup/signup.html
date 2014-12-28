@@ -1,0 +1,43 @@
+<template name="signup">
+	<section id="content" class="m-t-lg wrapper-md animated fadeInDown">
+		<a class="nav-brand" href="{{pathFor "landing"}}">
+			<img src="/images/logo.png">
+		</a>
+		<div class="row m-n">
+			<div class="col-md-4 col-md-offset-4 m-t-lg">
+				<section class="panel">
+					<header class="panel-heading bg bg-primary text-center">
+						注册
+					</header>
+					<form id="signupForm" class="panel-body">
+						{{> flashMessages}}
+						<div class="form-group">
+							<label class="control-label">用户名</label>
+							<input name="username" type="text" placeholder="例如. John, Jane" class="form-control" required>
+						</div>
+						<div class="form-group">
+							<label class="control-label">电子邮箱</label>
+							<input name="email" type="email" placeholder="请输入邮箱地址" class="form-control" required>
+						</div>
+						<div class="form-group">
+						<label class="control-label">密码</label>
+							<input name="password" type="password" id="inputPassword" placeholder="请输入密码" class="form-control" required>
+						</div>
+						<div class="checkbox">
+							<label>
+								<input type="checkbox"> 我已阅读并同意<a href="#">网站条例及规范</a>
+							</label>
+						</div>
+						<button type="submit" class="btn btn-info" id="account-submit">注册</button>
+						<div class="line line-dashed"></div>
+            <a href="javascript:void(0)" class="btn btn-facebook btn-block m-b-sm" id="facebookLogin"><i class="fa fa-facebook pull-left"></i>使用Facebook账户登录</a>
+            <a href="javascript:void(0)" class="btn btn-danger btn-block" id="googleLogin"><i class="fa fa-google-plus pull-left"></i>使用Google账户登录</a>
+						<div class="line line-dashed"></div>
+						<p class="text-muted text-center"><small>已经有账号了?</small></p>
+						<a href="{{pathFor "signin"}}" class="btn btn-white btn-block">点此登录</a>
+					</form>
+				</section>
+			</div>
+		</div>
+	</section>
+</template>

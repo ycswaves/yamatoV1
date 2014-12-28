@@ -12,6 +12,13 @@ var filters = {
     } else {
       this.next();
     }
+  },
+  isNotLoggedIn: function() {
+    if (!(Meteor.user() || Meteor.loggingIn())) {
+      this.next();
+    } else {
+      Router.go('landing');
+    }
   }
 };
 
@@ -45,17 +52,25 @@ var isVerified = function(){
   }
 }
 
+var removeFullBg = function() {
+  $('body').removeClass('fullbackground');
+  this.next();
+}
+
+Router.onBeforeAction(removeFullBg);
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
+Router.onBeforeAction(filters.isNotLoggedIn, {only: ['signin']});
 Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
 Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail']});
 Router.onBeforeAction(isAdmin, {only: ['adminuser','adminproperty']});
 Router.onBeforeAction(isVerified, {only: ['addProperty']});
 
 var TITLE = '家易';
+
 Router.map(function () {
   this.route('landing', {
     path: '/',
-    template: 'landingPage',
+    template: 'landing',
     action: function () {
       this.render();
     },
@@ -66,10 +81,12 @@ Router.map(function () {
 
   this.route('signin', {
     path: '/account/signin',
-    template: 'loginForm',
+    template: 'signin',
     parent:'landing',
     label: '登录',
     action: function () {
+      this.layout('layoutPlain');
+      $('body').addClass('fullbackground');
       this.render();
     },
     onAfterAction: function () {
@@ -79,10 +96,12 @@ Router.map(function () {
 
   this.route('signup', {
     path: '/account/signup',
-    template: 'signupForm',
+    template: 'signup',
     parent:'landing',
     label: '注册',
     action: function () {
+      this.layout('layoutPlain');
+      $('body').addClass('fullbackground');
       this.render();
     },
     onAfterAction: function () {

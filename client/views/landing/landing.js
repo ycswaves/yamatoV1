@@ -1,20 +1,13 @@
-var global_autoCompl = new GoogleAutoComplete();
-
-Template.landingPage.rendered = function() {
+Template.landing.rendered = function() {
   render();
   if (Session.get('resetPassword')) {
     $('#resetPassModal').modal('show');
   }
   
   ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
-
-  global_autoCompl.init('frequentAddr', function(place){
-
-  })
-
 }
 
-Template.landingPage.events({
+Template.landing.events({
   'change #mrtlines': function(e, t){
     e.preventDefault();
     var mrtLine = t.find('select[name="mrtlines"]').value;
@@ -70,7 +63,7 @@ Template.landingPage.events({
 
 
 
-Template.landingPage.helpers({
+Template.landing.helpers({
   district: function(){
     return Config.getDistrict();
   },
@@ -96,7 +89,7 @@ Template.landingPage.helpers({
   },
 });
 
-Template.landingPage.created = function() {
+Template.landing.created = function() {
   //验证邮箱
   if (Accounts._verifyEmailToken) {
     Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {

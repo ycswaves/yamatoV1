@@ -1,0 +1,94 @@
+<template name="signin">
+  <section id="content" class="m-t-lg wrapper-md animated fadeInUp">
+    <a class="nav-brand" href="{{pathFor "landing"}}">
+      <img src="/images/logo.png">
+    </a>
+    <div class="row m-n">
+      <div class="col-md-4 col-md-offset-4 m-t-lg">
+        <section class="panel">
+          <header class="panel-heading text-center">
+            登录
+          </header>
+          <form id="signinForm" class="panel-body">
+            {{> flashMessages}}
+            <div class="form-group">
+              <label class="control-label">用户名</label>
+              <input name="username" type="text" placeholder="请输入用户名" class="form-control">
+            </div>
+            <div class="form-group">
+              <label class="control-label">密码</label>
+              <input name="password" type="password" id="inputPassword" placeholder="请输入密码" class="form-control">
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox"> 记住我
+              </label>
+            </div>
+            <a href="javascript:void(0)" id="forgetPassLink" class="pull-right m-t-xs"><small>忘记了密码?</small></a>
+            <button type="submit" class="btn btn-info">登录</button>
+            <div class="line line-dashed"></div>
+            <a href="javascript:void(0)" class="btn btn-facebook btn-block m-b-sm" id="facebookLogin"><i class="fa fa-facebook pull-left"></i>使用Facebook账户登录</a>
+            <a href="javascript:void(0)" class="btn btn-danger btn-block" id="googleLogin"><i class="fa fa-google-plus pull-left"></i>使用Google账户登录</a>
+            <div class="line line-dashed"></div>
+            <p class="text-muted text-center"><small>还没有账号?</small></p>
+            <a href="{{pathFor "signup"}}" class="btn btn-white btn-block">按此新建账号</a>
+          </form>
+        </section>
+      </div>
+    </div>
+  </section>
+  {{> forgotPassPopup}}
+</template>
+
+<template name="forgotPassPopup">
+  <div id="forgotPassModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h3 class="modal-title center">
+            <strong>忘记密码</strong><br>
+            <small>重设密码会发送至您的邮箱</small>
+          </h3>
+        </div>
+        <div class="modal-body center" style="padding:0px">
+          <div class="ui-TextField ui-Field">
+            <input autofocus="autofocus" name="email" class="content" placeholder="请输入邮箱地址" style="border:none;outline: none;">
+          </div>
+        </div>
+        <div class="modal-footer" style="margin-top:0px;">
+          <a href="javascript:void(0)" id="forgotPassBtn" class="btn btn-default btn-block m-b-sm">重设密码</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="resetPassPopup">
+  <div id="resetPassModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h3 class="modal-title center">
+            <strong>忘记密码</strong><br>
+            <small>立即设置新密码</small>
+          </h3>
+        </div>
+        <div class="modal-body center" style="padding:0px;border-bottom: 1px solid #E5E5E5;">
+          <div class="ui-TextField ui-Field">
+            <input type="password" name="newpass" class="content" placeholder="新的密码" style="border:none;outline: none;">
+          </div>
+        </div>
+        <div class="modal-body center" style="padding:0px">
+          <div class="ui-TextField ui-Field">
+            <input type="password" name="repeatpass" class="content" placeholder="确认密码" style="border:none;outline: none;">
+          </div>
+        </div>
+        <div class="modal-footer" style="margin-top:0px;">
+          <a href="javascript:void(0)" id="resetPassBtn" class="btn btn-default btn-block m-b-sm">重设密码</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</template>

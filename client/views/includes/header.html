@@ -1,4 +1,117 @@
 <template name="header">
+  <header class="header bg-white navbar b-b">
+    <div class="collapse navbar-collapse pull-in">
+      <ul class="nav navbar-nav m-l-n">
+        <li>
+          <a href="{{pathFor "landing"}}" style="padding-top: 10px; padding-bottom: 10px;">
+            <img src="/images/logo.png" height="30px;">
+          </a>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">过滤 <b class="caret"></b></a>
+          <ul class="bs dropdown-menu">
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li><a href="#">Separated link</a></li>
+            <li><a href="#">One more separated link</a></li>
+          </ul>
+        </li>
+      </ul>
+      <form class="navbar-form navbar-left m-t-sm" role="search">
+        <div class="form-group">
+          <div class="input-group input-s">
+            <input type="text" class="form-control input-sm no-border bg-primary" placeholder="搜索关键词">
+            <span class="input-group-btn">
+              <button type="submit" class="btn btn-sm btn-success btn-icon"><i class="fa fa-search"></i></button>
+            </span>
+          </div>
+        </div>
+      </form>
+      <ul class="nav navbar-nav navbar-right">
+        {{#if currentUser}}
+        <li class="">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-bell-o text-black"></i>
+            {{#if messageCount}}
+              <span class="badge up bg-info m-l-n-sm">{{messageCount}}</span>
+            {{/if}}
+          </a>
+          <section class="bs dropdown-menu input-s-lg">
+            <section class="panel bg-white">
+              <header class="panel-heading">
+                {{#if messageCount}}
+                <strong>您有<span class="count-n">{{messageCount}}</span>条新消息</strong>
+                {{else}}
+                <strong>您没有未读消息</strong>
+                {{/if}}
+              </header>
+              <div class="list-group">
+                <a href="#" class="media list-group-item">
+                  <span class="pull-left thumb-sm">
+                    <img src="/images/avatar.jpg" alt="John said" class="img-circle">
+                  </span>
+                  <span class="media-body block m-b-none">
+                    Use awesome animate.css<br>
+                    <small class="text-muted">28 Aug 13</small>
+                  </span>
+                </a>
+                <a href="#" class="media list-group-item">
+                  <span class="media-body block m-b-none">
+                    1.0 initial released<br>
+                    <small class="text-muted">27 Aug 13</small>
+                  </span>
+                </a>
+              </div>
+              <footer class="panel-footer text-sm">
+                <a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+                <a href="#">查看所有通知</a>
+              </footer>
+            </section>
+          </section>
+        </li>
+        <li>
+          <a href="{{pathFor 'addProperty'}}" class="pointer navlink navpadding"><i class="fa fa-edit"></i>&nbsp;发布信息</a>
+        </li>
+        {{#if isAdmin loggedInUser._id}}
+        <li>
+          <a href="{{pathFor 'adminuser' type='all' page='1'}}" class="pointer navlink navpadding"><i class="fa fa-bar-chart"></i>&nbsp;控制面板</a>
+        </li>
+        {{/if}}
+        {{#with loggedInUser._id}}
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+            <span class="thumb-sm avatar pull-left m-t-n-xs m-r-xs">
+              <img src="{{getAvatarByUserId this}}">
+            </span>
+            <b class="caret"></b>
+          </a>
+          <ul class="bs dropdown-menu">
+            <li>
+              <a href="#">个人主页</a>
+            </li>
+            <li>
+              <a href="{{pathFor "profile"}}">设置</a>
+            </li>
+            <li>
+              <a href="#和管理员发起对话">帮助</a>
+            </li>
+            <li>
+              <a id="signout" href="javascript:void(0)">登出</a>
+            </li>
+          </ul>
+        </li>
+        {{/with}}
+        {{else}}
+        <li><a href="/account/signup" class="navlink navpadding">注册</a></li>
+        <li><a href="/account/signin" class="navlink navpadding">登陆</a></li>
+        {{/if}}
+      </ul>
+    </div>
+  </header>
+</template>
+
+<template name="headerBak">
   <nav id="navigation" class="navbar navbar-default navbar-fixed-top" role="navigation">
     <div class="container container-fluid">
       <!-- Brand and toggle get grouped for better mobile display -->
