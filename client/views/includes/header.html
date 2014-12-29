@@ -1,5 +1,5 @@
 <template name="header">
-  <header class="header bg-white navbar b-b">
+  <header class="header bg-light lter navbar b-b">
     <div class="collapse navbar-collapse pull-in">
       <ul class="nav navbar-nav m-l-n">
         <li>
@@ -8,14 +8,7 @@
           </a>
         </li>
         <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown">过滤 <b class="caret"></b></a>
-          <ul class="bs dropdown-menu">
-            <li><a href="#">Action</a></li>
-            <li><a href="#">Another action</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li><a href="#">Separated link</a></li>
-            <li><a href="#">One more separated link</a></li>
-          </ul>
+          <a href="javascript:void(0)"><strong>快速搜索: </strong></a>
         </li>
       </ul>
       <form class="navbar-form navbar-left m-t-sm" role="search">
@@ -88,10 +81,7 @@
           </a>
           <ul class="bs dropdown-menu">
             <li>
-              <a href="#">个人主页</a>
-            </li>
-            <li>
-              <a href="{{pathFor "profile"}}">设置</a>
+              <a href="{{pathFor "me"}}">个人主页</a>
             </li>
             <li>
               <a href="#和管理员发起对话">帮助</a>
@@ -109,78 +99,4 @@
       </ul>
     </div>
   </header>
-</template>
-
-<template name="headerBak">
-  <nav id="navigation" class="navbar navbar-default navbar-fixed-top" role="navigation">
-    <div class="container container-fluid">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-          <span class="sr-only">Toggle navigation</span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-        </button>
-        <a href="/"><img src="/img/logo.png" height="36px" style="margin-top:13px;margin-bottom:13px;" alt="brand"></a>
-      </div>
-
-      <!-- Collect the nav links, forms, and other content for toggling -->
-      <div class="collapse navbar-collapse" style="max-height:450px" id="bs-example-navbar-collapse-1">
-        <ul class="nav navbar-nav navbar-right">
-          {{#if currentUser}}
-          <li class="dropdown">
-            <a href="javascript:void(0)" class="pointer dropdown-toggle navlink navpadding" data-toggle="dropdown">
-              {{#if messageCount}}
-              <i class="fa fa-bell-o" id="messageHelper"></i>
-              <i class="fa fa-circle text-danger" style="font-size: 5px; position: relative; top:-7px; left: -5px"></i>
-              {{else}}
-              <i class="fa fa-bell-o" id="messageHelper"></i>
-              {{/if}}
-              通知
-              <span class="caret"></span>
-            </a>
-            <ul class="bs dropdown-menu" role="menu" style="padding-top: 0px; padding-bottom: 0px;">
-              {{> messages}}
-            </ul>
-          </li>
-          <li><a href="{{pathFor 'addProperty'}}" class="pointer navlink navpadding"><i class="fa fa-edit"></i>&nbsp;发布信息</a></li>
-          {{#if isAdmin loggedInUser._id}}
-          <li><a href="{{pathFor 'adminuser' type='all' page='1'}}" class="pointer navlink navpadding"><i class="fa fa-bar-chart"></i>&nbsp;控制面板</a></li>
-          {{/if}}
-          <!-- <li><a href="#" class="navlink" id="signout"><i class="fa fa-power-off"></i>&nbsp;登出</a></li> -->
-          {{#with loggedInUser._id}}
-          <li class="dropdown">
-            <a href="javascript:void(0)" class="dropdown-toggle navlink pointer" data-toggle="dropdown">
-              <img src="{{getAvatarByUserId this}}" class="image img-circle" width="32px"/>
-            </a>
-            <ul class="bs dropdown-menu" role="menu" style="padding-top: 0px; padding-bottom: 0px;">
-              <div class="popover-content" style="padding:0px">
-                <div class="profile-box">
-                  <div class="profile-info">
-                    <div class="row">
-                      <div class="col-xs-5"><img src="{{getAvatarByUserId this}}" class="image radius" width="96px"/></div>
-                      <div class="col-xs-7">
-                        <label class="profile-info-name">{{getUsernameByUserId this}}</label>
-                        <p class="profile-info-mail"><small>{{#with getEmailAndStatusByUserId this}}{{address}}{{/with}}</small></p>
-                        <a href="{{pathFor 'profile'}}" class="btn btn-default">我的信息</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="modal-footer background-color-grey-light">
-                    <button id="signout" type="button" class="btn btn-danger small">登出</button>
-                  </div>
-                </div>
-              </div>
-            </ul>
-          </li>
-          {{/with}}
-          {{else}}
-          <li><a href="/account/signup" class="navlink navpadding">注册</a></li>
-          <li><a href="/account/signin" class="navlink navpadding">登陆</a></li>
-          {{/if}}
-        </ul>
-      </div><!-- /.navbar-collapse -->
-    </div><!-- /.container-fluid -->
-  </nav>
 </template>

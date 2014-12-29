@@ -1,32 +1,15 @@
-Template.profilePage.rendered = function() {
-    render();
-    if($('#agentCheck').is(':checked')){
-        var isAgent = true;
-        $('#agencySelection').removeClass('disabled');
-    }else{
-        var isAgent = false;
-        $('#agencySelection').addClass('disabled');
-    }
-
-    $('body').on('ifClicked','#agency-switch',function(event) {
-        if(isAgent){
-            $('#agencySelection').addClass('disabled');
-            isAgent = false;
-        }else{
-            $('#agencySelection').removeClass('disabled');
-            isAgent = true;
-        }
-    });
+Template.profile.rendered = function() {
+  render();
 }
 
-Template.profilePage.helpers({
+Template.profile.helpers({
   countDown:function(){
     return CommonHelper.getCountDown('EmailCountDown');
   }
 })
 
 //Update action
-Template.profilePage.events({
+Template.profile.events({
   'click #verifyEmail' : function(e, t){
     Meteor.call("sendVerificationEmail",Meteor.userId());
     CommonHelper.setCountDown('EmailCountDown',45);

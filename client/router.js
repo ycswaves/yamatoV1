@@ -109,11 +109,11 @@ Router.map(function () {
     }
   });
 
-  this.route('profile', {
-    path: '/profile',
-    template: 'profilePage',
+  this.route('me', {
+    path: '/account/profile',
+    template: 'profile',
     parent:'landing',
-    label: '个人简介',
+    label: '个人主页',
     waitOn: function () {
       return Meteor.subscribe("userProfile", Meteor.userId());
     },
@@ -127,7 +127,7 @@ Router.map(function () {
       }
     },
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '帐户';
+      document.title = TITLE + ' | ' + '个人主页';
     }
   });
 

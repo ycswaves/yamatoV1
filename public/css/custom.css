@@ -10,6 +10,6 @@
 }
 
 .fullbackground {
-  background: url('/images/dummy-bg.jpg') no-repeat;
+  background: url('/images/dummy-bg.jpg') center center no-repeat;
   background-size: cover;
 }

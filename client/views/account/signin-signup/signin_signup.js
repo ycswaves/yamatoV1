@@ -210,9 +210,3 @@ Template.signup.events({
 Template.signup.rendered = function() {
   render();
 };
-
-Template.signup.helpers({
-  agency: function(){
-    return Config.getAgency();
-  }
-})

@@ -1,91 +1,317 @@
-<template name="profilePage">
-	<div>
-		{{> breadcrumbs}}
-		<div class="container">
-			<div class="row">
-				<!-- sidebar -->
-				<div class="col-xs-2 col-sm-3">
-					<section id="sidebar">
-						<header><h3>账户</h3></header>
-						<aside>
-							<ul class="sidebar-navigation">
-								<li class="active radius"><a href="{{pathFor 'profile'}}"><i class="fa fa-user"></i><span class="hidden-xs">个人简介</span></a></li>
-								<li><a href="{{pathFor 'security'}}"><i class="fa fa-lock"></i><span class="hidden-xs">安全设置</span></a></li>
-								<li><a href="{{pathFor 'myproperty' type='open' page=1}}"><i class="fa fa-home"></i><span class="hidden-xs">我的房屋</span></a></li>
-								<!-- <li><a href="bookmarked.html"><i class="fa fa-heart"></i><span class="hidden-xs">反向推送</span></a></li> -->
-								<li><a href="{{pathFor 'inbox'}}"><i class="fa fa-inbox"></i><span class="hidden-xs">收件箱</span></a></li>
+<template name="profile">
+	<section class="hbox stretch bg-white-only">
+		{{#with profile}}
+		<!-- .aside -->
+		<aside class="aside aside-lg b-r">
+			<section class="vbox">
+				<header class="panel-heading bg-primary lter no-borders no-radius">
+					<div class="clearfix">
+						<a href="#" class="pull-left thumb avatar border m-r">
+							<img src="{{getAvatarByUserId userid}}" class="img-circle">
+						</a>
+						<div class="clear">
+							<div class="h3 m-t-xs m-b-xs">{{getUsernameByUserId userid}} 
+								<i class="fa fa-circle text-success pull-right text-xs m-t-sm"></i></div>
+								<small class="text-muted">普通用户</small>
+							</div>                
+						</div>
+					</header>
+					<div class="list-group no-radius no-border alt">
+						<div class="list-group-item" href="#">
+							{{#with getEmailAndStatusByUserId userid}}
+								{{#if verified}}
+									<span class="badge bg-success">已验证</span>
+								{{else}}
+									{{#if countDown}}
+									<span class="badge bg-warning">{{countDown}}</span>
+									{{else}}
+									<span class="badge bg-danger" id="verifyEmail">未验证</span>
+									{{/if}}
+								{{/if}}
+								<i class="fa fa-envelope-o icon-muted"></i> 
+								{{address}}
+							{{/with}}
+						</div>
+						<a class="list-group-item" href="#">
+							<i class="fa fa-phone icon-muted"></i> 
+							Inbox
+						</a>
+						<a class="list-group-item" href="#">
+							<i class="fa fa-qq icon-muted"></i> 
+							Profile visits
+						</a>
+						<a class="list-group-item" href="#">
+							<i class="fa fa-wechat icon-muted"></i> 
+							Watch later
+						</a>
+					</div>
+				</section>
+			</aside>
+			<!-- /.aside -->
+			{{/with}}
+			<!-- .aside -->
+			<aside class="">
+				<section class="vbox">
+					<header class="header bg-white pos-rlt navbar navbar-default show">
+						<span class="arrow left"></span>
+						<div class="collapse navbar-collapse pull-in">
+							<ul class="nav navbar-nav">
+								<li class="font-bold"><a href="{{pathFor "me"}}">即时动态</a></li>
+								<li><a href="{{pathFor 'security'}}">安全设置</a></li>
+								<li><a href="#l">Team</a></li>
+								<li class="dropdown">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">Files <b class="caret"></b></a>
+									<ul class="dropdown-menu">
+										<li><a href="#">Documents</a></li>
+										<li><a href="#">Media</a></li>
+										<li><a href="#">Upload one</a></li>
+									</ul>
+								</li>
+								<li><a href="#l">About</a></li>
 							</ul>
-						</aside>
-					</section><!-- /#sidebar -->
-				</div><!-- /.col-md-3 -->
-				<!-- end Sidebar -->
-				<!-- My Properties -->
-				<div class="col-xs-10 col-sm-9">
-					<section id="profile">
-						{{#with profile}}
-						<header><h1>个人简介</h1></header>
-						<div class="account-profile">
-							<div class="row">
-								<div class="col-md-3 col-sm-3">
-									<img alt="" class="image radius" src="{{getAvatarByUserId userid}}">
-								</div>
-								<div class="col-md-9 col-sm-9">
-									<form role="form" id="accountProfile">
-										<section id="contact">
-											<h3>联络方式</h3>
-											<dl class="contact-fields">
-												<dt><label for="form-account-email">邮箱:</label></dt>
-												<dd>
-													{{#with getEmailAndStatusByUserId userid}}
-													<label>{{address}}
-														{{#if verified}}
-														<i class="fa fa-check-circle text-success"></i>
-														{{else}}
-															{{#if countDown}}
-																<span class="text-default pointer">[{{countDown}}]</span>
+							<ul class="nav navbar-nav navbar-right">
+								<li class="hidden-xs">
+									<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+										<i class="fa fa-bell-o"></i>
+									</a>
+									<section class="dropdown-menu animated fadeInUp input-s-lg">
+										<section class="panel bg-white">
+											<header class="panel-heading">
+												<strong>You have <span class="count-n">2</span> notifications</strong>
+											</header>
+											<div class="list-group">
+												<a href="#" class="media list-group-item">
+													<span class="pull-left thumb-sm">
+														<img src="/images/avatar.jpg" alt="John said" class="img-circle">
+													</span>
+													<span class="media-body block m-b-none">
+														Use awesome animate.css<br>
+														<small class="text-muted">28 Aug 13</small>
+													</span>
+												</a>
+												<a href="#" class="media list-group-item">
+													<span class="media-body block m-b-none">
+														1.0 initial released<br>
+														<small class="text-muted">27 Aug 13</small>
+													</span>
+												</a>
+											</div>
+											<footer class="panel-footer text-sm">
+												<a href="#" class="pull-right"><i class="fa fa-cog"></i></a>
+												<a href="#">See all the notifications</a>
+											</footer>
+										</section>
+									</section>
+								</li>
+							</ul>
+						</div>
+					</header>
+					<section>
+						<section class="hbox stretch">
+							<aside>
+								<section class="vbox">
+									<section class="scrollable wrapper">
+										<div class="clearfix">
+											<section class="panel panel-info col-lg-6 no-padder">
+												<form>
+													<textarea class="form-control no-border" rows="2" placeholder="Share something..."></textarea>
+												</form>
+												<footer class="panel-footer bg-light lter">
+													<button class="btn btn-info pull-right btn-sm font-bold">SHARE</button>
+													<ul class="nav nav-pills nav-sm">
+														<li><a href="#"><i class="fa fa-camera text-muted"></i></a></li>
+														<li><a href="#"><i class="fa fa-video-camera text-muted"></i></a></li>
+													</ul>
+												</footer>
+											</section>
+										</div>
+										<div class="btn-group m-b" data-toggle="buttons">
+											<label class="btn btn-sm btn-white active">
+												<input type="radio" name="options" id="option1"> Timeline
+											</label>
+											<label class="btn btn-sm btn-white">
+												<input type="radio" name="options" id="option2"> Activity
+											</label>
+										</div>
+										<section class="comment-list block">
+											<article id="comment-id-1" class="comment-item">
+												<span class="fa-stack pull-left m-l-xs">
+													<i class="fa fa-circle text-info fa-stack-2x"></i>
+													<i class="fa fa-film fa-stack-1x text-white"></i>
+												</span>
+												<section class="comment-body m-b-lg">
+													<header>
+														<a href="#"><strong>John smith</strong></a> shared a <a href="#" class="text-info">video</a> to you
+														<span class="text-muted text-xs">
+															24 minutes ago
+														</span>
+													</header>
+													<div>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi id neque quam.</div>
+												</section>
+											</article>
+											<!-- .comment-reply -->
+											<article id="comment-id-2" class="comment-reply">
+												<article class="comment-item">
+													<a class="pull-left thumb-sm">
+														<img src="/images/avatar_default.jpg" class="img-circle">
+													</a>
+													<section class="comment-body m-b-lg">
+														<header>
+															<a href="#"><strong>John smith</strong></a>
+															<span class="text-muted text-xs">
+																26 minutes ago
+															</span>
+														</header>
+														<div> Morbi id neque quam. Aliquam.</div>
+													</section>
+												</article>
+												<article class="comment-item">
+													<a class="pull-left thumb-sm">
+														<img src="/images/avatar.jpg" class="img-circle">
+													</a>
+													<section class="comment-body m-b-lg">
+														<header>
+															<a href="#"><strong>Mike</strong></a>
+															<span class="text-muted text-xs">
+																26 minutes ago
+															</span>
+														</header>
+														<div>Good idea.</div>
+													</section>
+												</article>                     
+											</article>                     
+											<!-- / .comment-reply -->
+											<article id="comment-id-2" class="comment-item">
+												<span class="fa-stack pull-left m-l-xs">
+													<i class="fa fa-circle text-success fa-stack-2x"></i>
+													<i class="fa fa-file-text-o text-white fa-stack-1x"></i>
+												</span>
+												<section class="comment-body m-b-lg">
+													<header>
+														<a href="#"><strong>John Doe</strong></a>
+														<span class="text-muted text-xs">
+															1 hour ago
+														</span>
+													</header>
+													<div>Lorem ipsum dolor sit amet, consecteter adipiscing elit.</div>
+												</section>
+											</article>
+											<article id="comment-id-2" class="comment-item">
+												<span class="fa-stack pull-left m-l-xs">
+													<i class="fa fa-circle text-danger fa-stack-2x"></i>
+													<i class="fa fa-check fa-stack-1x text-white"></i>
+												</span>
+												<section class="comment-body m-b-lg">
+													<header>
+														<a href="#"><strong>Jonathan</strong></a> completed a task
+														<span class="text-muted text-xs">
+															1 hour ago
+														</span>
+													</header>
+													<div>Consecteter adipiscing elit.</div>
+												</section>
+											</article>
+										</section>
+										<a href="#" class="btn btn-white btn-sm"><i class="fa fa-plus icon-muted"></i> more</a>
+									</section>
+								</section>
+							</aside>
+						</section>
+					</section>
+				</section>
+			</aside>
+			<!-- /.aside -->
+		</section>
+	</template>
+
+	<template name="profilePage">
+		<div>
+			{{> breadcrumbs}}
+			<div class="container">
+				<div class="row">
+					<!-- sidebar -->
+					<div class="col-xs-2 col-sm-3">
+						<section id="sidebar">
+							<header><h3>账户</h3></header>
+							<aside>
+								<ul class="sidebar-navigation">
+									<li class="active radius"><a href="{{pathFor 'profile'}}"><i class="fa fa-user"></i><span class="hidden-xs">个人简介</span></a></li>
+									<li><a href="{{pathFor 'security'}}"><i class="fa fa-lock"></i><span class="hidden-xs">安全设置</span></a></li>
+									<li><a href="{{pathFor 'myproperty' type='open' page=1}}"><i class="fa fa-home"></i><span class="hidden-xs">我的房屋</span></a></li>
+									<!-- <li><a href="bookmarked.html"><i class="fa fa-heart"></i><span class="hidden-xs">反向推送</span></a></li> -->
+									<li><a href="{{pathFor 'inbox'}}"><i class="fa fa-inbox"></i><span class="hidden-xs">收件箱</span></a></li>
+								</ul>
+							</aside>
+						</section><!-- /#sidebar -->
+					</div><!-- /.col-md-3 -->
+					<!-- end Sidebar -->
+					<!-- My Properties -->
+					<div class="col-xs-10 col-sm-9">
+						<section id="profile">
+							{{#with profile}}
+							<header><h1>个人简介</h1></header>
+							<div class="account-profile">
+								<div class="row">
+									<div class="col-md-3 col-sm-3">
+										<img alt="" class="image radius" src="{{getAvatarByUserId userid}}">
+									</div>
+									<div class="col-md-9 col-sm-9">
+										<form role="form" id="accountProfile">
+											<section id="contact">
+												<h3>联络方式</h3>
+												<dl class="contact-fields">
+													<dt><label for="form-account-email">邮箱:</label></dt>
+													<dd>
+														{{#with getEmailAndStatusByUserId userid}}
+														<label>{{address}}
+															{{#if verified}}
+															<i class="fa fa-check-circle text-success"></i>
 															{{else}}
-																<span class="text-danger pointer" id="verifyEmail">[验证]</span>
+															{{#if countDown}}
+															<span class="text-default pointer">[{{countDown}}]</span>
+															{{else}}
+															<span class="text-danger pointer" id="verifyEmail">[验证]</span>
 															{{/if}}
-														{{/if}}
-													</label>
-													{{/with}}
-												</dd>
-												<dt><label for="form-account-name">名字:</label></dt>
-												<dd><div class="form-group" >
-													<input type="text" class="form-control" id="form-account-name" name="name" value="{{name}}">
-												</div><!-- /.form-group --></dd>
-												<dt><label for="form-account-phone">电话:</label></dt>
-												<dd><div class="form-group" id="phone-form-group">
-													<input type="text" class="form-control" id="form-account-phone" name="phone" value="{{phone}}">
-												</div><!-- /.form-group --></dd>
-												<dt><label for="form-account-qq">QQ:</label></dt>
-												<dd><div class="form-group" id="qq-form-group">
-													<input type="text" class="form-control" id="form-account-qq" name="qq" value="{{qq}}">
-												</div><!-- /.form-group --></dd>
-												<dt><label for="form-account-wechat">微信:</label></dt>
-												<dd><div class="form-group" id="wechat-form-group">
-													<input type="text" class="form-control" id="form-account-wechat" name="wechat" value="{{wechat}}">
-												</div><!-- /.form-group --></dd>
-											</dl>
-										</section>
-										<section id="about-me">
-											<h3>关于我</h3>
-											<div class="form-group">
-												<textarea class="form-control" id="form-contact-agent-message" rows="5" name="about">{{about}}</textarea>
-											</div><!-- /.form-group -->
-											<div class="form-group clearfix">
-												<button type="submit" class="btn pull-right btn-default" id="account-submit">保存变更</button>
-											</div><!-- /.form-group -->
-										</section>
-									</form><!-- /#form-contact -->
-								</div><!-- /.col-md-9 -->
-							</div><!-- /.row -->
-						</div><!-- /.account-profile -->
-						{{/with}}
-					</section><!-- /#profile -->
-				</div><!-- /.col-md-9 -->
-				<!-- end My Properties -->
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-	</div>
-</template>
+															{{/if}}
+														</label>
+														{{/with}}
+													</dd>
+													<dt><label for="form-account-name">名字:</label></dt>
+													<dd><div class="form-group" >
+														<input type="text" class="form-control" id="form-account-name" name="name" value="{{name}}">
+													</div><!-- /.form-group --></dd>
+													<dt><label for="form-account-phone">电话:</label></dt>
+													<dd><div class="form-group" id="phone-form-group">
+														<input type="text" class="form-control" id="form-account-phone" name="phone" value="{{phone}}">
+													</div><!-- /.form-group --></dd>
+													<dt><label for="form-account-qq">QQ:</label></dt>
+													<dd><div class="form-group" id="qq-form-group">
+														<input type="text" class="form-control" id="form-account-qq" name="qq" value="{{qq}}">
+													</div><!-- /.form-group --></dd>
+													<dt><label for="form-account-wechat">微信:</label></dt>
+													<dd><div class="form-group" id="wechat-form-group">
+														<input type="text" class="form-control" id="form-account-wechat" name="wechat" value="{{wechat}}">
+													</div><!-- /.form-group --></dd>
+												</dl>
+											</section>
+											<section id="about-me">
+												<h3>关于我</h3>
+												<div class="form-group">
+													<textarea class="form-control" id="form-contact-agent-message" rows="5" name="about">{{about}}</textarea>
+												</div><!-- /.form-group -->
+												<div class="form-group clearfix">
+													<button type="submit" class="btn pull-right btn-default" id="account-submit">保存变更</button>
+												</div><!-- /.form-group -->
+											</section>
+										</form><!-- /#form-contact -->
+									</div><!-- /.col-md-9 -->
+								</div><!-- /.row -->
+							</div><!-- /.account-profile -->
+							{{/with}}
+						</section><!-- /#profile -->
+					</div><!-- /.col-md-9 -->
+					<!-- end My Properties -->
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</div>
+	</template>
