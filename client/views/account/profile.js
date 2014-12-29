@@ -3,6 +3,9 @@ Template.profile.rendered = function() {
 }
 
 Template.profile.helpers({
+  profile:function(){
+    return UserProfiles.findOne({userid: Meteor.userId()}
+  },
   countDown:function(){
     return CommonHelper.getCountDown('EmailCountDown');
   }

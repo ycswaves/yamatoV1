@@ -46,7 +46,7 @@ var isVerified = function(){
     if(status.verified || Meteor.user().isAdmin){
       this.next();
     } else {
-      Router.go('profile');
+      Router.go('me');
       swal("注意!", "发布信息之前，请先验证你的邮箱", "warning");
     }
   }
@@ -110,8 +110,8 @@ Router.map(function () {
   });
 
   this.route('me', {
-    path: '/account/profile',
-    template: 'profile',
+    path: '/account/me',
+    template: 'me',
     parent:'landing',
     label: '个人主页',
     waitOn: function () {
@@ -119,12 +119,6 @@ Router.map(function () {
     },
     action: function () {
       this.render();
-    },
-    data: function () {
-      var profile = UserProfiles.findOne({userid: Meteor.userId()});
-      return {
-        profile: profile
-      }
     },
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '个人主页';

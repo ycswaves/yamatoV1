@@ -1,0 +1,52 @@
+<template name="profile">
+	{{#with profile}}
+	<!-- .aside -->
+	<aside class="aside aside-lg b-r">
+		<section class="vbox">
+			<header class="panel-heading bg-primary lter no-borders no-radius">
+				<div class="clearfix">
+					<a href="javascript:void(0)" class="pull-left thumb avatar border m-r">
+						<img src="{{getAvatarByUserId userid}}" class="img-circle">
+					</a>
+					<div class="clear">
+						<div class="h3 m-t-xs m-b-xs">{{getUsernameByUserId userid}} 
+							<i class="fa fa-circle text-success pull-right text-xs m-t-sm"></i>
+						</div>
+						<small class="text-muted">普通用户</small>
+					</div>                
+				</div>
+			</header>
+			<div class="list-group no-radius no-border alt">
+				<div class="list-group-item">
+					{{#with getEmailAndStatusByUserId userid}}
+					{{#if verified}}
+					<span class="badge bg-success">已验证</span>
+					{{else}}
+					{{#if countDown}}
+					<span class="badge bg-warning">{{countDown}}</span>
+					{{else}}
+					<span class="badge bg-danger pointer" id="verifyEmail">未验证</span>
+					{{/if}}
+					{{/if}}
+					<i class="fa fa-envelope-o icon-muted icon-align"></i> 
+					<span class="email-ellipsis">{{address}}</span>
+					{{/with}}
+				</div>
+				<div class="list-group-item">
+					<i class="fa fa-phone icon-muted icon-align"></i> 
+					{{nullHelper phone}}
+				</div>
+				<div class="list-group-item">
+					<i class="fa fa-qq icon-muted icon-align"></i> 
+					{{nullHelper qq}}
+				</div>
+				<div class="list-group-item">
+					<i class="fa fa-wechat icon-muted icon-align"></i> 
+					{{nullHelper wechat}}
+				</div>
+			</div>
+		</section>
+	</aside>
+	<!-- /.aside -->
+	{{/with}}
+</template>

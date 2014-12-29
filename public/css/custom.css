@@ -13,3 +13,20 @@
   background: url('/images/dummy-bg.jpg') center center no-repeat;
   background-size: cover;
 }
+
+.email-ellipsis {
+  display: inline-block;
+  vertical-align: top;
+  width: 120px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.icon-align {
+  width: 25px;
+  text-align: center
+}
