@@ -126,7 +126,7 @@ Router.map(function () {
   });
 
   this.route('myproperty', {
-    path: '/myproperty/list/:type/:page',
+    path: '/account/myproperty/list/:type/:page',
     parent:'landing',
     label: '我的房屋',
     controller: 'MyPropertiesController',
@@ -213,7 +213,7 @@ Router.map(function () {
   });
 
   this.route('inbox', {
-    path: '/inbox',
+    path: '/account/inbox',
     template: 'inboxPage',
     parent:'landing',
     label: '收件箱',
@@ -226,7 +226,7 @@ Router.map(function () {
   });
 
   this.route('security', {
-    path: '/security',
+    path: '/account/security',
     template: 'securityPage',
     parent:'landing',
     label: '安全设置',

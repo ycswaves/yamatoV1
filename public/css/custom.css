@@ -30,3 +30,6 @@
   width: 25px;
   text-align: center
 }
+
+/* Remove Glowing */
+textarea, input { outline: none; }

@@ -33,16 +33,20 @@
 					{{/with}}
 				</div>
 				<div class="list-group-item">
+					<i class="fa fa-credit-card icon-muted icon-align"></i> 
+					<input type="text" name="name" class="no-borders editable" placeholder="默认联系名字" value="{{name}}">
+				</div>
+				<div class="list-group-item">
 					<i class="fa fa-phone icon-muted icon-align"></i> 
-					{{nullHelper phone}}
+					<input type="text" name="phone" class="no-borders editable" placeholder="电话号码" value="{{phone}}">
 				</div>
 				<div class="list-group-item">
-					<i class="fa fa-qq icon-muted icon-align"></i> 
-					{{nullHelper qq}}
+					<i class="fa fa-qq icon-muted icon-align editable"></i> 
+					<input type="text" name="qq" class="no-borders editable" placeholder="QQ号码" value="{{qq}}">
 				</div>
 				<div class="list-group-item">
-					<i class="fa fa-wechat icon-muted icon-align"></i> 
-					{{nullHelper wechat}}
+					<i class="fa fa-wechat icon-muted icon-align editable"></i> 
+					<input type="text" name="wechat" class="no-borders editable" placeholder="微信ID" value="{{wechat}}">
 				</div>
 			</div>
 		</section>
