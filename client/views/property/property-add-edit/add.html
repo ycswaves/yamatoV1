@@ -190,7 +190,25 @@
       </div>
       <div class="row">
         <div class="col-sm-9">
-
+          <section class="panel">
+            <header class="panel-heading">
+              <span class="h4"><i class="fa fa-cloud-upload"></i> 上传图片</span>
+            </header>
+            <div class="panel-body">
+              <div class="center">
+                <div class="form-group">
+                  <img src="/images/Upload-toCloud-icon.png" style="position:absolute; left:42%; top:40%;">
+                  <form action="/file-upload" class="dropzone" id="upload">
+                    <span>拖入图片或点击上传</span>
+                    <div class="fallback">
+                      <input name="file" type="file" multiple />
+                    </div>
+                  </form>
+                  <figure class="note"><strong>提示:</strong> 可以一次选择多个文件, 最多上传{{maxFiles}}个文件，且每个文件不大于{{maxFilesize}}MB!</figure>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
       </div>
     </form>
@@ -277,21 +295,6 @@
                 </section>
                 {{/with}}
 
-                <section class="block" id="gallery">
-                  <header><h2><i class="fa fa-picture-o"></i> 图片上传</h2></header>
-                  <div class="center">
-                    <div class="form-group">
-                      <img src="/img/Upload-toCloud-icon.png" style="position:absolute; left:42%; top:40%;">
-                      <form action="/file-upload" class="dropzone" id="upload">
-                        <span>拖入图片或点击上传</span>
-                        <div class="fallback">
-                          <input name="file" type="file" multiple />
-                        </div>
-                      </form>
-                      <figure class="note"><strong>提示:</strong> 可以一次选择多个文件, 最多上传{{maxFiles}}个文件，且每个文件不大于{{maxFilesize}}MB!</figure>
-                    </div>
-                  </div>
-                </section>
 
                 <section id="property-features" class="block">
                   <section>

@@ -8,6 +8,7 @@ Template.addProperty.rendered = function() {
 
   $('.picker__holder').css('min-width', '274px');
 
+  window.Dropzone.discover();
   $('#upload').dropzone({
     addRemoveLinks : true,
     maxFiles: Config.getMaxImageUploaded(),
@@ -29,8 +30,9 @@ Template.addProperty.rendered = function() {
       });
     }
   });
+  
   render();
-  $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
+  // $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
 
   global_autoCompl.init('submit-title', function(place){
     var address = place.formatted_address,
