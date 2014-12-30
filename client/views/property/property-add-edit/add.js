@@ -9,27 +9,27 @@ Template.addProperty.rendered = function() {
   $('.picker__holder').css('min-width', '274px');
 
   window.Dropzone.discover();
-  $('#upload').dropzone({
-    addRemoveLinks : true,
-    maxFiles: Config.getMaxImageUploaded(),
-    maxFilesize: Config.getMaxImageSize(),
-    acceptedFiles: 'image/*',
-    accept: function(file, done) {
-      if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
-        global_imgTemp.push(file);
-      }
-    },
-    removedfile: function(file){
-      // remove preview
-      file.previewElement.parentNode.removeChild(file.previewElement);
-      // remove the file from temp queue
-      global_imgTemp.forEach(function(e, i){
-        if(e.name == file.name){
-          global_imgTemp.splice(i,1);
-        }
-      });
-    }
-  });
+  // $('#upload').dropzone({
+  //   addRemoveLinks : true,
+  //   maxFiles: Config.getMaxImageUploaded(),
+  //   maxFilesize: Config.getMaxImageSize(),
+  //   acceptedFiles: 'image/*',
+  //   accept: function(file, done) {
+  //     if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
+  //       global_imgTemp.push(file);
+  //     }
+  //   },
+  //   removedfile: function(file){
+  //     // remove preview
+  //     file.previewElement.parentNode.removeChild(file.previewElement);
+  //     // remove the file from temp queue
+  //     global_imgTemp.forEach(function(e, i){
+  //       if(e.name == file.name){
+  //         global_imgTemp.splice(i,1);
+  //       }
+  //     });
+  //   }
+  // });
   
   render();
   // $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
@@ -55,9 +55,9 @@ Template.addProperty.rendered = function() {
           ReactiveDS.set('mrtline', Config.getStationsByLine(stationInfoObj.lineCode));
           Deps.flush();
           $('select[name="mrtlines"]').val(stationInfoObj.lineCode);
-          $('#mrtlines').selectpicker('refresh');
+          // $('#mrtlines').selectpicker('refresh');
           $('select[name="stations"]').val(stationInfoObj.stationCode);
-          $('#stations').selectpicker('refresh');
+          // $('#stations').selectpicker('refresh');
         }
       });
 
@@ -71,7 +71,7 @@ Template.addProperty.rendered = function() {
       var districtCode = Config.getDistrictByPostal(postcode);
       if(districtCode){
         $('select[name="district"]').val(districtCode);
-        $('select[name="district"]').selectpicker('refresh');
+        // $('select[name="district"]').selectpicker('refresh');
       }
     }
   });
@@ -94,7 +94,7 @@ Template.addProperty.events({
     var mrtLine = t.find('select[name="mrtlines"]').value;
     ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLine));
     Deps.flush();
-    t.$('#stations').selectpicker('refresh');
+    // t.$('#stations').selectpicker('refresh');
   },
 
   'change input[name="address"], change input[name="postcode"]': function(e, t){
@@ -379,7 +379,7 @@ AddPropertyController = RouteController.extend({
     if($('input[name="propertyid"]').value == undefined){
       $('div.icheckbox').removeClass('checked');
       $('#property-features input[type="checkbox"]').prop('checked', false);
-      $('#stations').selectpicker('refresh');
+      // $('#stations').selectpicker('refresh');
     }//Due to the template we use, the checkbox and selection box need extra handle
      // e.g removeClass, besides clear the actual checkbox
   }

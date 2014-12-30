@@ -160,10 +160,12 @@ Handlebars.registerHelper('ifChecked', function(optVal, formVal){
 
 //used in form editing to pre-checked options
 Handlebars.registerHelper('ifRadioChecked', function(optVal, formVal){
-  if(optVal == formVal || formVal == undefined) //'formVal == undefined' for default check
+  if(optVal == formVal || formVal == undefined){ //'formVal == undefined' for default check
     return 'checked';
-  else
+  }
+  else{
     return;
+  }
 });
 
 // used in form editing to check selected MRT Line
