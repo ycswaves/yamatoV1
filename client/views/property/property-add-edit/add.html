@@ -1,4 +1,203 @@
 <template name="addProperty">
+  <section class="wrapper">
+    {{> breadcrumbs}}    
+    <form role="form" id="propertyForm" class="form-submit">
+      <div class="row">
+        <div class="col-sm-9">
+          <input type="hidden" name="propertyid" value="{{myProperty._id}}">
+          <input type="hidden" name="existingPhotos" value="{{glueArray myProperty.photos}}">
+          <section class="panel">
+            <header class="panel-heading">
+              <span class="h4"><i class="fa fa-list-alt"></i> 基本信息</span>
+            </header>
+            <div class="panel-body">
+              <p class="text-muted"><i class="fa fa-exclamation-circle text-danger"></i> 为必填项目</p>                        
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label>地址 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <input type="text" class="form-control" id="submit-title" placeholder="请输入地址" name="address" value="{{myProperty.address}}">
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>邮编 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <div class="input-group">
+                      <span class="input-group-addon">S</span>
+                      <input type="text" class="form-control" id="submit-postcode" name="postcode" value="{{myProperty.postcode}}">
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-3">
+                  <div class="form-group">
+                    <label>价格 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <div class="input-group">
+                      <span class="input-group-addon">S$</span>
+                      <input type="text" class="form-control" id="submit-price" name="price" value="{{myProperty.price}}">
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="form-group padder">
+                  <label>更多描述</label>
+                  <textarea class="form-control" id="submit-description" rows="3" name="description">{{myProperty.description}}</textarea>
+                </div>
+              </div>
+            </div>
+          </section>
+          <section class="panel">
+            <header class="panel-heading">
+              <span class="h4"><i class="fa fa-newspaper-o"></i> 概览</span>
+            </header>
+            <div class="panel-body">
+              <div class="row">
+                <div class="col-sm-8">
+                  <div class="form-group">
+                    <label>区域</label>
+                    <select id="district" name="district" class="form-control">
+                      {{#each arrayify district}}
+                      <option value="{{key}}" {{ifSelected key ../myProperty.district}}>{{key}} - {{value}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>房屋类型</label>
+                    <select name="property-type" id="property-type" class="form-control">
+                      {{#each arrayify ptypes}}
+                      <option value="{{key}}" {{ifSelected key ../myProperty.propertyType}}>{{value}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>有无中介费 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <div class="row padder">
+                      <div class="radio col-xs-6">
+                        <label class="radio-custom">
+                          <input type="radio" id="has-agent-true" value="1" name="has-agent-fee" {{ifRadioChecked 1 myProperty.hasAgentFee}}>
+                          <i class="fa fa-circle-o"></i>
+                          有
+                        </label>
+                      </div>
+                      <div class="radio col-xs-6" style="margin-top:10px">
+                        <label class="radio-custom">
+                          <input type="radio" id="has-agent-false" value="0" name="has-agent-fee" {{ifRadioChecked 0 myProperty.hasAgentFee}}>
+                          <i class="fa fa-circle-o"></i>
+                          无
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>出租方式</label>
+                    <select name="rent-type" id="rent-type" class="form-control">
+                      <option value="0" {{ifSelected '0' myProperty.rentType}}>单间</option>
+                      <option value="1" {{ifSelected '1' myProperty.rentType}}>整套</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>房间类型</label>
+                    <select name="room-type" id="room-type" class="form-control">
+                      {{#each arrayify rtypes}}
+                      <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>入住时间</label>
+                    <input class="input-sm input-s datepicker form-control" size="16" type="text" data-date-format="yyyy/mm/dd" >
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>房间</label>
+                    <select name="bedroom" class="form-control">
+                      {{#each bedroomNum}}
+                      <option value="{{this}}" {{ifSelected this ../myProperty.bedroom}}>{{this}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>卫生间</label>
+                    <select name="bathroom" class="form-control">
+                      {{#each bathroomNum}}
+                      <option value="{{this}}" {{ifSelected this ../myProperty.bathroom}}>{{this}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>面积</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control" name="property-area" value="{{myProperty.area}}">
+                      <span class="input-group-addon">m<sup>2</sup></span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>最近地铁线</label>
+                    <select name="mrtlines" id="mrtlines" class="form-control">
+                      {{#each arrayify mrtlines}}
+                      <option value="{{key}}" {{ifLineMatch key ../myProperty.mrt}}>{{value.niceName}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+                <div class="col-sm-4">
+                  <div class="form-group">
+                    <label>站名</label>
+                    <select name="stations" id="stations" class="form-control">
+                      {{#each arrayify stations}}
+                      <option value="{{key}}" {{ifSelected key ../myProperty.mrt}}>{{key}} - {{value}}</option>
+                      {{/each}}
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </div>
+        <div class="col-sm-3">
+          <aside class="submit-step">
+            <div class="description">
+              <h4>输入您的房产信息</h4>
+              <p>请尽可能准确地描述您的房产, 以便其他用户查找</p>
+            </div>
+          </aside><!-- /.submit-step -->
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm-9">
+
+        </div>
+      </div>
+    </form>
+  </section>
+</template>
+
+<template name="addPropertyBak">
   <style>
     .dropzone .dz-default.dz-message {
       background: url("/packages/awatson1978_dropzone/public/images/spritemap.png") 70px -300px !important;
@@ -24,153 +223,13 @@
           <div class="block">
             <div class="col-md-9 col-sm-9">
               <section id="submit-form">
-                <section id="basic-information">
-                  <header><h2><i class="fa fa-list-alt"></i> 基本信息</h2></header>
-                  <div class="row">
-                    <div class="col-md-6">
-                      <div class="form-group" id="address-form-group">
-                        <label for="submit-title">地址 *</label>
-                        <input type="text" class="form-control" id="submit-title" placeholder="请输入地址" name="address" value="{{myProperty.address}}">
-                      </div><!-- /.form-group -->
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group" id="postcode-form-group">
-                        <label for="submit-postcode">邮编 (Singapore) *</label>
-                        <div class="input-group">
-                          <input type="text" class="form-control" id="submit-postcode" name="postcode" value="{{myProperty.postcode}}">
-                        </div>
-                      </div><!-- /.form-group -->
-                    </div>
-                    <div class="col-md-3">
-                      <div class="form-group" id="price-form-group">
-                        <label for="submit-price">价格 *</label>
-                        <div class="input-group">
-                          <span class="input-group-addon">$</span>
-                          <input type="text" class="form-control" id="submit-price" name="price" value="{{myProperty.price}}">
-                        </div>
-                      </div><!-- /.form-group -->
-                    </div>
-                  </div>
-                  <div class="form-group" id="descr-form-group">
-                    <label for="submit-description">描述</label>
-                    <textarea class="form-control" id="submit-description" rows="3" name="description">{{myProperty.description}}</textarea>
-                  </div><!-- /.form-group -->
-                </section><!-- /#basic-information -->
-
                 <section>
                   <div class="row">
                     <div class="block clearfix">
                       <div class="col-md-12 col-sm-12">
                         <section id="summary">
                           <header><h2><i class="fa fa-newspaper-o"></i> 概览</h2></header>
-                          <div class="form-group" id="district-form-group">
-                            <label for="district">区域</label>
-                            <select id="district" name="district">
-                              {{#each arrayify district}}
-                              <option value="{{key}}" {{ifSelected key ../myProperty.district}}>{{key}} - {{value}}</option>
-                              {{/each}}
-                            </select>
-                          </div>
-                          <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                              <div class="form-group" id="ptype-form-group">
-                                <label for="property-type">房屋类型</label>
-                                <select name="property-type" id="property-type">
-                                  {{#each arrayify ptypes}}
-                                  <option value="{{key}}" {{ifSelected key ../myProperty.propertyType}}>{{value}}</option>
-                                  {{/each}}
-                                </select>
-                              </div><!-- /.form-group -->
-                            </div><!-- /.col-md-4 -->
 
-                            <div class="col-md-4 col-sm-4">
-                              <label for="submit-status">有无中介费</label>
-                              <div class="form-group form-inline" id="hasAgent-form-group" style="padding-top:10px">
-                                <div class="radio" style="margin-right:30px">
-                                  <label>
-                                    <input type="radio" id="has-agent-true" value="1"
-                                    {{ifRadioChecked 1 myProperty.hasAgentFee}} name="has-agent-fee">有
-                                  </label>
-                                </div>
-                                <div class="radio" data-agent-state="">
-                                  <label>
-                                    <input type="radio" id="has-agent-false" value="0"
-                                    {{ifRadioChecked 0 myProperty.hasAgentFee}} name="has-agent-fee">无
-                                  </label>
-                                </div>
-                              </div><!-- /.form-group -->
-                            </div><!-- /.col-md-4 -->
-                          </div><!-- /.row -->
-
-                          <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                              <div class="form-group" id="renttype-form-group">
-                                <label>出租方式</label>
-                                <select name="rent-type" id="rent-type">
-                                  <option value="0" {{ifSelected '0' myProperty.rentType}}>单间</option>
-                                  <option value="1" {{ifSelected '1' myProperty.rentType}}>整套</option>
-                                </select>
-                              </div><!-- /.form-group -->
-                            </div><!-- /.col-md-4 -->
-
-                            <div class="col-md-4 col-sm-4" style="display:{{toggleRoomType myProperty.rentType}}">
-                              <div class="form-group" id="room-form-group">
-                                <label for="room-type">出租房间</label>
-                                <select name="room-type" id="room-type">
-                                  {{#each arrayify rtypes}}
-                                  <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
-                                  {{/each}}
-                                </select>
-                              </div><!-- /.form-group -->
-                            </div><!-- /.col-md-4 -->
-
-                            <div class="col-md-4 col-sm-4">
-                              <div class="form-group" id="movein-form-group">
-                                <label for="move-in-date">入住时间</label>
-                                <div class="input-group">
-                                  <input type="text" class="form-control datepicker" id="move-in-date" name="move-in-date" value="{{transDatetime myProperty.moveInDate}}">
-                                </div>
-                              </div><!-- /.form-group -->
-                            </div><!-- /.col-md-4 -->
-
-                          </div><!-- /.row -->
-
-                          <div class="row">
-                            <div class="col-md-4 col-sm-4">
-                              <div class="form-group" id="bedroom-form-group">
-                                <label for="bedroom">房间数</label>
-                                <!-- <input type="text" class="form-control" name="bedroom" value="{{myProperty.bedroom}}"> -->
-                                <select name="bedroom">
-                                  {{#each bedroomNum}}
-                                  <option value="{{this}}" {{ifSelected this ../myProperty.bedroom}}>{{this}}</option>
-                                  {{/each}}
-                                </select>
-                              </div><!-- /.form-group -->
-                            </div><!-- /.col-md-4 -->
-
-                            <div class="col-md-4 col-sm-4">
-                              <div class="form-group" id="bathroom-form-group">
-                                <label for="bathroom">卫生间</label>
-                                <!-- <input type="text" class="form-control" name="bathroom" value="{{myProperty.bathroom}}"> -->
-                                <select name="bathroom">
-                                  {{#each bathroomNum}}
-                                  <option value="{{this}}" {{ifSelected this ../myProperty.bathroom}}>{{this}}</option>
-                                  {{/each}}
-                                </select>
-                              </div><!-- /.form-group -->
-                            </div><!-- /.col-md-4 -->
-
-                            <div class="col-md-4 col-sm-4">
-                              <div class="form-group" id="area-form-group">
-                                <label for="area">面积</label>
-                                <div class="input-group">
-                                  <input type="text" class="form-control" name="property-area" value="{{myProperty.area}}">
-                                  <span class="input-group-addon">m<sup>2</sup></span>
-                                </div>
-                              </div><!-- /.form-group -->
-                            </div><!-- /.col-md-4 -->
-
-                          </div><!-- /.row -->
 
                           <div class="row">
                             <div class="col-md-4 col-sm-4">
@@ -279,9 +338,9 @@
                           <label for="">联系人 *</label>
                           <div class="input-group">
                             {{#if myProfile}}
-                              <input type="text" class="form-control" value="{{myProfile.name}}" name="contact-person" >
+                            <input type="text" class="form-control" value="{{myProfile.name}}" name="contact-person" >
                             {{else}}
-                              <input type="text" class="form-control" value="{{myProperty.contact.name}}" name="contact-person" >
+                            <input type="text" class="form-control" value="{{myProperty.contact.name}}" name="contact-person" >
                             {{/if}}
                           </div>
                         </div><!-- /.form-group -->
@@ -293,9 +352,9 @@
                           <div class="input-group">
                             <span class="input-group-addon">+65</span>
                             {{#if myProfile}}
-                              <input type="text" class="form-control" value="{{myProfile.phone}}" name="contact-number" >
+                            <input type="text" class="form-control" value="{{myProfile.phone}}" name="contact-number" >
                             {{else}}
-                              <input type="text" class="form-control" value="{{myProperty.contact.phone}}" name="contact-number" >
+                            <input type="text" class="form-control" value="{{myProperty.contact.phone}}" name="contact-number" >
                             {{/if}}
                           </div>
                         </div><!-- /.form-group -->
@@ -308,9 +367,9 @@
                           <label for="">QQ</label>
                           <div class="input-group">
                             {{#if myProfile}}
-                              <input type="text" class="form-control" value="{{myProfile.qq}}" name="contact-qq">
+                            <input type="text" class="form-control" value="{{myProfile.qq}}" name="contact-qq">
                             {{else}}
-                              <input type="text" class="form-control" value="{{myProperty.contact.qq}}" name="contact-qq">
+                            <input type="text" class="form-control" value="{{myProperty.contact.qq}}" name="contact-qq">
                             {{/if}}
                           </div>
                         </div><!-- /.form-group -->
@@ -321,9 +380,9 @@
                           <label for="">微信 wechat</label>
                           <div class="input-group">
                             {{#if myProfile}}
-                              <input type="text" class="form-control" value="{{myProfile.wechat}}" name="contact-wechat">
+                            <input type="text" class="form-control" value="{{myProfile.wechat}}" name="contact-wechat">
                             {{else}}
-                              <input type="text" class="form-control" value="{{myProperty.contact.wechat}}" name="contact-wechat">
+                            <input type="text" class="form-control" value="{{myProperty.contact.wechat}}" name="contact-wechat">
                             {{/if}}
                           </div>
                         </div><!-- /.form-group -->
@@ -334,9 +393,9 @@
                           <label for="">Email</label>
                           <div class="input-group">
                             {{#if myProfile}}
-                              <input type="text" class="form-control" value="{{myProfile.email.address}}" name="contact-email">
+                            <input type="text" class="form-control" value="{{myProfile.email.address}}" name="contact-email">
                             {{else}}
-                              <input type="text" class="form-control" value="{{myProperty.contact.email}}" name="contact-email">
+                            <input type="text" class="form-control" value="{{myProperty.contact.email}}" name="contact-email">
                             {{/if}}
                           </div>
                         </div><!-- /.form-group -->

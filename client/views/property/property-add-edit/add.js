@@ -4,9 +4,8 @@ var global_location = undefined;
 var global_addrChanged = false; //to test if address is edited
 
 Template.addProperty.rendered = function() {
-  $('.datepicker').pickadate({
-    format: 'yyyy/mm/dd'
-  });
+  $(".datepicker").each(function(){ $(this).datepicker();});
+
   $('.picker__holder').css('min-width', '274px');
 
   $('#upload').dropzone({
