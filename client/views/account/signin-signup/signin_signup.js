@@ -55,6 +55,7 @@ Template.signin.events({
 
     if (isNotEmpty(username) && isNotEmpty(password)){
       Meteor.loginWithPassword(username, password, function(err){
+        console.log(err);
         if (err && err.error === 403) {
           FlashMessages.clear();
           FlashMessages.sendError("用户名或密码不正确");
