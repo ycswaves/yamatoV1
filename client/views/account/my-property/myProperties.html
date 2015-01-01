@@ -1,4 +1,128 @@
 <template name="myProperties">
+  <section class="hbox stretch bg-white-only">
+    {{> profile}}
+    <!-- .aside -->
+    <aside class="">
+      <section class="vbox">
+        <header class="header bg-white pos-rlt navbar navbar-default show">
+          <span class="arrow left"></span>
+          <div class="collapse navbar-collapse pull-in">
+            <ul class="nav navbar-nav">
+              <li><a href="{{pathFor "me"}}">即时动态</a></li>
+              <li class="font-bold"><a href="{{pathFor 'myproperty' type='open' page=1}}">我的房屋</a></li>
+              <li><a href="{{pathFor 'security'}}">安全设置</a></li>
+              <li><a href="{{pathFor 'inbox'}}">收件箱</a></li>
+            </ul>
+          </div>
+        </header>
+        <section>
+          <section class="hbox stretch">
+            <aside>
+              <section class="vbox">
+                <section class="scrollable wrapper">
+                  <section class="panel">
+                    <header class="panel-heading">
+                      房屋列表
+                    </header>
+                    <div class="row text-sm wrapper">
+                      <div class="col-sm-5 m-b-xs">
+                        <div class="btn-group" data-toggle="buttons">
+                          <label class="btn btn-sm btn-white active">
+                            <input type="radio" name="propertyStatus"> 正在发布
+                          </label>
+                          <label class="btn btn-sm btn-white">
+                            <input type="radio" name="propertyStatus"> 已关闭
+                          </label>
+                          <label class="btn btn-sm btn-white">
+                            <input type="radio" name="propertyStatus"> 系统管制
+                          </label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4 m-b-xs">
+                      </div>
+                      <div class="col-sm-3">
+                        <div class="input-group">
+                          <input type="text" class="input-sm form-control" placeholder="关键字">
+                          <span class="input-group-btn">
+                            <button class="btn btn-sm btn-white" type="button">Go!</button>
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="table-responsive">
+                      <table class="table table-striped b-t text-sm">
+                        <thead>
+                          <tr>
+                            <th style="width:45%">我的房屋</th>
+                            <th>价格</th>
+                            <th>发布时间</th>
+                            <th>操作</th>
+                            <th>状态</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                          {{#each properties}}
+                          <tr>
+                            <td>
+                                <a href="{{pathFor 'propertyDetail' id=_id}}"><figure>{{address}}</figure></a>
+                            </td>
+                            <td>$ {{price}}</td>
+                            <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
+                            <td class="actions">
+                              <a href="{{pathFor 'editProperty' id=_id}}" class="edit"><i class="fa fa-pencil"></i>编辑</a>
+                            </td>
+                            <td>
+                              {{#if isAdministrated status}}
+                              <span style="color:red">{{transPropStatus status}}</span>
+                              {{else}}
+                              <select class="status" id="{{_id}}">
+                                {{#each arrayify propertyStatus}}
+                                {{this}}
+                                <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
+                                {{/each}}
+                              </select>
+                              {{/if}}
+                              </td>
+                          </tr>
+                          {{/each}}
+                        </tbody>
+                      </table>
+                    </div>
+                    <footer class="panel-footer">
+                      <div class="row">
+                        <div class="col-sm-4 hidden-xs">
+
+                        </div>
+                        <div class="col-sm-4 text-center">
+                          <small class="text-muted inline m-t-sm m-b-sm">showing 20-30 of 50 items</small>
+                        </div>
+                        <div class="col-sm-4 text-right text-center-xs">                
+                          <ul class="pagination pagination-sm m-t-none m-b-none">
+                            <li><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+                            <li><a href="#">1</a></li>
+                            <li><a href="#">2</a></li>
+                            <li><a href="#">3</a></li>
+                            <li><a href="#">4</a></li>
+                            <li><a href="#">5</a></li>
+                            <li><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+                          </ul>
+                        </div>
+                      </div>
+                    </footer>
+                  </section>
+                </section>
+              </section>
+            </aside>
+          </section>
+        </section>
+      </section>
+    </aside>
+    <!-- /.aside -->
+  </section>
+</template>
+
+
+<template name="myPropertiesBak">
   <div>
     {{> breadcrumbs}}
     <div class="container">

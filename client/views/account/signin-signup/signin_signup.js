@@ -65,9 +65,9 @@ Template.signin.events({
           }
           Router.go(Session.get('currentPath') || 'landing');
         }
+        Router.go('signin');
       });
     }
-    return false;
   },
   //facebook login
   'click #facebookLogin' : function(e, t){
@@ -204,8 +204,32 @@ Template.signup.events({
       });
     }
     return false;
+  },
+  //facebook login
+  'click #facebookLogin' : function(e, t){
+    e.preventDefault();
+    Meteor.loginWithFacebook(function(err){
+      if (err && err.error === 403) {
+        Session.set('displayMessage', 'Login Error: email or password is not correct.');
+      } else {
+        Router.go(Session.get('currentPath') || 'landing');
+      }
+    });
+  },
+  //google login
+  'click #googleLogin' : function(e, t){
+    e.preventDefault();
+    Meteor.loginWithGoogle(function(err){
+      if (err && err.error === 403) {
+        Session.set('displayMessage', 'Login Error: username or password is not correct.');
+      } else {
+        Router.go(Session.get('currentPath') || 'landing');
+      }
+    });
+  },
+  'click #forgetPassLink' : function(){
+    $('#forgotPassModal').modal('show');
   }
-
 });
 
 Template.signup.rendered = function() {

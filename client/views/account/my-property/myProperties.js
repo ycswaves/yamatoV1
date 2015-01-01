@@ -15,6 +15,7 @@ MyPropertiesController = RouteController.extend({
       this.render('loading');
     }
   },
+
   data: function () {
     var params = this.params
       , statusType = params.type || 'open'
@@ -59,15 +60,16 @@ MyPropertiesController = RouteController.extend({
                         {status: 1}
                       ).fetch();
 
-      var statusCountMapping = {};
-      for(var i=0; i<statusCount.length; i++){
-        var sts = statusCount[i].status;
-        if(statusCountMapping[sts] == undefined){
-          statusCountMapping[sts] = 1;
-        } else {
-          statusCountMapping[sts]++;
-        }
+    var statusCountMapping = {};
+    for(var i=0; i<statusCount.length; i++){
+      var sts = statusCount[i].status;
+      if(statusCountMapping[sts] == undefined){
+        statusCountMapping[sts] = 1;
+      } else {
+        statusCountMapping[sts]++;
       }
+    }
+    console.log(Config.getAllPropertyStatus());
 
     return {
       properties: paginatedDocs,
@@ -85,7 +87,8 @@ MyPropertiesController = RouteController.extend({
           routeName: 'myproperty',
           routeParam: {type: statusType}
         }
-      }
+      },
+      propertyStatus: Config.getAllPropertyStatus()
     }
   }
 });
