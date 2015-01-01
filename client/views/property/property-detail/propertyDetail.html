@@ -180,11 +180,11 @@
             </section><!-- /#quick-summary -->
             <section id="property-features">
               <header><h3>房屋设施</h3><hr></header>
-              <ul class="list-unstyled property-features-list">
+              <div class="row">
                 {{#each property.facilities}}
-                <li>{{transPfaci this}}</li>
+                <div class="col-sm-4 col-xs-6"><i class="fa fa-circle text-primary icon-align"></i>{{transPfaci this}}</div>
                 {{/each}}
-              </ul>
+              </div>
             </section><!-- /#property-features -->
 
             <section id="property-nearby">
