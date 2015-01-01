@@ -8,7 +8,7 @@ Template.addProperty.rendered = function() {
 
   $('.picker__holder').css('min-width', '274px');
 
-  window.Dropzone.discover();
+  // window.Dropzone.discover();
   // $('#upload').dropzone({
   //   addRemoveLinks : true,
   //   maxFiles: Config.getMaxImageUploaded(),
@@ -201,6 +201,8 @@ Template.addProperty.events({
     };
     var context = Properties.simpleSchema().namedContext('propertyForm');
     context.validate(formObj);
+
+    // console.log(context);return;
     if(!context.isValid()){
       CommonHelper.unlockForm(t);
       CommonHelper.showErrorMessageInForm(context, formErrDivID, t);

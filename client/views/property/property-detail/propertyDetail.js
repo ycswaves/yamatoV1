@@ -1,11 +1,4 @@
 Template.propertyDetail.rendered = function() {
-  $('.owl-carousel').owlCarousel({
-    navigation : false, // Show next and prev buttons
-    slideSpeed : 500,
-    paginationSpeed : 400,
-    singleItem : true
-  });
-  document.title = '房屋详情 | ' + $('#addressLabel').text();
   window.scrollTo(0, 0); //scroll back to top after editing
   initializeMap();
   render();

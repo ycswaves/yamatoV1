@@ -17,7 +17,6 @@ awatson1978:dropzone
 service-configuration
 richsilv:owl-carousel
 mrt:moment
-steeve:jquery-qrcode
 jparker:gravatar
 meteorhacks:kadira
 cfs:gridfs
@@ -31,4 +30,5 @@ spiderable
 manuelschoebel:ms-seo
 http
 cfs:graphicsmagick
+steeve:jquery-qrcode
 

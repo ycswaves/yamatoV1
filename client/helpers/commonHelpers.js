@@ -43,7 +43,7 @@ CommonHelper = {
 
   'unlockForm': function(template){
     template.$('button, select, input, textarea').removeAttr('disabled');
-    template.$('i', 'button[type="submit"]').remove();
+    template.$('button[type="submit"]>i[class="fa fa-spinner fa-spin"]').remove();
   },
 
   //unit can be years, months, days, hours, seconds
