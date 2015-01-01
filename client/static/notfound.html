@@ -1,17 +1,24 @@
 <template name="notFound">
-	<div class="page-gradient">
-		<div class="container">
-			<section id="404">
-				<div class="error-page">
-					<div class="title">
-						<img alt="" src="/img/error-page-background.png" class="top">
-						<header>404</header>
-						<img alt="" src="/img/error-page-background.png" class="bottom">
-					</div>
-					<h2 class="no-border">页面未找到</h2>
-					<a href="{{pathFor 'landing'}}" class="link-arrow back">返回首页</a>
-				</div>
-			</section>
-		</div><!-- /.container -->
+	<div class="row m-n">
+		<div class="col-sm-4 col-sm-offset-4">
+			<div class="text-center m-b-lg">
+				<h1 class="h text-white animated bounceInDown">404</h1>
+			</div>
+			<div class="list-group m-b-sm bg-white m-b-lg">
+				<a href="{{pathFor "landing"}}" class="list-group-item">
+					<i class="fa fa-chevron-right text-muted"></i>
+					<i class="fa fa-fw fa-home text-muted"></i> 返回首页
+				</a>
+				<a href="#" class="list-group-item">
+					<i class="fa fa-chevron-right text-muted"></i>
+					<i class="fa fa-fw fa-question text-muted"></i> 在线帮助
+				</a>
+				<a href="#" class="list-group-item">
+					<i class="fa fa-chevron-right text-muted"></i>
+					<span class="badge">0065-66668888</span>
+					<i class="fa fa-fw fa-phone text-muted"></i> 联系我们
+				</a>
+			</div>
+		</div>
 	</div>
 </template>
