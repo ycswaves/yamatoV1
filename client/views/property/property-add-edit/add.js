@@ -60,9 +60,9 @@ Template.addProperty.rendered = function() {
           ReactiveDS.set('mrtline', Config.getStationsByLine(stationInfoObj.lineCode));
           Deps.flush();
           $('select[name="mrtlines"]').val(stationInfoObj.lineCode);
-          // $('#mrtlines').selectpicker('refresh');
+          $('#mrtlines').selectpicker('refresh');
           $('select[name="stations"]').val(stationInfoObj.stationCode);
-          // $('#stations').selectpicker('refresh');
+          $('#stations').selectpicker('refresh');
         }
       });
 
@@ -76,7 +76,7 @@ Template.addProperty.rendered = function() {
       var districtCode = Config.getDistrictByPostal(postcode);
       if(districtCode){
         $('select[name="district"]').val(districtCode);
-        // $('select[name="district"]').selectpicker('refresh');
+        $('select[name="district"]').selectpicker('refresh');
       }
     }
   });
@@ -99,7 +99,7 @@ Template.addProperty.events({
     var mrtLine = t.find('select[name="mrtlines"]').value;
     ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLine));
     Deps.flush();
-    // t.$('#stations').selectpicker('refresh');
+    t.$('#stations').selectpicker('refresh');
   },
 
   'change input[name="address"], change input[name="postcode"]': function(e, t){
