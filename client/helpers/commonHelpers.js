@@ -12,7 +12,7 @@ CommonHelper = {
     context.invalidKeys().forEach(function(e){
       var errMsg = context.keyErrorMessage(e.name)
       , targetDiv = formErrDivID[e.name];
-      template.$(targetDiv).append('<span style="color: red" class="help-block"><i class="fa fa-exclamation-triangle"></i> '+errMsg+'</span>');
+      template.$(targetDiv).append('<span style="color: red" class="help-block"><i class="fa fa-exclamation-circle"></i> '+errMsg+'</span>');
       template.$(targetDiv).find('input').focus();
     });
   },

@@ -4,35 +4,40 @@ var global_location = undefined;
 var global_addrChanged = false; //to test if address is edited
 
 Template.addProperty.rendered = function() {
-  $(".datepicker").each(function(){ $(this).datepicker();});
-
+  $('.datepicker').pickadate({
+    format: 'yyyy/mm/dd'
+  });
   $('.picker__holder').css('min-width', '274px');
+  $('.icheck').iCheck({
+    checkboxClass: 'icheckbox_square-blue',
+    radioClass: 'iradio_square-blue'
+    //increaseArea: '20%' // optional
+  });
 
-  // window.Dropzone.discover();
-  // $('#upload').dropzone({
-  //   addRemoveLinks : true,
-  //   maxFiles: Config.getMaxImageUploaded(),
-  //   maxFilesize: Config.getMaxImageSize(),
-  //   acceptedFiles: 'image/*',
-  //   accept: function(file, done) {
-  //     if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
-  //       global_imgTemp.push(file);
-  //     }
-  //   },
-  //   removedfile: function(file){
-  //     // remove preview
-  //     file.previewElement.parentNode.removeChild(file.previewElement);
-  //     // remove the file from temp queue
-  //     global_imgTemp.forEach(function(e, i){
-  //       if(e.name == file.name){
-  //         global_imgTemp.splice(i,1);
-  //       }
-  //     });
-  //   }
-  // });
+  $('#upload').dropzone({
+    addRemoveLinks : true,
+    maxFiles: Config.getMaxImageUploaded(),
+    maxFilesize: Config.getMaxImageSize(),
+    acceptedFiles: 'image/*',
+    accept: function(file, done) {
+      if(file.upload.bytesSent <= Config.getMaxImageSize()*1024){
+        global_imgTemp.push(file);
+      }
+    },
+    removedfile: function(file){
+      // remove preview
+      file.previewElement.parentNode.removeChild(file.previewElement);
+      // remove the file from temp queue
+      global_imgTemp.forEach(function(e, i){
+        if(e.name == file.name){
+          global_imgTemp.splice(i,1);
+        }
+      });
+    }
+  });
   
   render();
-  // $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
+  $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
 
   global_autoCompl.init('submit-title', function(place){
     var address = place.formatted_address,
@@ -414,7 +419,7 @@ EditPropertyController = RouteController.extend({
       }
     }
     else{
-      Router.go('profile');
+      Router.go('myproperty',{type:'open', page:1});
     }
   },
 });

@@ -11,17 +11,17 @@
               <span class="h4"><i class="fa fa-list-alt"></i> 基本信息</span>
             </header>
             <div class="panel-body">
-              <p class="text-muted"><i class="fa fa-exclamation-circle text-danger"></i> 为必填项目</p>                        
+              <p class="text-muted">* 为必填项目</p>                        
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group" id="address-form-group">
-                    <label>地址 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <label>地址 *</label>
                     <input type="text" class="form-control" id="submit-title" placeholder="请输入地址" name="address" value="{{myProperty.address}}">
                   </div>
                 </div>
                 <div class="col-sm-3">
                   <div class="form-group" id="postcode-form-group">
-                    <label>邮编 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <label>邮编 *</label>
                     <div class="input-group">
                       <span class="input-group-addon">S</span>
                       <input type="text" class="form-control" id="submit-postcode" name="postcode" value="{{myProperty.postcode}}">
@@ -30,7 +30,7 @@
                 </div>
                 <div class="col-sm-3">
                   <div class="form-group" id="price-form-group">
-                    <label>价格 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <label>价格 *</label>
                     <div class="input-group">
                       <span class="input-group-addon">S$</span>
                       <input type="text" class="form-control" id="submit-price" name="price" value="{{myProperty.price}}">
@@ -55,7 +55,7 @@
                 <div class="col-sm-8">
                   <div class="form-group" id="district-form-group">
                     <label>区域</label>
-                    <select id="district" name="district" class="form-control">
+                    <select id="district" name="district" class="form-control m-b">
                       {{#each arrayify district}}
                       <option value="{{key}}" {{ifSelected key ../myProperty.district}}>{{key}} - {{value}}</option>
                       {{/each}}
@@ -67,7 +67,7 @@
                 <div class="col-sm-4">
                   <div class="form-group" id="ptype-form-group">
                     <label>房屋类型</label>
-                    <select name="property-type" id="property-type" class="form-control">
+                    <select name="property-type" id="property-type" class="form-control m-b">
                       {{#each arrayify ptypes}}
                       <option value="{{key}}" {{ifSelected key ../myProperty.propertyType}}>{{value}}</option>
                       {{/each}}
@@ -79,17 +79,16 @@
                     <label>有无中介费</label>
                     <div class="row padder">
                       <div class="radio col-xs-6">
-                        <label class="radio-custom">
-                          <input type="radio" id="has-agent-true" value="1" name="has-agent-fee" checked="checked">
-                          <i class="fa fa-circle-o"></i>
-                          有
+                        <label>
+                          <input type="radio" id="has-agent-true" value="1" class="icheck"
+                          {{ifRadioChecked 1 myProperty.hasAgentFee}} name="has-agent-fee"> 有
                         </label>
+
                       </div>
                       <div class="radio col-xs-6" style="margin-top:10px">
-                        <label class="radio-custom">
-                          <input type="radio" id="has-agent-false" value="0" name="has-agent-fee">
-                          <i class="fa fa-circle-o"></i>
-                          无
+                        <label>
+                          <input type="radio" id="has-agent-false" value="0" class="icheck"
+                          {{ifRadioChecked 0 myProperty.hasAgentFee}} name="has-agent-fee"> 无
                         </label>
                       </div>
                     </div>
@@ -116,12 +115,14 @@
                     </select>
                   </div>
                 </div>
-                <div class="col-sm-4">
+                <div class="col-md-4 col-sm-4">
                   <div class="form-group" id="movein-form-group">
-                    <label>入住时间</label>
-                    <input class="input-sm input-s datepicker form-control" size="16" type="text" data-date-format="yyyy/mm/dd"  id="move-in-date" name="move-in-date" value="{{transDatetime myProperty.moveInDate}}">
-                  </div>
-                </div>
+                    <label for="move-in-date">入住时间</label>
+                    <div class="input-group">
+                      <input type="text" class="form-control datepicker" id="move-in-date" name="move-in-date" value="{{transDatetime myProperty.moveInDate}}">
+                    </div>
+                  </div><!-- /.form-group -->
+                </div><!-- /.col-md-4 -->
               </div>
               <div class="row">
                 <div class="col-sm-4">
@@ -146,7 +147,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group" id="area-form-group">
-                    <label>面积 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <label>面积 *</label>
                     <div class="input-group">
                       <input type="text" class="form-control" name="property-area" value="{{myProperty.area}}">
                       <span class="input-group-addon">m<sup>2</sup></span>
@@ -188,6 +189,29 @@
           </aside><!-- /.submit-step -->
         </div>
       </div>
+
+
+      {{#with myProperty.photos}}
+      <div class="row">
+        <div class="col-sm-9">
+          <section class="panel">
+            <header class="panel-heading">
+              <span class="h4"><i class="fa fa-picture-o"></i> 已上传图片</span>
+            </header>
+            <div class="panel-body">
+              {{#each this}}
+              <div class="col-xs-6 col-md-3">
+                <div class="thumbnail" style="text-align:center">
+                  <img src="{{getImageURL this}}" >
+                  <a href="#" class="existingImage" data-id="{{this}}"><i class="delete fa fa-trash-o"></i></a>
+                </div>
+              </div>
+              {{/each}}
+            </div>
+          </section>
+        </div>
+      </div>
+      {{/with}}
       <div class="row">
         <div class="col-sm-9">
           <section class="panel">
@@ -223,7 +247,7 @@
                 <li class="col-sm-4 col-xs-6">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="{{key}}" {{ifSelected key ../myProperty.facilities}} class="property-facility">{{value}}
+                      <input type="checkbox" value="{{key}}" {{ifSelected key ../myProperty.facilities}} class="property-facility icheck">  {{value}}
                     </label>
                   </div>
                 </li>
@@ -243,7 +267,7 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group" id="contact-person-form-group">
-                    <label>联系人 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <label>联系人 *</label>
                     {{#if myProfile}}
                     <input type="text" class="form-control" value="{{myProfile.name}}" name="contact-person" >
                     {{else}}
@@ -253,7 +277,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group" id="contact-number-form-group">
-                    <label>联系电话 <i class="fa fa-exclamation-circle text-danger"></i></label>
+                    <label>联系电话 *</label>
                     {{#if myProfile}}
                     <input type="text" class="form-control" value="{{myProfile.phone}}" name="contact-number" >
                     {{else}}
