@@ -1,8 +1,9 @@
 <template name="propertyDetail">
   <style>
-  hr {
-    margin-bottom: 10px;
-  }
+    hr {
+      margin-top:10px;
+      margin-bottom: 10px;
+    }
   </style>
   <div>
     <div class="propertyImage"></div>
@@ -12,33 +13,33 @@
           <div class="col-sm-8 wrapper">
             <section id="contact-info">
               <div class="row">
-                <div class="col-xs-3 text-center">
+                <div class="col-sm-3 hidden-xs text-center">
                   <img class="img-circle" src="{{getAvatarByUserId property.author}}" width="90px">
                 </div>
-                <div class="col-xs-9 text-center">
+                <div class="col-sm-9 text-center">
                   <h3 id="addressLabel">{{property.address}}</h3>
                   <hr>
                 </div>
               </div>
               <div class="row">
-                <div class="col-xs-3 text-center">
+                <div class="col-sm-3 hidden-xs text-center">
                   {{#with property.contact}}
                   <h4 class="text-muted">{{name}}</h4>
                   {{/with}}
                 </div>
-                <div class="col-xs-9">
+                <div class="col-sm-9">
                   {{#with property.contact}}
                   {{#if currentUser}}
                   <div class="row text-muted m-t-sm">
-                    <div class="col-xs-4 text-center">
+                    <div class="col-sm-4">
                       <i class="fa fa-phone icon-align"></i>
                       {{nullHelper phone}}
                     </div>
-                    <div class="col-xs-4 text-center">
+                    <div class="col-sm-4">
                       <i class="fa fa-qq icon-align"></i>
                       {{nullHelper qq}}
                     </div>
-                    <div class="col-xs-4 text-center">
+                    <div class="col-sm-4">
                       <i class="fa fa-wechat icon-align"></i>
                       {{nullHelper wechat}}
                     </div>
@@ -86,22 +87,19 @@
           </div>
         </div>
       </div>
-      <div class="background-color-grey-light b-b">
+      <div class="b-b">
         <div class="container wrapper">
           <!-- Property Detail Content -->
           <div class="col-md-8">
-            <section id="price" style="margin-bottom:20px;" class="visible-xs">
+            <section id="price" class="visible-xs m-b">
               <header>
                 <h3 class="m-t-none">
                   价格
-                  <div class="pull-right radius background-color-primary text-white" style="padding:3px">
-                    {{transAgt property.hasAgentFee}}中介费
-                  </div>
                 </h3>
               </header>
+              <hr>
               <p>
                 <strong style="font-size: 26px;">$ {{property.price}} </strong><sup>SGD</sup>
-                <span class="pull-right">每月</span>
               </p>
               <p>
                 {{> shareButtons}}
@@ -139,39 +137,39 @@
               <header><h3>概览</h3><hr></header>
               <div>
                 {{#with property}}
-                <div class="row">
+                <div class="row m-b-sm">
                   <div class="col-xs-6"><strong>地址:</strong></div>
                   <div class="col-xs-6 text-right">{{address}}</div>
                 </div>
-                <div class="row">
+                <div class="row m-b-sm">
                   <div class="col-xs-6"><strong>区域:</strong></div>
                   <div class="col-xs-6 text-right">{{transDistr district}}</div>
                 </div>
-                <div class="row">
+                <div class="row m-b-sm">
                   <div class="col-xs-6"><strong>房屋类型:</strong></div>
                   <div class="col-xs-6 text-right">{{transPtype propertyType}}</div>
                 </div>
-                <div class="row">
+                <div class="row m-b-sm">
                   <div class="col-xs-6"><strong>房间:</strong></div>
                   <div class="col-xs-6 text-right">{{transRoom rentType roomType}}</div>
                 </div>
-                <div class="row">
+                <div class="row m-b-sm">
                   <div class="col-xs-6"><strong>面积:</strong></div>
                   <div class="col-xs-6 text-right">{{area}} m<sup>2</sup></div>
                 </div>
-                <div class="row">
+                <div class="row m-b-sm">
                   <div class="col-xs-6"><strong>卧室:</strong></div>
                   <div class="col-xs-6 text-right">{{bedroom}}</div>
                 </div>
-                <div class="row">
+                <div class="row m-b-sm">
                   <div class="col-xs-6"><strong>卫生间:</strong></div>
                   <div class="col-xs-6 text-right">{{bathroom}}</div>
                 </div>
-                <div class="row">
+                <div class="row m-b-sm">
                   <div class="col-xs-6"><strong>最近地铁站:</strong></div>
                   <div class="col-xs-6 text-right">{{transMRT mrt}} ({{mrt}})</div>
                 </div>
-                <div class="row">
+                <div class="row m-b-sm">
                   <div class="col-xs-6"><strong>入住时间:</strong></div>
                   <div class="col-xs-6 text-right">{{transDatetime moveInDate}} 起</div>
                 </div>
@@ -201,7 +199,7 @@
                     {{/each}}
                   </ul>
                   {{else}}
-                    <span>没有相关信息</span>
+                  <span>没有相关信息</span>
                   {{/if}}
                 </div>
               </div>
@@ -225,7 +223,7 @@
                     {{/each}}
                   </ul>
                   {{else}}
-                    <span>没有相关信息</span>
+                  <span>没有相关信息</span>
                   {{/if}}
                 </div>
               </div>
