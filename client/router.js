@@ -127,9 +127,20 @@ Router.map(function () {
 
   this.route('myproperty', {
     path: '/account/myproperty/list/:type/:page',
+    template: 'myProperties',
     parent:'landing',
     label: '我的房屋',
     controller: 'MyPropertiesController',
+    waitOn: function () {
+      return (Meteor.subscribe('userData') && Meteor.subscribe("myProperty", Meteor.userId()));
+    },
+    action: function () {
+      if (this.ready()){
+        this.render();
+      } else{
+        this.render('loading');
+      }
+    },
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '我的房屋';
     }

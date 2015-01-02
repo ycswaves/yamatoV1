@@ -1,34 +1,28 @@
 Template.myProperties.rendered = function() {
   render();
+
+  //switch type
+  $("body").off('change',"input[name=propertyStatus]").on('change',"input[name=propertyStatus]",function(){
+    var type = $(this).val();
+    Session.set('MyProperties.type',type);
+  })
 }
 
 MyPropertiesController = RouteController.extend({
-  template: 'myProperties',
-  waitOn: function () {
-	  return (Meteor.subscribe('userData') && Meteor.subscribe("myProperty", Meteor.userId()));
-  },
-
-  action: function () {
-    if (this.ready()){
-      this.render();
-    } else{
-      this.render('loading');
-    }
-  },
-
   data: function () {
     var params = this.params
       , statusType = params.type || 'open'
       , pageLimit = 6
-      , pageNum = 1
-      , activeTab = true
-      , visibleTbl = 'active-record';
-
+      , pageNum = 1;
 
     var queryFilter = {
       author: Meteor.userId(),
       status: 'open'
     };
+
+    if(typeof Session.get('MyProperties.type')!="undefined"){
+      statusType = Session.get('MyProperties.type');
+    }
 
     if(params.page && CommonHelper.isInteger(params.page)){
       pageNum = params.page;
@@ -43,7 +37,6 @@ MyPropertiesController = RouteController.extend({
           queryFilter.status = {$in:['expired','violate']};
           break;
       }
-      activeTab = statusType;
     }
 
     var totalDocs = Properties.find(queryFilter).count()
@@ -69,7 +62,6 @@ MyPropertiesController = RouteController.extend({
         statusCountMapping[sts]++;
       }
     }
-    console.log(Config.getAllPropertyStatus());
 
     return {
       properties: paginatedDocs,
@@ -77,7 +69,6 @@ MyPropertiesController = RouteController.extend({
       totalInactive: (statusCountMapping['closed'] || 0) + (statusCountMapping['deal'] || 0),
       totalAdministered: (statusCountMapping['expired'] || 0) + (statusCountMapping['violate'] || 0),
       totalDocs: totalDocs,
-      activeTab: activeTab,
       paginationConfig: {
         'config': {
           pageNum: pageNum,

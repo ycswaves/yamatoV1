@@ -1,13 +1,11 @@
 <template name="pagination">
   {{#with paginate config}}
-  <div class="center">
-    <ul class="pagination">
+    <ul class="pagination pagination-sm m-t-none m-b-none">
       {{#each paginations}}
-      <li class="pageLink {{activeClassHelper ../currentPage this}}">
+      <li class="{{activeClassHelper ../currentPage this}}">
         <a href="{{pathFor ../routeName page=this data=../routeParam query=../queryStr}}">{{this}}</a>
       </li>
       {{/each}}
-    </ul><!-- /.pagination-->
-  </div><!-- /.center-->
+    </ul>
   {{/with}}
 </template>
