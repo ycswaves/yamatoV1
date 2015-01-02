@@ -61,6 +61,10 @@
                           </tr>
                         </thead>
                         <tbody>
+                          {{#unless properties.count}}
+                          <tr><td colspan="5" class="text-center">没有帖子</td></tr>
+                          {{/unless}}
+
                           {{#each properties}}
                           <tr>
                             <td>
@@ -75,11 +79,7 @@
                               {{#if isAdministrated status}}
                               <span style="color:red">{{transPropStatus status}}</span>
                               {{else}}
-                              <select class="status" id="{{_id}}">
-                                {{#each arrayify propertyStatus}}
-                                <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
-                                {{/each}}
-                              </select>
+                                {{> myPropertyList}}
                               {{/if}}
                               </td>
                           </tr>
