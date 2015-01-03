@@ -46,6 +46,11 @@ Template.propertyDetail.events({
 
   'click #return-btn': function(e,t){
     Router.go(Session.get('prevPath') || 'landing');
+  },
+
+  'click #enquiry-btn': function(e,t){
+    var referId = t.find('#enquiry-btn').getAttribute('data-refer-id');
+    Conversations.start(referId,'Property');
   }
 });
 

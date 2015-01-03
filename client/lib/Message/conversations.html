@@ -23,7 +23,7 @@
 				<div class="arrow sidearrow"></div>
 				<h3 class="popover-title">{{getUsernameByTopicId topicId}}
 				{{#if isAdmin topicId}}
-				<span class="label background-color-danger" style="margin-left: 10px;">管理员大神</span>
+				<span class="label bg-danger" style="margin-left: 10px;">管理员大神</span>
 				{{/if}}
 				<button type="button" class="close closeConversation">
 					<span aria-hidden="true">×</span>
@@ -32,7 +32,7 @@
 				</h3>
 				<div class="popover-content conversation-content" style="padding:0px;">
 					{{#with refer topicId}}
-					<div class="referContainer background-color-grey-light">
+					<div class="referContainer bg-light">
 						<div class="referImage">
 							<a href="{{_link}}"><img src="{{getImageURL _image}}"></a>
 						</div>

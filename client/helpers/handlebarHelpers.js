@@ -249,7 +249,7 @@ Handlebars.registerHelper('getImageURL',function(photos){
   }
 
   if(!imgObj || !imgObj.copies)
-    return '/img/properties/property-03.jpg';
+    return '/images/NoImage.jpg';
   else{
     return 'https://s3-ap-southeast-1.amazonaws.com/yamato-image/'+imgObj.copies['property-images'].key;
   }

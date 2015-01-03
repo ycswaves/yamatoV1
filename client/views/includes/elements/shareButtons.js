@@ -1,9 +1,9 @@
 Template.wechatPopup.rendered = function(){
   //分享到微信
   var shareUri = document.URL;
-  // $('#wechatModalContent').qrcode({
-  //   text: shareUri
-  // });
+  $('#wechatModalContent').qrcode({
+    text: shareUri
+  });
 }
 
 Template.shareButtons.rendered = function(){

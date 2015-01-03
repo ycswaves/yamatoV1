@@ -3,10 +3,6 @@ Topics = new Meteor.Collection("topics");
 var Schemas = {};
 
 Schemas.Topic = new SimpleSchema({
-  referId: {
-    type: String,
-    label: "原帖ID"
-  },
   creator: {
     type: String,
     label: "创建者ID"
@@ -15,10 +11,14 @@ Schemas.Topic = new SimpleSchema({
     type: String,
     label: "对象ID"
   },
+  referId: {
+    type: String,
+    label: "原帖ID"
+  },
   referType: {
     type: String,
     defaultValue: 'Property',
-    allowedValues: ['Property','Secondhand','System'],
+    allowedValues: ['Property','System','Common'],
     label: "原帖类型"
   },
   createdAt: {

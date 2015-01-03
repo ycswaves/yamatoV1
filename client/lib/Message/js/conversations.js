@@ -14,7 +14,7 @@ Conversations = {
 	},
 	start: function(referId, type) {
 		//means there is no same topic
-		if(Topics.find({creator:Meteor.userId(),referId:referId}).count() == 0) {
+		if(Topics.find({creator:Meteor.userId(),referId:referId,referType:type}).count() == 0) {
 			var formObj = {
 				creator: Meteor.userId(),
 				referId: referId,
