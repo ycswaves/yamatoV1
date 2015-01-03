@@ -1,6 +1,6 @@
 <template name="addProperty">
   <section class="wrapper">
-    {{> breadcrumbs}}    
+    {{> breadcrumbs}}
     <form role="form" id="propertyForm" class="form-submit">
       <div class="row">
         <div class="col-sm-9">
@@ -11,7 +11,7 @@
               <span class="h4"><i class="fa fa-list-alt"></i> 基本信息</span>
             </header>
             <div class="panel-body">
-              <p class="text-muted">* 为必填项目</p>                        
+              <p class="text-muted">* 为必填项目</p>
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group" id="address-form-group">
@@ -55,7 +55,7 @@
                 <div class="col-sm-8">
                   <div class="form-group" id="district-form-group">
                     <label>区域</label>
-                    <select id="district" name="district" class="form-control m-b">
+                    <select id="district" name="district" class="form-control m-b selectpicker">
                       {{#each arrayify district}}
                       <option value="{{key}}" {{ifSelected key ../myProperty.district}}>{{key}} - {{value}}</option>
                       {{/each}}
@@ -67,7 +67,7 @@
                 <div class="col-sm-4">
                   <div class="form-group" id="ptype-form-group">
                     <label>房屋类型</label>
-                    <select name="property-type" id="property-type" class="form-control m-b">
+                    <select name="property-type" id="property-type" class="form-control m-b selectpicker">
                       {{#each arrayify ptypes}}
                       <option value="{{key}}" {{ifSelected key ../myProperty.propertyType}}>{{value}}</option>
                       {{/each}}
@@ -99,7 +99,7 @@
                 <div class="col-sm-4">
                   <div class="form-group" id="renttype-form-group">
                     <label>出租方式</label>
-                    <select name="rent-type" id="rent-type" class="form-control">
+                    <select name="rent-type" id="rent-type" class="form-control selectpicker">
                       <option value="0" {{ifSelected '0' myProperty.rentType}}>单间</option>
                       <option value="1" {{ifSelected '1' myProperty.rentType}}>整套</option>
                     </select>
@@ -108,7 +108,7 @@
                 <div class="col-sm-4">
                   <div class="form-group" id="room-form-group">
                     <label>房间类型</label>
-                    <select name="room-type" id="room-type" class="form-control">
+                    <select name="room-type" id="room-type" class="form-control selectpicker">
                       {{#each arrayify rtypes}}
                       <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
                       {{/each}}
@@ -128,7 +128,7 @@
                 <div class="col-sm-4">
                   <div class="form-group" id="bedroom-form-group">
                     <label>房间</label>
-                    <select name="bedroom" class="form-control">
+                    <select name="bedroom" class="form-control selectpicker">
                       {{#each bedroomNum}}
                       <option value="{{this}}" {{ifSelected this ../myProperty.bedroom}}>{{this}}</option>
                       {{/each}}
@@ -138,7 +138,7 @@
                 <div class="col-sm-4">
                   <div class="form-group" id="bathroom-form-group">
                     <label>卫生间</label>
-                    <select name="bathroom" class="form-control">
+                    <select name="bathroom" class="form-control selectpicker">
                       {{#each bathroomNum}}
                       <option value="{{this}}" {{ifSelected this ../myProperty.bathroom}}>{{this}}</option>
                       {{/each}}
@@ -149,7 +149,7 @@
                   <div class="form-group" id="area-form-group">
                     <label>面积 *</label>
                     <div class="input-group">
-                      <input type="text" class="form-control" name="property-area" value="{{myProperty.area}}">
+                      <input type="text" class="form-control selectpicker" name="property-area" value="{{myProperty.area}}">
                       <span class="input-group-addon">m<sup>2</sup></span>
                     </div>
                   </div>
@@ -159,7 +159,7 @@
                 <div class="col-sm-4">
                   <div class="form-group" id="mrtLinesDiv">
                     <label>最近地铁线</label>
-                    <select name="mrtlines" id="mrtlines" class="form-control">
+                    <select name="mrtlines" id="mrtlines" class="form-control selectpicker">
                       {{#each arrayify mrtlines}}
                       <option value="{{key}}" {{ifLineMatch key ../myProperty.mrt}}>{{value.niceName}}</option>
                       {{/each}}
@@ -169,7 +169,7 @@
                 <div class="col-sm-4">
                   <div class="form-group">
                     <label>站名</label>
-                    <select name="stations" id="stations" class="form-control">
+                    <select name="stations" id="stations" class="form-control selectpicker">
                       {{#each arrayify stations}}
                       <option value="{{key}}" {{ifSelected key ../myProperty.mrt}}>{{key}} - {{value}}</option>
                       {{/each}}

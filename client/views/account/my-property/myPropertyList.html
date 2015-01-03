@@ -1,5 +1,11 @@
 <template name="myPropertyList">
-  <select class="status" id="{{_id}}">
+  <style type="text/css">
+    /* to align select with other fields */
+    .btn-group.bootstrap-select.status{
+      margin-bottom: 0px
+    }
+  </style>
+  <select class="status selectpicker" id="{{_id}}" data-width="90%" >
     {{#each arrayify propertyStatus}}
     <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
     {{/each}}

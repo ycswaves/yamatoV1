@@ -35,7 +35,12 @@ Template.addProperty.rendered = function() {
       });
     }
   });
-  
+
+  $('.selectpicker').selectpicker({
+    container:'body',
+    style:'btn-info'
+  });
+
   render();
   $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
 

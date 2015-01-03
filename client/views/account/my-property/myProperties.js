@@ -12,7 +12,7 @@ MyPropertiesController = RouteController.extend({
   data: function () {
     var params = this.params
       , statusType = params.type || 'open'
-      , pageLimit = 6
+      , pageLimit = 10
       , pageNum = 1;
 
     var queryFilter = {
@@ -78,8 +78,7 @@ MyPropertiesController = RouteController.extend({
           routeName: 'myproperty',
           routeParam: {type: statusType}
         }
-      },
-      propertyStatus: Config.getAllPropertyStatus()
+      }
     }
   }
 });
