@@ -27,14 +27,14 @@
                     <div class="row text-sm wrapper">
                       <div class="col-sm-6">
                         <div class="btn-group" data-toggle="buttons">
-                          <label class="btn btn-sm btn-white active">
-                            <input type="radio" name="propertyStatus" value="open"> 发布中 ({{totalActive}})
+                          <label class="propertyStatus btn btn-sm btn-white {{activeClassHelper 'open' currStatus}}" data-status="open">
+                            发布中 ({{totalActive}})
                           </label>
-                          <label class="btn btn-sm btn-white">
-                            <input type="radio" name="propertyStatus" value="inactive"> 已关闭 ({{totalInactive}})
+                          <label class="propertyStatus btn btn-sm btn-white {{activeClassHelper 'inactive' currStatus}}" data-status="inactive">
+                            已关闭 ({{totalInactive}})
                           </label>
-                          <label class="btn btn-sm btn-white">
-                            <input type="radio" name="propertyStatus" value="administrated"> 管制 ({{totalAdministered}})
+                          <label class="propertyStatus btn btn-sm btn-white {{activeClassHelper 'administrated' currStatus}}" data-status="administrated">
+                            管制 ({{totalAdministered}})
                           </label>
                         </div>
                       </div>

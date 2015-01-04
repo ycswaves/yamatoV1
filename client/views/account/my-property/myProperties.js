@@ -1,12 +1,15 @@
 Template.myProperties.rendered = function() {
   render();
-
-  //switch type
-  $("body").off('change',"input[name=propertyStatus]").on('change',"input[name=propertyStatus]",function(){
-    var type = $(this).val();
-    Session.set('MyProperties.type',type);
-  })
 }
+
+Template.myProperties.events({
+  'click label.propertyStatus': function(e, t){
+    var type = t.$(e.target).data('status');
+    t.$('label.propertyStatus').removeClass('active');
+    Router.go('myproperty',{type:type, page:1});
+    return;
+  }
+});
 
 MyPropertiesController = RouteController.extend({
   data: function () {
@@ -20,15 +23,11 @@ MyPropertiesController = RouteController.extend({
       status: 'open'
     };
 
-    if(typeof Session.get('MyProperties.type')!="undefined"){
-      statusType = Session.get('MyProperties.type');
-    }
-
     if(params.page && CommonHelper.isInteger(params.page)){
       pageNum = params.page;
     }
 
-    if(statusType){
+    if(statusType && statusType!= 'open'){
       switch(statusType){
         case 'inactive':
           queryFilter.status = {$in:['closed','deal']};
@@ -69,6 +68,7 @@ MyPropertiesController = RouteController.extend({
       totalInactive: (statusCountMapping['closed'] || 0) + (statusCountMapping['deal'] || 0),
       totalAdministered: (statusCountMapping['expired'] || 0) + (statusCountMapping['violate'] || 0),
       totalDocs: totalDocs,
+      currStatus: statusType,
       paginationConfig: {
         'config': {
           pageNum: pageNum,
