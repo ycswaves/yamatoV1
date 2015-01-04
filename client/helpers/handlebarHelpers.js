@@ -305,7 +305,7 @@ Handlebars.registerHelper('mrtColoredLabel', function(mrt,options){
                  '</span>';
   }
   else {
-    string = '<span class="label" style="padding:4px;width:32px;position:absolute;right:10px;background-color:'+bgColor+'">'
+    string = '<span class="label pull-right" style="padding:4px;margin-right:10px;width:32px;background-color:'+bgColor+'">'
                   + mrt +
                  '</span>';
   }

@@ -9,8 +9,8 @@ Template.addProperty.rendered = function() {
   });
   $('.picker__holder').css('min-width', '274px');
   $('.icheck').iCheck({
-    checkboxClass: 'icheckbox_square-blue',
-    radioClass: 'iradio_square-blue'
+    checkboxClass: 'icheckbox_flat-blue',
+    radioClass: 'iradio_flat-blue'
     //increaseArea: '20%' // optional
   });
 

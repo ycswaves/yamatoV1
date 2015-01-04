@@ -1,4 +1,127 @@
 <template name="landing">
+  <div class="welcome">
+    <div class="container slogan">
+      <h1>寻找属于你的那个家</h1>
+      <h4>一站式租房体验，从这里开始</h4>
+    </div>
+    <br>
+    <div class="container search-box">
+      <ul class="nav nav-pills">
+        <li class="active"><a href="#search-form-rent" data-toggle="tab">租房</a></li>
+        <li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">跳蚤市场</a></li>
+        {{!--
+        <li><a href="#search-form-secondhand" data-toggle="tab">二手家具</a></li>
+        <li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">搬家</a></li>
+        <li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">家政</a></li>
+        --}}
+      </ul>
+      <br>
+      <div class="tab-content m-b">
+        <div class="tab-pane fade in active" id="search-form-rent">
+          <a class="advanced-search-toggle" data-toggle="collapse" data-parent="#accordion" href="#advanced-search-rent">高级搜索条件 <i class="fa fa-plus"></i></a>
+          <form role="form" id="search-form-landing" class="form-map form-search clearfix">
+            <div id="advanced-search-rent" class="panel-collapse collapse">
+              <div class="advanced-search">
+                <h3 style="margin-bottom: 10px;">常用地址</h3>
+                <div class="row">
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <input type="text" class="form-control" id="frequentAddr" name="frequentAddr" placeholder="输入您的常用地址">
+                    </div>
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <select name="travelMode" class="selectpicker" data-width="90%">
+                        <option value="transit">公共交通</option>
+                        <option value="driving">驾车</option>
+                        <option value="walking">步行</option>
+                      </select>
+                    </div><!-- /.form-group -->
+                  </div>
+                  <div class="col-sm-2">
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary taller-btn"><i class="fa fa-plus"></i> 添加多个地址
+                      </button>
+                    </div><!-- /.form-group -->
+                  </div>
+                </div>
+                <br>
+                <h3 style="margin-bottom: 10px;">家居设施</h3>
+                <div class="row">
+                  {{#each arrayify facilities}}
+                  <div class="col-sm-4 col-xs-6">
+                    <div class="checkbox">
+                      <label><input type="checkbox" class="icheck" value="{{key}}"> {{value}}</label>
+                    </div>
+                  </div>
+                  {{/each}}
+                </div>
+                <br>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-2 col-sm-4">
+                <div class="form-group">
+                  <select name="property-type" class="selectpicker" data-width="100%">
+                    <option value="">任意房屋类型</option>
+                    {{#each arrayify ptypes}}
+                    <option value="{{key}}">{{value}}</option>
+                    {{/each}}
+                  </select>
+                </div><!-- /.form-group -->
+              </div>
+              <div class="col-md-2 col-sm-4">
+                <div class="form-group">
+                  <select name="district" class="selectpicker" data-width="100%">
+                    <option value="">任意区域</option>
+                    {{#each arrayify district}}
+                    <option value="{{key}}">{{key}} - {{value}}</option>
+                    {{/each}}
+                  </select>
+                </div><!-- /.form-group -->
+              </div>
+              <div class="col-md-2 col-sm-4">
+                <div class="form-group">
+                  <select name="price" class="selectpicker" data-width="100%">
+                    <option value="">任意价格</option>
+                    {{#each arrayify priceRange}}
+                    <option value="{{key}}">{{value}}</option>
+                    {{/each}}
+                  </select>
+                </div>
+              </div>
+              <div class="col-md-2 col-sm-4">
+                <div class="form-group">
+                  <select name="mrtlines" id="mrtlines" class="selectpicker" data-width="100%">
+                    <option value="">任意地铁线</option>
+                    {{#each arrayify mrtlines}}
+                    <option value="{{key}}" data-content="{{value.niceName}} {{mrtColoredLabel key}}"></option>
+                    {{/each}}
+                  </select>
+                </div><!-- /.form-group -->
+              </div>
+
+              <div class="col-md-2 col-sm-4">
+                <div class="form-group">
+                  <select name="stations" id="stations" class="selectpicker" data-width="100%">
+                    <option value="">站名</option>
+                    {{#each arrayify stations}}
+                    <option value="{{key}}">{{key}} - {{value}}</option>
+                    {{/each}}
+                  </select>
+                </div><!-- /.form-group -->
+              </div>
+              <div class="col-md-2 col-sm-4">
+                <div class="form-group">
+                  <button type="submit" class="btn btn-primary taller-btn"><i class="fa fa-search" style="margin-right: 5px"></i> 搜索</button>
+                </div><!-- /.form-group -->
+              </div>
+            </div>
+          </form><!-- /#form-map -->
+        </div>
+      </div>
+    </div>
+  </div>
 	<div class="text-white bg-primary text-center">
 		<div class="container wrapper">
 			<div>
@@ -10,77 +133,7 @@
 	<div class="wrapper">
 		<div class="row">
 			<div class="col-lg-8">
-				<section class="panel">
-					<form>
-						<textarea class="form-control input-lg no-border" rows="2" placeholder="What are you doing..."></textarea>
-					</form>
-					<footer class="panel-footer bg-light lter">
-						<button class="btn btn-info pull-right">POST</button>
-						<ul class="nav nav-pills">
-							<li><a href="#"><i class="fa fa-location-arrow"></i></a></li>
-							<li><a href="#"><i class="fa fa-camera"></i></a></li>
-							<li><a href="#"><i class="fa fa-video-camera"></i></a></li>
-							<li><a href="#"><i class="fa fa-microphone"></i></a></li>
-						</ul>
-					</footer>
-				</section>
-				<div class="row">
-					<div class="col-lg-6 col-sm-6">
-						<section class="panel">
-							<div class="panel-body">
-								<div class="clearfix m-b">
-									<small class="text-muted pull-right">5m ago</small>
-									<a href="#" class="thumb-sm pull-left m-r">
-										<img src="/images/avatar.jpg" class="img-circle">
-									</a>
-									<div class="clear">
-										<a href="#"><strong>Jonathan Omish</strong></a>
-										<small class="block text-muted">San Francisco, USA</small>
-									</div>
-								</div>
-								<p>
-									There are a few easy ways to quickly get started with Bootstrap...
-								</p>
-								<small class="">
-									<a href="#"><i class="fa fa-comment-o"></i> Comments (25)</a>
-								</small>
-							</div>
-							<footer class="panel-footer pos-rlt">
-								<span class="arrow top"></span>
-								<form class="pull-out">
-									<input type="text" class="form-control no-border input-lg text-sm" placeholder="Write a comment...">
-								</form>
-							</footer>
-						</section>
-					</div>
-					<div class="col-lg-6 col-sm-6">
-						<section class="panel">
-							<div class="panel-body">
-								<div class="clearfix m-b">
-									<small class="text-muted pull-right">1hr ago</small>
-									<a href="#" class="thumb-sm pull-left m-r">
-										<img src="/images/avatar_default.jpg" class="img-circle">
-									</a>
-									<div class="clear">
-										<a href="#"><strong>Mike Mcalidek</strong></a>
-										<small class="block text-muted">Newyork, USA</small>
-									</div>
-								</div>
-								<div class="pull-in bg-light clearfix m-b-n">
-									<p class="m-t-sm m-b text-center animated bounceInDown">
-										<i class="fa fa-map-marker text-danger fa fa-4x" data-toggle="tooltip" title="checked in at Newyork"></i>
-									</p>
-								</div>
-							</div>
-							<footer class="panel-footer pos-rlt">
-								<span class="arrow top"></span>
-								<form class="pull-out">
-									<input type="text" class="form-control no-border input-lg text-sm" placeholder="Write a comment...">
-								</form>
-							</footer>
-						</section>
-					</div>
-				</div>
+
 				<section class="panel no-borders hbox">
 					<aside class="bg-info lter r-l text-center v-middle">
 						<div class="wrapper">
@@ -91,7 +144,7 @@
 					<aside>
 						<div class="pos-rlt">
 							<span class="arrow left hidden-xs"></span>
-							<div class="panel-body">                      
+							<div class="panel-body">
 								<div class="clearfix m-b">
 									<small class="text-muted pull-right">2 days ago</small>
 									<a href="#" class="thumb-sm pull-left m-r">
@@ -107,7 +160,7 @@
 								</p>
 								<small class="">
 									<a href="#"><i class="fa fa-comment-o"></i> Comments (10)</a>
-								</small>                    
+								</small>
 							</div>
 							<footer class="panel-footer">
 								<form class="pull-out b-t">
@@ -117,11 +170,11 @@
 						</div>
 					</aside>
 				</section>
-				<section class="panel no-borders hbox">                
+				<section class="panel no-borders hbox">
 					<aside>
 						<div class="pos-rlt">
 							<span class="arrow right hidden-xs"></span>
-							<div class="panel-body">                    
+							<div class="panel-body">
 								<div class="clearfix m-b">
 									<small class="text-muted pull-right">2 days ago</small>
 									<a href="#" class="thumb-sm pull-left m-r">
@@ -137,7 +190,7 @@
 								</p>
 								<small class="">
 									<a href="#"><i class="fa fa-share"></i> Share (10)</a>
-								</small>                    
+								</small>
 							</div>
 							<footer class="panel-footer">
 								<form class="pull-out b-t">
@@ -152,9 +205,6 @@
 						</div>
 					</aside>
 				</section>
-				<div class="text-center m-b">
-					<i class="fa fa-spinner fa fa-spin"></i>
-				</div>
 			</div>
 			<div class="col-lg-4">
 				<section class="panel bg-info lter no-borders">
@@ -181,18 +231,6 @@
 							</div>
 						</div>
 					</footer>
-				</section>
-				<section class="panel clearfix">
-					<div class="panel-body">
-						<a href="#" class="thumb pull-left m-r">
-							<img src="/images/avatar.jpg" class="img-circle">
-						</a>
-						<div class="clear">
-							<a href="#" class="text-info">@Mike Mcalidek <i class="fa fa-twitter"></i></a>
-							<small class="block text-muted">2,415 followers / 225 tweets</small>
-							<a href="#" class="btn btn-xs btn-success m-t-xs">Follow</a>
-						</div>
-					</div>
 				</section>
 			</div>
 		</div>

@@ -1,9 +1,19 @@
 Template.landing.rendered = function() {
   render();
+  $('.selectpicker').selectpicker({
+    container:'body'
+  });
+
+  $('.icheck').iCheck({
+    checkboxClass: 'icheckbox_flat-blue',
+    radioClass: 'iradio_flat-blue'
+    //increaseArea: '20%' // optional
+  });
+
   if (Session.get('resetPassword')) {
     $('#resetPassModal').modal('show');
   }
-  
+
   ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
 }
 
