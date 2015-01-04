@@ -3,10 +3,6 @@ Template.propertyListing.rendered = function() {
 }
 
 Template.propertyListing.events({
-  'click li.pageLink': function(){
-    window.scrollTo(0, 0);
-  },
-
   'change select[name="sorting"]': function(e, t){
     e.preventDefault();
     t.find('button').blur(); //need to force to blur

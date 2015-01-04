@@ -1,95 +1,105 @@
 <template name="propertyListing">
-	<div class="page-gradient">
-		{{> breadcrumbs}}
-		<div class="container">
-			<div class="row">
-				<!-- sidebar -->
-				<div class="hidden-xs col-sm-3" id="sidebar" role="navigation">
-					{{> sideSearch}}
-				</div><!-- /.col-md-3 -->
-				<!-- end Sidebar -->
+	{{> breadcrumbs}}
+	<div class="row" style="margin:auto 10px">
+		<!-- sidebar -->
+		<div class="hidden-xs col-sm-3" id="sidebar" role="navigation">
+			{{> sideSearch}}
+		</div><!-- /.col-md-3 -->
+		<!-- end Sidebar -->
 
-				<!-- Results -->
-				<div class="col-xs-12 col-sm-9">
-          <button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-ghost-info center" style="width:100%">设置搜索条件</button>
-					<section id="results">
-            <div class="hidden-xs">
-  						<header><h1>最新发布</h1></header>
-  						<section id="search-filter">
-  							<figure><h3><i class="fa fa-search"></i>搜索结果:</h3>
-  								<span class="search-count">{{totalDocs}}</span>
-  								<div class="sorting">
-  									<div class="form-group">
-  										<select name="sorting">
-  											<option value="">排序</option>
-  											<option value="priceBy1">价格从低到高</option>
-  											<option value="priceBy-1">价格从高到低</option>
-  											<option value="createdAtBy1">最新发布</option>
-  										</select>
-  									</div><!-- /.form-group -->
-  								</div>
-  							</figure>
-  						</section>
-            </div>
-						<section id="properties" class="display-lines">
-							{{#each properties}}
-              {{#AnimateWithVelocity}}
-							<div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='linear' data-easing-out='linear' class="property" style="padding-left:0px">
-								<header><a href="{{pathFor 'propertyDetail' id=_id}}">
-                  <h3>{{address}}
-                    <span style="font-size: 0.65em; color: gray" class="pull-right hidden-xs">
-                      <i class="fa fa-calendar"></i>&nbsp;{{transDatetime createdAt 'YYYY-MM-DD'}} &nbsp;&nbsp; <i class="fa fa-eye"></i>&nbsp;{{formatViews views}}
-                    </span>
-                  </h3></a></header>
-								<div class="hbox">
-									<aside class="col-xs-4 radius pointer" style="height:100%;background:url('{{getImageURL photos}}') no-repeat;background-position: center center;background-size: cover;">
-                  <a href="{{pathFor 'propertyDetail' id=_id}}"><div style='width:100%;height:142px'>&nbsp;</div></a>
-                  </aside>
-									<aside style="width: 40%;">
-                    <dl style="padding:10px 20px 10px 10px">
-                      <dt><figure class="fa fa-map-marker icon-align"></figure><span class="hidden-xs"> 区域: </span></dt>
-                      <dd>{{transDistr district}}</dd>
-                      <dt><figure class="fa fa-bus icon-align"></figure><span class="hidden-xs"> 近地铁: </span></dt>
-                      <dd>{{transMRT mrt}} {{mrtColoredLabel mrt 'inline'}}</dd>
-                      <dt><figure class="fa fa-calendar icon-align"></figure><span class="hidden-xs"> 入住时间: </span></dt>
-                      <dd>{{transDatetime moveInDate}} 起</dd>
-                      <dt><figure class="fa fa-home icon-align"></figure><span class="hidden-xs"> 房间: </span></dt>
-                      <dd>{{transRoom rentType roomType}}</dd>
-                    </dl>
-                  </aside>
-                  <aside>
-                    <dl style="padding-top:10px">
-                      <dt><figure class="fa fa-user icon-align"></figure><span class="hidden-xs"> 有无中介费: </span></dt>
-                      <dd>{{transAgt hasAgentFee}}</dd>
-                      <dt><figure class="fa fa-building icon-align"></figure><span class="hidden-xs"> 房屋类型: </span></dt>
-                      <dd>{{transPtype propertyType}}</dd>
-                      <dt></dt>
-                      <dd>
-                        <img src="/img/bed.svg" alt="bedroom" style="width:13px; position:relative; top:-4px"> {{bedroom}}
-                        <span style="margin-right:10px"></span>
-                        <img src="/img/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
-                      </dd>
-                      <dt></dt>
-                      <dd style="max-height: 30px;">
-                        <div class="tag price">${{price}}</div>
-                      </dd>
-                    </dl>
-                  </aside>
-								</div>
-							</div><!-- /.property -->
-              {{/AnimateWithVelocity}}
-							{{/each}}
-						</section><!-- /#properties-->
+		<!-- Results -->
+		<div class="col-xs-12 col-sm-9">
+      <button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-ghost-info center" style="width:100%">设置搜索条件</button>
+			<section id="results">
+        <div class="hidden-xs pull-right">
+					<section id="search-filter">
+						<div class="sorting">
+							<div class="form-group">
+								<select name="sorting" class="selectpicker">
+									<option value="">排序</option>
+									<option value="priceBy1">价格从低到高</option>
+									<option value="priceBy-1">价格从高到低</option>
+									<option value="createdAtBy1">最新发布</option>
+								</select>
+							</div><!-- /.form-group -->
+						</div>
+					</section>
+        </div>
+        {{#each properties}}
+        {{#AnimateWithVelocity}}
+          <div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='linear' data-easing-out='linear' class="property" style="padding-left:0px">
 
-						<!-- Pagination -->
-						{{>Template.dynamic template="pagination" data=paginationConfig}}
+            <section class="panel no-borders hbox">
+              <aside class="bg-info lter r-l text-center v-middle col-sm-4">
+                <div class="wrapper">
+                  <i class="fa fa-dribbble fa fa-4x"></i>
+                  <p class="text-muted"><em>dribbble invitation</em></p>
+                </div>
+              </aside>
+              <aside class="col-sm-8">
+                <div class="pos-rlt">
+                  <span class="arrow left hidden-xs"></span>
+                  <div class="panel-body">
+                    <div class="clearfix m-b">
+                      <small class="text-muted pull-right">
+                        <i class="fa fa-calendar"></i>&nbsp;{{transDatetime createdAt 'YYYY-MM-DD'}} &nbsp;&nbsp; <i class="fa fa-eye"></i>&nbsp;{{formatViews views}}
+                      </small>
 
-					</section><!-- /#results -->
-				</div><!-- /.col-md-9 -->
-				<!-- end Results -->
+                      <div class="clear">
+                        <a href="{{pathFor 'propertyDetail' id=_id}}">
+                          <strong>{{address}}</strong>
+                        </a>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <dl>
+                          <dt><figure class="fa fa-map-marker icon-align"></figure>区域: </dt>
+                          <dd>{{transDistr district}}</dd>
+                          <dt><figure class="fa fa-bus icon-align"></figure>近地铁: </dt>
+                          <dd>{{transMRT mrt}} {{mrtColoredLabel mrt 'inline'}}</dd>
+                          <dt><figure class="fa fa-calendar icon-align"></figure>入住时间: </dt>
+                          <dd>{{transDatetime moveInDate}} 起</dd>
+                          <dt><figure class="fa fa-home icon-align"></figure>房间: </dt>
+                          <dd>{{transRoom rentType roomType}}</dd>
+                        </dl>
+                      </div>
+                      <div class="col-sm-6">
+                        <dl>
+                          <dt><figure class="fa fa-user icon-align"></figure>有无中介费: </dt>
+                          <dd>{{transAgt hasAgentFee}}</dd>
+                          <dt><figure class="fa fa-building icon-align"></figure>房屋类型: </dt>
+                          <dd>{{transPtype propertyType}}</dd>
+                          <dt></dt>
+                          <dd>
+                            <img src="/images/bed.svg" alt="bedroom" style="width:13px; position:relative; top:-4px"> {{bedroom}}
+                            <span style="margin-right:10px"></span>
+                            <img src="/images/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
+                          </dd>
+                          <dt></dt>
+                          <dd style="max-height: 30px;">
+                            <div class="tag price">${{price}}</div>
+                          </dd>
+                        </dl>
+                      </div>
+                    </div>
 
-			</div><!-- /.row -->
-		</div><!-- /.container -->
-  </div>
+                  </div>
+                </div>
+              </aside>
+            </section>
+          </div>
+        {{/AnimateWithVelocity}}
+        {{/each}}
+
+
+				<!-- Pagination -->
+				{{>Template.dynamic template="pagination" data=paginationConfig}}
+
+			</section><!-- /#results -->
+		</div><!-- /.col-md-9 -->
+		<!-- end Results -->
+
+	</div><!-- /.row -->
   {{> sideSearchModal}}
 </template>

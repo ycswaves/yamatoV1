@@ -1,0 +1,12 @@
+dl {
+  margin-bottom: 10px;
+}
+
+dl dt {
+  float: left;
+}
+
+dl dd {
+  margin-bottom: 8px;
+  text-align: right;
+}

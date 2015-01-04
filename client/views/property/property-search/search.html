@@ -4,7 +4,7 @@
       <header><h3>搜索</h3></header>
       <form role="form" id="search-form-sidebar" class="form-search">
         <div class="form-group">
-          <select name="property-type">
+          <select name="property-type" class="selectpicker" data-width="100%">
             <option value="">任意房屋类型</option>
             {{#each arrayify ptypes}}
             <option value="{{key}}" {{ifSelected key currentQuery.propertyType}}>{{value}}</option>
@@ -12,7 +12,7 @@
           </select>
         </div><!-- /.form-group -->
         <div class="form-group">
-          <select name="district">
+          <select name="district" class="selectpicker" data-width="100%">
             <option value="">任意区域</option>
             {{#each arrayify district}}
             <option value="{{key}}" {{ifSelected key currentQuery.district}}>{{key}} - {{value}}</option>
@@ -21,7 +21,7 @@
         </div><!-- /.form-group -->
 
         <div class="form-group">
-          <select name="price">
+          <select name="price" class="selectpicker" data-width="100%">
             <option value="" >任意价格</option>
             {{#each arrayify priceRange}}
             <option value="{{key}}" {{ifSelected key currentQuery.price}}>{{value}}</option>
@@ -30,7 +30,7 @@
         </div>
 
         <div class="form-group">
-          <select name="mrtlines" id="mrtlines">
+          <select name="mrtlines" id="mrtlines" class="selectpicker" data-width="100%">
             <option value="">任意地铁线</option>
             {{#each arrayify mrtlines}}
             <option value="{{key}}" {{ifSelected key currentQuery.mrtLines}}>{{mrtColoredLabel key}} {{value.niceName}}</option>
@@ -39,7 +39,7 @@
         </div><!-- /.form-group -->
 
         <div class="form-group">
-          <select name="stations" id="stations">
+          <select name="stations" id="stations" class="selectpicker" data-width="100%">
             <option value="">站名</option>
             {{#each arrayify stations}}
             <option value="{{key}}" {{ifSelected key currentQuery.mrt}}>{{key}} - {{value}}</option>
@@ -48,7 +48,7 @@
         </div><!-- /.form-group -->
 
         <div class="form-group">
-          <select name="has-agent-fee">
+          <select name="has-agent-fee" class="selectpicker" data-width="100%">
             <option value="">有无中介费</option>
             <option value="0" {{ifSelected 0 currentQuery.hasAgentFee}}>无中介费</option>
             <option value="1" {{ifSelected 1 currentQuery.hasAgentFee}}>有中介费</option>
@@ -56,7 +56,7 @@
         </div><!-- /.form-group -->
 
         <div class="form-group">
-          <select id="rent-type" name="rent-type">
+          <select id="rent-type" name="rent-type" class="selectpicker" data-width="100%">
             <option value="">出租方式</option>
             <option value="0" {{ifSelected 0 currentQuery.rentType}}>单间</option>
             <option value="1" {{ifSelected 1 currentQuery.rentType}}>整套</option>
@@ -64,7 +64,7 @@
         </div><!-- /.form-group -->
 
         <div class="form-group">
-          <select name="room-type" id="room-type">
+          <select name="room-type" id="room-type" class="selectpicker" data-width="100%">
             <option value="">出租房间</option>
             {{#each arrayify rtypes}}
             <option value="{{key}}"  {{ifSelected key currentQuery.roomType}}>{{value}}</option>

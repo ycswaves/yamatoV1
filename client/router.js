@@ -173,6 +173,7 @@ Router.map(function () {
     controller: 'ListController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '房屋列表';
+      $(window).scrollTop(0);
     }
   });
 

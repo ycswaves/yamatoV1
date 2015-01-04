@@ -1,5 +1,9 @@
 Template.sideSearch.rendered = function() {
   //ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
+  $('.selectpicker').selectpicker({
+    container:'body',
+    style:'btn-white'
+  });
 }
 
 Template.sideSearch.events({
