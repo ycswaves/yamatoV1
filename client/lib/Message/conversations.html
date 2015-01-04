@@ -3,7 +3,7 @@
 	<div class="ActiveConversations">
 		{{#each conversationTopics}}
 		{{#AnimateWithVelocity}}
-			{{> conversationTopic}}
+		{{> conversationTopic}}
 		{{/AnimateWithVelocity}}
 		{{/each}}
 	</div>
@@ -22,13 +22,13 @@
 			<div class="popover conversation-popover right" role="tooltip" style="display: none; left: 60px; top: -345px;">
 				<div class="arrow sidearrow"></div>
 				<h3 class="popover-title">{{getUsernameByTopicId topicId}}
-				{{#if isAdmin topicId}}
-				<span class="label bg-danger" style="margin-left: 10px;">管理员大神</span>
-				{{/if}}
-				<button type="button" class="close closeConversation">
-					<span aria-hidden="true">×</span>
-					<span class="sr-only">Close</span>
-				</button>
+					{{#if isAdmin topicId}}
+					<span class="label bg-danger" style="margin-left: 10px;">管理员大神</span>
+					{{/if}}
+					<button type="button" class="close closeConversation">
+						<span aria-hidden="true">×</span>
+						<span class="sr-only">Close</span>
+					</button>
 				</h3>
 				<div class="popover-content conversation-content" style="padding:0px;">
 					{{#with refer topicId}}
@@ -42,9 +42,9 @@
 					</div>
 					{{/with}}
 					<div class="messagesContainer">
-					{{#each messages this.topicId}}
+						{{#each messages this.topicId}}
 						{{> messageRow}}
-					{{/each}}
+						{{/each}}
 					</div>
 					<div class="inputWrapper">
 						<div class="ui-TextField ui-Field">
@@ -58,19 +58,29 @@
 </template>
 
 <template name="messageRow">
-	<div class="ConversationMessages">
-		<li class="messageWrapper">
-			{{#if isOwn this.owner this.sender}}
-			<div class="ConversationMessage isOwn">
-				<em class="messageCaret"></em>
-				<p>{{content}}</p>
+	{{#if isOwn this.owner this.sender}}
+	<article class="chat-item right">
+		<a href="#" class="pull-right thumb-sm avatar"><img src="{{getAvatarByUserId this.owner}}" class="img-circle"></a>
+		<section class="chat-body">                      
+			<div class="panel bg bg-success text-sm m-b-none">
+				<div class="panel-body">
+				<span class="arrow right"></span>{{content}}
+				</div>
 			</div>
-			{{else}}
-			<div class="ConversationMessage notOwn">
-				<em class="messageCaret"></em>
-				<p>{{content}}</p>
+			<small class="text-muted"><i class="fa fa-check text-success"></i> {{formatMoment createdAt}}</small>
+		</section>
+	</article>
+	{{else}}
+	<article class="chat-item left">
+		<a href="#" class="pull-left thumb-sm avatar"><img src="{{getAvatarByUserId this.sender}}" class="img-circle"></a>
+		<section class="chat-body">
+			<div class="panel text-sm m-b-none">
+				<div class="panel-body">
+					<span class="arrow left"></span>{{content}}
+				</div>
 			</div>
-			{{/if}}
-		</li>
-	</div>
+			<small class="text-muted"><i class="fa fa-check text-success"></i> {{formatMoment createdAt}}</small>
+		</section>
+	</article>
+	{{/if}}
 </template>

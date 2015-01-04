@@ -9,7 +9,7 @@ Template.messages.rendered = function () {
 	})
 
 	//click on the message
-	$('body').on('click', '.message-line', function (e) {
+	$('body').off('click', '.message-line').on('click', '.message-line', function (e) {
 		var topicId = $(this).data('topicId');
 		Conversations.setReadAsync(topicId);
 		//add into conversation once click

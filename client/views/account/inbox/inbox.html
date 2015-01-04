@@ -1,83 +1,82 @@
 <template name="inboxPage">
-	<div>
-	{{> breadcrumbs}}
-	</div>
-	<div class="container">
-		<div class="row">
-			<!-- sidebar -->
-			<div class="col-xs-2 col-sm-3">
-				<section id="sidebar">
-					<header><h3>账户</h3></header>
-					<aside>
-						<ul class="sidebar-navigation">
-							<li><a href="{{pathFor 'profile'}}"><i class="fa fa-user"></i><span class="hidden-xs">个人简介</span></a></li>
-							<li><a href="{{pathFor 'security'}}"><i class="fa fa-lock"></i><span class="hidden-xs">安全设置</span></a></li>
-							<li><a href="{{pathFor 'myproperty' type='open' page=1}}"><i class="fa fa-home"></i><span class="hidden-xs">我的房屋</span></a></li>
-							<!-- <li><a href="bookmarked.html"><i class="fa fa-heart"></i><span class="hidden-xs">反向推送</span></a></li> -->
-							<li  class="active radius"><a href="{{pathFor 'inbox'}}"><i class="fa fa-inbox"></i><span class="hidden-xs">收件箱</span></a></li>
+	<section class="hbox stretch bg-white-only">
+		{{> profile}}
+		<!-- .aside -->
+		<aside class="">
+			<section class="vbox">
+				<header class="header bg-white pos-rlt navbar navbar-default show">
+					<span class="arrow left"></span>
+					<div class="collapse navbar-collapse pull-in">
+						<ul class="nav navbar-nav">
+							<li><a href="{{pathFor "me"}}">即时动态</a></li>
+							<li><a href="{{pathFor 'myproperty' type='open' page=1}}">我的房屋</a></li>
+							<li><a href="{{pathFor 'security'}}">安全设置</a></li>
+							<li class="font-bold"><a href="{{pathFor 'inbox'}}">收件箱</a></li>
 						</ul>
-					</aside>
-				</section><!-- /#sidebar -->
-			</div><!-- /.col-md-3 -->
-			<!-- end Sidebar -->
-			<!-- My Properties -->
-			<div class="col-xs-10 col-sm-9">
-				<section id="profile">
-					<header><h1>收件箱</h1></header>
-					{{#if topics}}
-					<section class="hbox stretch" style="height:470px;margin-bottom:10px">
-						<aside class="col-xs-5 topic-list">
-						<ul class="bg-white list-group no-radius m-b-none m-t-n-xxs list-group-lg">
-							{{#each topics}}
-							<li class="list-group-item pointer topic-item" data-topic-id="{{_id}}">
-								<div class="thumb-sm pull-left m-r-sm">
-									<img src="{{getAvatarByTopicId _id}}" class="img-circle">
-								</div>
-								<div class="clear">
-									<small class="pull-right hidden-xs" style="padding-top: 3px;">{{lastTime}}</small>
-									<strong class="block-none-padding hidden-xs">{{getUsernameByTopicId _id}}</strong>
-									<small>
-									{{#if mine}}<i class="fa fa-reply hidden-xs"></i>&nbsp;{{/if}}
-									<span class="hidden-xs">{{message}}</span>
-									</small>
-								</div>
-							</li>
-							{{/each}}
-						</ul>
-						</aside>
-						<aside class="col-xs-7 b-l conversation-list">
-							{{#if topicId}}
-							<div class="popover-content conversation-content" style="padding:0px;">
-								{{#with refer topicId}}
-								<div class="referContainer">
-									<div class="referImage">
-										<a href="{{_link}}"><img src="{{getImageURL _image}}"></a>
+					</div>
+				</header>
+				<section>
+					<section class="hbox stretch">
+						<aside class="bg-light lter">
+							<section class="vbox">
+								<header class="bg-light dker header clearfix">
+									<div class="btn-group pull-right">
+										<button type="button" class="btn btn-sm btn-white"><i class="fa fa-chevron-left"></i></button>
+										<button type="button" class="btn btn-sm btn-white"><i class="fa fa-chevron-right"></i></button>
 									</div>
-									<div class="referDescription">
-										<a href="{{_link}}">{{_title}}</a>
+									<div class="btn-toolbar">
+										<div class="btn-group select">
+											<button class="btn btn-white btn-sm dropdown-toggle" data-toggle="dropdown">
+												<span class="dropdown-label" style="width: 65px;">全部</span>                    
+												<span class="caret"></span>
+											</button>
+											<ul class="dropdown-menu text-left text-sm">
+												<li><a href="#">全部</a></li>
+												<li><a href="#">已读</a></li>
+												<li><a href="#">未读</a></li>
+												<li><a href="#">加星</a></li>
+											</ul>
+										</div>
+										<div class="btn-group">
+											<button class="btn btn-sm btn-white" data-toggle="tooltip" data-placement="bottom" data-title="Refresh"><i class="fa fa-refresh"></i></button>
+										</div>
 									</div>
-								</div>
-								{{/with}}
-								<div class="messagesContainer" style="height:340px;">
-								{{#each messages topicId}}
-									{{> messageRow}}
-								{{/each}}
-								</div>
-								<div class="inputWrapper">
-									<div class="ui-TextField ui-Field">
-										<textarea autofocus="autofocus" class="content PMInput" placeholder="此处按回车发送私信" data-topic-id="{{topicId}}" style="border-radius: 0px;"></textarea>
-									</div> 
-								</div>
-							</div>
-							{{/if}}
+								</header>            
+								<section class="scrollable">
+									{{#if topics}}
+									<ul class="list-group no-radius m-b-none m-t-n-xxs list-group-alt list-group-lg">
+										{{#each topics}}
+										<li class="list-group-item">
+											<a href="#" class="thumb-xs pull-left m-r-sm message-line" data-topic-id="{{_id}}">
+												<img src="{{getAvatarByTopicId _id}}" class="img-circle">
+											</a>
+											<a href="#" class="clear message-line" data-topic-id="{{_id}}">
+												<small class="pull-right">{{lastTime}}</small>
+												<strong>{{getUsernameByTopicId _id}}: </strong>
+												<span>{{message}}</span>
+											</a>
+										</li>
+										{{/each}}
+									</ul>
+									{{else}}
+									{{/if}}
+								</section>
+								<footer class="footer b-t bg-white-only" style="z-index:0">
+									<form class="m-t-sm">
+										<div class="input-group">
+											<input type="text" class="input-sm form-control input-s-sm" placeholder="搜索关键字">
+											<div class="input-group-btn">
+												<button class="btn btn-sm btn-white"><i class="fa fa-search"></i></button>
+											</div>
+										</div>
+									</form>
+								</footer>
+							</section>
 						</aside>
 					</section>
-					{{else}}
-					<div class="alert alert-info" role="alert">没有任何消息</div>
-					{{/if}}
-				</section><!-- /#profile -->
-			</div><!-- /.col-md-9 -->
-			<!-- end My Properties -->
-		</div><!-- /.row -->
-	</div><!-- /.container -->
+				</section>
+			</section>
+		</aside>
+		<!-- /.aside -->
+	</section>
 </template>

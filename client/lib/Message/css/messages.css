@@ -182,6 +182,7 @@ Conversation module
 .messagesContainer {
     width: 100%;
     height: 265px;
+    padding: 5px;
     overflow-y: auto;
 }
 

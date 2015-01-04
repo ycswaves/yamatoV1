@@ -112,6 +112,9 @@ Template.messageRow.helpers({
 		else{
 			return false;
 		}
+	},
+	formatMoment: function(datetime) {
+		return moment(datetime).fromNow();
 	}
 });
 
