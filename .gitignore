@@ -50,3 +50,4 @@ oauth.js
 *.lock
 awsS3Config.js
 sftp-config.json
+server/config/smtp.js
