@@ -71,7 +71,14 @@
             {{/each}}
           </select>
         </div><!-- /.form-group -->
-
+        <div class="form-group">
+          <select name="sorting" class="selectpicker">
+            <option value="">排序</option>
+            <option value="priceBy1">价格从低到高</option>
+            <option value="priceBy-1">价格从高到低</option>
+            <option value="createdAtBy1">最新发布</option>
+          </select>
+        </div><!-- /.form-group -->
         <!-- <div class="form-group">
           <button type="submit" class="btn btn-default m-b">提交</button>
           <a href="javascript:void(0)" class="visible-xs btn btn-ghost-info" onclick="$('#sideSearchModal').modal('hide')">取消</a>
@@ -87,7 +94,7 @@
     <div class="modal-dialog modal-sm">
       <div class="modal-content">
         <div class="modal-body center">
-        {{> sideSearch}}
+          {{> sideSearch}}
         </div>
       </div>
     </div>

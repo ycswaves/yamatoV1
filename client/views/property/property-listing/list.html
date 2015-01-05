@@ -1,101 +1,97 @@
 <template name="propertyListing">
-	<div class="row wrapper">
-		<div class="hidden-xs col-sm-3" id="sidebar" role="navigation">
-			{{> sideSearch}}
-		</div>
-		<!-- Results -->
-		<div class="col-xs-12 col-sm-9">
-			<button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-info center full-width m-b">设置搜索条件</button>
-			<section id="results">
-				<div class="hidden-xs pull-right">
-					<section id="search-filter">
-						<div class="sorting">
-							<div class="form-group">
-								<select name="sorting" class="selectpicker">
-									<option value="">排序</option>
-									<option value="priceBy1">价格从低到高</option>
-									<option value="priceBy-1">价格从高到低</option>
-									<option value="createdAtBy1">最新发布</option>
-								</select>
-							</div><!-- /.form-group -->
+	<div class="wrapper">
+		{{> breadcrumbs}}
+		<div class="row">
+			<!-- <div class="hidden-xs col-sm-3" id="sidebar" role="navigation">
+				{{> sideSearch}}
+			</div> -->
+			<!-- Results -->
+			<div class="col-xs-12">
+				<button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-info center full-width m-b">设置搜索条件</button>
+				<section id="results">
+					{{#each properties}}
+					{{#AnimateWithVelocity}}
+					<div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='linear' data-easing-out='linear' class="row">
+						<div class="col-xs-12">
+							<div class="panel no-borders hbox-xs">
+								{{#if photos}}
+								<aside class="bg-info lter r-l text-center v-middle col-xs-4 pointer" style="background: url('{{getImageURL photos}}') center center no-repeat;background-size: cover;">
+								</aside>
+								{{else}}
+								<aside class="bg-info lter r-l text-center v-middle col-xs-4">
+									<div class="wrapper">
+										<i class="fa fa-camera-retro fa fa-4x"></i>
+										<p class="text-muted">暂无图片</p>
+									</div>
+								</aside>
+								{{/if}}
+								<aside class="col-xs-8">
+									<div class="pos-rlt">
+										<span class="arrow left"></span>
+										<div class="panel-body">
+											<div class="row m-b-sm">
+												<div class="col-sm-7">
+													<a href="{{pathFor 'propertyDetail' id=_id}}">
+														<strong>{{address}}</strong>
+													</a>
+												</div>
+												<div class="col-sm-5 hidden-xs text-right">
+													<small class="text-muted">
+														<i class="fa fa-calendar icon-align"></i>&nbsp;{{transDatetime createdAt 'YYYY-MM-DD'}} &nbsp;&nbsp; <i class="fa fa-eye icon-align"></i>&nbsp;{{formatViews views}}
+													</small>
+												</div>
+												<div class="col-sm-5 visible-xs">
+													<small class="text-muted">
+														<i class="fa fa-calendar"></i>&nbsp;{{transDatetime createdAt 'YYYY-MM-DD'}} &nbsp;&nbsp; <i class="fa fa-eye"></i>&nbsp;{{formatViews views}}
+													</small>
+												</div>
+											</div>
+											<div class="row">
+												<div class="col-sm-6">
+													<dl>
+														<dt><figure class="fa fa-map-marker icon-align"></figure><span class="hidden-xs">区域: </span></dt>
+														<dd>{{transDistr district}}</dd>
+														<dt class="hidden-xs"><figure class="fa fa-bus icon-align"></figure>近地铁: </dt>
+														<dd class="hidden-xs">{{transMRT mrt}} {{mrtColoredLabel mrt 'inline'}}</dd>
+														<dt class="hidden-xs"><figure class="fa fa-calendar icon-align"></figure>入住时间: </dt>
+														<dd class="hidden-xs">{{transDatetime moveInDate}} 起</dd>
+														<dt class="hidden-xs"><figure class="fa fa-home icon-align"></figure>房间: </dt>
+														<dd class="hidden-xs">{{transRoom rentType roomType}}</dd>
+													</dl>
+												</div>
+												<div class="col-sm-6">
+													<dl>
+														<dt class="hidden-xs"><figure class="fa fa-user icon-align"></figure>有无中介费: </dt>
+														<dd class="hidden-xs">{{transAgt hasAgentFee}}</dd>
+														<dt class="hidden-xs"><figure class="fa fa-building icon-align"></figure>房屋类型: </dt>
+														<dd class="hidden-xs">{{transPtype propertyType}}</dd>
+														<dt></dt>
+														<dd>
+															<img src="/images/bed.svg" alt="bedroom" style="width:13px; position:relative; top:-4px"> {{bedroom}}
+															<span style="margin-right:10px"></span>
+															<img src="/images/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
+														</dd>
+													</dl>
+													<dd class="full-width text-right tags">
+														<div class="label bg-info">${{price}}</div>
+													</dd>
+												</div>
+											</div>
+										</div>
+									</div>
+								</aside>
+							</div>
 						</div>
-					</section>
-				</div>
-				{{#each properties}}
-				{{#AnimateWithVelocity}}
-				<div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='linear' data-easing-out='linear'>
-					<section class="panel no-borders hbox pointer">
-						<aside class="bg-info lter r-l text-center v-middle col-sm-4">
-							<div class="wrapper">
-								<i class="fa fa-camera-retro fa fa-4x"></i>
-								<p class="text-muted">暂无图片</p>
-							</div>
-						</aside>
-						<aside class="col-sm-8">
-							<div class="pos-rlt">
-								<span class="arrow left hidden-xs"></span>
-								<div class="panel-body">
-									<div class="row m-b-sm">
-										<div class="col-sm-7">
-											<a href="{{pathFor 'propertyDetail' id=_id}}">
-												<strong>{{address}}</strong>
-											</a>
-										</div>
-										<div class="col-sm-5 hidden-xs text-right">
-											<small class="text-muted">
-												<i class="fa fa-calendar"></i>&nbsp;{{transDatetime createdAt 'YYYY-MM-DD'}} &nbsp;&nbsp; <i class="fa fa-eye"></i>&nbsp;{{formatViews views}}
-											</small>
-										</div>
-										<div class="col-sm-5 visible-xs">
-											<small class="text-muted">
-												<i class="fa fa-calendar"></i>&nbsp;{{transDatetime createdAt 'YYYY-MM-DD'}} &nbsp;&nbsp; <i class="fa fa-eye"></i>&nbsp;{{formatViews views}}
-											</small>
-										</div>
-									</div>
-									<div class="row hidden-xs">
-										<div class="col-sm-6">
-											<dl>
-												<dt><figure class="fa fa-map-marker icon-align"></figure>区域: </dt>
-												<dd>{{transDistr district}}</dd>
-												<dt><figure class="fa fa-bus icon-align"></figure>近地铁: </dt>
-												<dd>{{transMRT mrt}} {{mrtColoredLabel mrt 'inline'}}</dd>
-												<dt><figure class="fa fa-calendar icon-align"></figure>入住时间: </dt>
-												<dd>{{transDatetime moveInDate}} 起</dd>
-												<dt><figure class="fa fa-home icon-align"></figure>房间: </dt>
-												<dd>{{transRoom rentType roomType}}</dd>
-											</dl>
-										</div>
-										<div class="col-sm-6">
-											<dl>
-												<dt><figure class="fa fa-user icon-align"></figure>有无中介费: </dt>
-												<dd>{{transAgt hasAgentFee}}</dd>
-												<dt><figure class="fa fa-building icon-align"></figure>房屋类型: </dt>
-												<dd>{{transPtype propertyType}}</dd>
-												<dt></dt>
-												<dd>
-													<img src="/images/bed.svg" alt="bedroom" style="width:13px; position:relative; top:-4px"> {{bedroom}}
-													<span style="margin-right:10px"></span>
-													<img src="/images/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
-												</dd>
-											</dl>
-											<dd class="full-width text-right tags">
-												<div class="label bg-info">${{price}}</div>
-											</dd>
-										</div>
-									</div>
-								</div>
-							</div>
-						</aside>
-					</section>
-				</div>
-				{{/AnimateWithVelocity}}
-				{{/each}}
-				<!-- Pagination -->
-				<div class="text-center">
-					{{>Template.dynamic template="pagination" data=paginationConfig}}
-				</div>
-			</section><!-- /#results -->
-		</div><!-- /.col-md-9 -->
+					</div>
+					{{/AnimateWithVelocity}}
+					{{/each}}
+					<!-- Pagination -->
+					<div>
+						{{>Template.dynamic template="pagination" data=paginationConfig}}
+					</div>
+				</section><!-- /#results -->
+			</div>
+		</div>
 	</div>
 	{{> sideSearchModal}}
 </template>

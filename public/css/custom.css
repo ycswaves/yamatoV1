@@ -61,7 +61,7 @@ textarea, input { outline: none; }
 
 /*
 Property detail travel
- */
+*/
 .travel-mode {
   float:left
 }
@@ -125,7 +125,7 @@ Property detail travel
 }
 
 .directions-travel-mode-underline {
-    height: 3px;
+  height: 3px;
 }
 
 .travel-mode-icon {
@@ -174,9 +174,6 @@ dl dt {
 dl dd {
   margin-bottom: 8px;
   text-align: right;
-  overflow: hidden;
-  height: 20px;
-  text-overflow: ellipsis;
 }
 
 hr {
@@ -185,4 +182,19 @@ hr {
 
 .full-width {
   width:100%;
+}
+
+.hbox-xs{
+  display: table;
+  table-layout: fixed;
+  border-spacing: 0;
+  width: 100%;
+}
+
+.hbox-xs > aside {
+  display: table-cell;
+  vertical-align: top;
+  height: 100%;
+  padding: 0;
+  float: none;
 }

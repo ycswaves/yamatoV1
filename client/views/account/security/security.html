@@ -1,68 +1,52 @@
 <template name="securityPage">
-  <section class="hbox stretch bg-white-only">
-    {{> profile}}
-    <!-- .aside -->
-    <aside class="">
-      <section class="vbox">
-        <header class="header bg-white pos-rlt navbar navbar-default show">
-          <span class="arrow left"></span>
-          <div class="collapse navbar-collapse pull-in">
-            <ul class="nav navbar-nav">
-              <li class="font-bold"><a href="{{pathFor "me"}}">即时动态</a></li>
-              <li><a href="{{pathFor 'myproperty' type='open' page=1}}">我的房屋</a></li>
-              <li><a href="{{pathFor 'security'}}">安全设置</a></li>
-              <li><a href="{{pathFor 'inbox'}}">收件箱</a></li>
-            </ul>
-          </div>
-        </header>
-        <section>
-          <section class="hbox stretch">
-            <aside>
-              <section class="vbox">
-                <section class="scrollable wrapper">
-                  <div class="row">
-                    <div class="col-lg-6">
-                      {{> flashMessages}}
-                      <form role="form" id="accountSecurity">
-                        <section id="contact">
-                          <dl class="contact-fields">
-                            <dt><label for="form-account-name">当前密码:</label></dt>
-                            <dd>
-                              <div class="form-group" >
-                                <input type="password" class="form-control" name="oldpass" value="">
-                              </div><!-- /.form-group -->
-                            </dd>
-                          </dl>
-                          <dl class="contact-fields">
-                            <dt><label for="form-account-name">新的密码:</label></dt>
-                            <dd>
-                              <div class="form-group" >
-                                <input type="password" class="form-control" name="newpass" value="">
-                              </div><!-- /.form-group -->
-                            </dd>
-                          </dl>
-                          <dl class="contact-fields">
-                            <dt><label for="form-account-name">确认密码:</label></dt>
-                            <dd>
-                              <div class="form-group" >
-                                <input type="password" class="form-control" name="repeatpass" value="">
-                              </div><!-- /.form-group -->
-                            </dd>
-                          </dl>
-                          <div class="form-group clearfix">
-                            <button type="submit" class="btn pull-right btn-default">保存变更</button>
-                          </div><!-- /.form-group -->
-                        </section>
-                      </form><!-- /#form-contact -->
-                    </div><!-- /.col-md-9 -->
-                  </div><!-- /.row -->
-                </section>
-              </section>
-            </aside>
-          </section>
-        </section>
-      </section>
-    </aside>
-    <!-- /.aside -->
-  </section>
+	<section class="hbox stretch bg-white-only">
+		{{> profile}}
+		<!-- .aside -->
+		<aside class="">
+			<section class="vbox">
+				<header class="header bg-white pos-rlt navbar navbar-default show">
+					<span class="arrow left"></span>
+					<div class="collapse navbar-collapse pull-in">
+						<ul class="nav navbar-nav">
+							<li class="font-bold"><a href="{{pathFor "me"}}">即时动态</a></li>
+							<li><a href="{{pathFor 'myproperty' type='open' page=1}}">我的房屋</a></li>
+							<li><a href="{{pathFor 'security'}}">安全设置</a></li>
+							<li><a href="{{pathFor 'inbox'}}">收件箱</a></li>
+						</ul>
+					</div>
+				</header>
+				<section>
+					<section class="hbox stretch">
+						<aside>
+							<section class="vbox">
+								<section class="scrollable wrapper">
+									<div class="row">
+										<div class="col-sm-6">
+											{{> flashMessages}}
+											<form role="form" id="accountSecurity">
+												<div class="form-group">
+													<label>当前密码:</label>
+													<input type="password" class="form-control" name="oldpass" value="">
+												</div>
+												<div class="form-group">
+													<label>新的密码:</label>
+													<input type="password" class="form-control" name="newpass" value="">
+												</div>
+												<div class="form-group">
+													<label>确认密码:</label>
+													<input type="password" class="form-control" name="repeatpass" value="">
+												</div>
+												<button type="submit" class="btn pull-right btn-default">保存变更</button>
+											</form><!-- /#form-contact -->
+										</div><!-- /.col-md-9 -->
+									</div><!-- /.row -->
+								</section>
+							</section>
+						</aside>
+					</section>
+				</section>
+			</section>
+		</aside>
+		<!-- /.aside -->
+	</section>
 </template>

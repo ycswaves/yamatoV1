@@ -1,278 +1,278 @@
 <template name="propertyDetail">
-  <style>
-    hr {
-      margin-top:10px;
-      margin-bottom: 10px;
-    }
-  </style>
-  <div>
-    <div class="propertyImage"></div>
-    <div class="infoArea">
-      <div class="b-b bg-white">
-        <div class="container">
-          <div class="col-sm-8 wrapper">
-            <section id="contact-info">
-              <div class="row">
-                <div class="col-sm-3 hidden-xs text-center">
-                  <img class="img-circle" src="{{getAvatarByUserId property.author}}" width="90px">
-                </div>
-                <div class="col-sm-9 text-center">
-                  <h3 id="addressLabel">{{property.address}}</h3>
-                  <hr>
-                </div>
-              </div>
-              <div class="row">
-                <div class="col-sm-3 hidden-xs text-center">
-                  {{#with property.contact}}
-                  <h4 class="text-muted">{{name}}</h4>
-                  {{/with}}
-                </div>
-                <div class="col-sm-9">
-                  {{#with property.contact}}
-                  {{#if currentUser}}
-                  <div class="row text-muted m-t-sm">
-                    <div class="col-sm-4 m-b-sm">
-                      <i class="fa fa-phone icon-align"></i>
-                      {{nullHelper phone}}
-                    </div>
-                    <div class="col-sm-4 m-b-sm">
-                      <i class="fa fa-qq icon-align"></i>
-                      {{nullHelper qq}}
-                    </div>
-                    <div class="col-sm-4 m-b-sm">
-                      <i class="fa fa-wechat icon-align"></i>
-                      {{nullHelper wechat}}
-                    </div>
-                  </div>
-                  {{else}}
-                  <div class="row text-muted" style="margin-top:10px;">
-                    <div class="col-xs-12">
-                      <a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default">
-                        登录获取联系方式: &nbsp;
-                        <i class="fa fa-phone"></i>
-                        <i class="fa fa-qq" ></i>
-                        <i class="fa fa-wechat"></i>
-                      </a>
-                    </div>
-                  </div>
-                  {{/if}}
-                  {{/with}}
-                </div>
-              </div>
-            </section><!-- /#edit-search -->
-          </div>
-          <div class="col-sm-4">
-            <div class="panel contact-panel hidden-xs infoPanel no-borders m-b-none" style="margin-top:-38px;box-shadow: none;">
-              <div class="panel-heading bg-primary text-white">
-                <strong>$ {{property.price}} </strong><sup>SGD</sup>
-                <span class="pull-right">每月</span>
-              </div>
-              <div class="panel-body">
-                <!-- <div class="center bg-info text-white radius m-b">
-                  {{transAgt property.hasAgentFee}}中介费
-                </div> -->
-                {{#if currentUser}}
-                {{#if isNotOwner}}
-                <button style="width:100%" type="button" class="btn btn-default m-b" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
-                {{else}}
-                <a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default m-b"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
-                {{/if}}
-                {{else}}
-                <a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default m-b">登陆并询问</a>
-                {{/if}}
-                {{> shareButtons}}
-                <button style="width:100%" type="button" class="btn btn-white small" id="return-btn">返回至上一页</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="b-b">
-        <div class="container wrapper">
-          <!-- Property Detail Content -->
-          <div class="col-md-8">
-            <section id="price" class="visible-xs m-b bg-white padder padder-v r">
-              <p>
-                <strong>$ {{property.price}} </strong><sup>SGD</sup>
-                <span class="pull-right">每月</span>
-              </p>
-              <hr>
-              <p>
-                {{> shareButtons}}
-              </p>
-              <p>
-                {{#if currentUser}}
-                {{#if isNotOwner}}
-                <button type="button" class="btn btn-default full-width" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
-                {{else}}
-                <a href="{{pathFor 'editProperty' id=property._id}}" class="btn btn-default full-width"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
-                {{/if}}
-                {{else}}
-                <a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default m-b">登陆并询问</a>
-                {{/if}}
-              </p>
-            </section>
-            <section id="description">
-              <header><h3 class="m-t-none">房屋描述</h3></header>
-              <hr>
-              {{#if property.description}}
-              <p>{{property.description}}</p>
-              {{else}}
-              <p class="text-mute">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
-              {{/if}}
-            </section><!-- /#description -->
-            {{#if property.photos}}
-            <section id="property-gallery">
-              <div class="owl-carousel thumbnail">
-                {{#each property.photos}}
-                <div class="item"><img src="{{getImageURL this}}"></div>
-                {{/each}}
-              </div>
-            </section>
-            {{/if}}
-            <section id="quick-summary" class="clearfix">
-              <header><h3>概览</h3><hr></header>
-              <div>
-                {{#with property}}
-                <div class="row m-b-sm">
-                  <div class="col-xs-5"><strong>地址:</strong></div>
-                  <div class="col-xs-7 text-right">{{address}}</div>
-                </div>
-                <div class="row m-b-sm">
-                  <div class="col-xs-5"><strong>区域:</strong></div>
-                  <div class="col-xs-7 text-right">{{transDistr district}}</div>
-                </div>
-                <div class="row m-b-sm">
-                  <div class="col-xs-5"><strong>房屋类型:</strong></div>
-                  <div class="col-xs-7 text-right">{{transPtype propertyType}}</div>
-                </div>
-                <div class="row m-b-sm">
-                  <div class="col-xs-5"><strong>房间:</strong></div>
-                  <div class="col-xs-7 text-right">{{transRoom rentType roomType}}</div>
-                </div>
-                <div class="row m-b-sm">
-                  <div class="col-xs-5"><strong>面积:</strong></div>
-                  <div class="col-xs-7 text-right">{{area}} m<sup>2</sup></div>
-                </div>
-                <div class="row m-b-sm">
-                  <div class="col-xs-5"><strong>卧室:</strong></div>
-                  <div class="col-xs-7 text-right">{{bedroom}}</div>
-                </div>
-                <div class="row m-b-sm">
-                  <div class="col-xs-5"><strong>卫生间:</strong></div>
-                  <div class="col-xs-7 text-right">{{bathroom}}</div>
-                </div>
-                <div class="row m-b-sm">
-                  <div class="col-xs-5"><strong>最近地铁站:</strong></div>
-                  <div class="col-xs-7 text-right">{{transMRT mrt}} ({{mrt}})</div>
-                </div>
-                <div class="row m-b-sm">
-                  <div class="col-xs-5"><strong>入住时间:</strong></div>
-                  <div class="col-xs-7 text-right">{{transDatetime moveInDate}} 起</div>
-                </div>
-                {{/with}}
-              </div>
-            </section><!-- /#quick-summary -->
-            <section id="property-features">
-              <header><h3>房屋设施</h3></header>
-              <hr>
-              <div class="row">
-                {{#each property.facilities}}
-                <div class="col-sm-4 col-xs-6"><i class="fa fa-circle text-primary icon-align"></i>{{transPfaci this}}</div>
-                {{/each}}
-              </div>
-            </section><!-- /#property-features -->
+	<style>
+		hr {
+			margin-top:10px;
+			margin-bottom: 10px;
+		}
+	</style>
+	<div>
+		<div class="propertyImage"></div>
+		<div class="infoArea">
+			<div class="b-b bg-white">
+				<div class="container">
+					<div class="col-sm-8 wrapper">
+						<section id="contact-info">
+							<div class="row">
+								<div class="col-sm-3 hidden-xs text-center">
+									<img class="img-circle" src="{{getAvatarByUserId property.author}}" width="90px">
+								</div>
+								<div class="col-sm-9 text-center">
+									<h3 id="addressLabel">{{property.address}}</h3>
+									<hr>
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-sm-3 hidden-xs text-center">
+									{{#with property.contact}}
+									<h4 class="text-muted">{{name}}</h4>
+									{{/with}}
+								</div>
+								<div class="col-sm-9">
+									{{#with property.contact}}
+									{{#if currentUser}}
+									<div class="row text-muted m-t-sm">
+										<div class="col-sm-4 m-b-sm">
+											<i class="fa fa-phone icon-align"></i>
+											{{nullHelper phone}}
+										</div>
+										<div class="col-sm-4 m-b-sm">
+											<i class="fa fa-qq icon-align"></i>
+											{{nullHelper qq}}
+										</div>
+										<div class="col-sm-4 m-b-sm">
+											<i class="fa fa-wechat icon-align"></i>
+											{{nullHelper wechat}}
+										</div>
+									</div>
+									{{else}}
+									<div class="row text-muted" style="margin-top:10px;">
+										<div class="col-xs-12">
+											<a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default">
+												登录获取联系方式: &nbsp;
+												<i class="fa fa-phone"></i>
+												<i class="fa fa-qq" ></i>
+												<i class="fa fa-wechat"></i>
+											</a>
+										</div>
+									</div>
+									{{/if}}
+									{{/with}}
+								</div>
+							</div>
+						</section><!-- /#edit-search -->
+					</div>
+					<div class="col-sm-4">
+						<div class="panel contact-panel hidden-xs infoPanel no-borders m-b-none" style="margin-top:-38px;box-shadow: none;">
+							<div class="panel-heading bg-primary text-white">
+								<strong>$ {{property.price}} </strong><sup>SGD</sup>
+								<span class="pull-right">每月</span>
+							</div>
+							<div class="panel-body">
+								<!-- <div class="center bg-info text-white radius m-b">
+									{{transAgt property.hasAgentFee}}中介费
+								</div> -->
+								{{#if currentUser}}
+								{{#if isNotOwner}}
+								<button style="width:100%" type="button" class="btn btn-default m-b" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
+								{{else}}
+								<a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default m-b"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
+								{{/if}}
+								{{else}}
+								<a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default m-b">登陆并询问</a>
+								{{/if}}
+								{{> shareButtons}}
+								<button style="width:100%" type="button" class="btn btn-white small" id="return-btn">返回至上一页</button>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="b-b">
+				<div class="container wrapper">
+					<!-- Property Detail Content -->
+					<div class="col-md-8">
+						<section id="price" class="visible-xs m-b bg-white padder padder-v r">
+							<p>
+								<strong>$ {{property.price}} </strong><sup>SGD</sup>
+								<span class="pull-right">每月</span>
+							</p>
+							<hr>
+							<p>
+								{{> shareButtons}}
+							</p>
+							<p>
+								{{#if currentUser}}
+								{{#if isNotOwner}}
+								<button type="button" class="btn btn-default full-width" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
+								{{else}}
+								<a href="{{pathFor 'editProperty' id=property._id}}" class="btn btn-default full-width"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
+								{{/if}}
+								{{else}}
+								<a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default m-b">登陆并询问</a>
+								{{/if}}
+							</p>
+						</section>
+						<section id="description">
+							<header><h3 class="m-t-none">房屋描述</h3></header>
+							<hr>
+							{{#if property.description}}
+							<p>{{property.description}}</p>
+							{{else}}
+							<p class="text-mute">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
+							{{/if}}
+						</section><!-- /#description -->
+						{{#if property.photos}}
+						<section id="property-gallery">
+							<div class="owl-carousel thumbnail">
+								{{#each property.photos}}
+								<div class="item"><img src="{{getImageURL this}}"></div>
+								{{/each}}
+							</div>
+						</section>
+						{{/if}}
+						<section id="quick-summary" class="clearfix">
+							<header><h3>概览</h3><hr></header>
+							<div>
+								{{#with property}}
+								<div class="row m-b-sm">
+									<div class="col-xs-5"><strong>地址:</strong></div>
+									<div class="col-xs-7 text-right">{{address}}</div>
+								</div>
+								<div class="row m-b-sm">
+									<div class="col-xs-5"><strong>区域:</strong></div>
+									<div class="col-xs-7 text-right">{{transDistr district}}</div>
+								</div>
+								<div class="row m-b-sm">
+									<div class="col-xs-5"><strong>房屋类型:</strong></div>
+									<div class="col-xs-7 text-right">{{transPtype propertyType}}</div>
+								</div>
+								<div class="row m-b-sm">
+									<div class="col-xs-5"><strong>房间:</strong></div>
+									<div class="col-xs-7 text-right">{{transRoom rentType roomType}}</div>
+								</div>
+								<div class="row m-b-sm">
+									<div class="col-xs-5"><strong>面积:</strong></div>
+									<div class="col-xs-7 text-right">{{area}} m<sup>2</sup></div>
+								</div>
+								<div class="row m-b-sm">
+									<div class="col-xs-5"><strong>卧室:</strong></div>
+									<div class="col-xs-7 text-right">{{bedroom}}</div>
+								</div>
+								<div class="row m-b-sm">
+									<div class="col-xs-5"><strong>卫生间:</strong></div>
+									<div class="col-xs-7 text-right">{{bathroom}}</div>
+								</div>
+								<div class="row m-b-sm">
+									<div class="col-xs-5"><strong>最近地铁站:</strong></div>
+									<div class="col-xs-7 text-right">{{transMRT mrt}} ({{mrt}})</div>
+								</div>
+								<div class="row m-b-sm">
+									<div class="col-xs-5"><strong>入住时间:</strong></div>
+									<div class="col-xs-7 text-right">{{transDatetime moveInDate}} 起</div>
+								</div>
+								{{/with}}
+							</div>
+						</section><!-- /#quick-summary -->
+						<section id="property-features">
+							<header><h3>房屋设施</h3></header>
+							<hr>
+							<div class="row">
+								{{#each property.facilities}}
+								<div class="col-sm-4 col-xs-6"><i class="fa fa-circle text-primary icon-align"></i>{{transPfaci this}}</div>
+								{{/each}}
+							</div>
+						</section><!-- /#property-features -->
 
-            <section id="property-nearby">
-              <header><h3>附近 <small>(1km 内)</small></h3></header>
-              <hr>
-              <div class="panel panel-primary">
-                <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#nearbyMart">
-                  <h3 class="panel-title">超市，便利店</h3>
-                </div>
-                <div class="panel-body panel-collapse collapse" id="nearbyMart">
-                  {{#if nearby.mart}}
-                  <ul class="list-unstyled property-features-list">
-                    {{#each nearby.mart}}
-                    <li>{{name}}</li>
-                    {{/each}}
-                  </ul>
-                  {{else}}
-                  <span>没有相关信息</span>
-                  {{/if}}
-                </div>
-              </div>
-              <!-- <div class="panel panel-primary" style="cursor:pointer" data-toggle="collapse" href="#nearbyBus">
-                <div class="panel-heading">
-                  <h3 class="panel-title">公车站</h3>
-                </div>
-                <div class="panel-body panel-collapse collapse" id="nearbyBus">
-                  <i class="fa fa-refresh fa-spin"></i>
-                </div>
-              </div> -->
-              <div class="panel panel-primary">
-                <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#nearbyFood">
-                  <h3 class="panel-title">餐馆，食阁</h3>
-                </div>
-                <div class="panel-body panel-collapse collapse" id="nearbyFood">
-                  {{#if nearby.food}}
-                  <ul class="list-unstyled property-features-list">
-                    {{#each nearby.food}}
-                    <li>{{name}}</li>
-                    {{/each}}
-                  </ul>
-                  {{else}}
-                  <span>没有相关信息</span>
-                  {{/if}}
-                </div>
-              </div>
-            </section>
-          </div><!-- /.col-md-9 -->
-          <!-- end Property Detail Content -->
-          <!-- route tool -->
-          <div class="col-md-4">
-            {{> routeHelper property.map}}
-          </div>
-        </div><!-- /.row -->
-      </div><!-- /.container -->
-    </div>
-    {{!--
-    <div>
-      <div class="container with-padding">
-        <div class="col-sm-8">
-          {{#with authorProfile}}
-          <section id="user-info">
-            <header><h3>关于发帖人，{{name}}</h3></header>
-            <div class="row">
-              <div class="col-xs-3 center">
-                <img class="img-circle" src="{{getAvatarByUserId userid}}" width="90px">
-              </div>
-              <div class="col-xs-9">
-                <h4>{{{breaklines about}}}</h4>
-              </div>
-            </div>
-            <hr>
-            <div class="row">
-              <div class="col-xs-3">
-                <label class="text-mute">信用</label>
-              </div>
-              <div class="col-xs-9">
-                <div class="col-xs-3 center">
-                  <img width="60px" class="hoverInfo" data-placement="top" data-toggle="popover" data-trigger="hover" title="已验证中介" data-content="用户已经通过线上及线下文件验证其真实可靠性" src="/img/verified.png">
-                </div>
-              </div>
-            </div>
-          </section><!-- /#edit-search -->
-          {{/with}}
-        </div>
-      </div>
-    </div>
-    --}}
-  </div>
-  {{> wechatPopup}}
-  <div id="mapbox" style="width:100%;height:600px"></div>
-  {{#with property.map}}
-  <input type="hidden" name="latitude" value="{{latitude}}" />
-  <input type="hidden" name="longitude" value="{{longitude}}" />
-  {{/with}}
+						<section id="property-nearby">
+							<header><h3>附近 <small>(1km 内)</small></h3></header>
+							<hr>
+							<div class="panel panel-primary">
+								<div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#nearbyMart">
+									<h3 class="panel-title">超市，便利店</h3>
+								</div>
+								<div class="panel-body panel-collapse collapse" id="nearbyMart">
+									{{#if nearby.mart}}
+									<ul class="list-unstyled property-features-list">
+										{{#each nearby.mart}}
+										<li>{{name}}</li>
+										{{/each}}
+									</ul>
+									{{else}}
+									<span>没有相关信息</span>
+									{{/if}}
+								</div>
+							</div>
+							<!-- <div class="panel panel-primary" style="cursor:pointer" data-toggle="collapse" href="#nearbyBus">
+								<div class="panel-heading">
+									<h3 class="panel-title">公车站</h3>
+								</div>
+								<div class="panel-body panel-collapse collapse" id="nearbyBus">
+									<i class="fa fa-refresh fa-spin"></i>
+								</div>
+							</div> -->
+							<div class="panel panel-primary">
+								<div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#nearbyFood">
+									<h3 class="panel-title">餐馆，食阁</h3>
+								</div>
+								<div class="panel-body panel-collapse collapse" id="nearbyFood">
+									{{#if nearby.food}}
+									<ul class="list-unstyled property-features-list">
+										{{#each nearby.food}}
+										<li>{{name}}</li>
+										{{/each}}
+									</ul>
+									{{else}}
+									<span>没有相关信息</span>
+									{{/if}}
+								</div>
+							</div>
+						</section>
+					</div><!-- /.col-md-9 -->
+					<!-- end Property Detail Content -->
+					<!-- route tool -->
+					<div class="col-md-4">
+						{{> routeHelper property.map}}
+					</div>
+				</div><!-- /.row -->
+			</div><!-- /.container -->
+		</div>
+		{{!--
+		<div>
+			<div class="container with-padding">
+				<div class="col-sm-8">
+					{{#with authorProfile}}
+					<section id="user-info">
+						<header><h3>关于发帖人，{{name}}</h3></header>
+						<div class="row">
+							<div class="col-xs-3 center">
+								<img class="img-circle" src="{{getAvatarByUserId userid}}" width="90px">
+							</div>
+							<div class="col-xs-9">
+								<h4>{{{breaklines about}}}</h4>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-xs-3">
+								<label class="text-mute">信用</label>
+							</div>
+							<div class="col-xs-9">
+								<div class="col-xs-3 center">
+									<img width="60px" class="hoverInfo" data-placement="top" data-toggle="popover" data-trigger="hover" title="已验证中介" data-content="用户已经通过线上及线下文件验证其真实可靠性" src="/img/verified.png">
+								</div>
+							</div>
+						</div>
+					</section><!-- /#edit-search -->
+					{{/with}}
+				</div>
+			</div>
+		</div>
+		--}}
+	</div>
+	{{> wechatPopup}}
+	<div id="mapbox" style="width:100%;height:600px"></div>
+	{{#with property.map}}
+	<input type="hidden" name="latitude" value="{{latitude}}" />
+	<input type="hidden" name="longitude" value="{{longitude}}" />
+	{{/with}}
 </template>
