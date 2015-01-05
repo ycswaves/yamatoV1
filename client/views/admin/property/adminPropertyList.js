@@ -1,10 +1,18 @@
+var renderSelect = function(){
+  $('.selectpicker').selectpicker({
+    container:'body',
+    style:'btn-white btn-xs'
+  });
+}
+
 Template.adminPropertyList.rendered = function() {
   render();
+  renderSelect();
 }
 
 Template.adminPropertyList.helpers({
   propertyStatus: function(){
-    $('select').selectpicker(); // TODO: hacking, fix if better soln found
+    renderSelect(); // TODO: hacking, fix if better soln found
     return Config.getAdminPropertyStatus();
   }
 });

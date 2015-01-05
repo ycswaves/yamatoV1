@@ -1,6 +1,6 @@
 <template name="pagination">
   {{#with paginate config}}
-    <ul class="pagination pagination-sm m-t-none m-b-none">
+    <ul class="pagination pagination-sm m-t-none m-b-none pull-right">
       {{#each paginations}}
       <li class="{{activeClassHelper ../currentPage this}} pageLink">
         <a href="{{pathFor ../routeName page=this data=../routeParam query=../queryStr}}">{{this}}</a>

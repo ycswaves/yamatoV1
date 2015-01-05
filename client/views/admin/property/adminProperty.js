@@ -2,6 +2,15 @@ Template.adminProperty.rendered = function() {
   render();
 }
 
+Template.adminProperty.events({
+  'click label.propertyStatus': function(e, t){
+    var type = t.$(e.target).data('status');
+    t.$('label.propertyStatus').removeClass('active');
+    Router.go('adminproperty',{type:type, page:1});
+    return;
+  }
+});
+
 AdminPropertiesController = RouteController.extend({
   template: 'adminProperty',
   waitOn: function () {
@@ -18,7 +27,7 @@ AdminPropertiesController = RouteController.extend({
   data: function () {
     var params = this.params
       , statusType = params.type || 'open'
-      , pageLimit = 6
+      , pageLimit = 10
       , pageNum = 1
       , activeTab = 'open'
       , visibleTbl = 'active-record';
@@ -70,6 +79,7 @@ AdminPropertiesController = RouteController.extend({
       totalAdministered: (statusCountMapping['expired'] || 0) + (statusCountMapping['violate'] || 0),
       totalDocs: totalDocs,
       activeTab: activeTab,
+      currStatus: statusType,
       paginationConfig: {
         'config': {
           pageNum: pageNum,

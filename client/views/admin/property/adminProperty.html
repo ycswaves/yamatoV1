@@ -1,34 +1,54 @@
 <template name="adminProperty">
   {{> breadcrumbs}}
-  <div class="container">
-    <div class="row">
-    <div class="col-xs-2 col-sm-3">
-        <section id="sidebar">
-          <header><h3>管理员</h3></header>
-          <aside>
-            <ul class="sidebar-navigation">
-              <li><a href="{{pathFor 'adminuser' type='active' page='1'}}"><i class="fa fa-user"></i><span class="hidden-xs">管理用户</span></a></li>
-              <li class="active radius"><a href="#"><i class="fa fa-home"></i><span class="hidden-xs">管理房屋</span></a></li>
-              <li><a href=""><i class="fa fa-inbox"></i><span class="hidden-xs">收发件箱</span></a></li>
-            </ul>
-          </aside>
-        </section><!-- /#sidebar -->
-      </div><!-- /.col-md-3 -->
-      <!-- end Sidebar -->
-      <!-- My Properties -->
-      <div class="col-xs-10 col-sm-9">
-        <section id="admin-properties">
-          <ul class="nav nav-tabs nav-justified" role="tablist" style="margin-bottom:10px">
-            <li role="presentation" class="{{activeClassHelper 'open' activeTab}}"><a href="{{pathFor 'adminproperty' page=1 type='open'}}">正在发布 ({{totalActive}})</a></li>
+  <section class="hbox stretch">
 
-            <li role="presentation" class="{{activeClassHelper 'inactive' activeTab}}"><a href="{{pathFor 'adminproperty' page=1 type='inactive'}}">已关闭 ({{totalInactive}})</a></li>
-
-            <li role="presentation" class="{{activeClassHelper 'administrated' activeTab}}"><a href="{{pathFor 'adminproperty' page=1 type='administrated'}}">系统管制 ({{totalAdministered}})</a></li>
+    <!-- .vbox -->
+    <section id="content">
+      <section class="hbox stretch">
+        <aside class="aside bg-white b-r" id="subNav">
+          <div class="wrapper b-b font-bold">管理项目</div>
+          <ul class="nav">
+            <li class="b-b"><a href="#">Phasellus at ultricies</a></li>
+            <li class="b-b"><a href="#">Malesuada augue</a></li>
+            <li class="b-b"><a href="#">Donec eleifend</a></li>
+            <li class="b-b"><a href="#">Dapibus porta</a></li>
+            <li class="b-b"><a href="#">Dacus eu neque</a></li>
           </ul>
-          {{> adminPropertyList}}
-        </section><!-- /#my-properties -->
-      </div><!-- /.col-md-9 -->
-      <!-- end My Properties -->
-    </div><!-- /.row -->
-  </div><!-- /.container -->
+        </aside>
+        <aside>
+          <section class="vbox">
+            <header class="header bg-white b-b clearfix">
+              <div class="row m-t-sm">
+                <div class="col-sm-6 m-b-xs">
+                  <div class="btn-group" data-toggle="buttons">
+                    <label class="propertyStatus btn btn-sm btn-white {{activeClassHelper 'open' currStatus}}" data-status="open">
+                      发布中 ({{totalActive}})
+                    </label>
+                    <label class="propertyStatus btn btn-sm btn-white {{activeClassHelper 'inactive' currStatus}}" data-status="inactive">
+                      已关闭 ({{totalInactive}})
+                    </label>
+                    <label class="propertyStatus btn btn-sm btn-white {{activeClassHelper 'administrated' currStatus}}" data-status="administrated">
+                      管制 ({{totalAdministered}})
+                    </label>
+                  </div>
+                </div>
+                <!-- <div class="col-sm-6 m-b-xs">
+                  <div class="input-group">
+                    <input type="text" class="input-sm form-control" placeholder="Search">
+                    <span class="input-group-btn">
+                      <button class="btn btn-sm btn-white" type="button">Go!</button>
+                    </span>
+                  </div>
+                </div> -->
+              </div>
+            </header>
+            <section class="scrollable wrapper w-f">
+              {{> adminPropertyList}}
+            </section>
+          </section>
+        </aside>
+      </section>
+    </section>
+    <!-- /.vbox -->
+  </section>
 </template>

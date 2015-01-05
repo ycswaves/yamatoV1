@@ -1,43 +1,33 @@
 <template name="adminPropertyList">
-  <div class="my-properties">
+  <section class="panel">
     <div class="table-responsive">
-      <table class="table">
+      <table class="table table-striped m-b-none">
         <thead>
-        <tr>
-          <th style="width:15%">房屋列表</th>
-          <th style="width:30%"></th>
-          <th style="width:10%"></th>
-          <th>发布时间</th>
-          <th>操作</th>
-          <th>状态</th>
-        </tr>
+          <tr>
+            <th style="width:40%">房屋列表</th>
+            <th style="width:10%">价格</th>
+            <th>发布时间</th>
+            <th>操作</th>
+            <th>状态</th>
+          </tr>
         </thead>
         <tbody>
           {{#unless properties.count}}
-          <tr><td colspan="5" style="text-align:center">没有帖子</td></tr>
+          <tr><td colspan="5" class="text-center">没有帖子</td></tr>
           {{/unless}}
 
           {{#each properties}}
           <tr>
-            <td>
-              <div class="thumbnail" style="margin-bottom:0px">
-                <a href="{{pathFor 'propertyDetail' id=_id}}"><img alt="" src="{{getImageURL photos}}"></a>
-              </div>
+            <td style="vertical-align:middle">
+              <a href="{{pathFor 'propertyDetail' id=_id}}"><figure>{{address}}</figure></a>
+            </td>
+            <td style="vertical-align:middle">$ {{price}}</td>
+            <td style="vertical-align:middle">{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
+            <td class="actions" style="vertical-align:middle">
+              <a class="delete" style="cursor: pointer" data-propid="{{_id}}"><i class="fa fa-trash-o"></i> 删除</a>
             </td>
             <td>
-              <div class="inner">
-                <a href="{{pathFor 'propertyDetail' id=_id}}"><figure>{{address}}</figure></a>
-              </div>
-            </td>
-            <td>
-              <div class="tag price">${{price}}</div>
-            </td>
-            <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
-            <td class="actions">
-              <a class="delete" style="cursor: pointer" data-propid="{{_id}}"><i class="fa fa-trash-o"></i>删除</a>
-            </td>
-            <td>
-              <select class="status" id="{{_id}}">
+              <select class="status selectpicker" id="{{_id}}" data-width="100%">
                 {{#each arrayify propertyStatus}}
                 <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
                 {{/each}}
@@ -48,8 +38,8 @@
           {{/each}}
         </tbody>
       </table>
-    </div><!-- /.table-responsive -->
+    </div>
+  </section>
     <!-- Pagination -->
-    {{>Template.dynamic template="pagination" data=paginationConfig}}
-  </div><!-- /.my-properties -->
+  {{>Template.dynamic template="pagination" data=paginationConfig}}
 </template>
