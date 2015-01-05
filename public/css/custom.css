@@ -161,3 +161,17 @@ Property detail travel
 
 .switchPlace:hover{
   color:#5a5a5a;
+}
+
+dl {
+  margin-bottom: 10px;
+}
+
+dl dt {
+  float: left;
+}
+
+dl dd {
+  margin-bottom: 8px;
+  text-align: right;
+}
