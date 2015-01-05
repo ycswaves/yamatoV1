@@ -1,5 +1,5 @@
 <template name="header">
-  <header class="header bg-light lter navbar b-b">
+  <header class="header bg-black lter navbar navbar-inverse">
     <div class="collapse navbar-collapse pull-in">
       <ul class="nav navbar-nav m-l-n">
         <li>
@@ -11,7 +11,7 @@
       <form class="navbar-form navbar-left m-t-sm" role="search">
         <div class="form-group">
           <div class="input-group input-s">
-            <input style="background-color:#eee" type="text" class="form-control input-sm no-border" placeholder="搜索关键词">
+            <input type="text" class="form-control input-sm no-border bg-dark" placeholder="搜索关键词">
             <span class="input-group-btn">
               <button type="submit" class="btn btn-sm btn-success btn-icon"><i class="fa fa-search"></i></button>
             </span>
@@ -22,7 +22,7 @@
         {{#if currentUser}}
         <li class="">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-            <i class="fa fa-bell-o text-black"></i> 通知
+            <i class="fa fa-bell-o"></i> 通知
             {{#if messageCount}}
               <span class="badge up bg-info m-l-n-sm">{{messageCount}}</span>
             {{/if}}
@@ -58,6 +58,7 @@
             <span class="thumb-sm avatar pull-left m-t-n-xs m-r-xs">
               <img src="{{getAvatarByUserId this}}">
             </span>
+            {{getUsernameByUserId this}}
             <b class="caret"></b>
           </a>
           <ul class="bs dropdown-menu">
