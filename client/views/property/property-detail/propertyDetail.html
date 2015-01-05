@@ -91,25 +91,21 @@
         <div class="container wrapper">
           <!-- Property Detail Content -->
           <div class="col-md-8">
-            <section id="price" class="visible-xs m-b">
-              <header>
-                <h3 class="m-t-none">
-                  价格
-                </h3>
-              </header>
-              <hr>
+            <section id="price" class="visible-xs m-b bg-white padder padder-v r">
               <p>
-                <strong style="font-size: 26px;">$ {{property.price}} </strong><sup>SGD</sup>
+                <strong>$ {{property.price}} </strong><sup>SGD</sup>
+                <span class="pull-right">每月</span>
               </p>
+              <hr>
               <p>
                 {{> shareButtons}}
               </p>
               <p>
                 {{#if currentUser}}
                 {{#if isNotOwner}}
-                <button style="width:100%" type="button" class="btn btn-default" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
+                <button type="button" class="btn btn-default full-width" id="enquiry-btn" data-refer-id="{{property._id}}">留言给发帖人</button>
                 {{else}}
-                <a href="{{pathFor 'editProperty' id=property._id}}" style="width:100%" class="btn btn-default"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
+                <a href="{{pathFor 'editProperty' id=property._id}}" class="btn btn-default full-width"><i class="fa fa-edit"></i>&nbsp;更新房屋信息</a>
                 {{/if}}
                 {{else}}
                 <a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default m-b">登陆并询问</a>
@@ -117,7 +113,8 @@
               </p>
             </section>
             <section id="description">
-              <header><h3 class="m-t-none">房屋描述</h3><hr></header>
+              <header><h3 class="m-t-none">房屋描述</h3></header>
+              <hr>
               {{#if property.description}}
               <p>{{property.description}}</p>
               {{else}}
@@ -138,46 +135,47 @@
               <div>
                 {{#with property}}
                 <div class="row m-b-sm">
-                  <div class="col-xs-6"><strong>地址:</strong></div>
-                  <div class="col-xs-6 text-right">{{address}}</div>
+                  <div class="col-xs-5"><strong>地址:</strong></div>
+                  <div class="col-xs-7 text-right">{{address}}</div>
                 </div>
                 <div class="row m-b-sm">
-                  <div class="col-xs-6"><strong>区域:</strong></div>
-                  <div class="col-xs-6 text-right">{{transDistr district}}</div>
+                  <div class="col-xs-5"><strong>区域:</strong></div>
+                  <div class="col-xs-7 text-right">{{transDistr district}}</div>
                 </div>
                 <div class="row m-b-sm">
-                  <div class="col-xs-6"><strong>房屋类型:</strong></div>
-                  <div class="col-xs-6 text-right">{{transPtype propertyType}}</div>
+                  <div class="col-xs-5"><strong>房屋类型:</strong></div>
+                  <div class="col-xs-7 text-right">{{transPtype propertyType}}</div>
                 </div>
                 <div class="row m-b-sm">
-                  <div class="col-xs-6"><strong>房间:</strong></div>
-                  <div class="col-xs-6 text-right">{{transRoom rentType roomType}}</div>
+                  <div class="col-xs-5"><strong>房间:</strong></div>
+                  <div class="col-xs-7 text-right">{{transRoom rentType roomType}}</div>
                 </div>
                 <div class="row m-b-sm">
-                  <div class="col-xs-6"><strong>面积:</strong></div>
-                  <div class="col-xs-6 text-right">{{area}} m<sup>2</sup></div>
+                  <div class="col-xs-5"><strong>面积:</strong></div>
+                  <div class="col-xs-7 text-right">{{area}} m<sup>2</sup></div>
                 </div>
                 <div class="row m-b-sm">
-                  <div class="col-xs-6"><strong>卧室:</strong></div>
-                  <div class="col-xs-6 text-right">{{bedroom}}</div>
+                  <div class="col-xs-5"><strong>卧室:</strong></div>
+                  <div class="col-xs-7 text-right">{{bedroom}}</div>
                 </div>
                 <div class="row m-b-sm">
-                  <div class="col-xs-6"><strong>卫生间:</strong></div>
-                  <div class="col-xs-6 text-right">{{bathroom}}</div>
+                  <div class="col-xs-5"><strong>卫生间:</strong></div>
+                  <div class="col-xs-7 text-right">{{bathroom}}</div>
                 </div>
                 <div class="row m-b-sm">
-                  <div class="col-xs-6"><strong>最近地铁站:</strong></div>
-                  <div class="col-xs-6 text-right">{{transMRT mrt}} ({{mrt}})</div>
+                  <div class="col-xs-5"><strong>最近地铁站:</strong></div>
+                  <div class="col-xs-7 text-right">{{transMRT mrt}} ({{mrt}})</div>
                 </div>
                 <div class="row m-b-sm">
-                  <div class="col-xs-6"><strong>入住时间:</strong></div>
-                  <div class="col-xs-6 text-right">{{transDatetime moveInDate}} 起</div>
+                  <div class="col-xs-5"><strong>入住时间:</strong></div>
+                  <div class="col-xs-7 text-right">{{transDatetime moveInDate}} 起</div>
                 </div>
                 {{/with}}
               </div>
             </section><!-- /#quick-summary -->
             <section id="property-features">
-              <header><h3>房屋设施</h3><hr></header>
+              <header><h3>房屋设施</h3></header>
+              <hr>
               <div class="row">
                 {{#each property.facilities}}
                 <div class="col-sm-4 col-xs-6"><i class="fa fa-circle text-primary icon-align"></i>{{transPfaci this}}</div>
@@ -186,7 +184,8 @@
             </section><!-- /#property-features -->
 
             <section id="property-nearby">
-              <header><h3>附近 <small>(1km 内)</small></h3><hr></header>
+              <header><h3>附近 <small>(1km 内)</small></h3></header>
+              <hr>
               <div class="panel panel-primary">
                 <div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#nearbyMart">
                   <h3 class="panel-title">超市，便利店</h3>

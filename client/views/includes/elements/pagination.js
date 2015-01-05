@@ -29,3 +29,10 @@ Template.pagination.helpers({
     };
   }
 });
+
+Template.pagination.events({
+  'click li.pageLink': function(){
+    console.log(1);
+    window.scrollTo(0, 0);
+  }
+})

@@ -1,13 +1,3 @@
-.welcome{
-  background: url('/images/background-7.jpg') no-repeat center top;
-  background-size: cover;
-  min-height: 100vh;
-  position: relative;
-  width: 100%;
-  margin-top:-62px;
-  color: #fff;
-}
-
 .welcome .form-group .taller-btn{
   padding-top: 9px;
   padding-bottom: 9px;

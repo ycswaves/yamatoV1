@@ -27,8 +27,8 @@
 }
 
 .icon-align {
-  width: 25px;
-  text-align: center
+  width: 20px;
+  /*text-align: center*/
 }
 
 /* Remove Glowing */
@@ -174,4 +174,15 @@ dl dt {
 dl dd {
   margin-bottom: 8px;
   text-align: right;
+  overflow: hidden;
+  height: 20px;
+  text-overflow: ellipsis;
+}
+
+hr {
+  border-top: 1px solid #dce0e0;
+}
+
+.full-width {
+  width:100%;
 }

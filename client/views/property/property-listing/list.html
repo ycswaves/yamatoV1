@@ -1,12 +1,11 @@
 <template name="propertyListing">
-	<div class="wrapper">
+	<div class="row wrapper">
 		<div class="hidden-xs col-sm-3" id="sidebar" role="navigation">
 			{{> sideSearch}}
 		</div>
-
 		<!-- Results -->
 		<div class="col-xs-12 col-sm-9">
-			<button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-info center">设置搜索条件</button>
+			<button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-info center full-width m-b">设置搜索条件</button>
 			<section id="results">
 				<div class="hidden-xs pull-right">
 					<section id="search-filter">
@@ -24,13 +23,12 @@
 				</div>
 				{{#each properties}}
 				{{#AnimateWithVelocity}}
-				<div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='linear' data-easing-out='linear' class="property" style="padding-left:0px">
-
-					<section class="panel no-borders hbox">
+				<div data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='linear' data-easing-out='linear'>
+					<section class="panel no-borders hbox pointer">
 						<aside class="bg-info lter r-l text-center v-middle col-sm-4">
 							<div class="wrapper">
-								<i class="fa fa-dribbble fa fa-4x"></i>
-								<p class="text-muted"><em>dribbble invitation</em></p>
+								<i class="fa fa-camera-retro fa fa-4x"></i>
+								<p class="text-muted">暂无图片</p>
 							</div>
 						</aside>
 						<aside class="col-sm-8">
@@ -43,13 +41,18 @@
 												<strong>{{address}}</strong>
 											</a>
 										</div>
-										<div class="col-sm-5 text-right">
+										<div class="col-sm-5 hidden-xs text-right">
+											<small class="text-muted">
+												<i class="fa fa-calendar"></i>&nbsp;{{transDatetime createdAt 'YYYY-MM-DD'}} &nbsp;&nbsp; <i class="fa fa-eye"></i>&nbsp;{{formatViews views}}
+											</small>
+										</div>
+										<div class="col-sm-5 visible-xs">
 											<small class="text-muted">
 												<i class="fa fa-calendar"></i>&nbsp;{{transDatetime createdAt 'YYYY-MM-DD'}} &nbsp;&nbsp; <i class="fa fa-eye"></i>&nbsp;{{formatViews views}}
 											</small>
 										</div>
 									</div>
-									<div class="row">
+									<div class="row hidden-xs">
 										<div class="col-sm-6">
 											<dl>
 												<dt><figure class="fa fa-map-marker icon-align"></figure>区域: </dt>
@@ -74,14 +77,12 @@
 													<span style="margin-right:10px"></span>
 													<img src="/images/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
 												</dd>
-												<dt></dt>
-												<dd style="max-height: 30px;">
-													<div class="tag price">${{price}}</div>
-												</dd>
 											</dl>
+											<dd class="full-width text-right tags">
+												<div class="label bg-info">${{price}}</div>
+											</dd>
 										</div>
 									</div>
-
 								</div>
 							</div>
 						</aside>
@@ -89,11 +90,10 @@
 				</div>
 				{{/AnimateWithVelocity}}
 				{{/each}}
-
-
 				<!-- Pagination -->
-				{{>Template.dynamic template="pagination" data=paginationConfig}}
-
+				<div class="text-center">
+					{{>Template.dynamic template="pagination" data=paginationConfig}}
+				</div>
 			</section><!-- /#results -->
 		</div><!-- /.col-md-9 -->
 	</div>
