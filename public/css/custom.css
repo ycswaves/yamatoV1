@@ -198,3 +198,8 @@ hr {
   padding: 0;
   float: none;
 }
+
+.m-xl {
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
