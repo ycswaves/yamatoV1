@@ -2,6 +2,15 @@ Template.adminUser.rendered = function() {
   render();
 }
 
+Template.adminUser.events({
+  'click label.userStatus': function(e, t){
+    var type = t.$(e.target).data('status');
+    t.$('label.userStatus').removeClass('active');
+    Router.go('adminuser',{type:type, page:1});
+    return;
+  }
+});
+
 AdminUsersController = RouteController.extend({
   template: 'adminUser',
   waitOn: function () {
@@ -60,7 +69,11 @@ AdminUsersController = RouteController.extend({
     }
     return {
       users: paginatedDocs,
+      total: (statusCountMapping['undefined'] || 0) + (statusCountMapping['active'] || 0) + (statusCountMapping['blocked'] || 0), 
+      totalActive: statusCountMapping['active'] || 0,
+      totalBlocked: statusCountMapping['blocked'] || 0,
       totalDocs: totalDocs,
+      currStatus: statusType,
       paginationConfig: {
         'config': {
           pageNum: pageNum,

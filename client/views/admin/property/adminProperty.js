@@ -28,9 +28,7 @@ AdminPropertiesController = RouteController.extend({
     var params = this.params
       , statusType = params.type || 'open'
       , pageLimit = 10
-      , pageNum = 1
-      , activeTab = 'open'
-      , visibleTbl = 'active-record';
+      , pageNum = 1;
 
 
     var queryFilter = {
@@ -78,7 +76,6 @@ AdminPropertiesController = RouteController.extend({
       totalInactive: (statusCountMapping['closed'] || 0) + (statusCountMapping['deal'] || 0),
       totalAdministered: (statusCountMapping['expired'] || 0) + (statusCountMapping['violate'] || 0),
       totalDocs: totalDocs,
-      activeTab: activeTab,
       currStatus: statusType,
       paginationConfig: {
         'config': {

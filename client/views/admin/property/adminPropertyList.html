@@ -1,4 +1,10 @@
 <template name="adminPropertyList">
+  <style type="text/css">
+    /* to align select with other fields */
+    .btn-group.bootstrap-select.status{
+      margin-bottom: 0px
+    }
+  </style>
   <section class="panel">
     <div class="table-responsive">
       <table class="table table-striped m-b-none">
@@ -18,16 +24,16 @@
 
           {{#each properties}}
           <tr>
-            <td style="vertical-align:middle">
+            <td class="v-middle">
               <a href="{{pathFor 'propertyDetail' id=_id}}"><figure>{{address}}</figure></a>
             </td>
-            <td style="vertical-align:middle">$ {{price}}</td>
-            <td style="vertical-align:middle">{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
-            <td class="actions" style="vertical-align:middle">
+            <td class="v-middle">$ {{price}}</td>
+            <td class="v-middle">{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
+            <td class="actions v-middle">
               <a class="delete" style="cursor: pointer" data-propid="{{_id}}"><i class="fa fa-trash-o"></i> 删除</a>
             </td>
-            <td>
-              <select class="status selectpicker" id="{{_id}}" data-width="100%">
+            <td class="v-middle">
+              <select class="status selectpicker" id="{{_id}}" data-width="100%" style="margin-bottom:0px;">
                 {{#each arrayify propertyStatus}}
                 <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
                 {{/each}}

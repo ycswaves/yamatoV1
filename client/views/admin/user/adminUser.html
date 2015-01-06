@@ -1,26 +1,49 @@
 <template name="adminUser">
-  {{> breadcrumbs}}
-  <div class="container">
-    <div class="row">
-    <div class="col-xs-2 col-sm-3">
-        <section id="sidebar">
-          <header><h3>管理员</h3></header>
-          <aside>
-            <ul class="sidebar-navigation">
-              <li class="active radius"><a href="#"><i class="fa fa-user"></i><span class="hidden-xs">管理用户</span></a></li>
-              <li><a href="{{pathFor 'adminproperty' type='open' page='1'}}"><i class="fa fa-home"></i><span class="hidden-xs">管理房屋</span></a></li>
-              <li><a href=""><i class="fa fa-inbox"></i><span class="hidden-xs">收发件箱</span></a></li>
-            </ul>
-          </aside>
-        </section><!-- /#sidebar -->
-      </div><!-- /.col-md-3 -->
-      <!-- end Sidebar -->
-      <div class="col-xs-10 col-sm-9">
-        <section id="admin-properties">
-          <header><h1>管理用户</h1></header>
-          {{> adminUserList}}
-        </section><!-- /#my-properties -->
-      </div><!-- /.col-md-9 -->
-    </div><!-- /.row -->
-  </div><!-- /.container -->
+	<section class="hbox stretch">
+		<!-- .vbox -->
+		<section id="content">
+			<section class="hbox stretch">
+				<aside class="aside bg-white b-r" id="subNav">
+					<div class="wrapper b-b font-bold">管理员</div>
+					<ul class="nav">
+						<li class="b-b"><a href="{{pathFor 'adminuser' type='all' page='1'}}">用户管理</a></li>
+						<li class="b-b"><a href="{{pathFor 'adminproperty' type='open' page='1'}}">房屋管理</a></li>
+					</ul>
+				</aside>
+				<aside>
+					<section class="vbox">
+						<header class="header bg-white b-b clearfix">
+							<div class="row m-t-sm">
+								<div class="col-sm-6 m-b-xs">
+									<div class="btn-group" data-toggle="buttons">
+										<label class="userStatus btn btn-sm btn-white {{activeClassHelper 'all' currStatus}}" data-status="all">
+											所有 ({{total}})
+										</label>
+										<label class="userStatus btn btn-sm btn-white {{activeClassHelper 'active' currStatus}}" data-status="active">
+											正常 ({{totalActive}})
+										</label>
+										<label class="userStatus btn btn-sm btn-white {{activeClassHelper 'blocked' currStatus}}" data-status="blocked">
+											封停 ({{totalBlocked}})
+										</label>
+									</div>
+								</div>
+								<!-- <div class="col-sm-6 m-b-xs">
+									<div class="input-group">
+										<input type="text" class="input-sm form-control" placeholder="Search">
+										<span class="input-group-btn">
+											<button class="btn btn-sm btn-white" type="button">Go!</button>
+										</span>
+									</div>
+								</div> -->
+							</div>
+						</header>
+						<section class="scrollable wrapper w-f">
+							{{> adminUserList}}
+						</section>
+					</section>
+				</aside>
+			</section>
+		</section>
+		<!-- /.vbox -->
+	</section>
 </template>

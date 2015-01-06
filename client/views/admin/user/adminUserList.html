@@ -1,19 +1,17 @@
 <template name="adminUserList">
-  <div class="m-b">
-    <ul class="nav nav-pills">
-      <li role="presentation" class="active"><a href="{{pathFor 'adminuser' type='all' page=1}}">所有</a></li>
-      {{#each arrayify userStatus}}
-      <li role="presentation"><a href="{{pathFor 'adminuser' type=key page=1}}">{{value}}</a></li>
-      {{/each}}
-    </ul>
-  </div>
-  <div class="my-properties">
+  <style type="text/css">
+    /* to align select with other fields */
+    .btn-group.bootstrap-select.status{
+      margin-bottom: 0px
+    }
+  </style>
+  <section class="panel">
     <div class="table-responsive">
-      <table class="table">
+      <table class="table table-striped m-b-none">
         <thead>
           <tr>
             <th style="width:15%">用户</th>
-            <th style="width:35%"></th>
+            <th style="width:35%">邮箱</th>
             <th>注册时间</th>
             <th>操作</th>
             <th>状态</th>
@@ -26,20 +24,20 @@
 
           {{#each users}}
           <tr>
-            <td>
+            <td class="v-middle">
               {{getUsernameByUserId _id}}
             </td>
-            <td>
+            <td class="v-middle">
               {{#with getEmailAndStatusByUserId _id}}
               {{address}}
               {{/with}}
             </td>
-            <td>{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
-            <td class="actions" style="text-align:left">
+            <td class="v-middle">{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
+            <td class="actions v-middle">
               <a class="delete" style="cursor: pointer;" data-propid="{{_id}}"><i class="fa fa-trash-o"></i>删除</a>
             </td>
-            <td>
-              <select class="status" id="{{_id}}">
+            <td class="v-middle">
+              <select class="status selectpicker" id="{{_id}}" data-width="100%" data-margin-bottom="0px">
                 {{#each arrayify userStatus}}
                 <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
                 {{/each}}
@@ -49,8 +47,8 @@
           {{/each}}
         </tbody>
       </table>
-    </div><!-- /.table-responsive -->
-    <!-- Pagination -->
-    {{>Template.dynamic template="pagination" data=paginationConfig}}
-  </div><!-- /.my-users -->
+    </div>
+  </section>
+  <!-- Pagination -->
+  {{>Template.dynamic template="pagination" data=paginationConfig}}
 </template>
