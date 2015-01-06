@@ -1,122 +1,165 @@
+var autoCompl = new GoogleAutoComplete();
 Template.landing.rendered = function() {
-  render();
-  $('.selectpicker').selectpicker({
-    container:'body'
+	render();
+	$('.selectpicker').selectpicker({
+		container:'body',
+		style:'btn-primary'
+	});
+
+	$('.icheck').iCheck({
+		checkboxClass: 'icheckbox_flat-blue',
+		radioClass: 'iradio_flat-blue'
+		//increaseArea: '20%' // optional
+	});
+
+	if (Session.get('resetPassword')) {
+		$('#resetPassModal').modal('show');
+	}
+
+	ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
+
+	autoCompl.init('intelAddress', function(place){
+  	$('.pillbox input').val('');
+    // searchForRoute(place);
   });
 
-  $('.icheck').iCheck({
-    checkboxClass: 'icheckbox_flat-blue',
-    radioClass: 'iradio_flat-blue'
-    //increaseArea: '20%' // optional
-  });
+	//添加多个地址
+	$('.pillbox input').on('keypress', function(e) {
+		if(e.which == 13) {
+			e.preventDefault();
+			addPill($(this));
+			return false;
+		}
+	});
 
-  if (Session.get('resetPassword')) {
-    $('#resetPassModal').modal('show');
-  }
-
-  ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
+  // fuelux pillbox
+  var addPill = function($input){
+  	var $text = $input.val(), $pills = $input.closest('.pillbox'), $repeat = false, $repeatPill;
+  	if($text == "") return;
+  	$("li", $pills).text(function(i,v){
+  		if(v == $text){
+  			$repeatPill = $(this);
+  			$repeat = true;
+  		}
+  	});
+  	if($repeat) {
+  		$repeatPill.fadeOut().fadeIn();
+  		return;
+  	};
+  	$item = $('<li class="label bg-info">'+$text+'</li>');
+  	$item.insertBefore($input);
+  	$pills.trigger('change', $item);
+  };
 }
 
 Template.landing.events({
-  'change #mrtlines': function(e, t){
-    e.preventDefault();
-    var mrtLine = t.find('select[name="mrtlines"]').value;
-    ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLine));
-    Deps.flush();
-    t.$('#stations').selectpicker('refresh');
-  },
+	'focus input[name="intelAddress"]': function(e, t){
+		autoCompl.geolocate();
+	},
 
-  'change #rent-type': function(e, t){
-    e.preventDefault();
-    var rentType = t.find('select[name="rent-type"]').value;
-    if(rentType == 1){
-      t.$('#room-type').parent().hide();
-    }
-    else{
-      t.$('#room-type').parent().show();
-    }
-  },
+	'change #mrtlines': function(e, t){
+		e.preventDefault();
+		var mrtLine = t.find('select[name="mrtlines"]').value;
+		ReactiveDS.set('mrtline', Config.getStationsByLine(mrtLine));
+		Deps.flush();
+		t.$('#stations').selectpicker('refresh');
+	},
 
-  'submit #search-form-landing': function(e, t){
-    e.preventDefault();
+	'change #rent-type': function(e, t){
+		e.preventDefault();
+		var rentType = t.find('select[name="rent-type"]').value;
+		if(rentType == 1){
+			t.$('#room-type').parent().hide();
+		}
+		else{
+			t.$('#room-type').parent().show();
+		}
+	},
 
-    /*********************************************
-        Retrieve form data
-        *********************************************/
-        var price = t.find('select[name="price"]').value || null
-        , district = t.find('select[name="district"]').value || null
-        , pType = t.find('select[name="property-type"]').value || null
-        , mrtLines = t.find('select[name="mrtlines"]').value || null
-        , nearestMRT = t.find('select[name="stations"]').value || null;
+	'submit #search-form-landing': function(e, t){
+		e.preventDefault();
 
-    /*********************************************
-        Map form data to schema
-        *********************************************/
-        var filter = {
-          price: price,
-          district: district,
-          propertyType: pType,
-          mrtLines: mrtLines,
-          mrt: nearestMRT
-        };
+		/*********************************************
+		Retrieve form data
+		*********************************************/
+		var price = t.find('select[name="price"]').value || null
+		, district = t.find('select[name="district"]').value || null
+		, pType = t.find('select[name="property-type"]').value || null
+		, mrtLines = t.find('select[name="mrtlines"]').value || null
+		, nearestMRT = t.find('select[name="stations"]').value || null;
 
-        var queryArr = [];
-        for (var key in filter){
-          if(filter[key] != null){
-            queryArr.push(key+'='+filter[key]);
-          }
-        }
+		/*********************************************
+		Map form data to schema
+		*********************************************/
+		var filter = {
+			price: price,
+			district: district,
+			propertyType: pType,
+			mrtLines: mrtLines,
+			mrt: nearestMRT
+		};
 
-        Router.go('properties', {page: 1}, {query: queryArr.join('&')});
-      }
-    });
+		var queryArr = [];
+		for (var key in filter){
+			if(filter[key] != null){
+				queryArr.push(key+'='+filter[key]);
+			}
+		}
+
+		Router.go('properties', {page: 1}, {query: queryArr.join('&')});
+	}
+});
 
 
 
 Template.landing.helpers({
-  district: function(){
-    return Config.getDistrict();
-  },
+	district: function(){
+		return Config.getDistrict();
+	},
 
-  mrtlines: function(){
-    return Config.getMRT();
-  },
+	mrtlines: function(){
+		return Config.getMRT();
+	},
 
-  stations: function(){
-    return ReactiveDS.get('mrtline');
-  },
+	stations: function(){
+		return ReactiveDS.get('mrtline');
+	},
 
-  ptypes: function(){
-    return Config.getPropertyTypes();
-  },
+	ptypes: function(){
+		return Config.getPropertyTypes();
+	},
 
-  priceRange: function(){
-    return Config.getPriceRange();
-  },
+	roomNum: function(){
+		return Config.getRoomNum();
+	},
 
-  facilities: function(){
-    return Config.getFavFacilities();
-  },
+	priceRange: function(){
+		return Config.getPriceRange();
+	},
+
+	facilities: function(){
+		return Config.getFavFacilities();
+	},
 });
 
 Template.landing.created = function() {
-  //验证邮箱
-  if (Accounts._verifyEmailToken) {
-    Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
-      if (err != null) {
-        if (err.message = 'Verify email link expired [403]') {
-          swal('验证邮箱', '对不起，验证链接已失效...', 'error');
-        }
-      } else {
-        swal('验证邮箱', '欢迎回来，已成功验证邮箱!', 'success');
-      }
-      //避免再次弹窗
-      delete Accounts._verifyEmailToken;
-    });
-  };
-  //忘记密码
-  if (Accounts._resetPasswordToken) {
-    Session.set('resetPassword',Accounts._resetPasswordToken);
-    delete Accounts._resetPasswordToken;
-  }
+	//验证邮箱
+	if (Accounts._verifyEmailToken) {
+		Accounts.verifyEmail(Accounts._verifyEmailToken, function(err) {
+			if (err != null) {
+				if (err.message = 'Verify email link expired [403]') {
+					swal('验证邮箱', '对不起，验证链接已失效...', 'error');
+				}
+			} else {
+				swal('验证邮箱', '欢迎回来，已成功验证邮箱!', 'success');
+			}
+			//避免再次弹窗
+			delete Accounts._verifyEmailToken;
+		});
+	};
+	//忘记密码
+	if (Accounts._resetPasswordToken) {
+		Session.set('resetPassword',Accounts._resetPasswordToken);
+		delete Accounts._resetPasswordToken;
+	}
 };

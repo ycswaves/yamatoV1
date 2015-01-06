@@ -67,8 +67,6 @@
 .search-box .nav-pills li.active a {
   filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
   opacity: 1;
-  background-color: #1396e2;
-  color: #fff;
 }
 
 .search-box .nav-pills li a {
@@ -85,88 +83,10 @@
   -o-transition: 0.4s;
   -webkit-transition: 0.4s;
   transition: 0.4s;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.2);
   padding: 15px 15px 5px 15px;
 }
 
 .search-box .tab-pane:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-
-.search-box input[type="text"], .search-box input[type="email"],
-.search-box input[type="search"], .search-box input[type="password"],
-.search-box input[type="number"], .search-box textarea,
-.search-box select, .search-box .selectpicker, .search-box .price-range {
-  background-color: #073855;
-  border: none;
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  min-height: 40px;
-  padding: inherit;
-  padding-left: 10px;
-  width: 100%;
-  border-radius: 2px;
-}
-
-.search-box input[type="text"]:hover, .search-box input[type="email"]:hover,
-.search-box input[type="search"]:hover, .search-box input[type="password"]:hover,
-.search-box input[type="number"]:hover, .search-box textarea:hover,
-.search-box select:hover, .search-box .selectpicker:hover,
-.search-box .price-range:hover {
-  color: #fff;
-  background-color: #062f47;
-}
-
-.search-box input[type="text"]:focus, .search-box input[type="email"]:focus,
-.search-box input[type="search"]:focus, .search-box input[type="password"]:focus,
-.search-box input[type="number"]:focus, .search-box textarea:focus,
-.search-box select:focus, .search-box .selectpicker:focus,
-.search-box .price-range:focus {
-  color: #fff;
-  background-color: #062f47;
-}
-
-.search-box .selectpicker .caret:after {
-  color: #fff;
-}
-
-.search-box .price-range {
-  margin-bottom: 0;
-  padding: 15px 15px 10px;
-}
-
-.search-box .jslider-label, .search-box .jslider-value {
-  color: #fff;
-}
-
-.search-box hr{
-  margin-top: 10px;
-  margin-bottom: 10px;
-}
-
-.search-box .advanced-search-toggle {
-  padding: 10px 0px;
-  color: #fff;
-  position: absolute;
-  top: 0;
-  right: 15px;
-}
-
-.search-box .advanced-search h3 {
-  margin-top: 0;
-}
-
-.search-box .nav-pills li.active a {
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  opacity: 1;
-  background-color: #1396e2;
-  color: #fff;
-}
-
-.search-box .nav-pills li a {
-  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
-  background: rgba(0, 0, 0, 0.4);
-  border-radius: 2px;
-  color: white;
+  background-color: rgba(255, 255, 255, 0.3);
 }

@@ -137,37 +137,6 @@
 		};
 	});
 
-	// fuelux pillbox
-	var addPill = function($input){
-		var $text = $input.val(), $pills = $input.closest('.pillbox'), $repeat = false, $repeatPill;
-		if($text == "") return;
-		$("li", $pills).text(function(i,v){
-	        if(v == $text){
-	        	$repeatPill = $(this);
-	        	$repeat = true;
-	        }
-	    });
-	    if($repeat) {
-	    	$repeatPill.fadeOut().fadeIn();
-	    	return;
-	    };
-	    $item = $('<li class="label bg-dark">'+$text+'</li> ');
-		$item.insertBefore($input);
-		$input.val('');
-		$pills.trigger('change', $item);
-	};
-
-	$('.pillbox input').on('blur', function() {
-		addPill($(this));
-	});
-
-	$('.pillbox input').on('keypress', function(e) {
-	    if(e.which == 13) {
-	        e.preventDefault();
-	        addPill($(this));
-	    }
-	});
-
 	// slider
 	$('.slider').each(function(){
 		$(this).slider();

@@ -10,6 +10,15 @@ var roomTypes = {
   "other": "其他"
 };
 
+var roomNum = {
+  "1": "一间房",
+  "2": "两间房",
+  "3": "三间房",
+  "4": "四间房",
+  "5": "五间房",
+  "6": "大于五间房"
+}
+
 var priceRange = {
   "500": "< $500",
   "1000": "< $1,000",
@@ -98,6 +107,10 @@ Config.getAllPropertyStatus = function(){
 
 Config.getAdminPropertyStatus = function(){
   return adminPropertyStatus;
+}
+
+Config.getRoomNum = function(){
+  return roomNum;
 }
 
 Config.getPriceRange = function(){
