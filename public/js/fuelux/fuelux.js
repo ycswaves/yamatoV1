@@ -524,8 +524,8 @@
 			var pageRequested = parseInt($(e.target).val(), 10);
 			pageRequested = (isNaN(pageRequested)) ? 1 : pageRequested;
 			var maxPages = this.$pageslabel.text();
-		
-			this.options.dataOptions.pageIndex = 
+
+			this.options.dataOptions.pageIndex =
 				(pageRequested > maxPages) ? maxPages - 1 : pageRequested - 1;
 
 			this.renderData();
@@ -652,13 +652,15 @@
  */
 
 +function ($) { "use strict";
-	
+
 	// PILLBOX CONSTRUCTOR AND PROTOTYPE
 
 	var Pillbox = function (element, options) {
 		this.$element = $(element);
 		this.options = $.extend({}, $.fn.pillbox.defaults, options);
-		this.$element.on('click', 'li', $.proxy(this.itemclicked, this));
+
+    //editby YCS
+		this.$element.on('click', 'li:not(.multiAddrLabel)', $.proxy(this.itemclicked, this));
 	};
 
 	Pillbox.prototype = {
@@ -709,7 +711,7 @@
 			$this.pillbox($this.data());
 		});
 	});
-	
+
 }(window.jQuery);
 
 

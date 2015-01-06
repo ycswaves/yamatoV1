@@ -45,8 +45,8 @@ Template.addProperty.rendered = function() {
   $('.dropzone .dz-default.dz-message').css('width','0px'); //hide dropzoneJS default img
 
   global_autoCompl.init('submit-title', function(place){
-    var address = place.formatted_address,
-        postcodeFound = address.match(/singapore (\d{6})/i);
+    var address = place.formatted_address
+      , postcodeFound = address.match(/singapore (\d{6})/i);
 
     if(place.geometry.location){
       var lat = place.geometry.location.k
@@ -112,7 +112,7 @@ Template.addProperty.events({
   },
 
   'keyup input[name="address"], keypress input[name="address"]': function(e, t){
-    if (e.keyCode == 13) {
+    if (e.keyCode == 13) { //prevent enter in this field to submit form
       e.preventDefault();
       return false;
     }

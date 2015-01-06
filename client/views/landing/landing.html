@@ -32,7 +32,13 @@
 								</div> -->
 								<div class="pillbox clearfix bg-primary m-b">
 									<ul>
-										<input type="text" class="form-control text-white m-l-sm" placeHolder="智能搜索,添加多个地址" id="intelAddress" name="intelAddress">
+                    {{#each arrayify multiAddress}}
+                      <li class="label bg-success multiAddrLabel"
+                          data-geometry="{{value.geometry}}"
+                          data-address="{{value.address}}"
+                          data-postcode="{{value.postcode}}">{{value.address}}</li>
+                    {{/each}}
+										<input type="text" class="form-control text-white m-l-sm" placeHolder="智能搜索,添加多个地址" id="multiAddress" name="multiAddress">
 									</ul>
 								</div>
 							</div>

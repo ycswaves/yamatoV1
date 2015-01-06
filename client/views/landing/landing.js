@@ -18,41 +18,65 @@ Template.landing.rendered = function() {
 
 	ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
 
-	autoCompl.init('intelAddress', function(place){
-  	$('.pillbox input').val('');
-    // searchForRoute(place);
+	autoCompl.init('multiAddress', function(place){
+    var userType = $('input[name="multiAddress"]').val()
+        google_address = place.formatted_address
+      , locObj = {};
+
+    locObj.address = userType;
+
+    var postcodeFound = google_address.match(/singapore (\d{6})/i);
+    if(postcodeFound && postcodeFound.length>1){
+      locObj.postcode = postcodeFound[1];
+    }
+    if(place.geometry.location){
+      var lat = place.geometry.location.k
+        , lng = place.geometry.location.D;
+
+      locObj.geometry = {
+        latitude: lat,
+        longitude: lng
+      };
+    }
+
+
+
+    var existingAddr = Session.get('multiAddress');
+    if(existingAddr){
+      existingAddr[locObj.address] = locObj;
+      Session.set('multiAddress', existingAddr);
+    } else {
+      var obj = {};
+      obj[userType] = locObj;
+      Session.set('multiAddress', obj);
+    }
+
+    $('input[name="multiAddress"]').val('');
+    //console.log(Session.get('multiAddress'));
   });
 
-	//添加多个地址
-	$('.pillbox input').on('keypress', function(e) {
-		if(e.which == 13) {
-			e.preventDefault();
-			addPill($(this));
-			return false;
-		}
-	});
-
-  // fuelux pillbox
-  var addPill = function($input){
-  	var $text = $input.val(), $pills = $input.closest('.pillbox'), $repeat = false, $repeatPill;
-  	if($text == "") return;
-  	$("li", $pills).text(function(i,v){
-  		if(v == $text){
-  			$repeatPill = $(this);
-  			$repeat = true;
-  		}
-  	});
-  	if($repeat) {
-  		$repeatPill.fadeOut().fadeIn();
-  		return;
-  	};
-  	$item = $('<li class="label bg-info">'+$text+'</li>');
-  	$item.insertBefore($input);
-  	$pills.trigger('change', $item);
-  };
 }
 
+
 Template.landing.events({
+  'keyup input[name="multiAddress"], keypress input[name="multiAddress"]': function(e, t){
+    if (e.keyCode == 13) { //prevent enter in this field to submit form
+      e.preventDefault();
+      return false;
+    }
+  },
+
+  'click .multiAddrLabel': function(e, t){
+    //e.preventDefault(); not doing prevent default becoz click trigger remove label too
+    var addr = t.$(e.target).data('address')
+      , existingAddr = Session.get('multiAddress');
+    existingAddr[addr] = undefined; // Caution: existingAddr could become empty array upon deletion.
+    Session.set('multiAddress', existingAddr);
+    t.$(e.target).remove();
+    $('input[name="multiAddress"]').val('');
+    //console.log(Session.get('multiAddress'));
+  },
+
 	'focus input[name="intelAddress"]': function(e, t){
 		autoCompl.geolocate();
 	},
@@ -140,6 +164,10 @@ Template.landing.helpers({
 	facilities: function(){
 		return Config.getFavFacilities();
 	},
+
+  multiAddress: function(){
+    return Session.get('multiAddress');
+  }
 });
 
 Template.landing.created = function() {
