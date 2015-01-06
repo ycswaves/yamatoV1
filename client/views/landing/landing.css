@@ -76,6 +76,13 @@
   color: white;
 }
 
+.search-box .nav-pills li a:hover {
+  filter: progid:DXImageTransform.Microsoft.Alpha(enabled=false);
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 2px;
+  color: white;
+}
+
 .search-box .tab-pane {
   padding: 15px 15px 5px 15px;
   border-radius: 5px;
