@@ -969,9 +969,9 @@ html.layout-box .vbox > footer {
   }
   .nav-bar-fixed-top {
     position: fixed;
-    left: 0;
+    /*left: 0;*/
     width: 100%;
-    z-index: 1100;
+    z-index: 1049;
   }
   .nav-bar-fixed-top + * {
     padding-top: 50px;

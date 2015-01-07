@@ -1,7 +1,6 @@
 <template name="sideSearch">
-  <section id="sidebar">
-    <aside id="edit-search">
-      <header><h3>搜索</h3></header>
+  <section>
+    <aside>
       <form role="form" id="search-form-sidebar" class="form-search">
         <div class="form-group">
           <select name="property-type" class="selectpicker" data-width="100%">
@@ -72,18 +71,13 @@
           </select>
         </div><!-- /.form-group -->
         <div class="form-group">
-          <select name="sorting" class="selectpicker">
+          <select name="sorting" class="selectpicker" data-width="100%">
             <option value="">排序</option>
             <option value="priceBy1">价格从低到高</option>
             <option value="priceBy-1">价格从高到低</option>
             <option value="createdAtBy1">最新发布</option>
           </select>
         </div><!-- /.form-group -->
-        <!-- <div class="form-group">
-          <button type="submit" class="btn btn-default m-b">提交</button>
-          <a href="javascript:void(0)" class="visible-xs btn btn-ghost-info" onclick="$('#sideSearchModal').modal('hide')">取消</a>
-        </div> -->
-
       </form><!-- /#form-map -->
     </aside><!-- /#edit-search -->
   </section><!-- /#sidebar -->
@@ -92,9 +86,18 @@
 <template name="sideSearchModal">
   <div id="sideSearchModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog modal-sm">
+
       <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">搜索条件</h4>
+        </div>
         <div class="modal-body center">
           {{> sideSearch}}
+        </div>
+        <div class="modal-footer">
+          <div class="form-group text-center">
+            <a href="javascript:void(0)" class="btn btn-danger full-width" onclick="$('#sideSearchModal').modal('hide')">关闭</a>
+          </div>
         </div>
       </div>
     </div>
