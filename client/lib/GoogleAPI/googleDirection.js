@@ -3,8 +3,8 @@ var directionURL = "https://maps.googleapis.com/maps/api/directions/json";
 GoogleDirection = {
   /**
    * 计算点到点的行程
-   * @param  {[string]} from [地址]
-   * @param  {[string]} to   [地址]
+   * @param  {[string]} from [坐标]
+   * @param  {[string]} to   [坐标]
    * @param  {[string]} mode [driving,walking,bicyling,transit,默认driving]
    * @return {[object]} 
    */
@@ -75,6 +75,7 @@ GoogleDirection = {
     })
   },
 
+  //from, to 均为坐标
   shortest : function(from,to,mode,callback) {
     if (mode == "transit") {
       var params = {

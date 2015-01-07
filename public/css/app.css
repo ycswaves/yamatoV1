@@ -1621,7 +1621,7 @@ fieldset[disabled] .btn-gplus.active {
 .comment-list:before {
   position: absolute;
   top: 0;
-  bottom: 35px;
+  bottom: 0px;
   left: 18px;
   width: 1px;
   background: #e0e4e8;
