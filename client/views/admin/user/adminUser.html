@@ -3,13 +3,7 @@
 		<!-- .vbox -->
 		<section id="content">
 			<section class="hbox stretch">
-				<aside class="aside bg-white b-r" id="subNav">
-					<div class="wrapper b-b font-bold">管理员</div>
-					<ul class="nav">
-						<li class="b-b"><a href="{{pathFor 'adminuser' type='all' page='1'}}">用户管理</a></li>
-						<li class="b-b"><a href="{{pathFor 'adminproperty' type='open' page='1'}}">房屋管理</a></li>
-					</ul>
-				</aside>
+				{{> adminNav}}
 				<aside>
 					<section class="vbox">
 						<header class="header bg-white b-b clearfix">

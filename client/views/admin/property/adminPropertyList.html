@@ -12,6 +12,7 @@
           <tr>
             <th style="width:40%">房屋列表</th>
             <th style="width:10%">价格</th>
+            <th>发布人</th>
             <th>发布时间</th>
             <th>操作</th>
             <th>状态</th>
@@ -28,6 +29,7 @@
               <a href="{{pathFor 'propertyDetail' id=_id}}"><figure>{{address}}</figure></a>
             </td>
             <td class="v-middle">$ {{price}}</td>
+            <td class="v-middle">{{getUsernameByUserId author}}</td>
             <td class="v-middle">{{transDatetime createdAt 'YYYY-MM-DD HH:mm:ss'}}</td>
             <td class="actions v-middle">
               <a class="delete" style="cursor: pointer" data-propid="{{_id}}"><i class="fa fa-trash-o"></i> 删除</a>
