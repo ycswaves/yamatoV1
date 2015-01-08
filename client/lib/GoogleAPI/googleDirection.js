@@ -9,25 +9,19 @@ GoogleDirection = {
    * @return {[object]} 
    */
   'to' : function(from, to, mode, callback){
+    var base_params = {
+          origin : from,
+          destination : to,
+          mode : mode,
+          alternatives : true,
+          language: 'en'
+        };
+
     if (mode == "transit") {
-      var params = {
-          origin : from,
-          destination : to,
-          mode : mode,
-          departure_time:Math.floor(new Date().getTime()/1000), //一定需要
-          alternatives : true
-        };
-    }
-    else {
-      var params = {
-          origin : from,
-          destination : to,
-          mode : mode,
-          alternatives : true
-        };
+      base_params.departure_time = Math.floor(new Date().getTime()/1000); //一定需要
     }
     Meteor.call('get',directionURL,{
-      params:params
+      params:base_params
     },function(error,response){
       //if an error happened, error argument contains the details
       //if the request succeeded, the response will contain the response of the server request
@@ -77,23 +71,18 @@ GoogleDirection = {
 
   //from, to 均为坐标
   shortest : function(from,to,mode,callback) {
-    if (mode == "transit") {
-      var params = {
+    var base_params = {
           origin : from,
           destination : to,
           mode : mode,
-          departure_time:Math.floor(new Date().getTime()/1000) //一定需要
+          language: 'en'
         };
-    }
-    else {
-      var params = {
-          origin : from,
-          destination : to,
-          mode : mode
-        };
+
+    if (mode == "transit") {
+      base_params.departure_time = Math.floor(new Date().getTime()/1000);//一定需要
     }
     Meteor.call('get',directionURL,{
-      params:params
+      params:base_params
     },function(error,response){
       if (error) {
         callback(null);
