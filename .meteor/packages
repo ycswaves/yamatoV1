@@ -14,7 +14,6 @@ cfs:standard-packages
 cfs:s3
 awatson1978:dropzone
 service-configuration
-richsilv:owl-carousel
 mrt:moment
 jparker:gravatar
 meteorhacks:kadira
@@ -33,3 +32,4 @@ steeve:jquery-qrcode
 sayawan:pickadate
 mrt:bootstrap-select
 
+udondan:slick

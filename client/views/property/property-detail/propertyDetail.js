@@ -1,10 +1,16 @@
 Template.propertyDetail.rendered = function() {
-  $('.owl-carousel').owlCarousel({
-    navigation : false, // Show next and prev buttons
-    slideSpeed : 500,
-    paginationSpeed : 400,
-    singleItem : true
+
+  $('#prop-carousel').slick({
+    dots: false,
+    infinite: true,
+    speed: 500,
+    fade: true,
+    slide: 'div',
+    cssEase: 'linear'
   });
+
+
+
   window.scrollTo(0, 0); //scroll back to top after editing
   initializeMap();
   render();

@@ -112,121 +112,122 @@
 								{{/if}}
 							</p>
 						</section>
-						<section id="description">
-							<header><h3 class="m-t-none">房屋描述</h3></header>
-							<hr>
-							{{#if property.description}}
-							<p>{{property.description}}</p>
-							{{else}}
-							<p class="text-mute">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
-							{{/if}}
-						</section><!-- /#description -->
+						<div id="description" class="panel">
+              <div class="panel-body">
+  							<header>房屋描述</header>
+  							<hr>
+  							{{#if property.description}}
+  							<p>{{property.description}}</p>
+  							{{else}}
+  							<p class="text-mute">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
+  							{{/if}}
+              </div>
+						</div><!-- /#description -->
 						{{#if property.photos}}
-						<section id="property-gallery">
-							<div class="owl-carousel thumbnail">
+						<div class="">
+							<div id="prop-carousel" class="carousel">
 								{{#each property.photos}}
-								<div class="item"><img src="{{getImageURL this}}"></div>
+								<div class="item thumbnail"><img src="{{getImageURL this}}"></div>
 								{{/each}}
 							</div>
-						</section>
+						</div>
 						{{/if}}
-						<section id="quick-summary" class="clearfix">
-							<header><h3>概览</h3><hr></header>
-							<div>
-								{{#with property}}
-								<div class="row m-b-sm">
-									<div class="col-xs-5"><strong>地址:</strong></div>
-									<div class="col-xs-7 text-right">{{address}}</div>
-								</div>
-								<div class="row m-b-sm">
-									<div class="col-xs-5"><strong>区域:</strong></div>
-									<div class="col-xs-7 text-right">{{transDistr district}}</div>
-								</div>
-								<div class="row m-b-sm">
-									<div class="col-xs-5"><strong>房屋类型:</strong></div>
-									<div class="col-xs-7 text-right">{{transPtype propertyType}}</div>
-								</div>
-								<div class="row m-b-sm">
-									<div class="col-xs-5"><strong>房间:</strong></div>
-									<div class="col-xs-7 text-right">{{transRoom rentType roomType}}</div>
-								</div>
-								<div class="row m-b-sm">
-									<div class="col-xs-5"><strong>面积:</strong></div>
-									<div class="col-xs-7 text-right">{{area}} m<sup>2</sup></div>
-								</div>
-								<div class="row m-b-sm">
-									<div class="col-xs-5"><strong>卧室:</strong></div>
-									<div class="col-xs-7 text-right">{{bedroom}}</div>
-								</div>
-								<div class="row m-b-sm">
-									<div class="col-xs-5"><strong>卫生间:</strong></div>
-									<div class="col-xs-7 text-right">{{bathroom}}</div>
-								</div>
-								<div class="row m-b-sm">
-									<div class="col-xs-5"><strong>最近地铁站:</strong></div>
-									<div class="col-xs-7 text-right">{{transMRT mrt}} ({{mrt}})</div>
-								</div>
-								<div class="row m-b-sm">
-									<div class="col-xs-5"><strong>入住时间:</strong></div>
-									<div class="col-xs-7 text-right">{{transDatetime moveInDate}} 起</div>
-								</div>
-								{{/with}}
-							</div>
-						</section><!-- /#quick-summary -->
-						<section id="property-features">
-							<header><h3>房屋设施</h3></header>
-							<hr>
-							<div class="row">
-								{{#each property.facilities}}
-								<div class="col-sm-4 col-xs-6"><i class="fa fa-circle text-primary icon-align"></i>{{transPfaci this}}</div>
-								{{/each}}
-							</div>
-						</section><!-- /#property-features -->
+						<div id="quick-summary" class="panel">
+              <div class="panel-body">
+  							<header>概览<hr></header>
+  							<div>
+  								{{#with property}}
+  								<div class="row m-b-sm">
+  									<div class="col-xs-5"><strong>地址:</strong></div>
+  									<div class="col-xs-7 text-right">{{address}}</div>
+  								</div>
+  								<div class="row m-b-sm">
+  									<div class="col-xs-5"><strong>区域:</strong></div>
+  									<div class="col-xs-7 text-right">{{transDistr district}}</div>
+  								</div>
+  								<div class="row m-b-sm">
+  									<div class="col-xs-5"><strong>房屋类型:</strong></div>
+  									<div class="col-xs-7 text-right">{{transPtype propertyType}}</div>
+  								</div>
+  								<div class="row m-b-sm">
+  									<div class="col-xs-5"><strong>房间:</strong></div>
+  									<div class="col-xs-7 text-right">{{transRoom rentType roomType}}</div>
+  								</div>
+  								<div class="row m-b-sm">
+  									<div class="col-xs-5"><strong>面积:</strong></div>
+  									<div class="col-xs-7 text-right">{{area}} m<sup>2</sup></div>
+  								</div>
+  								<div class="row m-b-sm">
+  									<div class="col-xs-5"><strong>卧室:</strong></div>
+  									<div class="col-xs-7 text-right">{{bedroom}}</div>
+  								</div>
+  								<div class="row m-b-sm">
+  									<div class="col-xs-5"><strong>卫生间:</strong></div>
+  									<div class="col-xs-7 text-right">{{bathroom}}</div>
+  								</div>
+  								<div class="row m-b-sm">
+  									<div class="col-xs-5"><strong>最近地铁站:</strong></div>
+  									<div class="col-xs-7 text-right">{{transMRT mrt}} ({{mrt}})</div>
+  								</div>
+  								<div class="row m-b-sm">
+  									<div class="col-xs-5"><strong>入住时间:</strong></div>
+  									<div class="col-xs-7 text-right">{{transDatetime moveInDate}} 起</div>
+  								</div>
+  								{{/with}}
+  							</div>
+              </div>
+						</div><!-- /#quick-summary -->
+						<div id="property-features" class="panel">
+              <div class="panel-body">
+  							<header>房屋设施</header>
+  							<hr>
+  							<ul class="property-features-list">
+  								{{#each property.facilities}}
+  								<li class="col-sm-4 col-xs-6">{{transPfaci this}}</li>
+  								{{/each}}
+  							</ul>
+              </div>
+						</div><!-- /#property-features -->
 
-						<section id="property-nearby">
-							<header><h3>附近 <small>(1km 内)</small></h3></header>
-							<hr>
-							<div class="panel panel-primary">
-								<div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#nearbyMart">
-									<h3 class="panel-title">超市，便利店</h3>
-								</div>
-								<div class="panel-body panel-collapse collapse" id="nearbyMart">
-									{{#if nearby.mart}}
-									<ul class="list-unstyled property-features-list">
-										{{#each nearby.mart}}
-										<li>{{name}}</li>
-										{{/each}}
-									</ul>
-									{{else}}
-									<span>没有相关信息</span>
-									{{/if}}
-								</div>
-							</div>
-							<!-- <div class="panel panel-primary" style="cursor:pointer" data-toggle="collapse" href="#nearbyBus">
-								<div class="panel-heading">
-									<h3 class="panel-title">公车站</h3>
-								</div>
-								<div class="panel-body panel-collapse collapse" id="nearbyBus">
-									<i class="fa fa-refresh fa-spin"></i>
-								</div>
-							</div> -->
-							<div class="panel panel-primary">
-								<div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#nearbyFood">
-									<h3 class="panel-title">餐馆，食阁</h3>
-								</div>
-								<div class="panel-body panel-collapse collapse" id="nearbyFood">
-									{{#if nearby.food}}
-									<ul class="list-unstyled property-features-list">
-										{{#each nearby.food}}
-										<li>{{name}}</li>
-										{{/each}}
-									</ul>
-									{{else}}
-									<span>没有相关信息</span>
-									{{/if}}
-								</div>
-							</div>
-						</section>
+						<div id="property-nearby" class="panel">
+              <div class="panel-body">
+  							<header>附近 <small>(1km 内)</small></header>
+  							<hr>
+  							<div class="panel panel-primary">
+  								<div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#nearbyMart">
+  									<h3 class="panel-title">超市，便利店</h3>
+  								</div>
+  								<div class="panel-body panel-collapse collapse" id="nearbyMart">
+  									{{#if nearby.mart}}
+  									<ul class="list-unstyled property-features-list">
+  										{{#each nearby.mart}}
+  										<li>{{name}}</li>
+  										{{/each}}
+  									</ul>
+  									{{else}}
+  									<span>没有相关信息</span>
+  									{{/if}}
+  								</div>
+                </div>
+
+  							<div class="panel panel-primary">
+  								<div class="panel-heading" style="cursor:pointer" data-toggle="collapse" href="#nearbyFood">
+  									<h3 class="panel-title">餐馆，食阁</h3>
+  								</div>
+  								<div class="panel-body panel-collapse collapse" id="nearbyFood">
+  									{{#if nearby.food}}
+  									<ul class="list-unstyled property-features-list">
+  										{{#each nearby.food}}
+  										<li>{{name}}</li>
+  										{{/each}}
+  									</ul>
+  									{{else}}
+  									<span>没有相关信息</span>
+  									{{/if}}
+  								</div>
+  							</div>
+              </div>
+						</div>
 					</div><!-- /.col-md-9 -->
 					<!-- end Property Detail Content -->
 					<!-- route tool -->
