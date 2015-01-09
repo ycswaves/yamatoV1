@@ -38,6 +38,10 @@ ul.property-features-list{
   color: #428bca
 }
 
+#prop-carousel{
+  margin-bottom: 70px;
+}
+
 .gray-out{
   opacity: 0.4;
   filter: alpha(opacity=40); /* msie */
@@ -48,7 +52,7 @@ ul.property-features-list{
     display: block;
     width: auto;
     max-width: 698px;
-    max-height: 400px;
+    max-height: 450px;
     margin:0 auto
 }
 

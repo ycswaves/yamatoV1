@@ -1,12 +1,13 @@
 Template.propertyDetail.rendered = function() {
 
   $('#prop-carousel').slick({
-    dots: false,
+    dots: true,
     infinite: true,
     speed: 500,
     fade: true,
     slide: 'div',
-    cssEase: 'linear'
+    cssEase: 'linear',
+    lazyLoad: 'ondemand'
   });
 
 

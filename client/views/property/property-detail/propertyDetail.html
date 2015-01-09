@@ -112,26 +112,29 @@
 								{{/if}}
 							</p>
 						</section>
-						<div id="description" class="panel">
-              <div class="panel-body">
-  							<header>房屋描述</header>
-  							<hr>
-  							{{#if property.description}}
-  							<p>{{property.description}}</p>
-  							{{else}}
-  							<p class="text-mute">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
-  							{{/if}}
-              </div>
-						</div><!-- /#description -->
+
 						{{#if property.photos}}
 						<div class="">
 							<div id="prop-carousel" class="carousel">
 								{{#each property.photos}}
-								<div class="item thumbnail"><img src="{{getImageURL this}}"></div>
+								<div class="item thumbnail"><img data-lazy="{{getImageURL this}}"></div>
 								{{/each}}
 							</div>
 						</div>
 						{{/if}}
+
+            <div id="description" class="panel">
+              <div class="panel-body">
+                <header>房屋描述</header>
+                <hr>
+                {{#if property.description}}
+                <p>{{property.description}}</p>
+                {{else}}
+                <p class="text-mute">这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)</p>
+                {{/if}}
+              </div>
+            </div><!-- /#description -->
+
 						<div id="quick-summary" class="panel">
               <div class="panel-body">
   							<header>概览<hr></header>
