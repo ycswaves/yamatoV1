@@ -1,4 +1,3 @@
-var autoCompl = new GoogleAutoComplete();
 Template.landing.rendered = function() {
 	render();
 	$('.selectpicker').selectpicker({
@@ -18,42 +17,7 @@ Template.landing.rendered = function() {
 
 	ReactiveDS.set('mrtline', Config.getStationsByLine('NS'));
 
-	autoCompl.init('multiAddress', function(place){
-    var userType = $('input[name="multiAddress"]').val()
-        google_address = place.formatted_address
-      , locObj = {};
-
-    locObj.address = userType;
-
-    var postcodeFound = google_address.match(/singapore (\d{6})/i);
-    if(postcodeFound && postcodeFound.length>1){
-      locObj.postcode = postcodeFound[1];
-    }
-    if(place.geometry.location){
-      var lat = place.geometry.location.k
-        , lng = place.geometry.location.D;
-
-      locObj.geometry = {
-        latitude: lat,
-        longitude: lng
-      };
-    }
-
-
-
-    var existingAddr = Session.get('multiAddress');
-    if(existingAddr){
-      existingAddr[locObj.address] = locObj;
-      Session.set('multiAddress', existingAddr);
-    } else {
-      var obj = {};
-      obj[userType] = locObj;
-      Session.set('multiAddress', obj);
-    }
-
-    $('input[name="multiAddress"]').val('');
-    //console.log(Session.get('multiAddress'));
-  });
+	CommonHelper.initPillboxAutoCompl('multiAddress', 'input[name="multiAddress"]');
 
 }
 
@@ -67,14 +31,14 @@ Template.landing.events({
   },
 
   'click .multiAddrLabel': function(e, t){
-    //e.preventDefault(); not doing prevent default becoz click trigger remove label too
-    var addr = t.$(e.target).data('address')
+    e.preventDefault();
+    var addr = t.$(e.target).data('key')
       , existingAddr = Session.get('multiAddress');
     existingAddr[addr] = undefined; // Caution: existingAddr could become empty array upon deletion.
     Session.set('multiAddress', existingAddr);
-    t.$(e.target).remove();
     $('input[name="multiAddress"]').val('');
-    //console.log(Session.get('multiAddress'));
+    // to limit no of multiple address to 6
+    CommonHelper.checkMultiAddrLimit('input[name="multiAddress"]', 6);
   },
 
 	'focus input[name="intelAddress"]': function(e, t){

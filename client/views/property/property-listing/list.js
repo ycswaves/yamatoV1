@@ -45,7 +45,6 @@ ListController = RouteController.extend({
       , query = params.query
       , queryArr = []; // to pass in footer later
 
-    console.log(query);
     for(var key in query){
       switch(key){
         case 'price':

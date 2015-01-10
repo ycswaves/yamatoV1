@@ -4,9 +4,31 @@ Template.sideSearch.rendered = function() {
     container:'body',
     style:'btn-white'
   });
+
+  CommonHelper.initPillboxAutoCompl('multiAddress', 'input[name="multiAddress"]');
 }
 
 Template.sideSearch.events({
+  'keyup input[name="multiAddress"], keypress input[name="multiAddress"]': function(e, t){
+    if (e.keyCode == 13) { //prevent enter in this field to submit form
+      e.preventDefault();
+      return false;
+    }
+  },
+
+  'click .multiAddrLabel': function(e, t){
+    console.log(t.$(e.target));
+    e.preventDefault();
+    var addr = t.$(e.target).data('key')
+      , existingAddr = Session.get('multiAddress');
+    existingAddr[addr] = undefined; // Caution: existingAddr could become empty array upon deletion.
+    Session.set('multiAddress', existingAddr);
+    //t.$(e.target).remove();
+    $('input[name="multiAddress"]').val('');
+    // to limit no of multiple address to 6
+    CommonHelper.checkMultiAddrLimit('input[name="multiAddress"]', 6);
+  },
+
   'change #mrtlines': function(e, t){
     e.preventDefault();
     var mrtLineFromQuery = Router.current().params.query.mrtLines
@@ -111,6 +133,10 @@ Template.sideSearch.helpers({
 
   currentQuery: function(){
     return Router.current().params.query
+  },
+
+  multiAddress: function(){
+    return Session.get('multiAddress');
   }
 
 });

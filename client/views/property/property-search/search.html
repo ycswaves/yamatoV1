@@ -78,6 +78,17 @@
             <option value="createdAtBy1">最新发布</option>
           </select>
         </div><!-- /.form-group -->
+        <div class="form-group">
+          <div class="pillbox clearfix bg-white m-b">
+            <ul>
+              {{#each arrayify multiAddress}}
+              <li class="label bg-success multiAddrLabel"
+                  data-key="{{key}}">{{value.address}}</li>
+              {{/each}}
+              <input type="text" class="form-control m-l-sm" placeHolder="智能搜索,添加多个地址" id="multiAddress" name="multiAddress">
+            </ul>
+          </div>
+        </div><!-- /.form-group -->
       </form><!-- /#form-map -->
     </aside><!-- /#edit-search -->
   </section><!-- /#sidebar -->

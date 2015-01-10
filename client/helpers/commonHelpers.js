@@ -104,5 +104,60 @@ CommonHelper = {
         return loggedInUser.emails[0];
       }
     }
+  },
+
+  'checkMultiAddrLimit': function(inputDom, limit){
+    var addresses = Session.get('multiAddress')
+      , addrCount = 0;
+
+    for(var key in addresses){
+      addrCount++;
+    }
+
+    if(addrCount >= 6){
+      $(inputDom).prop('disabled', true);
+    } else {
+      $(inputDom).prop('disabled', false);
+    }
+  },
+
+  'initPillboxAutoCompl': function(domId, inputDom){
+    var autoCompl = new GoogleAutoComplete();
+
+    autoCompl.init(domId, function(place){
+      var userType = $(inputDom).val()
+          google_address = place.formatted_address
+        , locObj = {};
+
+      locObj.address = userType;
+
+      var postcodeFound = google_address.match(/singapore (\d{6})/i);
+      if(postcodeFound && postcodeFound.length>1){
+        locObj.postcode = postcodeFound[1];
+      }
+      if(place.geometry.location){
+        var lat = place.geometry.location.k
+          , lng = place.geometry.location.D;
+
+        locObj.geometry = {
+          latitude: lat,
+          longitude: lng
+        };
+      }
+
+      var existingAddr = Session.get('multiAddress');
+      if(existingAddr){
+        existingAddr[locObj.address] = locObj;
+        Session.set('multiAddress', existingAddr);
+      } else {
+        var obj = {};
+        obj[userType] = locObj;
+        Session.set('multiAddress', obj);
+      }
+
+      // to limit no of multiple address to 6
+      CommonHelper.checkMultiAddrLimit(inputDom, 6);
+      $(inputDom).val('');
+    });
   }
 }
