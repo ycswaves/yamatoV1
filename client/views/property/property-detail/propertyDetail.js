@@ -1,13 +1,23 @@
 Template.propertyDetail.rendered = function() {
 
   $('#prop-carousel').slick({
+    slidesToShow: 1,
+    slidesToScroll: 1,
     dots: true,
     infinite: true,
+    arrow: false,
+    asNavFor: '#prop-carousel-nav',
     speed: 500,
     fade: true,
     slide: 'div',
     cssEase: 'linear',
     lazyLoad: 'ondemand'
+  });
+
+  $('#prop-carousel-nav').slick({
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    asNavFor: '#prop-carousel'
   });
 
 

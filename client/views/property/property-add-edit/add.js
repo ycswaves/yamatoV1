@@ -273,7 +273,7 @@ Template.addProperty.events({
     e.preventDefault();
     var icon = $(e.target)
       , iconAnchor = icon.parent()
-      , imgDiv = iconAnchor.parent()
+      , imgDiv = iconAnchor.parent().siblings('img')
       , imgID = iconAnchor.data('id');
 
     imgDiv.toggleClass('gray-out');

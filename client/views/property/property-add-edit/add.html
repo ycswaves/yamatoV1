@@ -200,11 +200,12 @@
             </header>
             <div class="panel-body">
               {{#each this}}
-              <div class="col-xs-6 col-md-3">
-                <div class="thumbnail" style="text-align:center">
-                  <img src="{{getImageURL this}}" >
+              <div class="pull-left text-center">
+                <img src="{{getImageURL this}}" style="max-height:100px" class="img-thumbnail">
+                <br>
+                <span class="text-center">
                   <a href="#" class="existingImage" data-id="{{this}}"><i class="delete fa fa-trash-o"></i></a>
-                </div>
+                </span>
               </div>
               {{/each}}
             </div>
