@@ -72,7 +72,7 @@ ListController = RouteController.extend({
           filter[key] = query[key];
           break;
       }
-      queryArr.push(key+'='+query[key]); //later revert the query back to string
+      queryArr.push(key+'='+query[key]); //later convert the query back to string
     }
 
     if(filter['rentType'] == 0 && filter['roomtype']){
@@ -80,6 +80,26 @@ ListController = RouteController.extend({
     } else {
       filter['roomtype'] = null; // else, unset roomtype
     }
+
+    //handle multi address, method 1: Union
+    var multiAddress = Session.get('multiAddress')
+      , districtList = [];
+    if(multiAddress){
+      for(var key in multiAddress){
+        var postcode = multiAddress[key].postcode
+        if(postcode){
+          var distCode = Config.getDistrictByPostal(postcode);
+          if(distCode){
+            districtList.push(distCode);
+          }
+        }
+      }
+    }
+    if(districtList.length > 0){
+      filter['district'] = {$in: districtList};
+    }
+
+    console.log(filter);
 
     var totalDocs = Properties.find(filter).count() //filter apply here too
       , totalPages = Math.ceil(totalDocs / pageLimit)

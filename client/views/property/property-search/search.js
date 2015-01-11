@@ -17,7 +17,6 @@ Template.sideSearch.events({
   },
 
   'click .multiAddrLabel': function(e, t){
-    console.log(t.$(e.target));
     e.preventDefault();
     var addr = t.$(e.target).data('key')
       , existingAddr = Session.get('multiAddress');

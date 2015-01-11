@@ -22,7 +22,7 @@
                     <aside class="bg-info lter r-l text-center v-middle col-xs-4 pointer" style="background: url('{{getImageURL photos}}') center center no-repeat;background-size: cover;">
                     </aside>
                     {{else}}
-                    <aside class="bg-info lter r-l text-center v-middle col-xs-4">
+                    <aside class="bg-primary lter r-l text-center v-middle col-xs-4">
                       <div class="wrapper">
                         <i class="fa fa-camera-retro fa fa-4x"></i>
                         <p class="text-muted">暂无图片</p>
@@ -36,7 +36,7 @@
                           <div class="row m-b-sm">
                             <div class="col-sm-7">
                               <a href="{{pathFor 'propertyDetail' id=_id}}">
-                                <strong>{{address}}</strong>
+                                <strong class="text-primary">{{address}}</strong>
                               </a>
                             </div>
                             <div class="col-sm-5 hidden-xs text-right">
@@ -75,17 +75,25 @@
                                   <span style="margin-right:10px"></span>
                                   <img src="/images/bathtub.svg" alt="bathroom" style="width:13px; position:relative; top:-3px"> {{bathroom}}
                                 </dd>
+                                <dt>
+                                  <a href="{{pathFor 'propertyDetail' id=_id}}" class="text-primary">
+                                    查看详情 <i class="fa fa-angle-right"></i>
+                                  </a>
+                                </dt>
+                                <dd class="full-width text-right tags">
+                                  <a href="{{pathFor 'propertyDetail' id=_id}}">
+                                    <div class="label bg-info">${{price}}</div>
+                                  </a>
+                                </dd>
                               </dl>
-                              <dd class="full-width text-right tags">
-                                <div class="label bg-info">${{price}}</div>
-                              </dd>
+
                             </div>
                           </div>
                         </div>
                       </div>
                     </aside>
                   </div>
-                  <ul class="list-group">
+                  <!-- <ul class="list-group">
                     <li class="list-group-item"><h4><i class="fa fa-bell-alt"></i>智能匹配指数 (34)</h4></li>
                     <li class="list-group-item">
                       <dl>
@@ -99,7 +107,7 @@
                         <dd>开车: 16 min | 公共交通: 37 min</dd>
                       </dl>
                     </li>
-                  </ul>
+                  </ul> -->
                 </div>
               </div>
             </div>

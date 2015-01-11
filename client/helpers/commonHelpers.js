@@ -125,11 +125,11 @@ CommonHelper = {
     var autoCompl = new GoogleAutoComplete();
 
     autoCompl.init(domId, function(place){
-      var userType = $(inputDom).val()
+      var userInput = $(inputDom).val()
           google_address = place.formatted_address
         , locObj = {};
 
-      locObj.address = userType;
+      locObj.address = userInput;
 
       var postcodeFound = google_address.match(/singapore (\d{6})/i);
       if(postcodeFound && postcodeFound.length>1){
@@ -151,7 +151,7 @@ CommonHelper = {
         Session.set('multiAddress', existingAddr);
       } else {
         var obj = {};
-        obj[userType] = locObj;
+        obj[userInput] = locObj;
         Session.set('multiAddress', obj);
       }
 
