@@ -33,7 +33,7 @@
         <div class="col-xs-10 b-r">
           <div class="input-group">
             <span style="padding:6px 12px"><i class="fa fa-circle-o icon-align"></i></span>
-            <label style="margin-left:8px" id="route-origin" name="route-origin" data-map-lat="{{latitude}}" data-map-lng="{{longitude}}">当前地址</label>
+            <label style="margin-left:8px" id="route-origin" name="route-origin" data-map-lat="{{latitude}}" data-map-lng="{{longitude}}">当前浏览地址</label>
           </div>
           <div class="input-group">
             <span class="input-group-addon text-danger"><i class="fa fa-map-marker icon-align"></i></span>
@@ -71,6 +71,23 @@
           {{/each}}
         </div>
       {{/if}}
+    </div>
+  </div>
+  <!-- {{> routeMap}} -->
+</template>
+
+<template name="routeMap">
+  <div id="routeMapModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <h4 class="modal-title">详细路线</h4>
+        </div>
+        <div class="modal-body center" id="routeMapModalContent">
+          
+        </div>
+      </div>
     </div>
   </div>
 </template>

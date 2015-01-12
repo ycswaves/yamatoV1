@@ -54,10 +54,6 @@ Template.routeHelper.rendered = function() {
           Session.set('Direction.routes',data.routes);
         }
       })
-      //测试两点之间最短距离及时间
-      GoogleDirection.shortest(origin,destination,mode,function(data){
-        console.log(data);
-      })
     }
   }
 
