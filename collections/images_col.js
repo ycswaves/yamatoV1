@@ -5,8 +5,10 @@ var imageStore = new FS.Store.S3("property-images", { //todo: update 'image' to 
   // // The rest are generic store options supported by all storage adapters
   transformWrite: function(fileObj, readStream, writeStream){
     gm(readStream)
-      .strokeWidth(15)
-      .drawText(30, 20, "GMagick!")
+      .stroke("#fff")
+      .strokeWidth(1)
+      .fontSize(14)
+      .drawText(15, 20, "www.yiho.me")
       .stream(function (err, stdout, stderr) {
         if(err){
           console.log(err);
