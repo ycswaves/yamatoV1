@@ -203,3 +203,7 @@ hr {
   margin-top: 60px;
   margin-bottom: 60px;
 }
+
+.gap > :first-child {
+  margin-bottom: 10px;
+}

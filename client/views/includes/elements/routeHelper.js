@@ -10,6 +10,8 @@ Template.routeHelper.events({
 
 
 Template.routeHelper.rendered = function() {
+  var switched = false;
+
   //删除路线信息
   Session.set('Direction.routes',null);
   
@@ -24,7 +26,15 @@ Template.routeHelper.rendered = function() {
   //交换出发地按钮
   //保存原有的data，然后塞进后来形成的DOM
   $('body').off('click','.switchPlace').on('click','.switchPlace',function(){
-    
+    if (switched) {
+      $('#originDiv').after($('#destinationDiv'));
+      switched = false;
+    }
+    else {
+      $('#originDiv').before($('#destinationDiv'));
+      switched = true;
+    }
+    searchForRoute();
   })
 
   function searchForRoute(place){
@@ -49,7 +59,16 @@ Template.routeHelper.rendered = function() {
       if (typeof mode == "undefined") {
         mode = 'driving';
       }
-      GoogleDirection.to(origin,destination,mode,function(data){
+      //如果切换了起始终点
+      if (switched) {
+        var from = destination;
+        var to = origin;
+      }
+      else {
+        var from = origin;
+        var to = destination;
+      }
+      GoogleDirection.to(from,to,mode,function(data){
         if (data) {
           Session.set('Direction.routes',data.routes);
         }
