@@ -7,9 +7,9 @@ Meteor.methods({
 		//查找原帖主人
 		switch(formObj.referType){
 			case 'Property':
-			var property = Properties.findOne({_id:formObj.referId});
-			var author = property.author;
-			break;
+				var property = Properties.findOne({_id:formObj.referId});
+				var author = property.author;
+				break;
 		}
 		//添加主人
 		formObj.chatWith = author;

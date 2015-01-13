@@ -30,12 +30,12 @@
     </div>
     <div class="panel-body">
       <div class="row">
-        <div class="col-xs-10 b-r">
-          <div class="input-group">
+        <div class="col-xs-10 b-r gap">
+          <div class="input-group" id="originDiv">
             <span style="padding:6px 12px"><i class="fa fa-circle-o icon-align"></i></span>
             <label style="margin-left:8px" id="route-origin" name="route-origin" data-map-lat="{{latitude}}" data-map-lng="{{longitude}}">当前浏览地址</label>
           </div>
-          <div class="input-group">
+          <div class="input-group" id="destinationDiv">
             <span class="input-group-addon text-danger"><i class="fa fa-map-marker icon-align"></i></span>
             <input type="text" id="route-destination" name="route-destination" class="form-control routeInput" placeholder="输入目的地">
           </div>
