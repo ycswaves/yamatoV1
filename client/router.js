@@ -58,7 +58,7 @@ var removeFullBg = function() {
 }
 
 Router.onBeforeAction(removeFullBg);
-Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail']});
+Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail','terms']});
 Router.onBeforeAction(filters.isNotLoggedIn, {only: ['signin']});
 Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
 Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail']});
@@ -153,6 +153,16 @@ Router.map(function () {
     controller: 'AdminUsersController',
     onAfterAction: function () {
       document.title = TITLE + ' | ' + '管理用户';
+    }
+  });
+
+  this.route('terms', {
+    path: '/pages/terms-conditions',
+    template: 'terms',
+    parent:'landing',
+    label: '网站条例及规范',
+    onAfterAction: function () {
+      document.title = TITLE + ' | ' + '网站条例及规范';
     }
   });
 
