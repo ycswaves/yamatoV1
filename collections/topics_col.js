@@ -13,7 +13,8 @@ Schemas.Topic = new SimpleSchema({
   },
   referId: {
     type: String,
-    label: "原帖ID"
+    label: "原帖ID",
+    optional: true
   },
   referType: {
     type: String,

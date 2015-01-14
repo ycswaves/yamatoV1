@@ -12,9 +12,15 @@ Conversations = {
 			conversations.remove({topicId:topicId});
 		}
 	},
-	start: function(referId, type) {
+	start: function(referId, type, chatWith) {
 		//means there is no same topic
-		if(Topics.find({creator:Meteor.userId(),referId:referId,referType:type}).count() == 0) {
+		var searchCondition = {creator:Meteor.userId(),referId:referId,referType:type};
+		switch (type) {
+			case 'System':
+				searchCondition = {creator:Meteor.userId(),referType:type};
+		}
+		
+		if(Topics.find(searchCondition).count() == 0) {
 			var formObj = {
 				creator: Meteor.userId(),
 				referId: referId,
@@ -29,7 +35,7 @@ Conversations = {
 			});
 		}
 		else {
-			var topic = Topics.findOne({creator:Meteor.userId(),referId:referId});
+			var topic = Topics.findOne(searchCondition);
 			Conversations.init(topic._id);
 		}
 	},
@@ -83,9 +89,13 @@ Template.conversationTopic.helpers({
 		var referType = topic.referType;
 		switch (referType) {
 			case 'Property':
-			var property = Properties.findOne({_id:referId});
-			var object = {_link:'/property/'+property._id, _title:property.address, _image:property.photos[0]};
-			break;
+				var property = Properties.findOne({_id:referId});
+				var object = {_link:'/property/'+property._id, _title:property.address, _image:property.photos[0]};
+				break;
+			case 'System':
+			case 'Common':
+				//do nothing
+				break;
 		}
 		return object;
 	},

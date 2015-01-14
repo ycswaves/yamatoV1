@@ -9,10 +9,15 @@ Meteor.methods({
 			case 'Property':
 				var property = Properties.findOne({_id:formObj.referId});
 				var author = property.author;
+				//添加主人
+				formObj.chatWith = author;
+				break;
+			case 'System':
+				//find admin and add admin into chatwith
+				var chatWith = Meteor.users.findOne({isAdmin:true});
+				formObj.chatWith = chatWith._id;
 				break;
 		}
-		//添加主人
-		formObj.chatWith = author;
 		var topicId = Topics.insert(formObj, function(err, res) {
 			if(err){
 				console.log(err);

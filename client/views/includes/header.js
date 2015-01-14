@@ -1,7 +1,3 @@
-Template.header.rendered = function(){
-
-}
-
 Template.header.events({
   //sign out
   'click #signout' : function(e, t){
@@ -17,6 +13,10 @@ Template.header.events({
       delete Session.keys['currentPath']; //删除当前Session
       delete Session.keys['resetPassword'];
     });
+  },
+  //chat with admin
+  'click #chatWithAdmin' : function(e, t){
+    Conversations.start('','System');
   }
 })
 
