@@ -19,10 +19,10 @@
                 <div class="panel no-borders">
                   <div class="panel-body hbox-xs no-padder">
                     {{#if photos}}
-                    <aside class="bg-info lter r-l text-center v-middle col-xs-4 pointer" style="background: url('{{getImageURL photos}}') center center no-repeat;background-size: cover;">
+                    <aside class="bg-info lter r-l text-center v-middle col-xs-4 pointer" style="background: url('{{getImageURL photos}}') center center no-repeat;background-size: cover;" onclick="$('#{{_id}}').click()">
                     </aside>
                     {{else}}
-                    <aside class="bg-primary lter r-l text-center v-middle col-xs-4">
+                    <aside class="bg-primary lter r-l text-center v-middle col-xs-4 pointer" onclick="$('#{{_id}}').click()">
                       <div class="wrapper">
                         <i class="fa fa-camera-retro fa fa-4x"></i>
                         <p class="text-muted">暂无图片</p>
@@ -35,7 +35,7 @@
                         <div class="panel-body">
                           <div class="row m-b-sm">
                             <div class="col-sm-7">
-                              <a href="{{pathFor 'propertyDetail' id=_id}}">
+                              <a id="{{_id}}" href="{{pathFor 'propertyDetail' id=_id}}">
                                 <strong class="text-primary">{{address}}</strong>
                               </a>
                             </div>
