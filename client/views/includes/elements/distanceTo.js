@@ -1,10 +1,9 @@
 Template.distanceTo.helpers({
-  distances: function(thisProperty){
-    console.log(thisProperty);
-    var addresses = Session.get('multiAddress')
+  getDistances: function(thisProperty){
+    var multiAddress = Session.get('multiAddress')
       , distances = [];
-    if(addresses){
-      for(var key in addresses){
+    if(multiAddress){
+      for(var key in multiAddress){
         var postcode = multiAddress[key].postcode
         if(postcode){
           var distCode = Config.getDistrictByPostal(postcode);
@@ -13,9 +12,11 @@ Template.distanceTo.helpers({
             GoogleDirection.shortest(
               geo.latitude+','+geo.longitude, //from, can be addr or lat,lng
               thisProperty.map.latitude+','+thisProperty.map.longitude, //to
-              'transit', //mode
-              function(data){ //callback
-                if(data){ // can be null when no result
+              'walk', //mode
+              function(err, data){ //callback
+                if(err){ // can be null when no result
+                  console.log(err);
+                } else {
                   var obj = {
                     from: multiAddress[key].address,
                     to: thisProperty.address,
@@ -27,7 +28,11 @@ Template.distanceTo.helpers({
                 }
               }
             );
+          } else {
+            console.log('not the same district');
           }
+        } else {
+          console.log('no postcode');
         }
       }
     }

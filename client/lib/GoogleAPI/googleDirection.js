@@ -6,7 +6,7 @@ GoogleDirection = {
    * @param  {[string]} from [坐标]
    * @param  {[string]} to   [坐标]
    * @param  {[string]} mode [driving,walking,bicyling,transit,默认driving]
-   * @return {[object]} 
+   * @return {[object]}
    */
   'to' : function(from, to, mode, callback){
     var base_params = {
@@ -41,7 +41,7 @@ GoogleDirection = {
                 if (step.travel_mode=="TRANSIT") {
                   if (typeof step.transit_details.line.color != "undefined") {
                     hasIcon = false;
-                    bgColor = step.transit_details.line.color;  
+                    bgColor = step.transit_details.line.color;
                   }
                   shortName = step.transit_details.line.short_name;
                 }
@@ -85,7 +85,7 @@ GoogleDirection = {
       params:base_params
     },function(error,response){
       if (error) {
-        callback(null);
+        callback(error);
       }
       else {
         if (response.data.status == "OK") {
@@ -95,10 +95,10 @@ GoogleDirection = {
             distance = route.legs[0].distance.value;
             duration = route.legs[0].duration.value;
           })
-          callback({distance:distance,duration:duration});
+          callback(null, {distance:distance,duration:duration});
         }
         else {
-          callback(null);
+          callback(response);
         }
       }
     })
