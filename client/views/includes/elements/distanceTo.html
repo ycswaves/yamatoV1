@@ -1,14 +1,17 @@
 <template name="distanceTo">
+  {{#if hasMultiAddr}}
   <ul class="list-group">
     <li class="list-group-item"><h4><i class="fa fa-bell-alt"></i>智能匹配指数 (34)</h4></li>
     {{#each getDistances this}}
+    {{#if display}}
     <li class="list-group-item">
       <dl>
         <dt>距离: {{from}}</dt>
-        <dd>公共交通: {{duration}} min, 距离 {{distance}}</dd>
+        <dd>公共交通: {{duration}}分钟, 距离{{distance}}公里</dd>
       </dl>
     </li>
+    {{/if}}
     {{/each}}
   </ul>
-
+  {{/if}}
 </template>

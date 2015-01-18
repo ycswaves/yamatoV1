@@ -82,6 +82,7 @@ ListController = RouteController.extend({
     }
 
     //handle multi address, method 1: Union
+    /*
     var multiAddress = Session.get('multiAddress')
       , districtList = [];
     if(multiAddress){
@@ -98,6 +99,7 @@ ListController = RouteController.extend({
     if(districtList.length > 0){
       filter['district'] = {$in: districtList};
     }
+    */
 
     //console.log(filter);
 
