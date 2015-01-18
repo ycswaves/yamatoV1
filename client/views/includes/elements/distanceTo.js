@@ -35,7 +35,9 @@ Template.distanceTo.helpers({
                 };
                 console.log('Call made:'+address);
                 //存入local collection
-                directions.insert(obj);
+                if(directions.find(obj).count()==0){
+                  directions.insert(obj);
+                }
               }
             });
         }
