@@ -6,11 +6,35 @@
     }
   </style>
   <section class="panel">
+    <div class="panel-body">
+      <form class="form-inline" role="form">
+        <div class="checkbox m-l-xs m-r-xs">
+          <label>
+            <input type="checkbox" id="batchCheck"> 批量修改
+          </label>
+        </div>
+        <div class="form-group">
+          <select class="status selectpicker" id="batchStatus" data-width="100%" style="margin-bottom:0px;">
+            <option value="">选择状态</option>
+            {{#each arrayify propertyStatus}}
+            <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
+            {{/each}}
+          </select>
+        </div>
+        <!-- <div class="form-group">
+          <a class="btn btn-danger btn-xs" id="batchDelete"><i class="fa fa-trash-o"></i> 删除</a>
+        </div> -->
+      </form>
+    </div>
+  </section>
+
+  <section class="panel">
     <div class="table-responsive">
       <table class="table table-striped m-b-none">
         <thead>
           <tr>
-            <th style="width:40%">房屋列表</th>
+            <th></th>
+            <th style="width:35%">房屋列表</th>
             <th style="width:10%">价格</th>
             <th>发布人</th>
             <th>发布时间</th>
@@ -20,11 +44,12 @@
         </thead>
         <tbody>
           {{#unless properties.count}}
-          <tr><td colspan="5" class="text-center">没有帖子</td></tr>
+          <tr><td colspan="6" class="text-center">没有帖子</td></tr>
           {{/unless}}
 
           {{#each properties}}
           <tr>
+            <td class="v-middle"><input type="checkbox" class="td-check"></td>
             <td class="v-middle">
               <a href="{{pathFor 'propertyDetail' id=_id}}"><figure>{{address}}</figure></a>
             </td>
@@ -35,7 +60,7 @@
               <a class="delete" style="cursor: pointer" data-propid="{{_id}}"><i class="fa fa-trash-o"></i> 删除</a>
             </td>
             <td class="v-middle">
-              <select class="status selectpicker" id="{{_id}}" data-width="100%" style="margin-bottom:0px;">
+              <select class="status selectpicker individual" id="{{_id}}" data-width="100%" style="margin-bottom:0px;">
                 {{#each arrayify propertyStatus}}
                 <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
                 {{/each}}

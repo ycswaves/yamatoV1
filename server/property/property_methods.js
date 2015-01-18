@@ -36,6 +36,19 @@ Meteor.methods({
     );
   },
 
+  toggleBatchPropertyStatus: function(propIDs, sts){
+    validateUser();
+    if(propIDs.length && propIDs.length>0){
+      filter = (Meteor.user().isAdmin)?
+          {_id: {$in: propIDs}} : {_id: {$in: propIDs}, author: Meteor.userId()}
+      Properties.update(
+        filter,
+        { $set: {status: sts} },
+        { multi: true}
+      );
+    }
+  },
+
   incPropertyView: function(propID){
     var authorId = Meteor.userId() || null;
     Properties.update(

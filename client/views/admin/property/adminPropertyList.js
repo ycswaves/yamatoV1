@@ -18,7 +18,36 @@ Template.adminPropertyList.helpers({
 });
 
 Template.adminPropertyList.events({
-  'change select.status': function(e, t){
+  'change #batchCheck': function(e, t){
+    $('.td-check').prop('checked', !!t.find('#batchCheck').checked);
+  },
+
+  'change #batchStatus': function(e, t){
+    var newStatus = t.find('#batchStatus').value;
+    if(newStatus == '') return false;
+    var checkedPropIds = t.findAll('input:checkbox.td-check').reduce(function (pre, current) {
+          if(current.checked){
+            var propId = $(current).parent('td').parent('tr').find('select.individual').attr('id');
+            pre.push(propId);
+          }
+          return pre;
+        }, []);
+    if(checkedPropIds.length>0){
+      console.log(newStatus, checkedPropIds);
+      Meteor.call('toggleBatchPropertyStatus', checkedPropIds, newStatus, function(err){
+        if(err){
+          swal('', '房屋状态更新失败.', 'error');
+          return false;
+        } else {
+          swal('', '房屋状态更新成功!', 'success');
+        }
+      });
+    }
+    $('#batchStatus').val('');
+    $('#batchStatus').selectpicker('refresh');
+  },
+
+  'change select.individual': function(e, t){
     e.preventDefault();
     var propertyId = t.$(e.target).attr('id')
       , status = t.find('#'+propertyId).value;
