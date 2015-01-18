@@ -22,6 +22,8 @@ Template.sideSearch.events({
       , existingAddr = Session.get('multiAddress');
     existingAddr[addr] = undefined; // Caution: existingAddr could become empty array upon deletion.
     Session.set('multiAddress', existingAddr);
+    //隐藏已有的数据，但不擦除
+    directions.update({to: addr}, {$set:{display: false}});
     //t.$(e.target).remove();
     $('input[name="multiAddress"]').val('');
     // to limit no of multiple address to 6

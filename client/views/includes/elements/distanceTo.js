@@ -5,23 +5,16 @@ Template.distanceTo.helpers({
     var multiAddress = Session.get('multiAddress')
     , determiner = [];
     if(multiAddress){
-      var distances = [];
       for(var key in multiAddress){
         var geo = multiAddress[key].geometry;
         var address = multiAddress[key].address;
-        var existSession = Session.get('gDirection.'+_id);
         var called = false;
 
         //避免重复调用相同地址
-        _.each(existSession,function(s,key){
-          if(s.from == address) {
-            called = true;
-            existSession[key].display = true;
-          } else {
-            // 取消显示，但是不擦除session，以便下次使用
-            // existSession[key].display = false;
-          }
-        })
+        if(directions.findOne({referId:_id,to:address})){
+          called = true;
+          directions.update({referId: _id,to:address}, {$set:{display: true}});
+        }
 
         if (!called){
           GoogleDirection.shortest(
@@ -33,27 +26,22 @@ Template.distanceTo.helpers({
                 console.log(err);
               } else {
                 var obj = {
-                  from: address,
-                  to: thisProperty.address,
+                  referId: _id,
+                  from: thisProperty.address,
+                  to: address,
                   distance: data.distance/1000,
                   duration: Math.ceil(data.duration/60),
                   display:true
                 };
                 console.log('Call made:'+address);
-                //存入之前已有的session
-                if (existSession) {
-                  existSession.push(obj)
-                  Session.set('gDirection.'+_id,existSession);
-                } else {
-                  distances.push(obj);
-                  Session.set('gDirection.'+_id,distances);
-                }
+                //存入local collection
+                directions.insert(obj);
               }
             });
         }
       }
     }
-    return Session.get('gDirection.'+_id);
+    return directions.find({referId:_id,display:true});
   },
   hasMultiAddr: function(){
     var multiAddress = Session.get('multiAddress');

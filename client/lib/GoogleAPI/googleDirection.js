@@ -1,3 +1,13 @@
+/**
+ * directions 
+ * [{ referId: String,
+ *   address: String,
+ *   distance: String,
+ *   duration: String,
+ *   display: Boolean }]
+ */
+directions = new Mongo.Collection(null);
+
 var directionURL = "https://maps.googleapis.com/maps/api/directions/json";
 
 GoogleDirection = {
