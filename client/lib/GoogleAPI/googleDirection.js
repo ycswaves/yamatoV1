@@ -7,7 +7,7 @@
  *   response: Obj
  *   display: Boolean }]
  */
-Directions = new Mongo.Collection(null);
+Directions = new Meteor.Collection(null);
 
 var directionURL = "https://maps.googleapis.com/maps/api/directions/json";
 
@@ -94,7 +94,7 @@ GoogleDirection = {
     }
 
     var existed = Directions.findOne({from:from, to:to});
-    if(existed && existed.response){
+    if(existed && (existed.response || existed.error == 'route not found')){
       //console.log(from, to, 'no call');
     } else {
       var defaultRecord = {
@@ -108,16 +108,23 @@ GoogleDirection = {
       Meteor.call('get',directionURL,{params:base_params},
         function(error,response){
           if (error) {
-            Directions.update({from: from, to: to}, {$set:{error: error}});
+            //meteor mongo does not support unique index yet, so here need to manually delete the default msg
+            Directions.remove({from: from, to: to});
+            //Directions.insert({from: from, to: to, error: error});
           }
           else {
             if (response.data.status == "OK") {
               var waiting = Directions.findOne(defaultRecord);
               if(waiting){
+                //meteor mongo does not support unique index yet, so here need to manually delete the default msg
+                Directions.remove({from: from, to: to});
                 Directions.insert({from: from, to: to, error: null, response: response, display:true});
-                Directions.remove(defaultRecord); //meteor mongo does not support unique index yet,
-                                                  //so here need to manually delete the default msg
+
               }
+            } else {
+              console.log('err:',response);
+              Directions.remove({from: from, to: to});
+              Directions.insert({from: from, to: to, error: 'route not found', response: null, display:true});
             }
           }
         }
