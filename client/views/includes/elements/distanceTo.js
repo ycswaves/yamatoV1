@@ -5,13 +5,16 @@ Template.distanceTo.helpers({
 
     if(multiAddress){
       for(var key in multiAddress){
-        var fromAddr = multiAddress[key].address //geo.latitude+','+geo.longitude
-        , toAddr = thisProperty.address; //.map.latitude+','+thisProperty.map.longitude;
+        var from = thisProperty.map.latitude+","+thisProperty.map.longitude //.map.latitude+','+thisProperty.map.longitude;
+        ,to = multiAddress[key].geometry.latitude+","+multiAddress[key].geometry.longitude; //geo.latitude+','+geo.longitude
+        
+        var fromAddr = thisProperty.address //property address
+        ,toAddr = multiAddress[key].address; //destination address
 
-        GoogleDirection.shortest(fromAddr, toAddr, 'driving');
+        GoogleDirection.shortest(from, to, fromAddr, toAddr, 'driving');
       }
     }
-    return Directions.find({to:thisProperty.address});
+    return Directions.find({fromAddr:thisProperty.address});
   },
   duration: function(response){
     if (response) {
