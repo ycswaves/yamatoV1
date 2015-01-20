@@ -10,8 +10,7 @@ Template.propertyDetail.rendered = function() {
     speed: 500,
     fade: true,
     slide: 'div',
-    cssEase: 'linear',
-    lazyLoad: 'ondemand'
+    cssEase: 'linear'
   });
 
   $('#prop-carousel-nav').slick({

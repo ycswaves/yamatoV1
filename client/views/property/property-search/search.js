@@ -17,14 +17,17 @@ Template.sideSearch.events({
   },
 
   'click .multiAddrLabel': function(e, t){
-    e.preventDefault();
-    var addr = t.$(e.target).data('key')
+    console.log('clicked');
+    //e.preventDefault();
+    var addr = $(e.target).data('key')
       , existingAddr = Session.get('multiAddress');
-    existingAddr[addr] = undefined; // Caution: existingAddr could become empty array upon deletion.
+    console.log('b4 remove:', addr);
+    delete existingAddr[addr]; // Caution: existingAddr could become empty array upon deletion.
     Session.set('multiAddress', existingAddr);
+    Deps.flush();
+    console.log('Session:', Session.get('multiAddress'));
     //隐藏已有的数据，但不擦除
     Directions.update({toAddr: addr}, {$set:{display: false}},{multi:true});
-    //t.$(e.target).remove();
     $('input[name="multiAddress"]').val('');
     // to limit no of multiple address to 6
     CommonHelper.checkMultiAddrLimit('input[name="multiAddress"]', 6);

@@ -4,6 +4,7 @@ var imageStore = new FS.Store.S3("property-images", { //todo: update 'image' to 
   ACL: "public-read", //optional, default is 'private', but you can allow public or secure access routed through your app URL
   // // The rest are generic store options supported by all storage adapters
   transformWrite: function(fileObj, readStream, writeStream){
+    //console.log(fileObj);
     gm(readStream)
       .stroke("#fff")
       .strokeWidth(1)

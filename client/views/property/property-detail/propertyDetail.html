@@ -118,14 +118,14 @@
 						<div class="">
 							<div id="prop-carousel" class="carousel">
 								{{#each property.photos}}
-								<div class="item"><img data-lazy="{{getImageURL this}}"></div>
+								<div class="item"><img src="{{getImageURL this}}"></div>
 								{{/each}}
 							</div>
 
               <div id="prop-carousel-nav" class="well well-sm">
                 {{#each property.photos}}
                 <div>
-                  <img class="img-thumbnail" style="height:70px; margin-left:auto; margin-right:auto" data-lazy="{{getImageURL this}}">
+                  <img class="img-thumbnail" style="height:70px; margin-left:auto; margin-right:auto" src="{{getImageURL this}}">
                 </div>
                 {{/each}}
               </div>

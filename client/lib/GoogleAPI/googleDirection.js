@@ -108,7 +108,7 @@ GoogleDirection = {
       Directions.insert(defaultRecord); //make a record first to prevent next repeated async call
       Meteor.call('get',directionURL,{params:base_params},
         function(error,response){
-          console.log('call made!');
+          //console.log('call made!');
           if (error) {
             //meteor mongo does not support unique index yet, so here need to manually delete the default msg
             Directions.remove({from: from, to: to});
@@ -124,7 +124,7 @@ GoogleDirection = {
 
               }
             } else {
-              console.log('err:',response);
+              //console.log('err:',response);
               Directions.remove({from: from, to: to});
               Directions.insert({from: from, to: to, fromAddr:fromAddr, toAddr:toAddr, error: '路线未找到', response: null, display:true});
             }
