@@ -32,7 +32,7 @@ Template.landing.events({
 
   'click .multiAddrLabel': function(e, t){
     e.preventDefault();
-    var addr = t.$(e.target).data('key')
+    var addr = t.$(e.target).attr('data-key')
       , existingAddr = Session.get('multiAddress');
     existingAddr[addr] = undefined; // Caution: existingAddr could become empty array upon deletion.
     Session.set('multiAddress', existingAddr);

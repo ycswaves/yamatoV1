@@ -17,15 +17,11 @@ Template.sideSearch.events({
   },
 
   'click .multiAddrLabel': function(e, t){
-    console.log('clicked');
-    //e.preventDefault();
-    var addr = $(e.target).data('key')
+    e.preventDefault();
+    var addr = t.$(e.target).attr('data-key')
       , existingAddr = Session.get('multiAddress');
-    console.log('b4 remove:', addr);
     delete existingAddr[addr]; // Caution: existingAddr could become empty array upon deletion.
     Session.set('multiAddress', existingAddr);
-    Deps.flush();
-    console.log('Session:', Session.get('multiAddress'));
     //隐藏已有的数据，但不擦除
     Directions.update({toAddr: addr}, {$set:{display: false}},{multi:true});
     $('input[name="multiAddress"]').val('');
