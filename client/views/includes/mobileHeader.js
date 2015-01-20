@@ -17,6 +17,10 @@ Template.mobileHeader.events({
       delete Session.keys['currentPath']; //删除当前Session
       delete Session.keys['resetPassword'];
     });
+  },
+  //chat with admin
+  'click .chatWithAdmin' : function(e, t){
+    Conversations.start('','System');
   }
 })
 

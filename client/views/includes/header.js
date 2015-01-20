@@ -15,7 +15,7 @@ Template.header.events({
     });
   },
   //chat with admin
-  'click #chatWithAdmin' : function(e, t){
+  'click .chatWithAdmin' : function(e, t){
     Conversations.start('','System');
   }
 })
