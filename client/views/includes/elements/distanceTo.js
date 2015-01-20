@@ -11,7 +11,7 @@ Template.distanceTo.helpers({
         var fromAddr = thisProperty.address //property address
         ,toAddr = multiAddress[key].address; //destination address
 
-        GoogleDirection.shortest(from, to, fromAddr, toAddr, 'driving');
+        GoogleDirection.shortest(from, to, fromAddr, toAddr, 'transit');
       }
     }
     return Directions.find({fromAddr:thisProperty.address});
