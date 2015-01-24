@@ -17,7 +17,11 @@ Template.pagination.helpers({
       && pageNumberArr[0] != 1){
       var fillGap = config.windowSize-pageNumberArr.length;
       for(var i=0; i<fillGap; i++){
-        pageNumberArr.unshift(pageNumberArr[0] - 1);
+        var addPage = pageNumberArr[0] - 1;
+        if( addPage > 0 ){
+          pageNumberArr.unshift(addPage);
+        }
+
       }
     }
     return {
