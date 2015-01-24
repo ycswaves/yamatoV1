@@ -61,7 +61,7 @@ Router.onBeforeAction(removeFullBg);
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail','terms']});
 Router.onBeforeAction(filters.isNotLoggedIn, {only: ['signin']});
 Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
-Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail','addProperty']});
+Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail','addProperty','editProperty']});
 Router.onBeforeAction(isAdmin, {only: ['adminuser','adminproperty']});
 Router.onBeforeAction(isVerified, {only: ['addProperty']});
 
