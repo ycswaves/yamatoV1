@@ -6,7 +6,7 @@ GoogleAutoComplete = function(){
     // to geographical location types.
     var options = {
       // types: ['establishment']
-      language: 'en'
+      // language: 'en'
     };
 
     self.autocomplete = new google.maps.places.Autocomplete(
