@@ -29,6 +29,7 @@
 								</div>
 								<div class="col-sm-9">
 									{{#with property.contact}}
+									{{!-- if currentUser --}}
 									<div class="row text-muted m-t-sm">
 										<div class="col-sm-4 m-b-sm">
 											<i class="fa fa-phone icon-align"></i>
@@ -43,6 +44,18 @@
 											{{nullHelper wechat}}
 										</div>
 									</div>
+									{{!--
+									<div class="row text-muted" style="margin-top:10px;">
+										<div class="col-xs-12">
+											<a href="{{pathFor 'signin'}}" style="width:100%" class="btn btn-default">
+												登录获取联系方式: &nbsp;
+												<i class="fa fa-phone"></i>
+												<i class="fa fa-qq" ></i>
+												<i class="fa fa-wechat"></i>
+											</a>
+										</div>
+									</div>
+									--}}
 									{{/with}}
 								</div>
 							</div>
