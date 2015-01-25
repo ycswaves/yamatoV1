@@ -27,11 +27,6 @@ var storeUrl = function(){
   this.next();
 };
 
-var prevUrl = function(){
-  Session.set('prevPath', Router.current().url);
-  this.next();
-};
-
 var isAdmin = function(){
   if (!Meteor.user().isAdmin) {
     Router.go('landing');
@@ -60,8 +55,7 @@ var removeFullBg = function() {
 Router.onBeforeAction(removeFullBg);
 Router.onBeforeAction(filters.isLoggedIn, {except: ['landing','signin','signup','properties','propertyDetail','terms']});
 Router.onBeforeAction(filters.isNotLoggedIn, {only: ['signin']});
-Router.onBeforeAction(storeUrl, {only: ['landing','properties','propertyDetail']});
-Router.onBeforeAction(prevUrl, {except: ['signin','signup','propertyDetail','addProperty','editProperty']});
+Router.onBeforeAction(storeUrl, {only: ['properties','propertyDetail']}); //TODO: may add more
 Router.onBeforeAction(isAdmin, {only: ['adminuser','adminproperty']});
 Router.onBeforeAction(isVerified, {only: ['addProperty']});
 

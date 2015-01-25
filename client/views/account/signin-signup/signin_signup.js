@@ -4,8 +4,8 @@ Meteor.autorun(function(){
       if (Meteor.user().status === "blocked") {
         Meteor.logout(function(){
           swal("注意!", "您的账号因某原因被封停，请联系管理员!", "warning");
-        });  
-      }   
+        });
+      }
     }
   }
 });
@@ -55,7 +55,7 @@ Template.signin.events({
 
     if (isNotEmpty(username) && isNotEmpty(password)){
       Meteor.loginWithPassword(username, password, function(err){
-        console.log(err);
+        //console.log(err);
         if (err && err.error === 403) {
           FlashMessages.clear();
           FlashMessages.sendError("用户名或密码不正确");
@@ -63,7 +63,13 @@ Template.signin.events({
           if (CommonHelper.checkCurrentUserStatus() == 'active') {
             NotificationMessages.sendSuccess('登陆成功','欢迎回来');
           }
-          Router.go(Session.get('currentPath') || 'landing');
+          if(Session.get('currentPath')){
+            document.location.href = Session.get('currentPath');
+            return false;
+          } else {
+            Router.go('landing');
+          }
+
         }
         Router.go('signin');
       });
