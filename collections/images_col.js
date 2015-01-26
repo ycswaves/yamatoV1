@@ -1,4 +1,4 @@
-var STORE_WIDTH = 800;
+var STORE_WIDTH = 600;
 var STORE_HEIGHT = 600;
 
 
@@ -31,10 +31,10 @@ var imageStore = new FS.Store.S3("property-images", { //todo: update 'image' to 
           });
         } else {
            //console.log('height greater');
-          this.thumbnail(STORE_WIDTH + '^', STORE_HEIGHT);
+          this.thumbnail(STORE_HEIGHT + '^', STORE_WIDTH);
           this.noProfile();
           this.gravity('Center');
-          this.extent(STORE_WIDTH, STORE_HEIGHT);
+          this.extent(STORE_HEIGHT, STORE_WIDTH);
           this.stream(function (err, stdout, stderr) {
             stdout.pipe(writeStream);
           });
