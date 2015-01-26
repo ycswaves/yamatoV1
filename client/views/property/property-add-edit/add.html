@@ -217,19 +217,18 @@
         <div class="col-sm-9">
           <section class="panel">
             <header class="panel-heading">
-              <span class="h4"><i class="fa fa-cloud-upload"></i> 上传图片</span>
+              <span class="h4"><i class="fa fa-camera-retro"></i> 上传图片</span>
             </header>
             <div class="panel-body">
               <div class="center">
                 <div class="form-group">
-                  <img src="/images/Upload-toCloud-icon.png" style="position:absolute; left:42%; top:40%;">
+                  <i class="fa fa-cloud-upload fa-5x text-muted" style="position:absolute; left:42%; top:40%;"></i>
                   <form action="/file-upload" class="dropzone" id="upload">
                     <span>拖入图片或点击上传</span>
                     <div class="fallback">
                       <input name="file" type="file" multiple />
                     </div>
                   </form>
-                  <figure class="note"><strong>提示:</strong> 可以一次选择多个文件, 最多上传{{maxFiles}}个文件，且每个文件不大于{{maxFilesize}}MB!</figure>
                 </div>
               </div>
             </div>

@@ -1,27 +1,51 @@
+var STORE_WIDTH = 800;
+var STORE_HEIGHT = 600;
+
+
 var imageStore = new FS.Store.S3("property-images", { //todo: update 'image' to 'property-image'
   region: "ap-southeast-1",
   bucket: "yamato-image", //required
   ACL: "public-read", //optional, default is 'private', but you can allow public or secure access routed through your app URL
   // // The rest are generic store options supported by all storage adapters
   transformWrite: function(fileObj, readStream, writeStream){
-    //console.log(fileObj);
-    gm(readStream)
-      .stroke("#fff")
-      .strokeWidth(1)
-      .fontSize(14)
-      .drawText(15, 20, "www.yiho.me")
-      .stream(function (err, stdout, stderr) {
-        if(err){
-          console.log(err);
+    gm(readStream, fileObj.name())
+      .size({bufferStream: true}, function (err, size) {
+        if (size.width === size.height) {
+          //console.log('equal size');
+          this.thumbnail(STORE_WIDTH, STORE_HEIGHT);
+          this.noProfile();
+          this.gravity('Center');
+          this.extent(STORE_WIDTH, STORE_HEIGHT);
+          this.stream(function (err, stdout, stderr) {
+            stdout.pipe(writeStream);
+          });
+        } else if (size.width > size.height) {
+          //console.log('width greater')
+
+          this.thumbnail(STORE_WIDTH + '^', STORE_HEIGHT);
+          this.noProfile();
+          this.gravity('Center');
+          this.extent(STORE_WIDTH, STORE_HEIGHT);
+          this.stream(function (err, stdout, stderr) {
+            stdout.pipe(writeStream);
+          });
+        } else {
+           //console.log('height greater');
+          this.thumbnail(STORE_WIDTH + '^', STORE_HEIGHT);
+          this.noProfile();
+          this.gravity('Center');
+          this.extent(STORE_WIDTH, STORE_HEIGHT);
+          this.stream(function (err, stdout, stderr) {
+            stdout.pipe(writeStream);
+          });
         }
-        stdout.pipe(writeStream);
       });
-  },
+    },
   // transformRead: myTransformReadFunction, //optional
   maxTries: 1 //optional, default 5
 });
 
-PropertyImages = new FS.Collection("property-images", { //todo: update 'image' to 'property-image'
+PropertyImages = new FS.Collection("property-images", {
   stores: [imageStore],
   filter: {
     allow: {
