@@ -19,6 +19,8 @@ Template.landing.rendered = function() {
 
 	CommonHelper.initPillboxAutoCompl('multiAddress', 'input[name="multiAddress"]');
 
+	// Session.set("Title",'家易 | 新加坡一站式搜房租房买房平台');
+
 }
 
 

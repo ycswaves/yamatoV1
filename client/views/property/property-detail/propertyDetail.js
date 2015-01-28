@@ -100,6 +100,12 @@ PropertyDetailController = RouteController.extend({
         this.render('notFound');
         return;
       }
+
+      //Set title
+      SEO.set({
+        title: '家易 | ' + property.address
+      })
+
       var isNotOwner = false;
       var bannerImage = false;
       var authorProfile = false;

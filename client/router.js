@@ -69,7 +69,9 @@ Router.map(function () {
       this.render();
     },
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '新加坡一站式搜房租房买房平台';
+      SEO.set({
+        title: TITLE + ' | ' + '新加坡一站式搜房租房买房平台'
+      })
     }
   });
 
@@ -84,7 +86,9 @@ Router.map(function () {
       this.render();
     },
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '登陆';
+      SEO.set({
+        title: TITLE + ' | ' + '登陆'
+      })
     }
   });
 
@@ -99,7 +103,9 @@ Router.map(function () {
       this.render();
     },
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '注册';
+      SEO.set({
+        title: TITLE + ' | ' + '注册'
+      })
     }
   });
 
@@ -115,7 +121,9 @@ Router.map(function () {
       this.render();
     },
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '个人主页';
+      SEO.set({
+        title: TITLE + ' | ' + '个人主页'
+      })
     }
   });
 
@@ -136,7 +144,9 @@ Router.map(function () {
       }
     },
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '我的房屋';
+      SEO.set({
+        title: TITLE + ' | ' + '我的房屋'
+      })
     }
   });
 
@@ -146,7 +156,9 @@ Router.map(function () {
     label: '管理用户',
     controller: 'AdminUsersController',
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '管理用户';
+      SEO.set({
+        title: TITLE + ' | ' + '管理用户'
+      })
     }
   });
 
@@ -156,7 +168,9 @@ Router.map(function () {
     parent:'landing',
     label: '网站条例及规范',
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '网站条例及规范';
+      SEO.set({
+        title: TITLE + ' | ' + '网站条例及规范'
+      })
     }
   });
 
@@ -166,7 +180,9 @@ Router.map(function () {
     label: '管理房屋',
     controller: 'AdminPropertiesController',
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '管理房屋';
+      SEO.set({
+        title: TITLE + ' | ' + '管理房屋'
+      })
     }
   });
 
@@ -176,7 +192,9 @@ Router.map(function () {
     label: '房屋列表',
     controller: 'ListController',
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '房屋列表';
+      SEO.set({
+        title: TITLE + ' | ' + '房屋列表'
+      })
       $(window).scrollTop(0);
     }
   });
@@ -187,7 +205,9 @@ Router.map(function () {
     label: '发布房屋信息',
     controller: 'AddPropertyController',
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '发布';
+      SEO.set({
+        title: TITLE + ' | ' + '发布'
+      })
     }
   });
 
@@ -197,27 +217,15 @@ Router.map(function () {
     label: '修改房屋信息',
     controller: 'EditPropertyController',
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '编辑';
+      SEO.set({
+        title: TITLE + ' | ' + '编辑'
+      })
     }
   });
 
   this.route('propertyDetail', {
     path: '/property/:id',
-    controller: 'PropertyDetailController',
-    onAfterAction: function () {
-      document.title = TITLE + ' | ' + '房屋详情';
-      // var property = this.data().property;
-      // var bannerImage = this.data().bannerImage;
-      // SEO.set({
-      //   meta: {
-      //     'description': property.description
-      //   },
-      //   og: {
-      //     'description': property.description,
-      //     'image': bannerImage
-      //   }
-      // });
-    }
+    controller: 'PropertyDetailController'
   });
 
   this.route('sales', {
@@ -237,7 +245,9 @@ Router.map(function () {
       this.render();
     },
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '收件箱';
+      SEO.set({
+        title: TITLE + ' | ' + '收件箱'
+      })
     }
   });
 
@@ -250,7 +260,9 @@ Router.map(function () {
       this.render();
     },
     onAfterAction: function () {
-      document.title = TITLE + ' | ' + '安全设置';
+      SEO.set({
+        title: TITLE + ' | ' + '安全设置'
+      })
     }
   });
 
