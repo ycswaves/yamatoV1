@@ -1,4 +1,4 @@
-UserProfiles = new Meteor.Collection("userProfiles");
+UserProfiles = new Mongo.Collection("userProfiles");
 
 var Schema = {};
 

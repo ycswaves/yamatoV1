@@ -1,4 +1,4 @@
-Properties = new Meteor.Collection("properties");
+Properties = new Mongo.Collection("properties");
 
 var Schemas = {};
 
