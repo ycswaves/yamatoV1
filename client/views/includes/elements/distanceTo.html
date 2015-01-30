@@ -3,18 +3,12 @@
   <ul class="list-group">
     <li class="list-group-item"><h4><i class="fa fa-bell-alt"></i>距离分析</h4></li>
     {{#each getDistances this}}
-      {{#unless err}}
-        {{#if display}}
-          {{#if response}}
-          <li class="list-group-item">
-            <dl>
-              <dt>至: {{toAddr}}</dt>
-              <dd>公共交通: {{duration response}}, 距离{{distance response}}</dd>
-            </dl>
-          </li>
-          {{/if}}
-        {{/if}}
-      {{/unless}}
+      <li class="list-group-item">
+        <dl>
+          <dt>至: {{toAddr}}</dt>
+          <dd>公共交通: {{duration response}}, 距离{{distance response}}</dd>
+        </dl>
+      </li>
     {{/each}}
   </ul>
   {{/if}}

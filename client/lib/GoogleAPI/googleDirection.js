@@ -4,10 +4,11 @@
  *   to: lat, lng,
  *   from: lat, lng,
  *   error: Boolean,
- *   response: Obj
- *   display: Boolean }]
+ *   response: Obj}]
  */
-Directions = new Meteor.Collection(null);
+Directions = new Mongo.Collection(null);
+
+var calledFromTo = {}; // to trace if a call is already sent for a distance, the key is fromAddr + toAddr
 
 var directionURL = "https://maps.googleapis.com/maps/api/directions/json";
 
@@ -93,40 +94,21 @@ GoogleDirection = {
       base_params.departure_time = Math.floor(new Date().getTime()/1000);//一定需要
     }
 
-    var existed = Directions.findOne({from:from, to:to});
-    if(existed && (existed.response || existed.error == '路线未找到')){
-      //隐藏已有的数据，但不擦除
-      Directions.update({toAddr: toAddr}, {$set:{display: true}},{multi:true});
-    } else {
-      var defaultRecord = {
-        from:from,
-        to:to,
-        error: '路线查询中',
-        response: null,
-        display: true
-      };
-      Directions.insert(defaultRecord); //make a record first to prevent next repeated async call
+    var existed = calledFromTo[fromAddr + toAddr];
+    if(!existed){
+      calledFromTo[fromAddr + toAddr] = true; //mark a call has been sent to prevent repetitive call
       Meteor.call('get',directionURL,{params:base_params},
         function(error,response){
-          //console.log('call made!');
+          console.log('call made!', fromAddr, toAddr);
           if (error) {
-            //meteor mongo does not support unique index yet, so here need to manually delete the default msg
-            Directions.remove({from: from, to: to});
-            //Directions.insert({from: from, to: to, error: error});
+            //console.log(error);
           }
           else {
             if (response.data.status == "OK") {
-              var waiting = Directions.findOne(defaultRecord);
-              if(waiting){
-                //meteor mongo does not support unique index yet, so here need to manually delete the default msg
-                Directions.remove({from: from, to: to});
-                Directions.insert({from: from, to: to, fromAddr:fromAddr, toAddr:toAddr, error: null, response: response, display:true});
-
-              }
+              Directions.insert({from: from, to: to, fromAddr:fromAddr, toAddr:toAddr, error: null, response: response});
             } else {
               //console.log('err:',response);
-              Directions.remove({from: from, to: to});
-              Directions.insert({from: from, to: to, fromAddr:fromAddr, toAddr:toAddr, error: '路线未找到', response: null, display:true});
+              Directions.insert({from: from, to: to, fromAddr:fromAddr, toAddr:toAddr, error: '路线未找到', response: null});
             }
           }
         }
