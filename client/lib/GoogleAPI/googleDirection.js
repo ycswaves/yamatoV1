@@ -4,7 +4,8 @@
  *   to: lat, lng,
  *   from: lat, lng,
  *   error: Boolean,
- *   response: Obj}]
+ *   response: Obj,
+ *   display: Boolean}]
  */
 Directions = new Mongo.Collection(null);
 
@@ -105,10 +106,10 @@ GoogleDirection = {
           }
           else {
             if (response.data.status == "OK") {
-              Directions.insert({from: from, to: to, fromAddr:fromAddr, toAddr:toAddr, error: null, response: response});
+              Directions.insert({from: from, to: to, fromAddr:fromAddr, toAddr:toAddr, error: null, response: response, display:true});
             } else {
               //console.log('err:',response);
-              Directions.insert({from: from, to: to, fromAddr:fromAddr, toAddr:toAddr, error: '路线未找到', response: null});
+              Directions.insert({from: from, to: to, fromAddr:fromAddr, toAddr:toAddr, error: '路线未找到', response: null, display:true});
             }
           }
         }
