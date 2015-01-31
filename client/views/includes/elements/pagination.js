@@ -1,8 +1,9 @@
 Template.pagination.helpers({
   paginate: function(config){
     var midIndex = parseInt(config.windowSize / 2)
+      , currPage = parseInt(config.pageNum)
       , totalPages = Math.ceil(config.totalDocs / config.pageLimit)
-      , startPage = (config.pageNum <= midIndex)? 1 : (config.pageNum - midIndex)
+      , startPage = (currPage <= midIndex)? 1 : (currPage - midIndex)
       , queryStr = config.query
       , pageNumberArr = [];
     for(var i=0; i<config.windowSize; i++){
@@ -24,12 +25,20 @@ Template.pagination.helpers({
 
       }
     }
+
+    var hasMore = (totalPages > pageNumberArr[pageNumberArr.length-1])? (currPage + 1) : false //decide if show "..."
+      , hasPrev = (currPage > 1)? (currPage - 1) : false
+      , hasNext = (currPage < totalPages)? (currPage + 1) : false;
+
     return {
       paginations: pageNumberArr,
-      currentPage: config.pageNum,
+      currentPage: currPage,
       routeName: config.routeName,
       routeParam: config.routeParam,
-      queryStr: queryStr
+      queryStr: queryStr,
+      hasMore: hasMore,
+      hasPrev: hasPrev,
+      hasNext: hasNext
     };
   }
 });

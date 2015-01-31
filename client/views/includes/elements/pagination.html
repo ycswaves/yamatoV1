@@ -1,11 +1,27 @@
 <template name="pagination">
   {{#with paginate config}}
     <ul class="pagination pagination-sm m-t-none m-b-none pull-right">
+      {{#if hasPrev}}
+        <li><a href="{{pathFor routeName page=hasPrev data=routeParam query=queryStr}}"><i class="fa fa-chevron-left"></i></a></li>
+      {{else}}
+        <li class="disabled"><a href="#"><i class="fa fa-chevron-left"></i></a></li>
+      {{/if}}
+
       {{#each paginations}}
       <li class="{{activeClassHelper ../currentPage this}} pageLink">
         <a href="{{pathFor ../routeName page=this data=../routeParam query=../queryStr}}">{{this}}</a>
       </li>
       {{/each}}
+
+      {{#if hasMore}}
+        <li><a href="{{pathFor routeName page=hasMore data=routeParam query=queryStr}}">...</a></li>
+      {{/if}}
+
+      {{#if hasNext}}
+        <li><a href="{{pathFor routeName page=hasNext data=routeParam query=queryStr}}"><i class="fa fa-chevron-right"></i></a></li>
+      {{else}}
+        <li class="disabled"><a href="#"><i class="fa fa-chevron-right"></i></a></li>
+      {{/if}}
     </ul>
   {{/with}}
 </template>
