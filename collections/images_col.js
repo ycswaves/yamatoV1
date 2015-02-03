@@ -16,16 +16,19 @@ var imageStore = new FS.Store.S3("property-images", { //todo: update 'image' to 
           this.noProfile();
           this.gravity('Center');
           this.extent(STORE_WIDTH, STORE_HEIGHT);
+          this.stroke('#fff').strokeWidth(1).fontSize(24).fill('#fff')
+              .drawText(210, 280, "www.yiho.me");
           this.stream(function (err, stdout, stderr) {
             stdout.pipe(writeStream);
           });
         } else if (size.width > size.height) {
           //console.log('width greater')
-
           this.thumbnail(STORE_WIDTH + '^', STORE_HEIGHT);
           this.noProfile();
           this.gravity('Center');
           this.extent(STORE_WIDTH, STORE_HEIGHT);
+          this.stroke('#fff').strokeWidth(1).fontSize(24).fill('#fff')
+              .drawText(210, 280, "www.yiho.me");
           this.stream(function (err, stdout, stderr) {
             stdout.pipe(writeStream);
           });
@@ -35,6 +38,8 @@ var imageStore = new FS.Store.S3("property-images", { //todo: update 'image' to 
           this.noProfile();
           this.gravity('Center');
           this.extent(STORE_HEIGHT, STORE_WIDTH);
+          this.stroke('#fff').strokeWidth(1).fontSize(24).fill('#fff')
+              .drawText(210, 280, "www.yiho.me");
           this.stream(function (err, stdout, stderr) {
             stdout.pipe(writeStream);
           });
