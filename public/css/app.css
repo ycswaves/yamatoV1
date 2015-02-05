@@ -2486,6 +2486,9 @@ fieldset[disabled] .btn-gplus.active {
 .wrapper {
   padding: 15px;
 }
+.wrapper-sm {
+  padding: 10px;
+}
 .wrapper-lg {
   padding: 30px;
 }
