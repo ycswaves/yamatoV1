@@ -8,12 +8,16 @@
 					<a href="javascript:void(0)" class="pull-left thumb avatar border m-r">
 						<img src="{{getAvatarByUserId userid}}" class="img-circle">
 					</a>
+          <!-- <form id="uploadAvatar">
+            <input type="file" id="avatarImg" />
+            <img id="previewAvatar" src="#" alt="your image" />
+          </form> -->
 					<div class="clear">
-						<div class="h3 m-t-xs m-b-xs">{{getUsernameByUserId userid}} 
+						<div class="h3 m-t-xs m-b-xs">{{getUsernameByUserId userid}}
 							<i class="fa fa-circle text-success pull-right text-xs m-t-sm"></i>
 						</div>
 						<small class="text-muted">普通用户</small>
-					</div>                
+					</div>
 				</div>
 			</header>
 			<div class="list-group no-radius no-border alt">
@@ -28,24 +32,24 @@
 					<span class="badge bg-danger pointer" id="verifyEmail">未验证</span>
 					{{/if}}
 					{{/if}}
-					<i class="fa fa-envelope-o icon-muted icon-align"></i> 
+					<i class="fa fa-envelope-o icon-muted icon-align"></i>
 					<span class="email-ellipsis">{{address}}</span>
 					{{/with}}
 				</div>
 				<div class="list-group-item">
-					<i class="fa fa-credit-card icon-muted icon-align"></i> 
+					<i class="fa fa-credit-card icon-muted icon-align"></i>
 					<input type="text" name="name" class="no-borders editable" placeholder="默认联系名字" value="{{name}}">
 				</div>
 				<div class="list-group-item">
-					<i class="fa fa-phone icon-muted icon-align"></i> 
+					<i class="fa fa-phone icon-muted icon-align"></i>
 					<input type="text" name="phone" class="no-borders editable" placeholder="电话号码" value="{{phone}}">
 				</div>
 				<div class="list-group-item">
-					<i class="fa fa-qq icon-muted icon-align editable"></i> 
+					<i class="fa fa-qq icon-muted icon-align editable"></i>
 					<input type="text" name="qq" class="no-borders editable" placeholder="QQ号码" value="{{qq}}">
 				</div>
 				<div class="list-group-item">
-					<i class="fa fa-wechat icon-muted icon-align editable"></i> 
+					<i class="fa fa-wechat icon-muted icon-align editable"></i>
 					<input type="text" name="wechat" class="no-borders editable" placeholder="微信ID" value="{{wechat}}">
 				</div>
 			</div>

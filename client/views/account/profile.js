@@ -36,5 +36,17 @@ Template.profile.events({
     Meteor.call("sendVerificationEmail",Meteor.userId());
     CommonHelper.setCountDown('EmailCountDown',45);
     swal('发送邮件', '验证邮件发送成功，请查收', 'success');
+  },
+
+  'change #avatarImg': function(e, t){
+    e.preventDefault();
+    var file = t.find('#avatarImg').files[0];
+    if(file){
+      var reader = new FileReader();
+      reader.onload = function (e) {
+        $('#previewAvatar').attr('src', e.target.result);
+      }
+      reader.readAsDataURL(file);
+    }
   }
 })
