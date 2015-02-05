@@ -1,91 +1,89 @@
 <template name="conversationTopics">
-	{{#if conversationTopics}}
-	<div class="ActiveConversations">
-		{{#each conversationTopics}}
-		{{#AnimateWithVelocity}}
-		{{> conversationTopic}}
-		{{/AnimateWithVelocity}}
-		{{/each}}
-	</div>
-	{{/if}}
+  {{#if conversationTopics}}
+  <div class="ActiveConversations">
+    {{#each conversationTopics}}
+    {{#AnimateWithVelocity}}
+    {{> conversationTopic}}
+    {{/AnimateWithVelocity}}
+    {{/each}}
+  </div>
+  {{/if}}
 </template>
 
 <template name="conversationTopic">
-	<div class="Conversation" data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='easeInSine' data-easing-out='linear'>
-		<div class="ConversationHead normal">
-			<button class="cancelButton borderless conversationHeadClose" type="button" data-topic-id="{{topicId}}"></button>
-			<div class="topicAvatar headWrapper">
-				<div class="imagesWrapper">
-					<img class="circle" src="{{getAvatarByTopicId topicId}}">
-				</div>
-			</div>
-			<div class="popover conversation-popover right" role="tooltip" style="display: none; left: 60px; top: -345px;">
-				<div class="arrow sidearrow"></div>
-				<h3 class="popover-title">{{getUsernameByTopicId topicId}}
-					{{#if isAdmin topicId}}
-					<span class="label bg-danger" style="margin-left: 10px;">管理员大神</span>
-					{{/if}}
-					<button type="button" class="close closeConversation">
-						<span aria-hidden="true">×</span>
-						<span class="sr-only">Close</span>
-					</button>
-				</h3>
-				<div class="popover-content conversation-content" style="padding:0px;">
-					{{#with refer topicId}}
-					<div class="referContainer bg-light">
-						<div class="referImage">
-							<a href="{{_link}}"><img src="{{getImageURL _image}}"></a>
-						</div>
-						<div class="referDescription">
-							<a href="{{_link}}">{{_title}}</a>
-						</div>
-					</div>
-					<style>
-						.messagesContainer {
-							height:280px;
-						}
-					</style>
-					{{/with}}
-					<div class="messagesContainer">
-						{{#each messages this.topicId}}
-						{{> messageRow}}
-						{{/each}}
-					</div>
-					<div class="inputWrapper">
-						<div class="ui-TextField ui-Field">
-							<textarea autofocus="autofocus" class="content PMInput" placeholder="此处按回车发送私信" data-topic-id="{{topicId}}"></textarea>
-						</div> 
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+  <div class="Conversation" data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='easeInSine' data-easing-out='linear'>
+    <div class="ConversationHead normal">
+      <button class="cancelButton borderless conversationHeadClose" type="button" data-topic-id="{{topicId}}"></button>
+      <div class="topicAvatar headWrapper">
+        <div class="imagesWrapper">
+          <img class="circle" src="{{getAvatarByTopicId topicId}}">
+        </div>
+      </div>
+      <div class="popover conversation-popover right" role="tooltip" style="display: none; left: 60px; top: -345px;">
+        <div class="arrow sidearrow"></div>
+        <h3 class="popover-title">{{getUsernameByTopicId topicId}}
+          {{#if isAdmin topicId}}
+          <span class="label bg-danger" style="margin-left: 10px;">管理员大神</span>
+          {{/if}}
+          <button type="button" class="close closeConversation">
+            <span aria-hidden="true">×</span>
+            <span class="sr-only">Close</span>
+          </button>
+        </h3>
+        <div class="popover-content conversation-content" style="padding:0px;">
+          {{#with refer topicId}}
+          <div class="referContainer bg-light">
+            <div class="referImage">
+              <a href="{{_link}}"><img src="{{getImageURL _image}}"></a>
+            </div>
+            <div class="referDescription">
+              <a href="{{_link}}">{{_title}}</a>
+            </div>
+          </div>
+          <style>
+            .messagesContainer {
+              height:280px;
+            }
+          </style>
+          {{/with}}
+          <div class="messagesContainer">
+            {{#each messages this.topicId}}
+            {{> messageRow}}
+            {{/each}}
+          </div>
+          <div class="inputWrapper">
+            <div class="ui-TextField ui-Field">
+              <textarea autofocus="autofocus" class="content PMInput" placeholder="此处按回车发送私信" data-topic-id="{{topicId}}"></textarea>
+            </div> 
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <template name="messageRow">
-	{{#if isOwn this.owner this.sender}}
-	<article class="chat-item right">
-		<a href="#" class="pull-right thumb-sm avatar"><img src="{{getAvatarByUserId this.owner}}" class="img-circle"></a>
-		<section class="chat-body">                      
-			<div class="panel bg bg-success text-sm m-b-none">
-				<div style="padding: 10px;">
-				<span class="arrow right"></span>{{content}}
-				</div>
-			</div>
-			<small class="text-muted"><i class="fa fa-check text-success"></i> {{formatMoment createdAt}}</small>
-		</section>
-	</article>
-	{{else}}
-	<article class="chat-item left">
-		<a href="#" class="pull-left thumb-sm avatar"><img src="{{getAvatarByUserId this.sender}}" class="img-circle"></a>
-		<section class="chat-body">
-			<div class="panel text-sm m-b-none">
-				<div style="padding: 10px;">
-					<span class="arrow left"></span>{{content}}
-				</div>
-			</div>
-			<small class="text-muted"><i class="fa fa-check text-success"></i> {{formatMoment createdAt}}</small>
-		</section>
-	</article>
-	{{/if}}
+  {{#if isOwn this.owner this.sender}}
+  <article class="chat-item right">
+    <a href="#" class="pull-right thumb-sm avatar"><img src="{{getAvatarByUserId this.owner}}" class="img-circle"></a>
+    <div class="m-r-xxl">
+      <div class="pos-rlt wrapper bg-primary r-2x">
+        <span class="arrow right pull-up arrow-primary"></span>
+        <p class="m-b-none">{{content}}</p>
+      </div>
+      <small class="text-muted">{{formatMoment createdAt}}</small>
+    </div>
+  </article>
+  {{else}}
+  <article class="chat-item left">
+    <a href="#" class="pull-left thumb-sm avatar"><img src="{{getAvatarByUserId this.sender}}" class="img-circle"></a>
+    <div class="m-l-xxl">
+      <div class="pos-rlt wrapper b b-light r r-2x">
+        <span class="arrow left pull-up"></span>
+        <p class="m-b-none">{{content}}</p>
+      </div>
+      <small class="text-muted">{{formatMoment createdAt}}</small>
+    </div>
+  </article>
+  {{/if}}
 </template>

@@ -37,7 +37,7 @@ label {
   padding-bottom: 0;
 }
 .text-primary {
-  color: #594f8d;
+  color: #7266ba;
 }
 .text-info {
   color: #5dcff3;
@@ -1239,8 +1239,8 @@ fieldset[disabled] .btn-twitter.active {
 }
 .btn-primary {
   color: #fff !important;
-  background-color: #594f8d;
-  border-color: #594f8d;
+  background-color: #7266ba;
+  border-color: #7266ba;
 }
 .btn-primary:hover,
 .btn-primary:focus,
@@ -1271,8 +1271,8 @@ fieldset[disabled] .btn-primary:hover,
 fieldset[disabled] .btn-primary:focus,
 fieldset[disabled] .btn-primary:active,
 fieldset[disabled] .btn-primary.active {
-  background-color: #594f8d;
-  border-color: #594f8d;
+  background-color: #7266ba;
+  border-color: #7266ba;
 }
 .btn-success {
   color: #fff !important;
@@ -1575,6 +1575,9 @@ fieldset[disabled] .btn-gplus.active {
 }
 .chat-item .arrow.right:after {
   border-left-color: #92cf5c;
+}
+.arrow.right.arrow-primary:after {
+  border-left-color: #7266ba;
 }
 .chat-item .chat-body {
   position: relative;
@@ -2049,8 +2052,8 @@ fieldset[disabled] .btn-gplus.active {
   color: #8b93a6;
 }
 .bg-primary {
-  background-color: #594f8d;
-  color: #dbd8e9;
+  background-color: #7266ba;
+  color: #F4F3F9;
 }
 .bg-primary.lt,
 .bg-primary .lt {
@@ -2507,6 +2510,9 @@ fieldset[disabled] .btn-gplus.active {
 .pull-out {
   margin: -10px -15px;
 }
+.b {
+  border: 1px solid #edf1f2;
+}
 .b-t {
   border-top: 1px solid #e0e4e8;
 }
@@ -2519,8 +2525,14 @@ fieldset[disabled] .btn-gplus.active {
 .b-l {
   border-left: 1px solid #e0e4e8;
 }
+.b-light {
+  border-color: #edf1f2;
+}
 .r {
   border-radius: 2px 2px 2px 2px;
+}
+.r-2x {
+  border-radius: 4px 4px 4px 4px;
 }
 .r-l {
   border-radius: 2px 0 0 2px;
@@ -2554,6 +2566,9 @@ fieldset[disabled] .btn-gplus.active {
 }
 .m-l-lg {
   margin-left: 20px;
+}
+.m-l-xxl {
+  margin-left: 50px;
 }
 .m-l-n {
   margin-left: -15px;
@@ -2617,6 +2632,9 @@ fieldset[disabled] .btn-gplus.active {
 }
 .m-r-lg {
   margin-right: 20px;
+}
+.m-r-xxl {
+  margin-right: 50px;
 }
 .m-r-n {
   margin-right: -15px;

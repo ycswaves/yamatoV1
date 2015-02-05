@@ -32,15 +32,21 @@
 }
 
 /* Remove Glowing */
-textarea, input { outline: none; }
+textarea, input, button, select { outline: none; }
 
 .propertyImage {
   background: url('/images/dummy-bg.jpg') no-repeat;
-  height: 400px;
   width: 100%;
-  margin-top: -62px;
   background-position: center center;
   background-size: cover;
+}
+
+.bg-white-opacity {
+  background-color: rgba(255,255,255,0.5);
+}
+
+.text-shadow {
+  text-shadow: 1px 1px #717171;
 }
 
 .text-wechat {
@@ -113,9 +119,10 @@ Property detail travel
 .travel-mode-breadcrumb {
   width: 10px !important;
   height: 22px !important;
-  position: absolute;
-  top: 6px;
-  left: 63px;
+  position: relative;
+  top: -20px;
+  float: left;
+  left: 30px;
   background-position: 0 -249px;
 }
 

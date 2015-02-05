@@ -56,15 +56,6 @@ ul.property-features-list{
     margin:0 auto
 }
 
-.propertyImage {
-  background: url('/images/dummy-bg.jpg') no-repeat;
-  height: 400px;
-  width: 100%;
-  margin-top: -62px;
-  background-position: center center;
-  background-size: cover;
-}
-
 .pac-container::after{
   background-image: none; /* block 'power by G'*/
 }
