@@ -14,7 +14,7 @@
   <div class="Conversation" data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='easeInSine' data-easing-out='linear'>
     <div class="ConversationHead normal">
       <button class="cancelButton borderless conversationHeadClose" type="button" data-topic-id="{{topicId}}"></button>
-      <div class="topicAvatar headWrapper">
+      <div class="topicAvatar headWrapper" onclick="$('#fsConversationModal').modal('show')">
         <div class="imagesWrapper">
           <img class="circle" src="{{getAvatarByTopicId topicId}}">
         </div>
@@ -57,6 +57,51 @@
             </div> 
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="fullscreenChat">
+  <div id="fsConversationModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-body">
+      <div class="panel panel-default">
+        <div class="panel-heading">Chat</div>
+        <div class="panel-body">
+          <div class="m-b">
+            <a href="" class="pull-left thumb-sm avatar"><img src="/images/avatar.jpg" alt="..."></a>
+            <div class="m-l-xxl">
+              <div class="pos-rlt wrapper b b-light r r-2x">
+                <span class="arrow left pull-up"></span>
+                <p class="m-b-none">Hi John, What's up...</p>
+              </div>
+              <small class="text-muted"><i class="fa fa-ok text-success"></i> 2 minutes ago</small>
+            </div>
+          </div>
+          <div class="m-b">
+            <a href="" class="pull-right thumb-sm avatar"><img src="/images/avatar.jpg" class="img-circle" alt="..."></a>
+            <div class="m-r-xxl">
+              <div class="pos-rlt wrapper bg-primary r r-2x">
+                <span class="arrow right pull-up arrow-primary"></span>
+                <p class="m-b-none">Lorem ipsum dolor sit amet, conse <br>adipiscing eli...<br>:)</p>
+              </div>
+              <small class="text-muted">1 minutes ago</small>
+            </div>
+          </div>
+        </div>
+        <footer class="panel-footer">
+          <!-- chat form -->
+          <div>
+            <form class="m-b-none m-l-xl ng-pristine ng-valid">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Say something">
+                <span class="input-group-btn">
+                  <button class="btn btn-default" type="button">SEND</button>
+                </span>
+              </div>
+            </form>
+          </div>
+        </footer>
       </div>
     </div>
   </div>
