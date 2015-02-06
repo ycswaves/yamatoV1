@@ -45,14 +45,14 @@
               </div>
               {{#if currentUser}}
                 {{#if isNotOwner}}
-                  <button class="btn btn-sm btn-success btn-rounded" id="enquiry-btn" data-refer-id="{{property._id}}">询问</button>
+                  <button class="btn btn-sm btn-success btn-rounded m-b-xs" id="enquiry-btn" data-refer-id="{{property._id}}">询问</button>
                 {{else}}
-                  <a href="{{pathFor 'editProperty' id=property._id}}" class="btn btn-sm btn-primary btn-rounded">修改</a>
+                  <a href="{{pathFor 'editProperty' id=property._id}}" class="btn btn-sm btn-primary btn-rounded m-b-xs">修改</a>
                 {{/if}}
               {{else}}
-                <a href="{{pathFor 'signin'}}" class="btn btn-sm btn-primary btn-rounded">登陆并询问</a>
+                <a href="{{pathFor 'signin'}}" class="btn btn-sm btn-primary btn-rounded m-b-xs">登陆并询问</a>
               {{/if}}
-              <button type="button" class="btn btn-sm btn-white btn-rounded" id="return-btn">返回至上一页</button>
+              <button type="button" class="btn btn-sm btn-white btn-rounded m-b-xs" id="return-btn">返回至上一页</button>
             </div>
           </div>
           <div class="col-sm-5">
