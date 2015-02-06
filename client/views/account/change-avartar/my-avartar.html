@@ -1,0 +1,40 @@
+<template name="uploadAvatar">
+  <style type="text/css">
+    img[src="#"] {
+      display: none;
+    }
+  </style>
+	<section class="hbox stretch bg-white-only">
+		{{> profile}}
+		<!-- .aside -->
+		<aside>
+			<section class="vbox">
+        <header class="header bg-white pos-rlt navbar navbar-default show">
+          <h3>修改头像</h3>
+        </header>
+				<section class="hbox stretch">
+					<aside>
+						<section class="vbox">
+							<section class="scrollable wrapper" style="padding:20px 50px">
+                <div class="row">
+                  <form id="uploadAvatar">
+                    <input type="file" id="avatarImg" />
+                  </form>
+                </div>
+                <hr>
+								<div class="row">
+									<div class="col-sm-6 well well-sm img-container" style="min-height: 250px">
+                    <img id="previewAvatar" style="width:100%" src="#" alt="your image" />
+									</div><!-- /.col-md-6 -->
+
+                  <div class="col-sm-6 img-preview"></div>
+								</div><!-- /.row -->
+							</section>
+						</section>
+					</aside>
+				</section>
+			</section>
+		</aside>
+		<!-- /.aside -->
+	</section>
+</template>

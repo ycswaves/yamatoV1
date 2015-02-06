@@ -266,6 +266,21 @@ Router.map(function () {
     }
   });
 
+  this.route('avatar', {
+    path: '/account/avatar',
+    template: 'uploadAvatar',
+    parent:'landing',
+    label: '修改头像',
+    action: function () {
+      this.render();
+    }
+    // ,onAfterAction: function () {
+    //   SEO.set({
+    //     title: TITLE + ' | ' + '修改头像'
+    //   })
+    // }
+  });
+
   // matches all urls but doesn't get called until all previous routes have been tested
   // so in this case for invalid url
   this.route('notFound', {path: '*'});

@@ -8,10 +8,6 @@
 					<a href="javascript:void(0)" class="pull-left thumb avatar border m-r">
 						<img src="{{getAvatarByUserId userid}}" class="img-circle">
 					</a>
-          <!-- <form id="uploadAvatar">
-            <input type="file" id="avatarImg" />
-            <img id="previewAvatar" src="#" alt="your image" />
-          </form> -->
 					<div class="clear">
 						<div class="h3 m-t-xs m-b-xs">{{getUsernameByUserId userid}}
 							<i class="fa fa-circle text-success pull-right text-xs m-t-sm"></i>
@@ -52,6 +48,10 @@
 					<i class="fa fa-wechat icon-muted icon-align editable"></i>
 					<input type="text" name="wechat" class="no-borders editable" placeholder="微信ID" value="{{wechat}}">
 				</div>
+        <div class="list-group-item">
+          <i class="fa fa-user icon-muted icon-align editable"></i>
+          <a href="{{pathFor 'avatar'}}" class="text-muted">修改头像</a>
+        </div>
 			</div>
 		</section>
 	</aside>
