@@ -1,3 +1,5 @@
+var cropped;
+
 Template.uploadAvatar.rendered = function() {
   render();
 }
@@ -10,32 +12,27 @@ Template.uploadAvatar.events({
       var reader = new FileReader();
       reader.onload = function (e) {
         $('#previewAvatar').attr('src', e.target.result);
+        var image = $(".img-container img");
+
+
+        image.cropper({
+          aspectRatio: 1,
+
+          preview: ".img-preview",
+          data: {
+            x: 100,
+            y: 50
+          },
+          done: function(data) {
+            cropped = data;
+          }
+        });
       }
       reader.readAsDataURL(file);
-
-      var image = $(".img-container img"),
-    dataX = $("#dataX"),
-    dataY = $("#dataY"),
-    dataHeight = $("#dataHeight"),
-    dataWidth = $("#dataWidth");
-
-  image.cropper({
-    aspectRatio: 16 / 9,
-    data: {
-      x: 480,
-      y: 60,
-      width: 640,
-      height: 360
-    },
-    preview: ".img-preview",
-    done: function(data) {
-      dataX.val(Math.round(data.x));
-      dataY.val(Math.round(data.y));
-      dataHeight.val(Math.round(data.height));
-      dataWidth.val(Math.round(data.width));
     }
-  });
+  },
 
-    }
+  'click #confirm': function(){
+    console.log(cropped);
   }
 })

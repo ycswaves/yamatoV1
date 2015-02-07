@@ -3,12 +3,16 @@
     img[src="#"] {
       display: none;
     }
+    .img-preview {
+      width: 134px;
+      height: 134px;
+      overflow: hidden;
+    }
   </style>
 	<section class="hbox stretch bg-white-only">
 		{{> profile}}
 		<!-- .aside -->
 		<aside>
-			<section class="vbox">
         <header class="header bg-white pos-rlt navbar navbar-default show">
           <h3>修改头像</h3>
         </header>
@@ -16,23 +20,30 @@
 					<aside>
 						<section class="vbox">
 							<section class="scrollable wrapper" style="padding:20px 50px">
-                <div class="row">
-                  <form id="uploadAvatar">
-                    <input type="file" id="avatarImg" />
-                  </form>
-                </div>
-                <hr>
-								<div class="row">
-									<div class="col-sm-6 well well-sm img-container" style="min-height: 250px">
-                    <img id="previewAvatar" style="width:100%" src="#" alt="your image" />
-									</div><!-- /.col-md-6 -->
+                <div class="container">
+                  <div class="row">
+                    <form id="uploadAvatar">
+                      <input type="file" id="avatarImg" />
+                    </form>
+                  </div>
+                  <br>
+  								<div class="row">
+  									<div class="col-sm-6 img-container bg-light" style="min-height: 250px">
+                      <img id="previewAvatar" style="width:100%" src="#" alt="your image" />
+  									</div><!-- /.col-sm-6 -->
+                    <div class="col-sm-1 text-center">预览:</div> <!-- serve as margin -->
+                    <div class="col-sm-5">
+                      <div class="img-preview img-thumbnail"></div>
+                      <div class="clearfix"></div>
+                      <button class="btn btn-primary" id="confirm" style="width: 134px;">确认上传</button>
+                    </div>
 
-                  <div class="col-sm-6 img-preview"></div>
-								</div><!-- /.row -->
+  								</div><!-- /.row -->
+
+                </div>
 							</section>
 						</section>
 					</aside>
-				</section>
 			</section>
 		</aside>
 		<!-- /.aside -->
