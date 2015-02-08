@@ -14,48 +14,9 @@
   <div class="Conversation" data-animate data-property="opacity" data-duration="300" data-from-value="0" data-to-value="1" data-easing-in='easeInSine' data-easing-out='linear'>
     <div class="ConversationHead normal">
       <button class="cancelButton borderless conversationHeadClose" type="button" data-topic-id="{{topicId}}"></button>
-      <div class="topicAvatar headWrapper" onclick="$('#fsConversationModal').modal('show')">
+      <div class="topicAvatar headWrapper" data-topic-id="{{topicId}}" onclick="$('#fsConversationModal').modal('show');">
         <div class="imagesWrapper">
           <img class="circle" src="{{getAvatarByTopicId topicId}}">
-        </div>
-      </div>
-      <div class="popover conversation-popover right" role="tooltip" style="display: none; left: 60px; top: -345px;">
-        <div class="arrow sidearrow"></div>
-        <h3 class="popover-title">{{getUsernameByTopicId topicId}}
-          {{#if isAdmin topicId}}
-          <span class="label bg-danger" style="margin-left: 10px;">管理员大神</span>
-          {{/if}}
-          <button type="button" class="close closeConversation">
-            <span aria-hidden="true">×</span>
-            <span class="sr-only">Close</span>
-          </button>
-        </h3>
-        <div class="popover-content conversation-content" style="padding:0px;">
-          {{#with refer topicId}}
-          <div class="referContainer bg-light">
-            <div class="referImage">
-              <a href="{{_link}}"><img src="{{getImageURL _image}}"></a>
-            </div>
-            <div class="referDescription">
-              <a href="{{_link}}">{{_title}}</a>
-            </div>
-          </div>
-          <style>
-            .messagesContainer {
-              height:280px;
-            }
-          </style>
-          {{/with}}
-          <div class="messagesContainer">
-            {{#each messages this.topicId}}
-            {{> messageRow}}
-            {{/each}}
-          </div>
-          <div class="inputWrapper">
-            <div class="ui-TextField ui-Field">
-              <textarea autofocus="autofocus" class="content PMInput" placeholder="此处按回车发送私信" data-topic-id="{{topicId}}"></textarea>
-            </div> 
-          </div>
         </div>
       </div>
     </div>
@@ -63,45 +24,40 @@
 </template>
 
 <template name="fullscreenChat">
-  <div id="fsConversationModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="modal-body">
-      <div class="panel panel-default">
-        <div class="panel-heading">Chat</div>
-        <div class="panel-body">
-          <div class="m-b">
-            <a href="" class="pull-left thumb-sm avatar"><img src="/images/avatar.jpg" alt="..."></a>
-            <div class="m-l-xxl">
-              <div class="pos-rlt wrapper b b-light r r-2x">
-                <span class="arrow left pull-up"></span>
-                <p class="m-b-none">Hi John, What's up...</p>
-              </div>
-              <small class="text-muted"><i class="fa fa-ok text-success"></i> 2 minutes ago</small>
+  <div id="fsConversationModal" class="modal fade bg-white-opacity" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="conversationContainer">
+      <section class="panel no-border bg-white-opacity" style="margin-bottom:0px">
+        <header class="panel-heading messageHeading">
+          <h3 class="messageTitle">{{getUsernameByTopicId topicId}}
+            {{#if isAdmin topicId}}
+            <span class="label bg-danger" style="margin-left: 10px;">管理员大神</span>
+            {{/if}}
+            <button type="button" class="close closeConversation">
+              <span onclick="$('#fsConversationModal').modal('hide')">×</span>
+              <span class="sr-only">Close</span>
+            </button>
+          </h3>
+          {{#with refer}}
+          <div class="referContainer bg-light m-t-sm">
+            <div class="referImage">
+              <a href="{{_link}}"><img src="{{getImageURL _image}}"></a>
+            </div>
+            <div class="referDescription">
+              <a href="{{_link}}">{{_title}}</a>
             </div>
           </div>
-          <div class="m-b">
-            <a href="" class="pull-right thumb-sm avatar"><img src="/images/avatar.jpg" class="img-circle" alt="..."></a>
-            <div class="m-r-xxl">
-              <div class="pos-rlt wrapper bg-primary r r-2x">
-                <span class="arrow right pull-up arrow-primary"></span>
-                <p class="m-b-none">Lorem ipsum dolor sit amet, conse <br>adipiscing eli...<br>:)</p>
-              </div>
-              <small class="text-muted">1 minutes ago</small>
-            </div>
-          </div>
-        </div>
-        <footer class="panel-footer">
-          <!-- chat form -->
-          <div>
-            <form class="m-b-none m-l-xl ng-pristine ng-valid">
-              <div class="input-group">
-                <input type="text" class="form-control" placeholder="Say something">
-                <span class="input-group-btn">
-                  <button class="btn btn-default" type="button">SEND</button>
-                </span>
-              </div>
-            </form>
-          </div>
-        </footer>
+          {{/with}}
+        </header>
+        <section class="messagesContainer {{hasRefer refer}}">
+          {{#each messages}}
+          {{> messageRow}}
+          {{/each}}
+        </section>
+      </section>
+      <div class="inputWrapper">
+        <div class="ui-TextField ui-Field">
+          <textarea autofocus="autofocus" class="content PMInput" placeholder="此处按回车发送私信" data-topic-id="{{topicId}}"></textarea>
+        </div> 
       </div>
     </div>
   </div>
@@ -109,25 +65,29 @@
 
 <template name="messageRow">
   {{#if isOwn this.owner this.sender}}
-  <article class="chat-item right">
-    <a href="#" class="pull-right thumb-sm avatar"><img src="{{getAvatarByUserId this.owner}}" class="img-circle"></a>
-    <div class="m-r-xxl">
-      <div class="pos-rlt wrapper bg-primary r-2x">
-        <span class="arrow right pull-up arrow-primary"></span>
-        <p class="m-b-none">{{content}}</p>
+  <article class="chat-item">
+    <div class="m-b full-width pull-right">
+      <div class="pull-right thumb-sm avatar"><img src="{{getAvatarByUserId this.owner}}" class="img-circle"></div>
+      <div class="m-r-sm pull-right" style="max-width:250px">
+        <div class="pos-rlt wrapper bg-primary r-2x">
+          <span class="arrow right pull-up arrow-primary"></span>
+          <p class="m-b-none">{{content}}</p>
+        </div>
+        <small class="text-white">{{formatMoment createdAt}}</small>
       </div>
-      <small class="text-muted">{{formatMoment createdAt}}</small>
     </div>
   </article>
   {{else}}
-  <article class="chat-item left">
-    <a href="#" class="pull-left thumb-sm avatar"><img src="{{getAvatarByUserId this.sender}}" class="img-circle"></a>
-    <div class="m-l-xxl">
-      <div class="pos-rlt wrapper b b-light r r-2x">
-        <span class="arrow left pull-up"></span>
-        <p class="m-b-none">{{content}}</p>
+  <article class="chat-item">
+    <div class="m-b full-width pull-left">
+      <div class="pull-left thumb-sm avatar"><img src="{{getAvatarByUserId this.sender}}" class="img-circle"></div>
+      <div class="m-l-sm pull-left" style="max-width:250px">
+        <div class="pos-rlt wrapper b b-light bg-white r-2x">
+          <span class="arrow left pull-up"></span>
+          <p class="m-b-none">{{content}}</p>
+        </div>
+        <small class="text-white">{{formatMoment createdAt}}</small>
       </div>
-      <small class="text-muted">{{formatMoment createdAt}}</small>
     </div>
   </article>
   {{/if}}

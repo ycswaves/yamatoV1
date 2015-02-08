@@ -58,14 +58,21 @@ Handlebars.registerHelper('getUsernameByUserId', function(userId){
 
 //get username of someone you chat with
 Handlebars.registerHelper('getUsernameByTopicId', function(topicId){
-  var topic = Topics.findOne({_id:topicId});
-  if(topic.creator == Meteor.userId()) {
-    var userId = topic.chatWith;
+  if (typeof topicId != "undefined") {
+    var topic = Topics.findOne({_id:topicId});
+    if (typeof topic != "undefined") {
+      if(topic.creator == Meteor.userId()) {
+        var userId = topic.chatWith;
+      }
+      else {
+        var userId = topic.creator;
+      }
+      return _getUsernameByUserId(userId);
+    }
   }
   else {
-    var userId = topic.creator;
+    return null;
   }
-  return _getUsernameByUserId(userId);
 });
 
 function _getAvatarByUserId(userId){
