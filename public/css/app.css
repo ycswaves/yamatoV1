@@ -1591,9 +1591,6 @@ fieldset[disabled] .btn-gplus.active {
   margin-left: 0;
   margin-right: 45px;
 }
-.chat-item+.chat-item {
-  margin-top: 15px;
-}
 .comment-list {
   position: relative;
 }
