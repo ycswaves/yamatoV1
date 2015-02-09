@@ -24,13 +24,13 @@
 </template>
 
 <template name="fullscreenChat">
-  <div id="fsConversationModal" class="modal fade bg-white-opacity" tabindex="-1" role="dialog" aria-hidden="true">
-    <div class="conversationContainer">
-      <section class="panel no-border bg-white-opacity" style="margin-bottom:0px">
-        <header class="panel-heading messageHeading">
+  <div id="fsConversationModal" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="conversationContainer" style="margin-right: 0px;">
+      <section class="panel bg-white box-shadow" style="margin:10px auto;width:350px">
+        <header class="panel-heading messageHeading" style="width:349px">
           <h3 class="messageTitle">{{getUsernameByTopicId topicId}}
             {{#if isAdmin topicId}}
-            <span class="label bg-danger" style="margin-left: 10px;">管理员大神</span>
+            <span class="label bg-danger" style="margin-left: 10px;">管理员</span>
             {{/if}}
             <button type="button" class="close closeConversation">
               <span onclick="$('#fsConversationModal').modal('hide')">×</span>
@@ -53,12 +53,13 @@
           {{> messageRow}}
           {{/each}}
         </section>
+        <div class="inputWrapper" style="width:349px">
+          <div class="ui-TextField ui-Field">
+            <textarea autofocus="autofocus" class="content PMInput" placeholder="此处按回车发送私信" data-topic-id="{{topicId}}"></textarea>
+          </div>
+        </div>
       </section>
-      <div class="inputWrapper">
-        <div class="ui-TextField ui-Field">
-          <textarea autofocus="autofocus" class="content PMInput" placeholder="此处按回车发送私信" data-topic-id="{{topicId}}"></textarea>
-        </div> 
-      </div>
+
     </div>
   </div>
 </template>
