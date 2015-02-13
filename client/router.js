@@ -109,6 +109,17 @@ Router.map(function () {
     }
   });
 
+  this.route('v2', {
+    path: '/v2',
+    template: 'v2',
+    label: '注册',
+    action: function () {
+      this.layout('layoutPlain');
+      $('body').addClass('fullbackground');
+      this.render();
+    }
+  });
+
   this.route('me', {
     path: '/account/me',
     template: 'me',
