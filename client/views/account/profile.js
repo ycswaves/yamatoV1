@@ -12,7 +12,7 @@ Template.profile.rendered = function() {
           DOM.addClass('text-danger');
           return false;
         }
-      })
+      });
     }
   })
 

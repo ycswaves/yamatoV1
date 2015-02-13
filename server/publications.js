@@ -11,6 +11,10 @@ Meteor.publish("property-images", function() {
   return PropertyImages.find();
 });
 
+Meteor.publish("avatar-images", function() {
+  return AvatarImages.find();
+});
+
 Meteor.publish("properties", function() {
   return Properties.find({}, {sort: {createdAt: -1}});
 });

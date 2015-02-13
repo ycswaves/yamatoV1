@@ -80,7 +80,10 @@ function _getAvatarByUserId(userId){
   var profile = UserProfiles.findOne({userid: userId});
   if (typeof profile != 'undefined') {
     if (profile.avatar != null) {
-      return profile.avatar;
+      var imgObj = AvatarImages.findOne({_id: profile.avatar});
+      var imgLink = 'https://s3-ap-southeast-1.amazonaws.com/yamato-image/'
+                  + imgObj.copies['avatar-images'].key;
+      return imgLink;
     }
     else {
       var user = Meteor.users.findOne({_id:userId});

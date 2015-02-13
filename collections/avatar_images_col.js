@@ -19,7 +19,7 @@ var avatarImgStore = new FS.Store.S3("avatar-images", { //"avatar-images" is the
   maxTries: 1 //optional, default 5
 });
 
-avatarImages = new FS.Collection("avatar-images", {
+AvatarImages = new FS.Collection("avatar-images", {
   stores: [avatarImgStore],
   filter: {
     allow: {
@@ -37,7 +37,7 @@ avatarImages = new FS.Collection("avatar-images", {
 });
 
 
-avatarImages.allow({
+AvatarImages.allow({
   insert: function(userId) {
     return !!userId;
   },

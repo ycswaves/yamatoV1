@@ -33,17 +33,22 @@ Template.uploadAvatar.events({
   },
 
   'click #confirm': function(){
-    console.log(cropped);
     var FSObj = new FS.File(file);
     FSObj['cropInfo'] = cropped;
-    //FSObj.attachData(JSON.stringify(cropped));
-    avatarImages.insert(FSObj, function(err, imageUploaded){
+    //TODO: check previouly uploaded img, if there is, need to delete
+    // also delelte avatar when user is deleted
+    AvatarImages.insert(FSObj, function(err, imageUploaded){
       if(err){
         console.log(err);
         //bcoz it's async, even if upload fail, the rest fields should be saved
         // and redirect to the property detail
       } else {
-        console.log(imageUploaded._id);
+        //update user profile and insert avatar's ID. Not store link becoz it's not ready at this point
+        Meteor.call('editProfile', Meteor.userId(), {avatar: imageUploaded._id}, function(err){
+          if(err){
+            console.log(err);
+          }
+        });
       }
     });
   }
