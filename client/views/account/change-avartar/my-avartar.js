@@ -7,14 +7,12 @@ Template.uploadAvatar.rendered = function() {
 Template.uploadAvatar.events({
   'change #avatarImg': function(e, t){
     e.preventDefault();
+    var image = $(".img-container img");
     file = t.find('#avatarImg').files[0];
     if(file){
       var reader = new FileReader();
       reader.onload = function (e) {
         $('#previewAvatar').attr('src', e.target.result);
-        var image = $(".img-container img");
-
-
         image.cropper({
           aspectRatio: 1,
 
@@ -35,8 +33,18 @@ Template.uploadAvatar.events({
   'click #confirm': function(){
     var FSObj = new FS.File(file);
     FSObj['cropInfo'] = cropped;
-    //TODO: check previouly uploaded img, if there is, need to delete
-    // also delelte avatar when user is deleted
+
+    // TODO: also delelte avatar when user is deleted
+    // check previouly uploaded img, if there is, need to delete
+    var profile = UserProfiles.findOne({userid: Meteor.userId()});
+    if (typeof profile != 'undefined' && profile.avatar != null) {
+      Meteor.call('deleteAvatarImg', profile.avatar, function(err){
+        if(err){
+          console.log(err);
+        }
+      });
+    }
+
     AvatarImages.insert(FSObj, function(err, imageUploaded){
       if(err){
         console.log(err);

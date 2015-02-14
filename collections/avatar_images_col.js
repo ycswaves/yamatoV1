@@ -1,3 +1,5 @@
+var STORE_WIDTH = 144;
+var STORE_HEIGHT = 144;
 
 var avatarImgStore = new FS.Store.S3("avatar-images", { //"avatar-images" is the S3 folder name
   region: "ap-southeast-1",
@@ -8,11 +10,14 @@ var avatarImgStore = new FS.Store.S3("avatar-images", { //"avatar-images" is the
     var cropConf = fileObj.cropInfo;
     gm(readStream)
       .crop(cropConf.width, cropConf.height, cropConf.x, cropConf.y)
-      .stream(function (err, stdout, stderr) {
-        if(err){
-          console.log(err);
-        }
-        stdout.pipe(writeStream);
+      .size({bufferStream: true}, function (err, size) {
+          this.thumbnail(STORE_WIDTH, STORE_HEIGHT);
+          this.noProfile();
+          this.gravity('Center');
+          this.extent(STORE_WIDTH, STORE_HEIGHT);
+          this.stream(function (err, stdout, stderr) {
+            stdout.pipe(writeStream);
+          });
       });
   },
   // transformRead: myTransformReadFunction, //optional

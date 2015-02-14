@@ -27,12 +27,21 @@ Accounts.onCreateUser(function (options, user) {
   return user;
 });
 
+var validateUser = function(){
+  var user = Meteor.user();
+  if(!user){
+    throw new Meteor.Error(401, "You need to login to perform this action");
+  }
+};
+
 Meteor.methods({
   editProfile: function(userId, formObj){
-    var user = Meteor.user();
-    if(!user){
-      throw new Meteor.Error(401, "You need to login to edit");
-    }
+    validateUser();
     UserProfiles.update({userid: userId}, {$set: formObj});
+  },
+
+  deleteAvatarImg: function(imgID){
+    validateUser();
+    AvatarImages.remove({_id: imgID});
   }
 });
