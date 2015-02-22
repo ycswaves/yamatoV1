@@ -20,11 +20,10 @@ Meteor.methods({
     validateUser();
 
     filter = (Meteor.user().isAdmin)?
-        {_id: userId} : {_id: userId, author: Meteor.userId()}
-    var prop = Meteor.users.findOne({_id : userId});
+        {_id: userId} : {_id: Meteor.userId()}
 
-    //Also remember to delete all the photos in the post
-    UserImages.remove({_id: {$in: prop.photos}});
+    //TODO: Also remember to delete all the posts and avatar
+
     Meteor.users.remove(filter);
   }
 })
