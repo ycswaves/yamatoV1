@@ -10,7 +10,14 @@
         </div>
         <!-- Results -->
         <div class="col-sm-9">
-          <h4 class="m-t-none">找到{{totalDocs}}条结果:</h4>
+          {{#if noResult}}
+            <div class="alert alert-success">
+              <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
+              <i class="fa fa-info-sign"></i>对不起，没有找到符合条件的房屋。
+            </div>
+          {{else}}
+            <h4 class="m-t-none">找到{{totalDocs}}条结果:</h4>
+          {{/if}}
           <hr>
           <button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-info center full-width m-b">设置搜索条件</button>
           <section id="results">

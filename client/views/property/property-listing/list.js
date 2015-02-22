@@ -82,29 +82,20 @@ ListController = RouteController.extend({
     }
 
     //handle multi address, method 1: Union
-    /*
-    var multiAddress = Session.get('multiAddress')
-      , districtList = [];
-    if(multiAddress){
-      for(var key in multiAddress){
-        var postcode = multiAddress[key].postcode
-        if(postcode){
-          var distCode = Config.getDistrictByPostal(postcode);
-          if(distCode){
-            districtList.push(distCode);
-          }
-        }
-      }
-    }
-    if(districtList.length > 0){
-      filter['district'] = {$in: districtList};
-    }
-    */
 
     //console.log(filter);
 
     var totalDocs = Properties.find(filter).count() //filter apply here too
-      , totalPages = Math.ceil(totalDocs / pageLimit)
+      , noResult = false;
+
+
+    if(totalDocs <= 0){ // if no result, return all and give notification
+      filter = {}; //clear filter
+      noResult = true;
+      totalDocs = Properties.find(filter).count();
+    }
+
+    var totalPages = Math.ceil(totalDocs / pageLimit)
       , paginatedDocs = Properties.find(
           filter,
           {sort: sortby, skip: (pageNum-1)*pageLimit, limit: pageLimit}
@@ -120,6 +111,7 @@ ListController = RouteController.extend({
     return {
       properties: paginatedDocs,
       totalDocs: totalDocs,
+      noResult: noResult,
       paginationConfig: {
         'config': {
           pageNum: pageNum,
