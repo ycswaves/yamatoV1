@@ -34,3 +34,4 @@ mrt:bootstrap-select
 udondan:slick
 meteorhacks:fast-render
 jonblum:jquery-cropper
+tap:i18n
