@@ -1,7 +1,25 @@
 {
   "lang": "中文版",
+  "yihome": "Yihome",
+  "landing_main_title": "Look for your dreamed house in Singapore",
+  "landing_sub_title": "one-stop house-rental experience starts right here",
+  "housing": "Housing",
+  "flea_market": "Flea Market",
   "admin_panel": "Admin",
   "notice": "Notice",
+  "no_notice": "No Message",
   "publish":  "Publish",
-  "my_management": "Management"
+  "my_management": "Management",
+  "my_property": "My Properties",
+  "security": "Security",
+  "inbox": "Inbox",
+  "view_all": "View All",
+  "online_help": "Online Help",
+  "register": "Register",
+  "login": "Log In",
+  "logout": "Log Out",
+  "search_keyword": "Search Keyword",
+  "search_btn": "Search",
+  "inbox_status": "You have %s new message(s)",
+  "landing_page": "Home"
 }

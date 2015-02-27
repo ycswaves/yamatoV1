@@ -19,7 +19,7 @@ Template.header.events({
     Conversations.start('','System');
   },
 
-  'click #languageSetting': function(){
+  'click a.languageSetting': function(){
     var curLang = Session.get("language") || "zh";
     if(curLang == "zh"){
       curLang = "en";

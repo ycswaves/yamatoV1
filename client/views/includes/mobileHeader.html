@@ -6,7 +6,7 @@
         <a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen" data-target="#nav">
           <i class="fa fa-bars"></i>
         </a>
-        <a href="{{pathFor "landing"}}" class="nav-brand">家易</a>
+        <a href="{{pathFor "landing"}}" class="nav-brand">{{_ "yihome"}}</a>
         <a class="btn btn-link visible-xs" href="{{pathFor 'addProperty'}}">
           <i class="fa fa-plus"></i>
         </a>
@@ -18,7 +18,7 @@
             <li>
               <a href="{{pathFor "landing"}}" data-toggle="class:nav-off-screen" data-target="#nav">
                 <i class="fa fa-home"></i>
-                <span>首页</span>
+                <span>{{_ "landing_page"}}</span>
               </a>
             </li>
             {{#if currentUser}}
@@ -26,26 +26,26 @@
             <li>
               <a href="{{pathFor 'adminuser' type='all' page='1'}}" data-toggle="class:nav-off-screen" data-target="#nav">
                 <i class="fa fa-bar-chart"></i>
-                <span>控制面板</span>
+                <span>{{_ "admin_panel"}}</span>
               </a>
             </li>
             {{/if}}
             <li>
               <a href="{{pathFor "me"}}" data-toggle="class:nav-off-screen" data-target="#nav">
                 <i class="fa fa-user"></i>
-                <span>个人主页</span>
+                <span>{{_ "my_management"}}</span>
               </a>
             </li>
             <li>
               <a href="{{pathFor 'myproperty' type='open' page=1}}" data-toggle="class:nav-off-screen" data-target="#nav">
                 <i class="fa fa-home"></i>
-                <span>我的房屋</span>
+                <span>{{_ "my_property"}}</span>
               </a>
             </li>
             <li>
               <a href="{{pathFor 'security'}}" data-toggle="class:nav-off-screen" data-target="#nav">
                 <i class="fa fa-lock"></i>
-                <span>安全设置</span>
+                <span>{{_ "security"}}</span>
               </a>
             </li>
             <li>
@@ -54,35 +54,41 @@
                 <b class="badge lter pull-right">{{messageCount}}</b>
                 {{/if}}
                 <i class="fa fa-envelope-o"></i>
-                <span>收件箱</span>
+                <span>{{_ "inbox"}}</span>
               </a>
             </li>
             <li>
               <a class="chatWithAdmin" href="javascript:void(0)" data-toggle="class:nav-off-screen" data-target="#nav">
                 <i class="fa fa-question-circle"></i>
-                <span>在线帮助</span>
+                <span>{{_ "online_help"}}</span>
               </a>
             </li>
             <li>
               <a id="signout" href="javascript:void(0)" data-toggle="class:nav-off-screen" data-target="#nav">
                 <i class="fa fa-sign-out"></i>
-                <span>登出</span>
+                <span>{{_ "logout"}}</span>
               </a>
             </li>
             {{else}}
             <li>
               <a href="{{pathFor "signup"}}" data-toggle="class:nav-off-screen" data-target="#nav">
                 <i class="fa fa-pencil-square-o"></i>
-                <span>注册</span>
+                <span>{{_ "register"}}</span>
               </a>
             </li>
             <li>
               <a href="{{pathFor "signin"}}" data-toggle="class:nav-off-screen" data-target="#nav">
                 <i class="fa fa-sign-in"></i>
-                <span>登录</span>
+                <span>{{_ "login"}}</span>
               </a>
             </li>
             {{/if}}
+            <li>
+              <a href="javascript:void(0)" data-toggle="class:nav-off-screen" data-target="#nav" class="languageSetting">
+                <i class="fa fa-language"></i>
+                <span>{{_ "lang"}}</span>
+              </a>
+            </li>
           </ul>
         </nav>
         <!-- / nav -->

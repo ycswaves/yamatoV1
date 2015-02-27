@@ -1,7 +1,25 @@
 {
   "lang": "English",
+  "yihome": "家易",
+  "landing_main_title": "在狮城寻找属于你的那个家",
+  "landing_sub_title": "新加坡一站式租房体验，从这里开始",
+  "housing": "租房",
+  "flea_market": "跳蚤市场",
   "admin_panel": "管理员",
   "notice": "通知",
+  "no_notice": "您没有未读消息",
   "publish":  "发布",
-  "my_management": "个人主页"
+  "my_management": "个人主页",
+  "my_property": "我的房屋",
+  "security": "安全设置",
+  "inbox": "收件箱",
+  "view_all": "查看所有通知",
+  "online_help": "在线帮助",
+  "register": "注册",
+  "login": "登录",
+  "logout": "登出",
+  "search_keyword": "搜索关键词",
+  "search_btn": "搜索",
+  "inbox_status": "您有%s条新消息",
+  "landing_page": "首页"
 }

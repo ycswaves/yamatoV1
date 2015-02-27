@@ -21,6 +21,25 @@ Template.mobileHeader.events({
   //chat with admin
   'click .chatWithAdmin' : function(e, t){
     Conversations.start('','System');
+  },
+
+  'click a.languageSetting': function(){
+    var curLang = Session.get("language") || "zh";
+    if(curLang == "zh"){
+      curLang = "en";
+    } else {
+      curLang = "zh";
+    }
+    Session.set("language", curLang);
+
+    TAPi18n.setLanguage(curLang)
+      .done(function () {
+        Session.set("showLoadingIndicator", false);
+      })
+      .fail(function (error_message) {
+        // Handle the situation
+        console.log(error_message);
+      });
   }
 })
 

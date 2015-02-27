@@ -12,7 +12,7 @@
       <form class="navbar-form navbar-left m-t-sm" role="search">
         <div class="form-group">
           <div class="input-group input-s">
-            <input type="text" class="form-control input-sm no-border bg-dark" placeholder="搜索关键词">
+            <input type="text" class="form-control input-sm no-border bg-dark" placeholder="{{search_keyword}}">
             <span class="input-group-btn">
               <button type="submit" class="btn btn-sm btn-info btn-icon"><i class="fa fa-search"></i></button>
             </span>
@@ -33,15 +33,15 @@
             <section class="panel bg-white">
               <header class="panel-heading">
                 {{#if messageCount}}
-                <strong>您有<span class="count-n">{{messageCount}}</span>条新消息</strong>
+                  {{_ "inbox_status" messageCount}}
                 {{else}}
-                <strong>您没有未读消息</strong>
+                  {{_ "no_notice"}}
                 {{/if}}
               </header>
               {{> messages}}
               <footer class="panel-footer text-sm">
                 <a href="{{pathFor "inbox"}}" class="pull-right"><i class="fa fa-cog"></i></a>
-                <a href="{{pathFor "inbox"}}">查看所有通知</a>
+                <a href="{{pathFor "inbox"}}">{{_ "view_all"}}</a>
               </footer>
             </section>
           </section>
@@ -68,19 +68,19 @@
               <a href="{{pathFor 'myproperty' type='open' page=1}}">{{_ "my_management"}}</a>
             </li>
             <li>
-              <a href="#和管理员发起对话" class="chatWithAdmin">在线帮助</a>
+              <a href="#和管理员发起对话" class="chatWithAdmin">{{_ "online_help"}}</a>
             </li>
             <li>
-              <a id="signout" href="javascript:void(0)">登出</a>
+              <a id="signout" href="javascript:void(0)">{{_ "logout"}}</a>
             </li>
           </ul>
         </li>
         {{/with}}
         {{else}}
-        <li><a href="/account/signup" class="navlink navpadding">注册</a></li>
-        <li><a href="/account/signin" class="navlink navpadding">登陆</a></li>
+        <li><a href="/account/signup" class="navlink navpadding">{{_ "register"}}</a></li>
+        <li><a href="/account/signin" class="navlink navpadding">{{_ "login"}}</a></li>
         {{/if}}
-        <li><a href="javascript:void(0)" id="languageSetting"><i class="fa fa-language"></i> {{_ "lang"}}</a></li>
+        <li><a href="javascript:void(0)" class="languageSetting"><i class="fa fa-language"></i> {{_ "lang"}}</a></li>
       </ul>
     </div>
   </header>

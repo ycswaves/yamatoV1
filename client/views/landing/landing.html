@@ -1,14 +1,14 @@
 <template name="landing">
   <div class="welcome">
     <div class="container slogan">
-      <h1>在狮城寻找属于你的那个家</h1>
-      <h4>新加坡一站式租房体验，从这里开始</h4>
+      <h2>{{_ "landing_main_title"}}</h2>
+      <h5>{{_ "landing_sub_title"}}</h5>
     </div>
     <br>
     <div class="container search-box">
       <ul class="nav nav-pills">
-        <li class="active"><a href="#search-form-rent" data-toggle="tab">租房</a></li>
-        <li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">跳蚤市场</a></li>
+        <li class="active"><a href="#search-form-rent" data-toggle="tab">{{_ "housing"}}</a></li>
+        <li><a href="javascript:;" class="tool-tip" data-toggle="tooltip" data-placement="top" title="启动中">{{_ "flea_market"}}</a></li>
       </ul>
       <br>
       <div class="tab-content m-b">
@@ -95,7 +95,7 @@
               </div>
               <div class="col-md-2 col-sm-4">
                 <div class="form-group">
-                  <button type="submit" class="btn btn-info"><i class="fa fa-search" style="margin-right: 5px"></i> 搜索</button>
+                  <button type="submit" class="btn btn-info"><i class="fa fa-search" style="margin-right: 5px"></i> {{_ "search_btn"}}</button>
                 </div><!-- /.form-group -->
               </div>
             </div>
@@ -175,7 +175,7 @@
   </div>
   <footer id="footer">
     <div class="bg-black dker wrapper text-center">
-      <span>家易 © 2015. All Rights Reserved.</span>
+      <span>{{_ "yihome"}} © 2015. All Rights Reserved.</span>
     </div>
   </footer>
 </template>
