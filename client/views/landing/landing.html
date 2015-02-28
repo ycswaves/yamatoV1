@@ -19,7 +19,7 @@
               <div class="col-md-2 col-sm-4">
                 <div class="form-group">
                   <select name="property-type" class="selectpicker" data-width="100%">
-                    <option value="">任意房屋类型</option>
+                    <option value="">{{_ "any_property_type"}}</option>
                     {{#each arrayify ptypes}}
                     <option value="{{key}}">{{value}}</option>
                     {{/each}}
@@ -36,7 +36,7 @@
                     <li class="label bg-success multiAddrLabel"
                     data-key="{{key}}">{{value.address}}</li>
                     {{/each}}
-                    <input type="text" class="form-control text-white m-l-sm" placeHolder="常用地址: 工作地点, 学校..." id="multiAddress" name="multiAddress">
+                    <input type="text" class="form-control text-white m-l-sm" placeHolder="{{_ 'multi_addr_placeholder'}}" id="multiAddress" name="multiAddress">
                   </ul>
                 </div>
               </div>
@@ -45,7 +45,7 @@
               <div class="col-md-2 col-sm-4">
                 <div class="form-group">
                   <select name="district" class="selectpicker" data-width="100%">
-                    <option value="">任意区域</option>
+                    <option value="">{{_ "any_district"}}</option>
                     {{#each arrayify district}}
                     <option value="{{key}}">{{key}} - {{value}}</option>
                     {{/each}}
@@ -55,7 +55,7 @@
               <div class="col-md-2 col-sm-4">
                 <div class="form-group">
                   <select name="price" class="selectpicker" data-width="100%">
-                    <option value="">任意价格</option>
+                    <option value="">{{_ "any_price"}}</option>
                     {{#each arrayify priceRange}}
                     <option value="{{key}}">{{value}}</option>
                     {{/each}}
@@ -65,7 +65,7 @@
               <div class="col-md-2 col-sm-4">
                 <div class="form-group">
                   <select name="room" class="selectpicker" data-width="100%">
-                    <option value="">任意房间数</option>
+                    <option value="">{{_ "any_room_num"}}</option>
                     {{#each arrayify roomNum}}
                     <option value="{{key}}">{{value}}</option>
                     {{/each}}
@@ -75,7 +75,7 @@
               <div class="col-md-2 col-sm-4">
                 <div class="form-group">
                   <select name="mrtlines" id="mrtlines" class="selectpicker" data-width="100%">
-                    <option value="">任意地铁线</option>
+                    <option value="">{{_ "any_mrt_line"}}</option>
                     {{#each arrayify mrtlines}}
                     <option value="{{key}}" data-content="{{value.niceName}} {{mrtColoredLabel key}}"></option>
                     {{/each}}
@@ -86,7 +86,7 @@
               <div class="col-md-2 col-sm-4">
                 <div class="form-group">
                   <select name="stations" id="stations" class="selectpicker" data-width="100%">
-                    <option value="">站名</option>
+                    <option value="">{{_ "station_name"}}</option>
                     {{#each arrayify stations}}
                     <option value="{{key}}">{{key}} - {{value}}</option>
                     {{/each}}
@@ -109,7 +109,7 @@
       <div>
         <img src="/images/h1.png" height="120px;">
       </div>
-      <h3>家居从未如此简单</h3>
+      <h3>{{_ "landing_slogan"}}</h3>
     </div>
   </div>
 
@@ -125,9 +125,9 @@
             </aside>
             <aside class="col-xs-8">
               <div class="wrapper-sm">
-                <p class="h3">丰富房源</p>
+                <p class="h3">{{_ "feature_abundant_source"}}</p>
                 <br>
-                <span class="text-muted">整合各方资源提供海量房源</span>
+                <span class="text-muted">{{_ "abundant_source_elaborate"}}</span>
               </div>
             </aside>
           </section>
@@ -141,9 +141,9 @@
             </aside>
             <aside class="col-xs-8">
               <div class="wrapper-sm">
-                <p class="h3">智能分析</p>
+                <p class="h3">{{_ "feature_intel_analysis"}}</p>
                 <br>
-                <span class="text-muted">分析常用地点找出最佳房源</span>
+                <span class="text-muted">{{_ "intel_analysis_elaborate"}}</span>
               </div>
             </aside>
           </section>
@@ -157,9 +157,9 @@
             </aside>
             <aside class="col-xs-8">
               <div class="wrapper-sm">
-                <p class="h3">极致搜索</p>
+                <p class="h3">{{_ "feature_search"}}</p>
                 <br>
-                <span class="text-muted">针对不同需求分门别类</span>
+                <span class="text-muted">{{_ "search_elaborate"}}</span>
               </div>
             </aside>
           </section>
@@ -167,7 +167,7 @@
       </div>
 
       <div class="m-xl text-center wrapper">
-        <p class="text-muted h4">家易，做新加坡最优质的租房平台</p>
+        <p class="text-muted h4">{{_ "yihome"}}，{{_ "best_platform_in_sg"}}</p>
         <br>
         <p class="text-muted h6">enquiry&#64;yiho.me</p>
       </div>

@@ -3,6 +3,14 @@
   "yihome": "Yihome",
   "landing_main_title": "Look for your dreamed house in Singapore",
   "landing_sub_title": "one-stop house-rental experience starts right here",
+  "landing_slogan": "Make your living more convenient",
+  "feature_abundant_source": "Many Choices",
+  "abundant_source_elaborate": "Integrate from various sources",
+  "feature_intel_analysis": "Smart Analysis",
+  "intel_analysis_elaborate": "Intelligent analysis ensures best matched result",
+  "feature_search": "Powerful Filter",
+  "search_elaborate": "Search by property type, location and many more",
+  "best_platform_in_sg": "Strive to be Singapore's best house-rental platform",
   "housing": "Housing",
   "flea_market": "Flea Market",
   "admin_panel": "Admin",
@@ -21,5 +29,14 @@
   "search_keyword": "Search Keyword",
   "search_btn": "Search",
   "inbox_status": "You have %s new message(s)",
-  "landing_page": "Home"
+  "landing_page": "Home",
+
+  //form related
+  "any_property_type": "Any Type",
+  "multi_addr_placeholder": "e.g. company, school ...",
+  "any_district": "Any District",
+  "any_price": "Any Price",
+  "any_room_num": "Any Room Number",
+  "any_mrt_line": "Any MRT Line",
+  "station_name": "Station"
 }

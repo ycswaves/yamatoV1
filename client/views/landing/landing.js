@@ -5,6 +5,14 @@ Template.landing.rendered = function() {
 		style:'btn-primary'
 	});
 
+  //to refresh the i18n in selectpicker
+  Deps.autorun(function (){
+    Session.get("language");
+    setTimeout(function(){
+      $('.selectpicker').selectpicker('refresh');
+    },0);
+  });
+
 	$('.icheck').iCheck({
 		checkboxClass: 'icheckbox_flat-blue',
 		radioClass: 'iradio_flat-blue'

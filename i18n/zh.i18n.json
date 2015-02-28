@@ -3,6 +3,14 @@
   "yihome": "家易",
   "landing_main_title": "在狮城寻找属于你的那个家",
   "landing_sub_title": "新加坡一站式租房体验，从这里开始",
+  "landing_slogan": "家居从未如此简单",
+  "feature_abundant_source": "丰富房源",
+  "abundant_source_elaborate": "整合各方资源提供海量房源",
+  "feature_intel_analysis": "智能分析",
+  "intel_analysis_elaborate": "分析常用地点找出最佳房源",
+  "feature_search": "极致搜索",
+  "search_elaborate": "针对不同需求分门别类",
+  "best_platform_in_sg": "做新加坡最优质的租房平台",
   "housing": "租房",
   "flea_market": "跳蚤市场",
   "admin_panel": "管理员",
@@ -21,5 +29,14 @@
   "search_keyword": "搜索关键词",
   "search_btn": "搜索",
   "inbox_status": "您有%s条新消息",
-  "landing_page": "首页"
+  "landing_page": "首页",
+
+  //form related
+  "any_property_type": "任意房屋类型",
+  "multi_addr_placeholder": "常用地址: 工作地点, 学校...",
+  "any_district": "任意区域",
+  "any_price": "任意价格",
+  "any_room_num": "任意房间数",
+  "any_mrt_line": "任意地铁线",
+  "station_name": "站名"
 }
