@@ -34,7 +34,7 @@ Template.mobileHeader.events({
 
     TAPi18n.setLanguage(curLang)
       .done(function () {
-        Session.set("showLoadingIndicator", false);
+        //Session.set("showLoadingIndicator", false);
       })
       .fail(function (error_message) {
         // Handle the situation

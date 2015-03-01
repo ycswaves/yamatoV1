@@ -38,5 +38,10 @@
   "any_price": "Any Price",
   "any_room_num": "Any Room Number",
   "any_mrt_line": "Any MRT Line",
-  "station_name": "Station"
+  "station_name": "Station",
+  "north_south": "North S.",
+  "east_west": "East W.",
+  "north_east": "North E.",
+  "circle_line": "Circle",
+  "downtown_line": "Downt."
 }

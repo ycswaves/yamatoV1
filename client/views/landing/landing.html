@@ -77,7 +77,7 @@
                   <select name="mrtlines" id="mrtlines" class="selectpicker" data-width="100%">
                     <option value="">{{_ "any_mrt_line"}}</option>
                     {{#each arrayify mrtlines}}
-                    <option value="{{key}}" data-content="{{value.niceName}} {{mrtColoredLabel key}}"></option>
+                    <option value="{{key}}">{{_ value.niceName}} {{{mrtColoredLabel key}}}</option>
                     {{/each}}
                   </select>
                 </div><!-- /.form-group -->

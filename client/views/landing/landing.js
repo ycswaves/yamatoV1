@@ -6,12 +6,7 @@ Template.landing.rendered = function() {
 	});
 
   //to refresh the i18n in selectpicker
-  Deps.autorun(function (){
-    Session.get("language");
-    setTimeout(function(){
-      $('.selectpicker').selectpicker('refresh');
-    },0);
-  });
+  CommonHelper.refreshSelectpickerLang();
 
 	$('.icheck').iCheck({
 		checkboxClass: 'icheckbox_flat-blue',

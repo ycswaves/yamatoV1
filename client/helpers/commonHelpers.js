@@ -8,6 +8,15 @@ CommonHelper = {
     return '' === n.trim();
   },
 
+  'refreshSelectpickerLang': function(){
+    Deps.autorun(function (){
+      Session.get("language");
+      setTimeout(function(){
+        $('.selectpicker').selectpicker('refresh');
+      }, 100);
+    });
+  },
+
   'showErrorMessageInForm': function(context, formErrDivID, template){
     context.invalidKeys().forEach(function(e){
       var errMsg = context.keyErrorMessage(e.name)

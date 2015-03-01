@@ -62,7 +62,7 @@ var postalDistrict = {
 
 var mrtList = {
   "NS": {
-    "niceName": "南北线",
+    "niceName": "north_south",
     "stations": {
       "NS1" : "Jurong East",
       "NS2" : "Bukit Batok",
@@ -93,7 +93,7 @@ var mrtList = {
   },
 
   "EW": {
-    "niceName": "东西线",
+    "niceName": "east_west",
     "stations": {
       "EW1" : "Pasir Ris",
       "EW2" : "Tampines",
@@ -128,7 +128,7 @@ var mrtList = {
   },
 
   "NE": {
-    "niceName": "东北线",
+    "niceName": "north_east",
     "stations": {
       "NE1" : "HarbourFront",
       "NE3" : "Outram Park",
@@ -150,7 +150,7 @@ var mrtList = {
   },
 
   "CC": {
-    "niceName": "环线",
+    "niceName": "circle_line",
     "stations": {
       "CC1" : "Dhoby Ghaut",
       "CC2" : "Bras Basah",
@@ -185,7 +185,7 @@ var mrtList = {
   },
 
   "DT": {
-    "niceName": "市区线",
+    "niceName": "downtown_line",
     "stations": {
       "DT14": "Bugis",
       "DT15": "Promenade",

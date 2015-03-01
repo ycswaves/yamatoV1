@@ -38,5 +38,10 @@
   "any_price": "任意价格",
   "any_room_num": "任意房间数",
   "any_mrt_line": "任意地铁线",
-  "station_name": "站名"
+  "station_name": "站名",
+  "north_south": "南北线",
+  "east_west": "东西线",
+  "north_east": "东北线",
+  "circle_line": "环线",
+  "downtown_line": "市区线"
 }

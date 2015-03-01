@@ -5,6 +5,9 @@ Template.sideSearch.rendered = function() {
     style:'btn-white'
   });
 
+  //to refresh the i18n in selectpicker
+  CommonHelper.refreshSelectpickerLang();
+
   CommonHelper.initPillboxAutoCompl('multiAddress', 'input[name="multiAddress"]');
 }
 
