@@ -21,7 +21,7 @@
                   <select name="property-type" class="selectpicker" data-width="100%">
                     <option value="">{{_ "any_property_type"}}</option>
                     {{#each arrayify ptypes}}
-                    <option value="{{key}}">{{value}}</option>
+                    <option value="{{key}}">{{_ value}}</option>
                     {{/each}}
                   </select>
                 </div><!-- /.form-group -->
@@ -67,7 +67,7 @@
                   <select name="room" class="selectpicker" data-width="100%">
                     <option value="">{{_ "any_room_num"}}</option>
                     {{#each arrayify roomNum}}
-                    <option value="{{key}}">{{value}}</option>
+                    <option value="{{key}}">{{_ value}}</option>
                     {{/each}}
                   </select>
                 </div>

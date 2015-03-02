@@ -30,7 +30,7 @@
           <select name="property-type" class="selectpicker" data-width="100%">
             <option value="">{{_ "any_property_type"}}</option>
             {{#each arrayify ptypes}}
-            <option value="{{key}}" {{ifSelected key currentQuery.propertyType}}>{{value}}</option>
+            <option value="{{key}}" {{ifSelected key currentQuery.propertyType}}>{{_ value}}</option>
             {{/each}}
           </select>
         </div><!-- /.form-group -->
@@ -51,7 +51,14 @@
             {{/each}}
           </select>
         </div>
-
+        <div class="form-group">
+          <select name="room" class="selectpicker" data-width="100%">
+            <option value="">{{_ "any_room_num"}}</option>
+            {{#each arrayify roomNum}}
+            <option value="{{key}}">{{_ value}}</option>
+            {{/each}}
+          </select>
+        </div>
         <div class="form-group">
           <select name="mrtlines" id="mrtlines" class="selectpicker" data-width="100%">
             <option value="">{{_ "any_mrt_line"}}</option>
@@ -90,7 +97,7 @@
           <select name="room-type" id="room-type" class="selectpicker" data-width="100%">
             <option value="">出租房间</option>
             {{#each arrayify rtypes}}
-            <option value="{{key}}"  {{ifSelected key currentQuery.roomType}}>{{value}}</option>
+            <option value="{{key}}"  {{ifSelected key currentQuery.roomType}}>{{_ value}}</option>
             {{/each}}
           </select>
         </div><!-- /.form-group -->

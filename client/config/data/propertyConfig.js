@@ -1,23 +1,23 @@
 var propertyTypes = {
-  "HDB": "组屋",
-  "Condo": "公寓",
-  "Landed": "别墅"
+  "HDB": "hdb",
+  "Condo": "condo",
+  "Landed": "landed"
 };
 
 var roomTypes = {
-  "master": "主人房",
-  "common": "普通房",
-  "other": "其他"
+  "master": "master_room",
+  "common": "common_room",
+  "other": "other_room"
 };
 
 var roomNum = {
-  "1": "一间房",
-  "2": "两间房",
-  "3": "三间房",
-  "4": "四间房",
-  "5": "五间房",
-  "6": "大于五间房"
-}
+  "1": "one_bedroom",
+  "2": "two_bedroom",
+  "3": "three_bedroom",
+  "4": "four_bedroom",
+  "5": "five_bedroom",
+  "6": "more_than_five_bedroom"
+};
 
 var priceRange = {
   "500": "< $500",
@@ -26,7 +26,7 @@ var priceRange = {
   "3000": "< $3,000",
   "4000": "< $4,000",
   "10000": "< $10,000"
-}
+};
 
 // correspond to properties_col status allowd allowedValues
 var userPropertyStatus = {

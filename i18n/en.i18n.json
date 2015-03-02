@@ -39,9 +39,26 @@
   "any_room_num": "Any Room Number",
   "any_mrt_line": "Any MRT Line",
   "station_name": "Station",
+
+  //MRT lines
   "north_south": "North S.",
   "east_west": "East W.",
   "north_east": "North E.",
   "circle_line": "Circle",
-  "downtown_line": "Downt."
+  "downtown_line": "Downt.",
+  //property types
+  "hdb": "HDB",
+  "condo": "Condominium",
+  "landed": "Landed Property",
+  //room types
+  "master_room": "Master Room",
+  "common_room": "Common Room",
+  "other_room": "Other",
+  //room number
+  "one_bedroom": "1 Bedroom",
+  "two_bedroom": "2 Bedrooms",
+  "three_bedroom": "3 Bedrooms",
+  "four_bedroom": "4 Bedrooms",
+  "five_bedroom": "5 Bedrooms",
+  "more_than_five_bedroom": ">5 Bedrooms"
 }

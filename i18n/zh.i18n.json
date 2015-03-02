@@ -39,9 +39,25 @@
   "any_room_num": "任意房间数",
   "any_mrt_line": "任意地铁线",
   "station_name": "站名",
+  //MRT lines
   "north_south": "南北线",
   "east_west": "东西线",
   "north_east": "东北线",
   "circle_line": "环线",
-  "downtown_line": "市区线"
+  "downtown_line": "市区线",
+  //property types
+  "hdb": "组屋",
+  "condo": "公寓",
+  "landed": "别墅",
+  //room types
+  "master_room": "主人房",
+  "common_room": "普通房",
+  "other_room": "其他",
+  //room number
+  "one_bedroom": "一居室",
+  "two_bedroom": "两居室",
+  "three_bedroom": "三居室",
+  "four_bedroom": "四居室",
+  "five_bedroom": "五居室",
+  "more_than_five_bedroom": "大于五居室"
 }

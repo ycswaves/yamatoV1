@@ -218,7 +218,7 @@ Handlebars.registerHelper('transMRT',function(val){
 // helper for property type
 Handlebars.registerHelper('transPtype',function(val){
   var allTypes = Config.getPropertyTypes();
-  return allTypes[val];
+  return TAPi18n.__(allTypes[val]);
 });
 
 // helper for property facilities
