@@ -47,10 +47,12 @@
   "circle_line": "Circle",
   "downtown_line": "Downt.",
   //property types
+  "property_type": "Prop Type",
   "hdb": "HDB",
   "condo": "Condominium",
   "landed": "Landed Property",
   //room types
+  "room_type": "Room Type",
   "master_room": "Master Room",
   "common_room": "Common Room",
   "other_room": "Other",
@@ -60,5 +62,13 @@
   "three_bedroom": "3 Bedrooms",
   "four_bedroom": "4 Bedrooms",
   "five_bedroom": "5 Bedrooms",
-  "more_than_five_bedroom": ">5 Bedrooms"
+  "more_than_five_bedroom": ">5 Bedrooms",
+  //agent fee
+  "agent_fee": "Agent Fee",
+  "has_agent_fee": "Applied",
+  "no_agent_fee": "No",
+  //rent type
+  "rent_type": "Rent Type",
+  "single_room": "Single Room",
+  "whole_flat": "Whole Flat"
 }

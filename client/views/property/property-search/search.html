@@ -79,23 +79,23 @@
 
         <div class="form-group">
           <select name="has-agent-fee" class="selectpicker" data-width="100%">
-            <option value="">有无中介费</option>
-            <option value="0" {{ifSelected 0 currentQuery.hasAgentFee}}>无中介费</option>
-            <option value="1" {{ifSelected 1 currentQuery.hasAgentFee}}>有中介费</option>
+            <option value="">{{_ "agent_fee"}}</option>
+            <option value="0" {{ifSelected 0 currentQuery.hasAgentFee}}>{{_  "has_agent_fee"}}</option>
+            <option value="1" {{ifSelected 1 currentQuery.hasAgentFee}}>{{_ "no_agent_fee"}}</option>
           </select>
         </div><!-- /.form-group -->
 
         <div class="form-group">
           <select id="rent-type" name="rent-type" class="selectpicker" data-width="100%">
-            <option value="">出租方式</option>
-            <option value="0" {{ifSelected 0 currentQuery.rentType}}>单间</option>
-            <option value="1" {{ifSelected 1 currentQuery.rentType}}>整套</option>
+            <option value="">{{_ "rent_type"}}</option>
+            <option value="0" {{ifSelected 0 currentQuery.rentType}}>{{_ "single_room"}}</option>
+            <option value="1" {{ifSelected 1 currentQuery.rentType}}>{{_ "whole_flat"}}</option>
           </select>
         </div><!-- /.form-group -->
 
         <div class="form-group">
           <select name="room-type" id="room-type" class="selectpicker" data-width="100%">
-            <option value="">出租房间</option>
+            <option value="">{{_ "room_type"}}</option>
             {{#each arrayify rtypes}}
             <option value="{{key}}"  {{ifSelected key currentQuery.roomType}}>{{_ value}}</option>
             {{/each}}

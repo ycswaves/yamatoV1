@@ -134,6 +134,10 @@ Template.sideSearch.helpers({
     return Config.getPriceRange();
   },
 
+  roomNum: function(){
+    return Config.getRoomNum();
+  },
+
   currentQuery: function(){
     return Router.current().params.query
   },

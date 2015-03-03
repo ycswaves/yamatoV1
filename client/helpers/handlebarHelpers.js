@@ -239,13 +239,15 @@ Handlebars.registerHelper('transDatetime',function(date, format){
 
 // helper for has agent fee
 Handlebars.registerHelper('transAgt',function(val){
-  return (val==1)? '有':'无';
+  var res = (val==1)? 'has_agent_fee':'no_agent_fee';
+  return TAPi18n.__(res);
 });
 
 // helper for room type
 Handlebars.registerHelper('transRoom',function(rentType, room){
   var allRoomTypes = Config.getRoomTypes();
-  return (rentType==1)? '整套' : allRoomTypes[room];
+  var res = (rentType==1)? 'whole_flat' : allRoomTypes[room];
+  return TAPi18n.__(res);
 });
 
 // helper for get image url
