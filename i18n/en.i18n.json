@@ -70,5 +70,11 @@
   //rent type
   "rent_type": "Rent Type",
   "single_room": "Single Room",
-  "whole_flat": "Whole Flat"
+  "whole_flat": "Whole Flat",
+  //property status
+  "open": "Open",
+  "closed": "Closed",
+  "deal": "Deal",
+  "expired": "Expired",
+  "violate": "Violate"
 }

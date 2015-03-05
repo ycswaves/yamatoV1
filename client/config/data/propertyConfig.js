@@ -30,17 +30,17 @@ var priceRange = {
 
 // correspond to properties_col status allowd allowedValues
 var userPropertyStatus = {
-  "open": "发布中",
-  "closed": "不公开",
-  "deal": "已成交"
+  "open": "open",
+  "closed": "closed",
+  "deal": "deal"
 }
 
 var adminPropertyStatus = {
-  "open": "发布中",
-  "closed": "不公开",
-  "deal": "已成交",
-  "expired": "过期",
-  "violate": "违规"
+  "open": "open",
+  "closed": "closed",
+  "deal": "deal",
+  "expired": "expired",
+  "violate": "violate"
 }
 
 

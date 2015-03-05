@@ -7,7 +7,7 @@
   </style>
   <select class="status selectpicker" id="{{_id}}" data-width="90%" >
     {{#each arrayify propertyStatus}}
-    <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
+    <option value="{{key}}" {{ifSelected key ../status}}>{{_ value}}</option>
     {{/each}}
   </select>
 </template>

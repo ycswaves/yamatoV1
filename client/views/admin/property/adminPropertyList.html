@@ -17,7 +17,7 @@
           <select class="status selectpicker" id="batchStatus" data-width="100%" style="margin-bottom:0px;">
             <option value="">选择状态</option>
             {{#each arrayify propertyStatus}}
-            <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
+            <option value="{{key}}" {{ifSelected key ../status}}>{{_ value}}</option>
             {{/each}}
           </select>
         </div>
@@ -62,7 +62,7 @@
             <td class="v-middle">
               <select class="status selectpicker individual" id="{{_id}}" data-width="100%" style="margin-bottom:0px;">
                 {{#each arrayify propertyStatus}}
-                <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
+                <option value="{{key}}" {{ifSelected key ../status}}>{{_ value}}</option>
                 {{/each}}
               </select>
             </td>

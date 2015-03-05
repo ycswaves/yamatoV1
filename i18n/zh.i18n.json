@@ -69,5 +69,11 @@
   //rent type
   "rent_type": "出租方式",
   "single_room": "单间",
-  "whole_flat": "整套"
+  "whole_flat": "整套",
+  //property status
+  "open": "发布中",
+  "closed": "不公开",
+  "deal": "已成交",
+  "expired": "过期",
+  "violate": "违规"
 }
