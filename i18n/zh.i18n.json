@@ -75,5 +75,21 @@
   "closed": "不公开",
   "deal": "已成交",
   "expired": "过期",
-  "violate": "违规"
+  "violate": "违规",
+  //property facilities
+  "has_furniture": "家具齐全",
+  "furnished": "精装修",
+  "no_landlord": "无房东",
+  "aircon": "空调",
+  "washer": "洗衣机",
+  "dryer": "烘干机",
+  "fridge": "冰箱",
+  "internet": "网络",
+  "microwave": "微波炉",
+  "allow_cooking": "可煮",
+  "swimming_pool": "游泳池",
+  "tennis_court": "网球场",
+  "balcony": "阳台",
+  "parking_slot": "停车场",
+  "gym": "健身房"
 }

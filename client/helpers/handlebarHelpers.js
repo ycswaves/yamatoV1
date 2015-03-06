@@ -224,7 +224,7 @@ Handlebars.registerHelper('transPtype',function(val){
 // helper for property facilities
 Handlebars.registerHelper('transPfaci',function(val){
   var allFaci = Config.getFacilities();
-  return allFaci[val];
+  return TAPi18n.__(allFaci[val]);
 });
 
 // helper for move in date

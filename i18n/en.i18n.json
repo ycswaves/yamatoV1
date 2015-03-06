@@ -76,5 +76,21 @@
   "closed": "Closed",
   "deal": "Deal",
   "expired": "Expired",
-  "violate": "Violate"
+  "violate": "Violate",
+  //property facilities
+  "has_furniture": "Full Furniture",
+  "furnished": "Well Furnished",
+  "no_landlord": "No Landlord",
+  "aircon": "Aircon",
+  "washer": "Washer",
+  "dryer": "Dryer",
+  "fridge": "Fridge",
+  "internet": "Internet",
+  "microwave": "Microwave Oven",
+  "allow_cooking": "Cooking Allowd",
+  "swimming_pool": "Swimming Pool",
+  "tennis_court": "Tennis Court",
+  "balcony": "Balcony",
+  "parking_slot": "Parking",
+  "gym": "Gym"
 }

@@ -66,29 +66,29 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group" id="ptype-form-group">
-                    <label>房屋类型</label>
+                    <label>{{_ "property_type"}}</label>
                     <select name="property-type" id="property-type" class="form-control m-b selectpicker">
                       {{#each arrayify ptypes}}
-                      <option value="{{key}}" {{ifSelected key ../myProperty.propertyType}}>{{value}}</option>
+                      <option value="{{key}}" {{ifSelected key ../myProperty.propertyType}}>{{_ value}}</option>
                       {{/each}}
                     </select>
                   </div>
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group" id="hasAgent-form-group">
-                    <label>有无中介费</label>
+                    <label>{{_ "agent_fee"}}</label>
                     <div class="row padder">
                       <div class="radio col-xs-6">
                         <label>
                           <input type="radio" id="has-agent-true" value="1" class="icheck"
-                          {{ifRadioChecked 1 myProperty.hasAgentFee}} name="has-agent-fee"> 有
+                          {{ifRadioChecked 1 myProperty.hasAgentFee}} name="has-agent-fee"> {{_ "has_agent_fee"}}
                         </label>
 
                       </div>
                       <div class="radio col-xs-6" style="margin-top:10px">
                         <label>
                           <input type="radio" id="has-agent-false" value="0" class="icheck"
-                          {{ifRadioChecked 0 myProperty.hasAgentFee}} name="has-agent-fee"> 无
+                          {{ifRadioChecked 0 myProperty.hasAgentFee}} name="has-agent-fee"> {{_ "no_agent_fee"}}
                         </label>
                       </div>
                     </div>
@@ -98,19 +98,19 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group" id="renttype-form-group">
-                    <label>出租方式</label>
+                    <label>{{_ "rent_type"}}</label>
                     <select name="rent-type" id="rent-type" class="form-control selectpicker">
-                      <option value="0" {{ifSelected '0' myProperty.rentType}}>单间</option>
-                      <option value="1" {{ifSelected '1' myProperty.rentType}}>整套</option>
+                      <option value="0" {{ifSelected '0' myProperty.rentType}}>{{_ "single_room"}}</option>
+                      <option value="1" {{ifSelected '1' myProperty.rentType}}>{{_ "whole_flat"}}</option>
                     </select>
                   </div>
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group" id="room-form-group">
-                    <label>房间类型</label>
+                    <label>{{_ "room_type"}}</label>
                     <select name="room-type" id="room-type" class="form-control selectpicker">
                       {{#each arrayify rtypes}}
-                      <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{value}}</option>
+                      <option value="{{key}}" {{ifSelected key ../myProperty.roomType}}>{{_ value}}</option>
                       {{/each}}
                     </select>
                   </div>
@@ -130,7 +130,7 @@
                     <label>房间</label>
                     <select name="bedroom" class="form-control selectpicker">
                       {{#each bedroomNum}}
-                      <option value="{{this}}" {{ifSelected this ../myProperty.bedroom}}>{{this}}</option>
+                      <option value="{{this}}" {{ifSelected this ../myProperty.bedroom}}>{{_ this}}</option>
                       {{/each}}
                     </select>
                   </div>
@@ -161,7 +161,7 @@
                     <label>最近地铁线</label>
                     <select name="mrtlines" id="mrtlines" class="form-control selectpicker">
                       {{#each arrayify mrtlines}}
-                      <option value="{{key}}" {{ifLineMatch key ../myProperty.mrt}}>{{value.niceName}}</option>
+                      <option value="{{key}}" {{ifLineMatch key ../myProperty.mrt}}>{{_ value.niceName}}</option>
                       {{/each}}
                     </select>
                   </div>
@@ -247,7 +247,7 @@
                 <li class="col-sm-4 col-xs-6">
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" value="{{key}}" {{ifSelected key ../myProperty.facilities}} class="property-facility icheck">  {{value}}
+                      <input type="checkbox" value="{{key}}" {{ifSelected key ../myProperty.facilities}} class="property-facility icheck">  {{_ value}}
                     </label>
                   </div>
                 </li>

@@ -10,4 +10,7 @@ render = function(){
     $('body').on('mouseleave','.editable',function(){
       $(this).find('.symbol').addClass('hidden');
     })
+
+    //to refresh the i18n in selectpicker
+    CommonHelper.refreshSelectpickerLang();
 }

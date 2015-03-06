@@ -55,21 +55,21 @@ var agencyList = {
 };
 
 var propertyFacilities = {
-  "hasFurniture": "家具齐全",
-  "furnished": "精装修",
-  "noLandlord": "无房东",
-  "aircon": "空调",
-  "washer": "洗衣机",
-  "dryer": "烘干机",
-  "fridge": "冰箱",
-  "internet": "网络",
-  "microwave": "微波炉",
-  "allowCooking": "可煮",
-  "swimmingPool": "游泳池",
-  "tennisCourt": "网球场",
-  "balcony": "阳台",
-  "parkingSlot": "停车场",
-  "gym": "健身房"
+  "hasFurniture": "has_furniture",
+  "furnished": "furnished",
+  "noLandlord": "no_landlord",
+  "aircon": "aircon",
+  "washer": "washer",
+  "dryer": "dryer",
+  "fridge": "fridge",
+  "internet": "internet",
+  "microwave": "microwave",
+  "allowCooking": "allow_cooking",
+  "swimmingPool": "swimming_pool",
+  "tennisCourt": "tennis_court",
+  "balcony": "balcony",
+  "parkingSlot": "parking_slot",
+  "gym": "gym"
 };
 
 var favPropertyFacilities = {

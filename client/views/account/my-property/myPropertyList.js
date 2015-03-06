@@ -3,8 +3,6 @@ var renderSelect = function(){
     container:'body',
     style:'btn-white btn-xs'
   });
-  //to refresh the i18n in selectpicker
-  CommonHelper.refreshSelectpickerLang();
 }
 
 Template.myPropertyList.rendered = function() {
