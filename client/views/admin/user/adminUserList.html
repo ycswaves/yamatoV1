@@ -39,7 +39,7 @@
             <td class="v-middle">
               <select class="status selectpicker" id="{{_id}}" data-width="100%" data-margin-bottom="0px">
                 {{#each arrayify userStatus}}
-                <option value="{{key}}" {{ifSelected key ../status}}>{{value}}</option>
+                <option value="{{key}}" {{ifSelected key ../status}}>{{_ value}}</option>
                 {{/each}}
               </select>
             </td>

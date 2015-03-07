@@ -62,21 +62,21 @@
                           <div class="row">
                             <div class="col-sm-6">
                               <dl>
-                                <dt><figure class="fa fa-map-marker icon-align"></figure><span class="hidden-xs">区域: </span></dt>
+                                <dt><figure class="fa fa-map-marker icon-align"></figure><span class="hidden-xs">{{_ "label_district"}} </span></dt>
                                 <dd>{{transDistr district}}</dd>
-                                <dt class="hidden-xs"><figure class="fa fa-bus icon-align"></figure>近地铁: </dt>
+                                <dt class="hidden-xs"><figure class="fa fa-bus icon-align"></figure>{{_ "label_near_mrt"}} </dt>
                                 <dd class="hidden-xs">{{transMRT mrt}} {{mrtColoredLabel mrt 'inline'}}</dd>
-                                <dt class="hidden-xs"><figure class="fa fa-calendar icon-align"></figure>入住时间: </dt>
-                                <dd class="hidden-xs">{{transDatetime moveInDate}} 起</dd>
-                                <dt class="hidden-xs"><figure class="fa fa-home icon-align"></figure>房间: </dt>
+                                <dt class="hidden-xs"><figure class="fa fa-calendar icon-align"></figure>{{_ "label_move_in_date"}} </dt>
+                                <dd class="hidden-xs">{{transDatetime moveInDate}}</dd>
+                                <dt class="hidden-xs"><figure class="fa fa-home icon-align"></figure>{{_ "label_room_type"}} </dt>
                                 <dd class="hidden-xs">{{transRoom rentType roomType}}</dd>
                               </dl>
                             </div>
                             <div class="col-sm-6">
                               <dl>
-                                <dt class="hidden-xs"><figure class="fa fa-user icon-align"></figure>{{_ "agent_fee"}}: </dt>
+                                <dt class="hidden-xs"><figure class="fa fa-user icon-align"></figure>{{_ "label_agent_fee"}} </dt>
                                 <dd class="hidden-xs">{{transAgt hasAgentFee}}</dd>
-                                <dt class="hidden-xs"><figure class="fa fa-building icon-align"></figure>{{_ "property_type"}}: </dt>
+                                <dt class="hidden-xs"><figure class="fa fa-building icon-align"></figure>{{_ "label_property_type"}} </dt>
                                 <dd class="hidden-xs">{{transPtype propertyType}}</dd>
                                 <dt></dt>
                                 <dd>
@@ -86,7 +86,7 @@
                                 </dd>
                                 <dt>
                                   <a href="{{pathFor 'propertyDetail' id=_id}}" class="text-primary">
-                                    查看详情 <i class="fa fa-angle-right"></i>
+                                    {{_ "label_more_details"}} <i class="fa fa-angle-right"></i>
                                   </a>
                                 </dt>
                                 <dd class="full-width text-right tags">

@@ -47,7 +47,6 @@
   "circle_line": "Circle",
   "downtown_line": "Downt.",
   //property types
-  "property_type": "Prop Type",
   "hdb": "HDB",
   "condo": "Condominium",
   "landed": "Landed Property",
@@ -64,7 +63,6 @@
   "five_bedroom": "5 Bedrooms",
   "more_than_five_bedroom": ">5 Bedrooms",
   //agent fee
-  "agent_fee": "Agent Fee",
   "has_agent_fee": "Applied",
   "no_agent_fee": "No",
   //rent type
@@ -92,5 +90,17 @@
   "tennis_court": "Tennis Court",
   "balcony": "Balcony",
   "parking_slot": "Parking",
-  "gym": "Gym"
+  "gym": "Gym",
+  //Admin User Status
+  "user_active" : "Active",
+  "user_blocked": "Blocked",
+  //property label
+  "label_property_type": "Prop Type",
+  "label_property_type_long": "Property Type",
+  "label_district": "District",
+  "label_agent_fee": "Agent Fee",
+  "label_near_mrt": "MRT",
+  "label_move_in_date": "Move in",
+  "label_room_type": "Room",
+  "label_more_details": "More Details"
 }

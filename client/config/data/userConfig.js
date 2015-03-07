@@ -1,6 +1,6 @@
 var adminUserStatus = {
-  "active" : "正常",
-  "blocked": "封停"
+  "active" : "user_active",
+  "blocked": "user_blocked"
 }
 
 Config.getAdminUserStatus = function(){
