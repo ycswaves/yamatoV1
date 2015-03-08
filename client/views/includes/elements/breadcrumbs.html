@@ -2,15 +2,15 @@
   <div>
     <ol class="breadcrumb no-radius">
       <li>
-        <a href="{{pathFor route='landing'}}">首页</a>
+        <a href="{{pathFor route='landing'}}">{{_ "landing_page"}}</a>
       </li>
       {{#each intermediateRoutes}}
       <li>
-        <a href="{{pathFor route=name}}">{{label}}</a>
+        <a href="{{pathFor route=name}}">{{_ label}}</a>
       </li>
       {{/each}}
       <li class="active">
-        {{currentRouteLabel}}
+        {{_ currentRouteLabel}}
       </li>
     </ol>
   </div>

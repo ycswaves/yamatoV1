@@ -4,7 +4,7 @@
     <div class="container">
       <div class="row">
         <div class="hidden-xs col-sm-3" role="navigation">
-          <h4 class="m-t-none">搜索条件</h4>
+          <h4 class="m-t-none">{{_ "search_filter"}}</h4>
           <hr>
           {{> sideSearch}}
         </div>
@@ -13,13 +13,13 @@
           {{#if noResult}}
             <div class="alert alert-success">
               <button type="button" class="close" data-dismiss="alert"><i class="fa fa-times"></i></button>
-              <i class="fa fa-info-sign"></i>对不起，没有找到符合条件的房屋。
+              <i class="fa fa-info-sign"></i>{{_ "search_no_result"}}
             </div>
           {{else}}
-            <h4 class="m-t-none">找到{{totalDocs}}条结果:</h4>
+            <h4 class="m-t-none">{{_ "search_result_count" totalDocs}}:</h4>
           {{/if}}
           <hr>
-          <button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-info center full-width m-b">设置搜索条件</button>
+          <button type="button" data-toggle="modal" data-target="#sideSearchModal" class="visible-xs btn btn-info center full-width m-b">{{_ "search_filter"}}</button>
           <section id="results">
             {{#each properties}}
             {{#AnimateWithVelocity}}

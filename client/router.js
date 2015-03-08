@@ -79,7 +79,7 @@ Router.map(function () {
     path: '/account/signin',
     template: 'signin',
     parent:'landing',
-    label: '登录',
+    label: 'login',
     action: function () {
       this.layout('layoutPlain');
       $('body').addClass('fullbackground');
@@ -96,7 +96,7 @@ Router.map(function () {
     path: '/account/signup',
     template: 'signup',
     parent:'landing',
-    label: '注册',
+    label: 'register',
     action: function () {
       this.layout('layoutPlain');
       $('body').addClass('fullbackground');
@@ -124,7 +124,7 @@ Router.map(function () {
     path: '/account/me',
     template: 'me',
     parent:'landing',
-    label: '个人主页',
+    label: 'my_management',
     waitOn: function () {
       return Meteor.subscribe("userProfile", Meteor.userId());
     },
@@ -142,7 +142,7 @@ Router.map(function () {
     path: '/account/myproperty/list/:type/:page',
     template: 'myProperties',
     parent:'landing',
-    label: '我的房屋',
+    label: 'my_property',
     controller: 'MyPropertiesController',
     waitOn: function () {
       return (Meteor.subscribe('userData') && Meteor.subscribe("myProperty", Meteor.userId()));
@@ -164,7 +164,7 @@ Router.map(function () {
   this.route('adminuser', {
     path: '/admin/user/:type/:page',
     parent:'landing',
-    label: '管理用户',
+    label: 'admin_manage_user',
     controller: 'AdminUsersController',
     onAfterAction: function () {
       SEO.set({
@@ -177,7 +177,7 @@ Router.map(function () {
     path: '/pages/terms-conditions',
     template: 'terms',
     parent:'landing',
-    label: '网站条例及规范',
+    label: 'label_terms',
     onAfterAction: function () {
       SEO.set({
         title: TITLE + ' | ' + '网站条例及规范'
@@ -188,7 +188,7 @@ Router.map(function () {
   this.route('adminproperty', {
     path: '/admin/property/:type/:page',
     parent:'landing',
-    label: '管理房屋',
+    label: 'admin_manage_property',
     controller: 'AdminPropertiesController',
     onAfterAction: function () {
       SEO.set({
@@ -200,7 +200,7 @@ Router.map(function () {
   this.route('properties', {
     path: '/properties/list/:page',
     parent:'landing',
-    label: '房屋列表',
+    label: 'label_property_listing',
     controller: 'ListController',
     onAfterAction: function () {
       SEO.set({
@@ -213,7 +213,7 @@ Router.map(function () {
   this.route('addProperty', {
     path: '/properties/add',
     parent:'landing',
-    label: '发布房屋信息',
+    label: 'label_publish_property',
     controller: 'AddPropertyController',
     onAfterAction: function () {
       SEO.set({
@@ -225,7 +225,7 @@ Router.map(function () {
   this.route('editProperty', {
     path: '/properties/edit/:id',
     parent:'landing',
-    label: '修改房屋信息',
+    label: 'label_edit_property',
     controller: 'EditPropertyController',
     onAfterAction: function () {
       SEO.set({
@@ -251,7 +251,7 @@ Router.map(function () {
     path: '/account/inbox',
     template: 'inboxPage',
     parent:'landing',
-    label: '收件箱',
+    label: 'inbox',
     action: function () {
       this.render();
     },
@@ -266,7 +266,7 @@ Router.map(function () {
     path: '/account/security',
     template: 'securityPage',
     parent:'landing',
-    label: '安全设置',
+    label: 'security',
     action: function () {
       this.render();
     },
@@ -281,7 +281,7 @@ Router.map(function () {
     path: '/account/avatar',
     template: 'uploadAvatar',
     parent:'landing',
-    label: '修改头像',
+    label: 'label_change_avatar',
     action: function () {
       this.render();
     }

@@ -30,6 +30,14 @@
   "search_btn": "搜索",
   "inbox_status": "您有%s条新消息",
   "landing_page": "首页",
+  //breadcrumbs
+  "admin_manage_user": "管理用户",
+  "admin_manage_property": "管理房屋",
+  "label_terms": "网站条例及规范",
+  "label_property_listing": "房屋列表",
+  "label_publish_property": "发布房屋信息",
+  "label_edit_property": "修改房屋信息",
+  "label_change_avatar": "修改头像",
 
   //form related
   "any_property_type": "任意房屋类型",
@@ -39,6 +47,15 @@
   "any_room_num": "任意房间数",
   "any_mrt_line": "任意地铁线",
   "station_name": "站名",
+  //Sorting
+  "sort_by": "排序",
+  "price_low_to_high": "价格从高到低",
+  "price_high_to_low": "价格从低到高",
+  "lastest_publish": "最新发布",
+  "search_filter": "搜索条件",
+  "search_result_count": "找到%s条结果",
+  "search_no_result": "对不起，没有找到符合条件的房屋",
+  "close_modal": "关闭",
   //MRT lines
   "north_south": "南北线",
   "east_west": "东西线",

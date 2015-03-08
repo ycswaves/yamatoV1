@@ -30,6 +30,14 @@
   "search_btn": "Search",
   "inbox_status": "You have %s new message(s)",
   "landing_page": "Home",
+  //breadcrumbs
+  "admin_manage_user": "Manage User",
+  "admin_manage_property": "Manage Property",
+  "label_terms": "Terms and Conditions",
+  "label_property_listing": "Property Listing",
+  "label_publish_property": "Publish Property",
+  "label_edit_property": "Edit Property",
+  "label_change_avatar": "Change Avatar",
 
   //form related
   "any_property_type": "Any Type",
@@ -39,7 +47,15 @@
   "any_room_num": "Any Room Number",
   "any_mrt_line": "Any MRT Line",
   "station_name": "Station",
-
+  //Sorting
+  "sort_by": "Sort By",
+  "price_low_to_high": "Price Low to High",
+  "price_high_to_low": "Price High to Low",
+  "lastest_publish": "Lastest Publish",
+  "search_filter": "Search Filter",
+  "search_result_count": "Found %s matched result",
+  "search_no_result": "Sorry, No matched result found",
+  "close_modal": "Close",
   //MRT lines
   "north_south": "North S.",
   "east_west": "East W.",
