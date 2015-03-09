@@ -96,7 +96,7 @@
   "furnished": "Well Furnished",
   "no_landlord": "No Landlord",
   "aircon": "Aircon",
-  "washer": "Washer",
+  "washer": "Washing Machine",
   "dryer": "Dryer",
   "fridge": "Fridge",
   "internet": "Internet",
@@ -118,5 +118,18 @@
   "label_near_mrt": "MRT",
   "label_move_in_date": "Move in",
   "label_room_type": "Room",
-  "label_more_details": "More Details"
+  "label_more_details": "More Details",
+  "label_address": "Address",
+  "label_area": "Area",
+  "label_no_of_bedroom": "Bedrooms",
+  "label_no_of_bathroom": "Bathrooms",
+  "title_description": "Description",
+  "title_overview": "Overview",
+  "title_facilities": "Facilities",
+  "title_nearby": "Nearby",
+  "subtitle_nearyby": "(Within 1km)",
+  "title_supermart": "Supermarket, Grocery Store",
+  "title_food": "Restaurants, Food Courts",
+  "no_relevant_info": "Not Available",
+  "no_description": "Sorry, no detailed description available, you may refer to Overview"
 }

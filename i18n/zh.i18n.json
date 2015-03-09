@@ -118,5 +118,18 @@
   "label_near_mrt": "近地铁",
   "label_move_in_date": "入住时间",
   "label_room_type": "房间",
-  "label_more_details": "查看详情"
+  "label_more_details": "查看详情",
+  "label_address": "地址",
+  "label_area": "面积",
+  "label_no_of_bedroom": "卧室",
+  "label_no_of_bathroom": "卫生间",
+  "title_description": "房屋描述",
+  "title_overview": "概览",
+  "title_facilities": "房屋设施",
+  "title_nearby": "附近",
+  "subtitle_nearyby": "(1km 内)",
+  "title_supermart": "超市，便利店",
+  "title_food": "餐馆，食阁",
+  "no_relevant_info": "没有相关信息",
+  "no_description": "这家伙很懒，没有留下详细描述, 请您参考概览吧 ;)"
 }

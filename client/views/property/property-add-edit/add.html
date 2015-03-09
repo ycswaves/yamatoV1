@@ -15,7 +15,7 @@
               <div class="row">
                 <div class="col-sm-6">
                   <div class="form-group" id="address-form-group">
-                    <label>地址 *</label>
+                    <label>{{_ "label_address"}} *</label>
                     <input type="text" class="form-control" id="submit-title" placeholder="请输入地址" name="address" value="{{myProperty.address}}">
                   </div>
                 </div>
@@ -40,7 +40,7 @@
               </div>
               <div class="row">
                 <div class="form-group padder" id="descr-form-group">
-                  <label>更多描述</label>
+                  <label>{{_ "title_description"}}</label>
                   <textarea class="form-control" id="submit-description" rows="3" name="description">{{myProperty.description}}</textarea>
                 </div>
               </div>
@@ -48,13 +48,13 @@
           </section>
           <section class="panel">
             <header class="panel-heading">
-              <span class="h4"><i class="fa fa-newspaper-o"></i> 概览</span>
+              <span class="h4"><i class="fa fa-newspaper-o"></i> {{_ "title_overview"}}</span>
             </header>
             <div class="panel-body">
               <div class="row">
                 <div class="col-sm-8">
                   <div class="form-group" id="district-form-group">
-                    <label>区域</label>
+                    <label>{{_ "label_district"}}</label>
                     <select id="district" name="district" class="form-control m-b selectpicker">
                       {{#each arrayify district}}
                       <option value="{{key}}" {{ifSelected key ../myProperty.district}}>{{key}} - {{value}}</option>
@@ -66,7 +66,7 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group" id="ptype-form-group">
-                    <label>{{_ "property_type"}}</label>
+                    <label>{{_ "label_property_type_long"}}</label>
                     <select name="property-type" id="property-type" class="form-control m-b selectpicker">
                       {{#each arrayify ptypes}}
                       <option value="{{key}}" {{ifSelected key ../myProperty.propertyType}}>{{_ value}}</option>
@@ -76,7 +76,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group" id="hasAgent-form-group">
-                    <label>{{_ "agent_fee"}}</label>
+                    <label>{{_ "label_agent_fee"}}</label>
                     <div class="row padder">
                       <div class="radio col-xs-6">
                         <label>
@@ -117,7 +117,7 @@
                 </div>
                 <div class="col-md-4 col-sm-4">
                   <div class="form-group" id="movein-form-group">
-                    <label for="move-in-date">入住时间</label>
+                    <label for="move-in-date">{{_ "label_move_in_date"}}</label>
                     <div class="input-group">
                       <input type="text" class="form-control datepicker" id="move-in-date" name="move-in-date" value="{{transDatetime myProperty.moveInDate}}">
                     </div>
@@ -127,7 +127,7 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group" id="bedroom-form-group">
-                    <label>房间</label>
+                    <label>{{_ "label_no_of_bedroom"}}</label>
                     <select name="bedroom" class="form-control selectpicker">
                       {{#each bedroomNum}}
                       <option value="{{this}}" {{ifSelected this ../myProperty.bedroom}}>{{_ this}}</option>
@@ -137,7 +137,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group" id="bathroom-form-group">
-                    <label>卫生间</label>
+                    <label>{{_ "label_no_of_bathroom"}}</label>
                     <select name="bathroom" class="form-control selectpicker">
                       {{#each bathroomNum}}
                       <option value="{{this}}" {{ifSelected this ../myProperty.bathroom}}>{{this}}</option>
@@ -147,7 +147,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group" id="area-form-group">
-                    <label>面积 *</label>
+                    <label>{{_ "label_area"}} *</label>
                     <div class="input-group">
                       <input type="text" class="form-control selectpicker" name="property-area" value="{{myProperty.area}}">
                       <span class="input-group-addon">m<sup>2</sup></span>
@@ -158,7 +158,7 @@
               <div class="row">
                 <div class="col-sm-4">
                   <div class="form-group" id="mrtLinesDiv">
-                    <label>最近地铁线</label>
+                    <label>{{_ "label_near_mrt"}}</label>
                     <select name="mrtlines" id="mrtlines" class="form-control selectpicker">
                       {{#each arrayify mrtlines}}
                       <option value="{{key}}" {{ifLineMatch key ../myProperty.mrt}}>{{_ value.niceName}}</option>
@@ -168,7 +168,7 @@
                 </div>
                 <div class="col-sm-4">
                   <div class="form-group">
-                    <label>站名</label>
+                    <label>{{_ "station_name"}}</label>
                     <select name="stations" id="stations" class="form-control selectpicker">
                       {{#each arrayify stations}}
                       <option value="{{key}}" {{ifSelected key ../myProperty.mrt}}>{{key}} - {{value}}</option>
